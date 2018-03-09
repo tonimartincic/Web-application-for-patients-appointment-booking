@@ -1,5 +1,8 @@
 7.3.2018
-Kreiranje projekta. Dodavanje alatne trake.
+Kreiranje projekta. Dodavanje navigacijske trake na frontendu aplikacije.
 
 8.3.2018.
 Kreiranje Gitlab repozitorija.
+
+8.3.2018.
+Početak rada na backendu aplikacije. Dodavanje bolničkih odjela.
