@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.impl;
 
+import hr.fer.snarp.domain.users.user.UserResponse;
 import hr.fer.snarp.repository.AdministratorRepository;
 import hr.fer.snarp.repository.GeneralPractitionerRepository;
 import hr.fer.snarp.repository.MedicalSpecialistRepository;
@@ -30,5 +31,10 @@ public class UserServiceImpl implements UserService {
     this.generalPractitionerRepository = generalPractitionerRepository;
     this.medicalSpecialistRepository = medicalSpecialistRepository;
     this.patientRepository = patientRepository;
+  }
+
+  @Override
+  public UserResponse validateUser(String mail, String password) {
+    return null;
   }
 }
