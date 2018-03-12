@@ -1,5 +1,14 @@
 7.3.2018
-Kreiranje projekta. Dodavanje alatne trake.
+Kreiranje projekta. Dodavanje navigacijske trake na frontendu aplikacije.
 
 8.3.2018.
-Kreiranje Gitlab repozitorija.
+Kreiranje Gitlab repozitorija. Postavljanje početne verzije aplikacije na Heroku server.
+
+9.3.2018.
+Početak rada na backendu aplikacije. Dodavanje bolničkih odjela.
+
+10.3.2018.
+Rad na backendu aplikacije. Dodavanje modela.
+
+12.3.2018.
+Dodavanje modela i rad na loginu.
