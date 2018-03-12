@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import NavigationBar from './navigationBar/NavigationBar';
 
 class SecondComponent extends React.Component {
 	render() {
 		return (
-			<span>Second component</span>
+		  <section>
+        <NavigationBar/>
+        <span>Second component</span>
+      </section>
 		);
 	}
 }

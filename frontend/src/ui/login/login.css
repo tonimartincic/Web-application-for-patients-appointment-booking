@@ -1,0 +1,61 @@
+.section {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 0.6em;
+}
+.sectionSpacing {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 1.5em;
+}
+
+.sectionMain {
+  /*background: url('https://images.pexels.com/photos/529621/pexels-photo-529621.jpeg') no-repeat center center fixed;*/
+  background-size: cover;
+  padding-top: 5em;
+  height: 100vh;
+}
+
+.button {
+  width: 100%;
+}
+
+.pInvalid {
+  color: darkred;
+  text-align: center;
+}
+
+
+.h1ElegantShadow {
+  font-family: serif;
+  font-size: 6.6vw;
+  padding-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  color: #131313;
+  background-color: transparent;
+  letter-spacing: .15em;
+}
+
+.container{
+  height: 100%;
+  width: 100%;
+  background: inherit;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.container::before{
+  top: 10%;
+  left: 33%;
+  height: 45%;
+  width: 33.5%;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.1);
+  filter: blur(10px);
+}
