@@ -11,4 +11,4 @@ Početak rada na backendu aplikacije. Dodavanje bolničkih odjela.
 Rad na backendu aplikacije. Dodavanje modela.
 
 12.3.2018.
-Dodavanje modela i rad na loginu.
+Dodavanje modela i rad na loginu. Dodavanje web sloja, servisnog sloja i repository sloja.
