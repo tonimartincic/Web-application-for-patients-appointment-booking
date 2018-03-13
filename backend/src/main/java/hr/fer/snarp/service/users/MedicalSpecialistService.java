@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.users;
 
+import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistRequest;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
 
@@ -18,4 +19,6 @@ public interface MedicalSpecialistService {
   MedicalSpecialistResponse editPassword(MedicalSpecialistRequest medicalSpecialistRequest);
 
   void deleteById(Long id);
+
+  MedicalSpecialist getByMailAndPassword(String mail, String password);
 }

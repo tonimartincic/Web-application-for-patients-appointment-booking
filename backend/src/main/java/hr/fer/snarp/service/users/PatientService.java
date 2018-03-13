@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.users;
 
+import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientRequest;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
 
@@ -18,4 +19,6 @@ public interface PatientService {
   PatientResponse editPassword(PatientRequest patientRequest);
 
   void deleteById(Long id);
+
+  Patient getByMailAndPassword(String mail, String password);
 }

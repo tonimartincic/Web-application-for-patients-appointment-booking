@@ -94,6 +94,11 @@ public class PatientServiceImpl implements PatientService {
     this.patientRepository.delete(id);
   }
 
+  @Override
+  public Patient getByMailAndPassword(final String mail, final String password) {
+    return this.patientRepository.findByMailAndPassword(mail, password);
+  }
+
   private List<PatientResponse> getPatientResponses(final List<Patient> patients) {
     final List<PatientResponse> patientResponses = new ArrayList<>();
 

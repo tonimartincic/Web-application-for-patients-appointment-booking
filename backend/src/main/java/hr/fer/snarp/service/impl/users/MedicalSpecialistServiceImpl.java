@@ -64,6 +64,11 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     this.medicalSpecialistRepository.delete(id);
   }
 
+  @Override
+  public MedicalSpecialist getByMailAndPassword(final String mail, final String password) {
+    return this.medicalSpecialistRepository.findByMailAndPassword(mail, password);
+  }
+
   private List<MedicalSpecialistResponse> getMedicalSpecialistResponses(final List<MedicalSpecialist> medicalSpecialists) {
     final List<MedicalSpecialistResponse> medicalSpecialistResponses = new ArrayList<>();
 

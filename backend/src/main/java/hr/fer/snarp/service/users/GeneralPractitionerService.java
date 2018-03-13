@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.users;
 
+import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerResponse;
 
@@ -18,4 +19,6 @@ public interface GeneralPractitionerService {
   GeneralPractitionerResponse editPassword(GeneralPractitionerRequest generalPractitionerRequest);
 
   void deleteById(Long id);
+
+  GeneralPractitioner getByMailAndPassword(String mail, String password);
 }

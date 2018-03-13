@@ -94,6 +94,11 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     this.generalPractitionerRepository.delete(id);
   }
 
+  @Override
+  public GeneralPractitioner getByMailAndPassword(final String mail, final String password) {
+    return this.generalPractitionerRepository.findByMailAndPassword(mail, password);
+  }
+
   private List<GeneralPractitionerResponse> getGeneralPractitionerResponses(final List<GeneralPractitioner> generalPractitioners) {
     final List<GeneralPractitionerResponse> generalPractitionerResponses = new ArrayList<>();
 

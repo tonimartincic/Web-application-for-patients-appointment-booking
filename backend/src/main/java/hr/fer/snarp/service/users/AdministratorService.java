@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.users;
 
+import hr.fer.snarp.domain.users.administrator.Administrator;
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
 
@@ -18,4 +19,6 @@ public interface AdministratorService {
   AdministratorResponse editPassword(AdministratorRequest administratorRequest);
 
   void deleteById(Long id);
+
+  Administrator getByMailAndPassword(String mail, String password);
 }

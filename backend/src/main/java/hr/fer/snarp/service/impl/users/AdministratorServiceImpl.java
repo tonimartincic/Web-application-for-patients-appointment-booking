@@ -64,6 +64,11 @@ public class AdministratorServiceImpl implements AdministratorService {
     this.administratorRepository.delete(id);
   }
 
+  @Override
+  public Administrator getByMailAndPassword(final String mail, final String password) {
+    return this.administratorRepository.findByMailAndPassword(mail, password);
+  }
+
   private List<AdministratorResponse> getAdministratorResponses(final List<Administrator> administrators) {
     final List<AdministratorResponse> administratorResponses = new ArrayList<>();
 
