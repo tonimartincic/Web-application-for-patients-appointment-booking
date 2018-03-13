@@ -5,7 +5,7 @@ import hr.fer.snarp.domain.users.administrator.Administrator;
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
 import hr.fer.snarp.enumeration.UserType;
-import hr.fer.snarp.repository.AdministratorRepository;
+import hr.fer.snarp.repository.users.AdministratorRepository;
 import hr.fer.snarp.service.users.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

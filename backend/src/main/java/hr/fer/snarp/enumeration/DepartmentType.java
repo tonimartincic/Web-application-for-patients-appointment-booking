@@ -2,37 +2,44 @@ package hr.fer.snarp.enumeration;
 
 public enum DepartmentType {
 
-  ANESTHESIOLOGY_REANIMATOLOGY_AND_INTENSIVE_CARE("Anesteziologija, reanimatologija i intenzivno liječenje"),
-  CARDIOLOGY("Kardiologija"),
-  OTORHINOLARYNGOLOGY("Otorinolaringologija"),
-  CARDIOVASCULAR_DISEASES("Bolesti srca i krvnih žila"),
-  CHIRURGY("Kirurgija"),
-  NEUROCHIRURGY("Neurokirurgija"),
-  NEUROLOGY("Neurologija"),
-  EYE_DISEASES("Očne bolesti"),
-  ONCOLOGY("Onkologija"),
-  PAEDIATRICS("Pedijatrija"),
-  PSYCHIATRY("Psihijatrija"),
-  PSYCHOLOGICAL_MEDICINE("Psihološka medicina"),
-  RHEUMATIC_DISEASES_AND_REHABILITATION("Reumatske bolesti i rehabilitacija"),
-  INTERNAL_MEDICINE("Interna medicina"),
-  UROLOGY("Urologija"),
-  DIAGNOSTIC_AND_INTERVENTIONAL_RADIOLOGY("Dijagnostička i intervencijska radiologija"),
-  CLINICAL_AND_MOLECULAR_MICROBIOLOGY("Klinička i molekularna mikrobiologija"),
-  LABORATORY_DIAGNOSTICS("Laboratorijska dijagnostika"),
-  NUCLEAR_MEDICINE_AND_RADIATION_PROTECTION("Nuklearna medicina i zaštita od zračenja"),
-  PATHOLOGY_AND_CYTOLOGY("Patologija i citologija"),
-  TRANSFUSION_MEDICINE_AND_TRANSPLANTATION_BIOLOGY("Transfuzijska medicina i transplantacijska biologija"),
-  URGENT_MEDICAL_CENTER("Hitni bolnički prijem"),;
+  ANESTHESIOLOGY_REANIMATOLOGY_AND_INTENSIVE_CARE(1L, "Anesteziologija, reanimatologija i intenzivno liječenje"),
+  CARDIOLOGY(2L, "Kardiologija"),
+  OTORHINOLARYNGOLOGY(3L, "Otorinolaringologija"),
+  CARDIOVASCULAR_DISEASES(4L, "Bolesti srca i krvnih žila"),
+  CHIRURGY(5L, "Kirurgija"),
+  NEUROCHIRURGY(6L, "Neurokirurgija"),
+  NEUROLOGY(7L, "Neurologija"),
+  EYE_DISEASES(8L, "Očne bolesti"),
+  ONCOLOGY(9L, "Onkologija"),
+  PAEDIATRICS(10L, "Pedijatrija"),
+  PSYCHIATRY(11L, "Psihijatrija"),
+  PSYCHOLOGICAL_MEDICINE(12L, "Psihološka medicina"),
+  RHEUMATIC_DISEASES_AND_REHABILITATION(13L, "Reumatske bolesti i rehabilitacija"),
+  INTERNAL_MEDICINE(14L, "Interna medicina"),
+  UROLOGY(15L, "Urologija"),
+  DIAGNOSTIC_AND_INTERVENTIONAL_RADIOLOGY(16L, "Dijagnostička i intervencijska radiologija"),
+  CLINICAL_AND_MOLECULAR_MICROBIOLOGY(17L, "Klinička i molekularna mikrobiologija"),
+  LABORATORY_DIAGNOSTICS(18L, "Laboratorijska dijagnostika"),
+  NUCLEAR_MEDICINE_AND_RADIATION_PROTECTION(19L, "Nuklearna medicina i zaštita od zračenja"),
+  PATHOLOGY_AND_CYTOLOGY(20L, "Patologija i citologija"),
+  TRANSFUSION_MEDICINE_AND_TRANSPLANTATION_BIOLOGY(21L, "Transfuzijska medicina i transplantacijska biologija"),
+  URGENT_MEDICAL_CENTER(22L, "Hitni bolnički prijem"),;
+
+  private final Long id;
 
   private final String description;
 
-  DepartmentType(final String description) {
+  DepartmentType(final Long id, final String description) {
+    this.id = id;
     this.description = description;
   }
 
+  public Long getId() {
+    return this.id;
+  }
+
   public String getDescription() {
-    return description;
+    return this.description;
   }
 
   public static DepartmentType getByDescription(final String description) {

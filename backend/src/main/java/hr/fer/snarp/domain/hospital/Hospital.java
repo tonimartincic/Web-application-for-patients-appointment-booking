@@ -1,5 +1,6 @@
 package hr.fer.snarp.domain.hospital;
 
+import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.department.Department;
 import lombok.Data;
 
@@ -17,5 +18,13 @@ public class Hospital {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String name;
+
+  private AddressData addressData;
+
   private Set<Department> departments;
+
+  public Hospital(final HospitalRequest hospitalRequest) {
+    this.name = hospitalRequest.getName();
+  }
 }

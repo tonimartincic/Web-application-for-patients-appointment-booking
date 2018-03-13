@@ -1,11 +1,13 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientRequest;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
 import hr.fer.snarp.enumeration.UserType;
-import hr.fer.snarp.repository.PatientRepository;
+import hr.fer.snarp.repository.users.PatientRepository;
+import hr.fer.snarp.service.AddressDataService;
 import hr.fer.snarp.service.users.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,12 @@ public class PatientServiceImpl implements PatientService {
 
   private final PatientRepository patientRepository;
 
+  private final AddressDataService addressDataService;
+
   @Autowired
-  public PatientServiceImpl(final PatientRepository patientRepository) {
+  public PatientServiceImpl(final PatientRepository patientRepository, final AddressDataService addressDataService) {
     this.patientRepository = patientRepository;
+    this.addressDataService = addressDataService;
   }
 
   @Override
@@ -35,7 +40,20 @@ public class PatientServiceImpl implements PatientService {
 
   @Override
   public PatientResponse add(final PatientRequest patientRequest) {
-    return getPatientResponse(this.patientRepository.save(new Patient(patientRequest)));
+    final Patient patient = new Patient(patientRequest);
+    final AddressData addressData =
+      this.addressDataService.add(
+        new AddressData(
+          patientRequest.getCity(),
+          patientRequest.getPostalCode(),
+          patientRequest.getStreet(),
+          patientRequest.getStreetNumber()
+        )
+      );
+
+    patient.setAddressData(addressData);
+
+    return getPatientResponse(this.patientRepository.save(patient));
   }
 
   @Override
@@ -46,6 +64,18 @@ public class PatientServiceImpl implements PatientService {
     patientFromDatabase.setLastName(patientRequest.getLastName());
     patientFromDatabase.setMail(patientRequest.getMail());
     patientFromDatabase.setType(UserType.getByName(patientRequest.getType()));
+
+    final AddressData addressData =
+      this.addressDataService.add(
+        new AddressData(
+          patientRequest.getCity(),
+          patientRequest.getPostalCode(),
+          patientRequest.getStreet(),
+          patientRequest.getStreetNumber()
+        )
+      );
+
+    patientFromDatabase.setAddressData(addressData);
 
     return getPatientResponse(this.patientRepository.save(patientFromDatabase));
   }

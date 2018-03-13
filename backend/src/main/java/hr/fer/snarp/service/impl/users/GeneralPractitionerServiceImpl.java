@@ -1,11 +1,13 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerResponse;
 import hr.fer.snarp.enumeration.UserType;
-import hr.fer.snarp.repository.GeneralPractitionerRepository;
+import hr.fer.snarp.repository.users.GeneralPractitionerRepository;
+import hr.fer.snarp.service.AddressDataService;
 import hr.fer.snarp.service.users.GeneralPractitionerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,12 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
 
   private final GeneralPractitionerRepository generalPractitionerRepository;
 
+  private final AddressDataService addressDataService;
+
   @Autowired
-  public GeneralPractitionerServiceImpl(final GeneralPractitionerRepository generalPractitionerRepository) {
+  public GeneralPractitionerServiceImpl(final GeneralPractitionerRepository generalPractitionerRepository, final AddressDataService addressDataService) {
     this.generalPractitionerRepository = generalPractitionerRepository;
+    this.addressDataService = addressDataService;
   }
 
   @Override
@@ -35,7 +40,20 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
 
   @Override
   public GeneralPractitionerResponse add(final GeneralPractitionerRequest generalPractitionerRequest) {
-    return getGeneralPractitionerResponse(this.generalPractitionerRepository.save(new GeneralPractitioner(generalPractitionerRequest)));
+    final GeneralPractitioner generalPractitioner = new GeneralPractitioner(generalPractitionerRequest);
+    final AddressData addressData =
+      this.addressDataService.add(
+        new AddressData(
+          generalPractitionerRequest.getCity(),
+          generalPractitionerRequest.getPostalCode(),
+          generalPractitionerRequest.getStreet(),
+          generalPractitionerRequest.getStreetNumber()
+        )
+      );
+
+    generalPractitioner.setAddressData(addressData);
+
+    return getGeneralPractitionerResponse(this.generalPractitionerRepository.save(generalPractitioner));
   }
 
   @Override
@@ -46,6 +64,18 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     generalPractitionerFromDatabase.setLastName(generalPractitionerRequest.getLastName());
     generalPractitionerFromDatabase.setMail(generalPractitionerRequest.getMail());
     generalPractitionerFromDatabase.setType(UserType.getByName(generalPractitionerRequest.getType()));
+
+    final AddressData addressData =
+      this.addressDataService.add(
+        new AddressData(
+          generalPractitionerRequest.getCity(),
+          generalPractitionerRequest.getPostalCode(),
+          generalPractitionerRequest.getStreet(),
+          generalPractitionerRequest.getStreetNumber()
+        )
+      );
+
+    generalPractitionerFromDatabase.setAddressData(addressData);
 
     return getGeneralPractitionerResponse(this.generalPractitionerRepository.save(generalPractitionerFromDatabase));
   }

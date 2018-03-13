@@ -5,4 +5,12 @@ import lombok.Data;
 
 @Data
 public class GeneralPractitionerRequest extends UserRequest {
+
+  private String city;
+
+  private Long postalCode;
+
+  private String street;
+
+  private Long streetNumber;
 }

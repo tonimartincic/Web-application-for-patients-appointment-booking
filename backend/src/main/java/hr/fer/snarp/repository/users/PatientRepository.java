@@ -1,4 +1,4 @@
-package hr.fer.snarp.repository;
+package hr.fer.snarp.repository.users;
 
 import hr.fer.snarp.domain.users.patient.Patient;
 import org.springframework.data.repository.CrudRepository;
