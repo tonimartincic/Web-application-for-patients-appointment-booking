@@ -20,4 +20,13 @@ public class Department {
   private DepartmentType type;
 
   private Hospital hospital;
+
+  public Department(final DepartmentType type, final Hospital hospital) {
+    this.type = type;
+    this.hospital = hospital;
+  }
+
+  public Department(final DepartmentRequest departmentRequest) {
+    this.type = DepartmentType.getByDescription(departmentRequest.getType());
+  }
 }
