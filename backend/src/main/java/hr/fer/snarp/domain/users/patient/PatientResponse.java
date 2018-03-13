@@ -5,4 +5,8 @@ import lombok.Data;
 
 @Data
 public class PatientResponse extends UserResponse {
+
+  public PatientResponse(final Patient patient) {
+    super(patient);
+  }
 }

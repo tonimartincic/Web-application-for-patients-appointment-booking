@@ -5,4 +5,8 @@ import lombok.Data;
 
 @Data
 public class AdministratorResponse extends UserResponse {
+
+  public AdministratorResponse(final Administrator administrator) {
+    super(administrator);
+  }
 }

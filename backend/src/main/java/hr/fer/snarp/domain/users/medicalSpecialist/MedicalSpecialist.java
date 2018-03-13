@@ -8,4 +8,8 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class MedicalSpecialist extends User {
+
+  public MedicalSpecialist(final MedicalSpecialistRequest medicalSpecialistRequest) {
+    super(medicalSpecialistRequest);
+  }
 }

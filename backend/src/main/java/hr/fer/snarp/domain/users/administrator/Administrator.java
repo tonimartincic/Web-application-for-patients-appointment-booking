@@ -8,4 +8,8 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Administrator extends User {
+
+  public Administrator(final AdministratorRequest administratorRequest) {
+    super(administratorRequest);
+  }
 }
