@@ -1,4 +1,4 @@
-package hr.fer.snarp.service.impl;
+package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.users.administrator.Administrator;
@@ -6,7 +6,7 @@ import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
 import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.AdministratorRepository;
-import hr.fer.snarp.service.AdministratorService;
+import hr.fer.snarp.service.users.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package hr.fer.snarp.service;
+package hr.fer.snarp.service.users;
 
 import hr.fer.snarp.domain.users.patient.PatientRequest;
 import hr.fer.snarp.domain.users.patient.PatientResponse;

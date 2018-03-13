@@ -1,4 +1,4 @@
-package hr.fer.snarp.service.impl;
+package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
@@ -6,7 +6,7 @@ import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistRequest;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
 import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.MedicalSpecialistRepository;
-import hr.fer.snarp.service.MedicalSpecialistService;
+import hr.fer.snarp.service.users.MedicalSpecialistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package hr.fer.snarp.controller.users;
 
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
-import hr.fer.snarp.service.AdministratorService;
+import hr.fer.snarp.service.users.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class AdministratorController {
   private final AdministratorService administratorService;
 
   @Autowired
-  public AdministratorController(AdministratorService administratorService) {
+  public AdministratorController(final AdministratorService administratorService) {
     this.administratorService = administratorService;
   }
 
@@ -30,27 +30,27 @@ public class AdministratorController {
   }
 
   @GetMapping("/api/administrators/{id}")
-  public AdministratorResponse getAdministratorById(@PathVariable Long id) {
+  public AdministratorResponse getAdministratorById(@PathVariable final Long id) {
     return this.administratorService.getById(id);
   }
 
   @PostMapping("/api/administrators")
-  public AdministratorResponse addNewAdministrator(@RequestBody AdministratorRequest administratorRequest) {
+  public AdministratorResponse addNewAdministrator(@RequestBody final AdministratorRequest administratorRequest) {
     return this.administratorService.add(administratorRequest);
   }
 
   @PutMapping("/api/administrators")
-  public AdministratorResponse editAdministrator(@RequestBody AdministratorRequest administratorRequest) {
+  public AdministratorResponse editAdministrator(@RequestBody final AdministratorRequest administratorRequest) {
     return this.administratorService.edit(administratorRequest);
   }
 
   @PutMapping("/api/administrators/edit-password")
-  public AdministratorResponse editAdministratorPassword(@RequestBody AdministratorRequest administratorRequest) {
+  public AdministratorResponse editAdministratorPassword(@RequestBody final AdministratorRequest administratorRequest) {
     return this.administratorService.editPassword(administratorRequest);
   }
 
   @DeleteMapping("/api/administrators/{id}")
-  public void deleteAdministratorById(@PathVariable Long id) {
+  public void deleteAdministratorById(@PathVariable final Long id) {
     this.administratorService.deleteById(id);
   }
 }

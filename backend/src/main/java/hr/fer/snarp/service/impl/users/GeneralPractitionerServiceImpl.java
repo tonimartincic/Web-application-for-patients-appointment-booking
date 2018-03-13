@@ -1,4 +1,4 @@
-package hr.fer.snarp.service.impl;
+package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
@@ -6,7 +6,7 @@ import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerResponse;
 import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.GeneralPractitionerRepository;
-import hr.fer.snarp.service.GeneralPractitionerService;
+import hr.fer.snarp.service.users.GeneralPractitionerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

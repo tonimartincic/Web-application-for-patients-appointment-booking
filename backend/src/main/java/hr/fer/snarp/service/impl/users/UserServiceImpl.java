@@ -1,11 +1,11 @@
-package hr.fer.snarp.service.impl;
+package hr.fer.snarp.service.impl.users;
 
 import hr.fer.snarp.domain.users.user.UserResponse;
 import hr.fer.snarp.repository.AdministratorRepository;
 import hr.fer.snarp.repository.GeneralPractitionerRepository;
 import hr.fer.snarp.repository.MedicalSpecialistRepository;
 import hr.fer.snarp.repository.PatientRepository;
-import hr.fer.snarp.service.UserService;
+import hr.fer.snarp.service.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   public UserServiceImpl(
-    AdministratorRepository administratorRepository,
-    GeneralPractitionerRepository generalPractitionerRepository,
-    MedicalSpecialistRepository medicalSpecialistRepository,
-    PatientRepository patientRepository) {
+    final AdministratorRepository administratorRepository,
+    final GeneralPractitionerRepository generalPractitionerRepository,
+    final MedicalSpecialistRepository medicalSpecialistRepository,
+    final PatientRepository patientRepository) {
 
     this.administratorRepository = administratorRepository;
     this.generalPractitionerRepository = generalPractitionerRepository;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserResponse validateUser(String mail, String password) {
+  public UserResponse validateUser(final String mail, final String password) {
     return null;
   }
 }
