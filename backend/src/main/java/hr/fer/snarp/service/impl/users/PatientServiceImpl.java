@@ -5,7 +5,6 @@ import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientRequest;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
-import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.users.PatientRepository;
 import hr.fer.snarp.service.AddressDataService;
 import hr.fer.snarp.service.users.PatientService;
@@ -63,7 +62,6 @@ public class PatientServiceImpl implements PatientService {
     patientFromDatabase.setFirstName(patientRequest.getFirstName());
     patientFromDatabase.setLastName(patientRequest.getLastName());
     patientFromDatabase.setMail(patientRequest.getMail());
-    patientFromDatabase.setType(UserType.getByName(patientRequest.getType()));
 
     final AddressData addressData =
       this.addressDataService.add(

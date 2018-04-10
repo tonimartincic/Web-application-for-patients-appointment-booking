@@ -23,6 +23,9 @@ public class AddressData {
 
   private Long streetNumber;
 
+  public AddressData() {
+  }
+
   public AddressData(final String city, final Long postalCode, final String street, final Long streetNumber) {
     this.city = city;
     this.postalCode = postalCode;

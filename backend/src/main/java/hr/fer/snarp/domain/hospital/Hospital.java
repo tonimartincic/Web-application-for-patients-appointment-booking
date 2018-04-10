@@ -28,6 +28,9 @@ public class Hospital {
   @OneToMany(mappedBy = "hospital")
   private Set<Department> departments;
 
+  public Hospital() {
+  }
+
   public Hospital(final HospitalRequest hospitalRequest) {
     this.name = hospitalRequest.getName();
   }

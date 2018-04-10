@@ -5,7 +5,6 @@ import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerResponse;
-import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.users.GeneralPractitionerRepository;
 import hr.fer.snarp.service.AddressDataService;
 import hr.fer.snarp.service.users.GeneralPractitionerService;
@@ -63,7 +62,6 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     generalPractitionerFromDatabase.setFirstName(generalPractitionerRequest.getFirstName());
     generalPractitionerFromDatabase.setLastName(generalPractitionerRequest.getLastName());
     generalPractitionerFromDatabase.setMail(generalPractitionerRequest.getMail());
-    generalPractitionerFromDatabase.setType(UserType.getByName(generalPractitionerRequest.getType()));
 
     final AddressData addressData =
       this.addressDataService.add(

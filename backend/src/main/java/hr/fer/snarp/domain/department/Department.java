@@ -28,6 +28,9 @@ public class Department {
   @JoinColumn(name = "hospital_id")
   private Hospital hospital;
 
+  public Department() {
+  }
+
   public Department(final DepartmentType type, final Hospital hospital) {
     this.type = type;
     this.hospital = hospital;

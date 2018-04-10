@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.users.administrator.Administrator;
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
-import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.users.AdministratorRepository;
 import hr.fer.snarp.service.users.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     administratorFromDatabase.setFirstName(administratorRequest.getFirstName());
     administratorFromDatabase.setLastName(administratorRequest.getLastName());
     administratorFromDatabase.setMail(administratorRequest.getMail());
-    administratorFromDatabase.setType(UserType.getByName(administratorRequest.getType()));
 
     return getAdministratorResponse(this.administratorRepository.save(administratorFromDatabase));
   }

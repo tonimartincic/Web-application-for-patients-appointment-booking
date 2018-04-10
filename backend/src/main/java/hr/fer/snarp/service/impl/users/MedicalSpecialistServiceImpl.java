@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistRequest;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
-import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.users.MedicalSpecialistRepository;
 import hr.fer.snarp.service.users.MedicalSpecialistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,6 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     medicalSpecialistFromDatabase.setFirstName(medicalSpecialistRequest.getFirstName());
     medicalSpecialistFromDatabase.setLastName(medicalSpecialistRequest.getLastName());
     medicalSpecialistFromDatabase.setMail(medicalSpecialistRequest.getMail());
-    medicalSpecialistFromDatabase.setType(UserType.getByName(medicalSpecialistRequest.getType()));
 
     return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
   }

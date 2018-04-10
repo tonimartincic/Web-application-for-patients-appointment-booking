@@ -36,6 +36,9 @@ public class Referral {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
+  public Referral() {
+  }
+
   public Referral(final ReferralType referralType, final DepartmentType departmentType, final Patient patient, final GeneralPractitioner generalPractitioner) {
     this.referralType = referralType;
     this.departmentType = departmentType;
