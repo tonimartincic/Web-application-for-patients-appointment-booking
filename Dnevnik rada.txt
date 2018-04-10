@@ -15,3 +15,6 @@ Dodavanje modela i rad na loginu. Dodavanje web sloja, servisnog sloja i reposit
 
 13.3.2018.
 Implementacija metoda za rad s korisnicima u servisnom sloju.
+
+10.4.2018.
+Dodavanje funkcija za poziv backenda na frontend.
