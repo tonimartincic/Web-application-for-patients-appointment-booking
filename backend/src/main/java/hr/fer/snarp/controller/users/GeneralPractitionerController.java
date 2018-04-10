@@ -24,32 +24,32 @@ public class GeneralPractitionerController {
     this.generalPractitionerService = generalPractitionerService;
   }
 
-  @GetMapping("/api/generalPractitioners")
+  @GetMapping("/api/general-practitioners")
   public List<GeneralPractitionerResponse> getAllGeneralPractitioners() {
     return this.generalPractitionerService.getAll();
   }
 
-  @GetMapping("/api/generalPractitioners/{id}")
+  @GetMapping("/api/general-practitioners/{id}")
   public GeneralPractitionerResponse getGeneralPractitionerById(@PathVariable final Long id) {
     return this.generalPractitionerService.getById(id);
   }
 
-  @PostMapping("/api/generalPractitioners")
-  public GeneralPractitionerResponse addNewGeneralPractitioner(@RequestBody final GeneralPractitionerRequest generalPractitionerRequest) {
+  @PostMapping("/api/general-practitioners")
+  public GeneralPractitionerResponse addGeneralPractitioner(@RequestBody final GeneralPractitionerRequest generalPractitionerRequest) {
     return this.generalPractitionerService.add(generalPractitionerRequest);
   }
 
-  @PutMapping("/api/generalPractitioners")
+  @PutMapping("/api/general-practitioners")
   public GeneralPractitionerResponse editGeneralPractitioner(@RequestBody final GeneralPractitionerRequest generalPractitionerRequest) {
     return this.generalPractitionerService.edit(generalPractitionerRequest);
   }
 
-  @PutMapping("/api/generalPractitioners/edit-password")
+  @PutMapping("/api/general-practitioners/edit-password")
   public GeneralPractitionerResponse editGeneralPractitionerPassword(@RequestBody final GeneralPractitionerRequest generalPractitionerRequest) {
     return this.generalPractitionerService.editPassword(generalPractitionerRequest);
   }
 
-  @DeleteMapping("/api/generalPractitioners/{id}")
+  @DeleteMapping("/api/general-practitioners/{id}")
   public void deleteGeneralPractitionerById(@PathVariable final Long id) {
     this.generalPractitionerService.deleteById(id);
   }

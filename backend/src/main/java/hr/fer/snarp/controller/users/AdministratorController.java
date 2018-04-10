@@ -35,7 +35,7 @@ public class AdministratorController {
   }
 
   @PostMapping("/api/administrators")
-  public AdministratorResponse addNewAdministrator(@RequestBody final AdministratorRequest administratorRequest) {
+  public AdministratorResponse addAdministrator(@RequestBody final AdministratorRequest administratorRequest) {
     return this.administratorService.add(administratorRequest);
   }
 

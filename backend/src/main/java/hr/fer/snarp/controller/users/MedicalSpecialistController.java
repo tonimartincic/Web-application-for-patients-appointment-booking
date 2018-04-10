@@ -24,32 +24,32 @@ public class MedicalSpecialistController {
     this.medicalSpecialistService = medicalSpecialistService;
   }
 
-  @GetMapping("/api/medicalSpecialists")
+  @GetMapping("/api/medical-specialists")
   public List<MedicalSpecialistResponse> getAllMedicalSpecialists() {
     return this.medicalSpecialistService.getAll();
   }
 
-  @GetMapping("/api/medicalSpecialists/{id}")
+  @GetMapping("/api/medical-specialists/{id}")
   public MedicalSpecialistResponse getMedicalSpecialistById(@PathVariable final Long id) {
     return this.medicalSpecialistService.getById(id);
   }
 
-  @PostMapping("/api/medicalSpecialists")
-  public MedicalSpecialistResponse addNewMedicalSpecialist(@RequestBody final MedicalSpecialistRequest medicalSpecialistRequest) {
+  @PostMapping("/api/medical-specialists")
+  public MedicalSpecialistResponse addMedicalSpecialist(@RequestBody final MedicalSpecialistRequest medicalSpecialistRequest) {
     return this.medicalSpecialistService.add(medicalSpecialistRequest);
   }
 
-  @PutMapping("/api/medicalSpecialists")
+  @PutMapping("/api/medical-specialists")
   public MedicalSpecialistResponse editMedicalSpecialist(@RequestBody final MedicalSpecialistRequest medicalSpecialistRequest) {
     return this.medicalSpecialistService.edit(medicalSpecialistRequest);
   }
 
-  @PutMapping("/api/medicalSpecialists/edit-password")
+  @PutMapping("/api/medical-specialists/edit-password")
   public MedicalSpecialistResponse editMedicalSpecialistPassword(@RequestBody final MedicalSpecialistRequest medicalSpecialistRequest) {
     return this.medicalSpecialistService.editPassword(medicalSpecialistRequest);
   }
 
-  @DeleteMapping("/api/medicalSpecialists/{id}")
+  @DeleteMapping("/api/medical-specialists/{id}")
   public void deleteMedicalSpecialistById(@PathVariable final Long id) {
     this.medicalSpecialistService.deleteById(id);
   }
