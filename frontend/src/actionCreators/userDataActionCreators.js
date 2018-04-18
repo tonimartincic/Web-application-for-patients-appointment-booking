@@ -7,7 +7,7 @@ export default async function validateUser(user) {
     const response = await axios.post('/api/login', user);
     if (response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
-      history.push('/');
+      history.push('/first-component');
     }
 
     return {

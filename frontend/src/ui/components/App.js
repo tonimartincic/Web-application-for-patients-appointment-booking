@@ -1,20 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Route, Router} from 'react-router-dom';
 import FirstComponent from './FirstComponent';
 import SecondComponent from './SecondComponent';
 import ThirdComponent from './ThirdComponent';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
+import {history} from './history/history';
 
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div>
-          <PrivateRoute exact path='/' component={FirstComponent}/>
-          <PrivateRoute path='/second-component' component={SecondComponent}/>
-          <PrivateRoute path='/third-component' component={ThirdComponent}/>
+          <PrivateRoute exact path='/'><Login/></PrivateRoute>
+          <PrivateRoute exact path='/first-component'><FirstComponent/></PrivateRoute>
+          <PrivateRoute exact path='/second-component'><SecondComponent/></PrivateRoute>
+          <PrivateRoute exact path='/third-component'><ThirdComponent/></PrivateRoute>
           <Route exact path='/login' component={Login}/>
         </div>
       </Router>
