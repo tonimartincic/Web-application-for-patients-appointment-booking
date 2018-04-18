@@ -31,18 +31,6 @@
   text-align: center;
 }
 
-.h1 {
-  font-family: serif;
-  font-size: 6.6vw;
-  padding-bottom: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  text-rendering: optimizeLegibility;
-  color: black;
-  background-color: transparent;
-  letter-spacing: .15em;
-}
-
 .container {
   height: 100%;
   width: 100%;
