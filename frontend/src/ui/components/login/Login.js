@@ -24,7 +24,12 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.validateUser(this.state.userId, this.state.password);
+    this.props.validateUser(
+      {
+        id: this.state.userId,
+        password: this.state.password,
+      }
+    );
   };
 
   handleChangeUserId = (event) => {
@@ -54,8 +59,14 @@ class Login extends Component {
       <section className={styles.sectionMain}>
         <Grid className={styles.container}>
           <Row>
-            <Col md={4} mdOffset={4}>
-              <h1 className={styles.h1ElegantShadow}>Eureka</h1>
+            <Col md={6} mdOffset={3}>
+              <section className={styles.sectionTitle}>
+                <span className={styles.letter} data-letter="S">S</span>
+                <span className={styles.letter} data-letter="N">N</span>
+                <span className={styles.letter} data-letter="A">A</span>
+                <span className={styles.letter} data-letter="R">R</span>
+                <span className={styles.letter} data-letter="P">P</span>
+              </section>
             </Col>
           </Row>
           <form>
@@ -94,30 +105,26 @@ class Login extends Component {
                     </section>
                   </Col>
                 </Row>
-                <Row>
-                  <Col>
-                    <section className={styles.section}>
+                <section className={styles.section}>
+                  <Row>
+                    <Col md={6}>
                       <Button
                         className={styles.button}
                         bsStyle='primary'
                         type='submit'
                         onClick={this.handleSubmit}
                       ><span>Prijava</span></Button>
-                    </section>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <section className={styles.section}>
+                    </Col>
+                    <Col md={6}>
                       <Button
                         className={styles.button}
                         bsStyle='warning'
                         type='button'
                         onClick={this.handleDelete}
                       ><span>Resetiraj</span></Button>
-                    </section>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                </section>
               </Col>
             </Row>
           </form>
@@ -135,7 +142,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    validateUser: (userId, password) => dispatch(validateUser(userId, password)),
+    validateUser: (user) => dispatch(validateUser(user)),
   };
 }
 

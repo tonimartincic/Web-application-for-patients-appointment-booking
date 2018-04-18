@@ -2,18 +2,8 @@ import axios from 'axios';
 import * as types from '../actions/actionTypes';
 import {history} from '../ui/components/history/history';
 
-export default async function validateUser(userId, password) {
+export default async function validateUser(user) {
   try {
-    const user = {
-      id: 0,
-      mail: userId,
-      firstName: null,
-      lastName: null,
-      privilege: null,
-      reminder: false,
-      password: password,
-    };
-
     const response = await axios.post('/api/login', user);
     if (response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));

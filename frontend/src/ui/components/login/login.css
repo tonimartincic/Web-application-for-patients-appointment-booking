@@ -1,16 +1,22 @@
 .section {
-  width: 80%;
-  margin-left: 10%;
+  width: 50%;
+  margin-left: 25%;
   margin-bottom: 0.6em;
 }
+
+.sectionTitle {
+  font-family: serif;
+  padding-left: 10%;
+}
+
 .sectionSpacing {
-  width: 80%;
-  margin-left: 10%;
+  width: 50%;
+  margin-left: 25%;
   margin-bottom: 1.5em;
 }
 
 .sectionMain {
-  /*background: url('https://images.pexels.com/photos/529621/pexels-photo-529621.jpeg') no-repeat center center fixed;*/
+  background: url('https://cdn.pixabay.com/photo/2017/08/10/03/30/stethoscope-2617701_1280.jpg') no-repeat center center fixed;
   background-size: cover;
   padding-top: 5em;
   height: 100vh;
@@ -25,20 +31,19 @@
   text-align: center;
 }
 
-
-.h1ElegantShadow {
+.h1 {
   font-family: serif;
   font-size: 6.6vw;
   padding-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;
-  color: #131313;
+  color: black;
   background-color: transparent;
   letter-spacing: .15em;
 }
 
-.container{
+.container {
   height: 100%;
   width: 100%;
   background: inherit;
@@ -46,16 +51,62 @@
   border-radius: 8px;
 }
 
-.container::before{
+.container::before {
   top: 10%;
-  left: 33%;
-  height: 45%;
-  width: 33.5%;
+  left: 30%;
+  height: 55%;
+  width: 40%;
   content: "";
   position: absolute;
   bottom: 0;
   right: 0;
   background: inherit;
-  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.1);
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
   filter: blur(10px);
+}
+
+.letter {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 8em;
+  margin: 0.2em;
+  position: relative;
+  color: #fafafa;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.letter:before, .letter:after {
+  position: absolute;
+  content: attr(data-letter);
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+}
+
+.letter, .letter:before, .letter:after {
+  transition: all 0.3s ease-in-out;
+}
+
+.letter:before {
+  color: black;
+  text-shadow: -1px 0px 1px black,
+  1px 0px 1px rgba(0, 0, 0, .8);
+  z-index: 3;
+  transform: rotateX(0deg) rotateY(-15deg) rotateZ(0deg);
+}
+
+.letter:after {
+  color: rgba(0, 0, 0, .11);
+  z-index: 2;
+  transform: scale(1.08, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 1deg);
+}
+
+.letter:hover:before {
+  color: black;
+  transform: rotateX(0deg) rotateY(-40deg) rotateZ(0deg);
+}
+
+.letter:hover:after {
+  transform: scale(1.08, 1) rotateX(0deg) rotateY(40deg) rotateZ(0deg) skew(0deg, 22deg);
 }
