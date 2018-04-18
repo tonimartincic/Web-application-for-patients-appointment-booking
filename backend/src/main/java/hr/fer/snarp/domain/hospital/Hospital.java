@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Data
@@ -22,6 +24,8 @@ public class Hospital {
 
   private String name;
 
+  @OneToOne
+  @JoinColumn(name = "address_data_id")
   private AddressData addressData;
 
   @JsonIgnore

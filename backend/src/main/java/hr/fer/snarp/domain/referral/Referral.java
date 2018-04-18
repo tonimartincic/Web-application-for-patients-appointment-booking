@@ -13,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Data
@@ -29,8 +31,12 @@ public class Referral {
   @Enumerated(EnumType.STRING)
   private DepartmentType departmentType;
 
+  @ManyToOne
+  @JoinColumn(name = "patient_id")
   private Patient patient;
 
+  @ManyToOne
+  @JoinColumn(name = "general_practitioner_id")
   private GeneralPractitioner generalPractitioner;
 
   @JsonFormat(pattern = "dd-MM-yyyy")

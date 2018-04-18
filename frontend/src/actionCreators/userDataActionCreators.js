@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as types from '../actions/actionTypes';
-import { history } from '../ui/components/history/history';
+import {history} from '../ui/components/history/history';
 
 export default async function validateUser(userId, password) {
   try {
@@ -15,13 +15,9 @@ export default async function validateUser(userId, password) {
     };
 
     const response = await axios.post('/api/login', user);
-    if(response.data !== '') {
+    if (response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
-      if (response.data.privilege !== ADMINISTRATOR) {
-        history.push('/board');
-      } else {
-        history.push('/all-users');
-      }
+      history.push('/');
     }
 
     return {
