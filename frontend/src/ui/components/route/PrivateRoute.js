@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React from 'react';
+import {Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 const PrivateRouteComponent = (props) => (
@@ -9,11 +9,10 @@ const PrivateRouteComponent = (props) => (
     ) : (
       <Redirect to={{
         pathname: '/login',
-        state: { from: props.location }
-      }} /> )
-  )} />
+        state: {from: props.location}
+      }}/>)
+  )}/>
 );
-
 
 const mapStateToProps = (state, ownProps) => {
   return {

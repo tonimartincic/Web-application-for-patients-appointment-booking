@@ -12,7 +12,7 @@ class Login extends Component {
     localStorage.removeItem('user');
 
     this.state = {
-      userId: '',
+      mail: '',
       password: '',
       invalidUserNameAndPassword: false,
     };
@@ -26,7 +26,7 @@ class Login extends Component {
     event.preventDefault();
     this.props.validateUser(
       {
-        id: this.state.userId,
+        mail: this.state.mail,
         password: this.state.password,
       }
     );
@@ -34,7 +34,7 @@ class Login extends Component {
 
   handleChangeUserId = (event) => {
     this.setState({
-      userId: event.target.value,
+      mail: event.target.value,
       invalidUserNameAndPassword: false,
     });
   };
@@ -48,7 +48,7 @@ class Login extends Component {
 
   handleDelete = () => {
     this.setState({
-      userId: '',
+      mail: '',
       password: '',
       invalidUserNameAndPassword: false,
     });
@@ -77,7 +77,7 @@ class Login extends Component {
                     <section className={styles.section}>
                       <FormControl
                         type="text"
-                        value={this.state.userId}
+                        value={this.state.mail}
                         placeholder="Korisničko ime"
                         onChange={this.handleChangeUserId}
                       />

@@ -1,6 +1,7 @@
 package hr.fer.snarp.domain.users.patient;
 
 import hr.fer.snarp.domain.users.user.UserResponse;
+import hr.fer.snarp.enumeration.UserType;
 import lombok.Data;
 
 @Data
@@ -15,7 +16,7 @@ public class PatientResponse extends UserResponse {
   private Long streetNumber;
 
   public PatientResponse(final Patient patient) {
-    super(patient);
+    super(patient, UserType.PATIENT);
 
     this.city = patient.getAddressData().getCity();
     this.postalCode = patient.getAddressData().getPostalCode();
