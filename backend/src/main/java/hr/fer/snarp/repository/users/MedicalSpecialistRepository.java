@@ -1,0 +1,9 @@
+package hr.fer.snarp.repository.users;
+
+import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MedicalSpecialistRepository extends CrudRepository<MedicalSpecialist, Long> {
+
+  MedicalSpecialist findByMailAndPassword(String mail, String password);
+}
