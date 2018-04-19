@@ -9,6 +9,7 @@ import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
 import hr.fer.snarp.domain.users.user.UserResponse;
+import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.service.users.AdministratorService;
 import hr.fer.snarp.service.users.GeneralPractitionerService;
 import hr.fer.snarp.service.users.MedicalSpecialistService;
@@ -64,5 +65,27 @@ public class UserServiceImpl implements UserService {
     }
 
     return null;
+  }
+
+  @Override
+  public UserResponse getUser(final Long id, final String type) {
+    final UserType userType = UserType.getByName(type);
+
+    switch (userType) {
+      case ADMINISTRATOR:
+        return this.administratorService.getById(id);
+
+      case PATIENT:
+        return this.patientService.getById(id);
+
+      case MEDICAL_SPECIALIST:
+        return this.medicalSpecialistService.getById(id);
+
+      case GENERAL_PRACTITIONER:
+        return this.generalPractitionerService.getById(id);
+
+      default:
+        return null;
+    }
   }
 }

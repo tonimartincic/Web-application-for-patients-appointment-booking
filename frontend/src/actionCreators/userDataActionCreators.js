@@ -4,9 +4,9 @@ import {history} from '../ui/components/history/history';
 
 export default async function fetchUserData() {
   try {
-    const userId = JSON.parse(localStorage.getItem('user')).id;
-    const response = await axios.get(`/api/users/${userId}`);
-
+    const user = JSON.parse(localStorage.getItem('user'));
+    const response = await axios.get(`/api/users/${user.id}/${user.type}`);
+    
     return {
       type: types.FETCH_USER_DATA_SUCCESS,
       data: response.data,

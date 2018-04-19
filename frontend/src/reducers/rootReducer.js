@@ -8,6 +8,7 @@ import patientsReducer from "./patientsReducer";
 import referralsReducer from "./referralsReducer";
 import usersReducer from "./usersReducer";
 import userDataReducer from './userDataReducer';
+import showingUserDataReducer from './showingUserDataReducer';
 
 const rootReducer = combineReducers({
   administrators: administratorsReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   referrals: referralsReducer,
   users: usersReducer,
   userData: userDataReducer,
+  showingUserData: showingUserDataReducer,
 });
 
 export default rootReducer;

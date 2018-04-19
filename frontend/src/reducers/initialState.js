@@ -15,7 +15,9 @@ const initialState = {
 
   userData: [],
 
-  users: []
+  users: [],
+
+  showingUserData: false,
 };
 
 export default initialState;

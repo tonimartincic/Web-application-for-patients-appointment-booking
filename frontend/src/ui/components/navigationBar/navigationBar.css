@@ -2,10 +2,6 @@
   margin-top: 0.7em;
 }
 
-.navBar {
-  background-color: #0074D9;
-}
-
 .a {
   color: white;
 }
@@ -21,4 +17,8 @@
 
 .span:hover {
   color: silver;
+}
+
+.navBar {
+  background-color: #1c6def;
 }

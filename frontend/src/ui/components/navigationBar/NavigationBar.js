@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './navigationBar.css';
-import UserInfo from '../userInfo/UserInfo';
+import Settings from '../userInfo/Settings';
 
 class NavigationBar extends Component {
   render() {
@@ -41,7 +41,7 @@ class NavigationBar extends Component {
             <span className={styles.span}>Third component</span>
           </NavItem>
           <NavItem>
-            <UserInfo/>
+            <Settings/>
           </NavItem>
         </Nav>
       </Navbar>
