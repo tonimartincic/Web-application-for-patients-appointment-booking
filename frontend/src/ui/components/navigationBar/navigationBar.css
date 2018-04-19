@@ -3,28 +3,28 @@
 }
 
 .a {
-  color: black;
+  color: white;
 }
 
 .span {
-  color: black;
+  color: white;
 }
 
 .spanSnarp {
-  color: black;
+  color: white;
   font-size: 26px;
 }
 
 .span:hover {
-  color: #4b4b4c;
+  color: gray;
 }
 
 .navBar {
-  background-color: rgb(129, 176, 249);
+  background-color: rgb(17, 24, 61);
 }
 
 .spanNoHover {
-  color: black;
+  color: white;
 }
 
 .sectionTitle {
@@ -38,7 +38,7 @@
   margin-bottom: 1em;
   margin-right: 0.2em;
   position: relative;
-  color: #fafafa;
+  color: black;
   transform-style: preserve-3d;
   z-index: 1;
 }
@@ -56,7 +56,7 @@
 }
 
 .letter:before {
-  color: black;
+  color: white;
   z-index: 3;
   transform: rotateX(0deg) rotateY(-15deg) rotateZ(0deg);
 }
@@ -68,7 +68,7 @@
 }
 
 .letter:hover:before {
-  color: black;
+  color: white;
   transform: rotateX(0deg) rotateY(-40deg) rotateZ(0deg);
 }
 

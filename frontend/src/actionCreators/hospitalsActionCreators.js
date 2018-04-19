@@ -51,7 +51,7 @@ export async function editHospital(hospital) {
 
 export async function deleteHospital(id) {
   try {
-    await axios.delete('/api/hospitals' + id);
+    await axios.delete('/api/hospitals/' + id);
 
     return {
       type: types.DELETE_HOSPITAL_SUCCESS,

@@ -51,7 +51,7 @@ export async function editDepartment(department) {
 
 export async function deleteDepartment(id) {
   try {
-    await axios.delete('/api/departments' + id);
+    await axios.delete('/api/departments/' + id);
 
     return {
       type: types.DELETE_DEPARTMENT_SUCCESS,

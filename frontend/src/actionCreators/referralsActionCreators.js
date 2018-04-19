@@ -51,7 +51,7 @@ export async function editReferral(referral) {
 
 export async function deleteReferral(id) {
   try {
-    await axios.delete('/api/referrals' + id);
+    await axios.delete('/api/referrals/' + id);
 
     return {
       type: types.DELETE_REFERRAL_SUCCESS,
