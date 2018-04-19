@@ -1,11 +1,12 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
+import styles from './privateRoute.css';
 
 const PrivateRouteComponent = (props) => (
   <Route {...props.routeProps} render={() => (
     localStorage.getItem('user') ? (
-      <div>{props.children}</div>
+      <section className={styles.section}>{props.children}</section>
     ) : (
       <Redirect to={{
         pathname: '/login',

@@ -16,6 +16,7 @@ import fetchPatients from '../../actionCreators/patientsActionCreators';
 import fetchDepartments from '../../actionCreators/departmentsActionCreators';
 import fetchHospitals from '../../actionCreators/hospitalsActionCreators';
 import fetchReferrals from '../../actionCreators/referralsActionCreators';
+import styles from './app.css';
 
 class App extends React.Component {
   componentDidMount() {
@@ -32,14 +33,14 @@ class App extends React.Component {
   render() {
     return (
       <Router history={history}>
-        <div>
+        <section className={styles.section}>
           <PrivateRoute exact path='/'><Administrators/></PrivateRoute>
           <PrivateRoute exact path='/administrators'><Administrators/></PrivateRoute>
           <PrivateRoute exact path='/general-practitioners'><GeneralPractitioners/></PrivateRoute>
           <PrivateRoute exact path='/medical-specialists'><MedicalSpecialists/></PrivateRoute>
           <PrivateRoute exact path='/patients'><Patients/></PrivateRoute>
           <Route exact path='/login' component={Login}/>
-        </div>
+        </section>
       </Router>
     );
   }

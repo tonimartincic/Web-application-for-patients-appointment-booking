@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NavigationBar from '../../navigationBar/NavigationBar';
+import Footer from '../../footer/Footer';
 
 class GeneralPractitioners extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class GeneralPractitioners extends React.Component {
       <section>
         <NavigationBar/>
         <span>GeneralPractitioners</span>
+        <Footer/>
       </section>
     );
   }
