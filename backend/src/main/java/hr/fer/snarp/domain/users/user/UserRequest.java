@@ -13,7 +13,7 @@ public class UserRequest {
 
   private String mail;
 
-  // private String type;
-
   private String password;
+
+  private String phoneNumber;
 }

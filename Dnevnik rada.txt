@@ -24,3 +24,4 @@ Dodavanje mapiranja kod entiteta. Dodavanje prijave u aplikaciju.
 
 19.4.2018.
 Dodavanje podataka u bazu podataka. Rad na pregledu osobnih podataka kroz aplikaciju. Rad na odjavi iz aplikacije.
+Dodavanje podnožja stranice. Rad na administratorskim ekranima, dodavanje tablica za prikaz korisnika.

@@ -107,7 +107,7 @@ class Login extends Component {
                 </Row>
                 <section className={styles.section}>
                   <Row>
-                    <Col md={6}>
+                    <Col>
                       <Button
                         className={styles.button}
                         bsStyle='primary'
@@ -115,7 +115,9 @@ class Login extends Component {
                         onClick={this.handleSubmit}
                       ><span>Prijava</span></Button>
                     </Col>
-                    <Col md={6}>
+                  </Row>
+                  <Row>
+                    <Col>
                       <Button
                         className={styles.button}
                         bsStyle='warning'
