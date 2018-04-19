@@ -26,28 +26,45 @@ class NavigationBar extends Component {
             to='/administrators'
             href='/administrators'
           >
-            <span className={styles.span}>Administratori</span>
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-user'/> Administratori
+            </span>
           </NavItem>
           <NavItem
             componentClass={Link}
             to='/general-practitioners'
             href='/general-practitioners'
           >
-            <span className={styles.span}>Liječnici opće prakse</span>
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-user'/> Liječnici opće prakse
+            </span>
           </NavItem>
           <NavItem
             componentClass={Link}
             to='/medical-specialists'
             href='/medical-specialists'
           >
-            <span className={styles.span}>Liječnici specijalisti</span>
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-user'/> Liječnici specijalisti
+            </span>
           </NavItem>
           <NavItem
             componentClass={Link}
             to='/patients'
             href='/patients'
           >
-            <span className={styles.span}>Pacijenti</span>
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-user'/> Pacijenti
+            </span>
+          </NavItem>
+          <NavItem
+            componentClass={Link}
+            to='/hospitals'
+            href='/hospitals'
+          >
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-header'/> Bolnice
+            </span>
           </NavItem>
           <NavItem>
             <Settings/>

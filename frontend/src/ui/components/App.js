@@ -5,6 +5,7 @@ import Administrators from './users/administrators/Administrators';
 import GeneralPractitioners from './users/generalPractitioners/GeneralPractitioners';
 import MedicalSpecialists from './users/medicalSpecialists/MedicalSpecialists';
 import Patients from './users/patients/Patients';
+import Hospitals from './hospitals/Hospitals';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
 import {history} from './history/history';
@@ -39,6 +40,7 @@ class App extends React.Component {
           <PrivateRoute exact path='/general-practitioners'><GeneralPractitioners/></PrivateRoute>
           <PrivateRoute exact path='/medical-specialists'><MedicalSpecialists/></PrivateRoute>
           <PrivateRoute exact path='/patients'><Patients/></PrivateRoute>
+          <PrivateRoute exact path='/hospitals'><Hospitals/></PrivateRoute>
           <Route exact path='/login' component={Login}/>
         </section>
       </Router>
