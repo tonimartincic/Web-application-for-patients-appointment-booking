@@ -15,6 +15,17 @@ Insert into address_data (city, postal_code, street, street_number) values ('Bje
 Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Osječka', 63);
 Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Osorska', 101);
 Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Padine', 1);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Avenija Gojka Šuška', 6);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Ulica mira', 135);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Ulica slobode', 43);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Ulica znanosti', 67);
+Insert into address_data (city, postal_code, street, street_number) values ('Osijek', 31000, 'Vukovarska', 7);
+Insert into address_data (city, postal_code, street, street_number) values ('Rijeka', 51000, 'Primorska', 23);
+Insert into address_data (city, postal_code, street, street_number) values ('Split', 21000, 'Slavonska', 99);
+Insert into address_data (city, postal_code, street, street_number) values ('Sisak', 44000, 'Jesenska', 87);
+Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Šubićeva', 56);
+Insert into address_data (city, postal_code, street, street_number) values ('Popovača', 44317, 'Držićeva', 4);
+Insert into address_data (city, postal_code, street, street_number) values ('Lipik', 34551, 'Vinogradska', 13);
 
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Toni', 'Martinčić', 'toni.martincic@fer.hr', 'password', '091 342 5643');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Mirko', 'Randić', 'mirko.randic@fer.hr', 'password', '098 897 2543');
@@ -58,3 +69,15 @@ Insert into general_practitioner (first_name, last_name, mail, password, address
 Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Josipa', 'Petrović', 'josipa.petrovic@gmail.com', 'password', 15, '095 160 0143');
 Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Ivan', 'Primorac', 'ivan.primorac@gmail.com', 'password', 16, '091 164 0143');
 Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Vesna', 'Kozar', 'vesna.kozar@gmail.com', 'password', 17, '091 443 1211');
+
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinička bolnica "Dubrava" Zagreb', 18, '01 2902 444', 'klinika.dubrava@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinička bolnica "Merkur" Zagreb', 19, '01 3454 123', 'klinika.merkur@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinička bolnica "Sveti Duh" Zagreb', 20, '01 3344 678', 'klinika.duh@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinički bolnički centar "Sestre Milosrdnice"', 21, '01 8883 987', 'klinika.milosrdnice@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinički bolnički centar Osijek', 22, '02 1653 332', 'klinika.osijek@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinički bolnički centar Rijeka', 23, '03 8976 543', 'klinika.rijeka@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Klinički bolnički centar Split', 24, '04 7531 789', 'klinika.split@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Opća bolnica "Dr. Ivo Pedišić" Sisak', 25, '05 9865 556', 'bolnica.sisak@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Opća bolnica Bjelovar', 26, '06 4563 321', 'bolnica.bjelovar@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Psihijatrijska bolnica "Dr. Ivan Barbot" Popovača', 27, '07 7865 667', 'psihijatrija.popovaca@gmail.com');
+Insert into hospital (name, address_data_id, phone_number, mail) values ('Specijalna bolnica za medicinsku rehabilitaciju Lipik', 28, '08 8898 555', 'bolnica.lipik@gmail.com');

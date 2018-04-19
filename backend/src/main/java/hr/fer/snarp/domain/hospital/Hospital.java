@@ -34,6 +34,8 @@ public class Hospital {
 
   private String phoneNumber;
 
+  private String mail;
+
   public Hospital() {
   }
 

@@ -16,4 +16,8 @@ public class HospitalRequest {
   private String street;
 
   private Long streetNumber;
+
+  private String phoneNumber;
+
+  private String mail;
 }
