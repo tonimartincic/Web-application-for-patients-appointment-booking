@@ -41,6 +41,15 @@ class UserData extends React.Component {
                   </h4>
                 </Col>
               </Row>
+              <Row>
+                <Col md={8} mdOffset={1}>
+                  <h4>Vrsta korisnika:
+                    {
+                      ' ' + this.props.userData.type
+                    }
+                  </h4>
+                </Col>
+              </Row>
             </Well>
           </Modal.Body>
         </Modal>
