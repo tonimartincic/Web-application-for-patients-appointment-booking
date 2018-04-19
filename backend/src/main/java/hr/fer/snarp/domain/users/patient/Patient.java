@@ -10,15 +10,15 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Data
 @Entity
 public class Patient extends User {
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "address_data_id")
   private AddressData addressData;
 

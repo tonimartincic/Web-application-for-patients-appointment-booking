@@ -32,6 +32,10 @@ public class Hospital {
   @OneToMany(mappedBy = "hospital")
   private Set<Department> departments;
 
+  private String phoneNumber;
+
+  private String mail;
+
   public Hospital() {
   }
 

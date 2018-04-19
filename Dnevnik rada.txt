@@ -11,7 +11,7 @@ Početak rada na backendu aplikacije. Dodavanje bolničkih odjela.
 Rad na backendu aplikacije. Dodavanje modela.
 
 12.3.2018.
-Dodavanje modela i rad na loginu. Dodavanje web sloja, servisnog sloja i repository sloja.
+Dodavanje modela i rad na prijavi u aplikaciju. Dodavanje web sloja, servisnog sloja i repository sloja.
 
 13.3.2018.
 Implementacija metoda za rad s korisnicima u servisnom sloju.
@@ -20,4 +20,8 @@ Implementacija metoda za rad s korisnicima u servisnom sloju.
 Dodavanje funkcija za poziv backenda na frontend. Dodavanje reducera. Dodavanje tablica i podataka u bazu podataka.
 
 18.4.2018.
-Dodavanje mapiranja kod entiteta. Dodavanje logina.
+Dodavanje mapiranja kod entiteta. Dodavanje prijave u aplikaciju.
+
+19.4.2018.
+Dodavanje podataka u bazu podataka. Rad na pregledu osobnih podataka kroz aplikaciju. Rad na odjavi iz aplikacije.
+Dodavanje podnožja stranice. Rad na administratorskim ekranima, dodavanje tablica za prikaz korisnika.

@@ -2,23 +2,76 @@
   margin-top: 0.7em;
 }
 
-.navBar {
-  background-color: #0074D9;
-}
-
 .a {
-  color: white;
+  color: black;
 }
 
 .span {
-  color: white;
+  color: black;
 }
 
 .spanSnarp {
-  color: white;
+  color: black;
   font-size: 26px;
 }
 
 .span:hover {
-  color: silver;
+  color: #4b4b4c;
+}
+
+.navBar {
+  background-color: rgb(129, 176, 249);
+}
+
+.spanNoHover {
+  color: black;
+}
+
+.sectionTitle {
+  font-family: serif;
+}
+
+.letter {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 2em;
+  margin-bottom: 1em;
+  margin-right: 0.2em;
+  position: relative;
+  color: #fafafa;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.letter:before, .letter:after {
+  position: absolute;
+  content: attr(data-letter);
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+}
+
+.letter, .letter:before, .letter:after {
+  transition: all 0.1s ease-in-out;
+}
+
+.letter:before {
+  color: black;
+  z-index: 3;
+  transform: rotateX(0deg) rotateY(-15deg) rotateZ(0deg);
+}
+
+.letter:after {
+  color: rgba(0, 0, 0, .11);
+  z-index: 2;
+  transform: scale(1.08, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 1deg);
+}
+
+.letter:hover:before {
+  color: black;
+  transform: rotateX(0deg) rotateY(-40deg) rotateZ(0deg);
+}
+
+.letter:hover:after {
+  transform: scale(1.08, 1) rotateX(0deg) rotateY(40deg) rotateZ(0deg) skew(0deg, 22deg);
 }

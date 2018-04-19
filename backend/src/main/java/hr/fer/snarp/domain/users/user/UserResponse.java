@@ -18,6 +18,8 @@ public class UserResponse {
 
   private String password;
 
+  private String phoneNumber;
+
   public UserResponse(final User user, final UserType userType) {
     this.id = user.getId();
     this.firstName = user.getFirstName();
@@ -25,5 +27,6 @@ public class UserResponse {
     this.mail = user.getMail();
     this.type = userType.getName();
     this.password = user.getPassword();
+    this.phoneNumber = user.getPhoneNumber();
   }
 }

@@ -26,15 +26,9 @@ public class User {
 
   private String password;
 
-  public User() {
-  }
+  private String phoneNumber;
 
-  public User(final String firstName, final String lastName, final String mail, final UserType type, final String password) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.mail = mail;
-    this.type = type;
-    this.password = password;
+  public User() {
   }
 
   public User(final UserRequest userRequest, final UserType userType) {
@@ -43,5 +37,6 @@ public class User {
     this.mail = userRequest.getMail();
     this.type = userType;
     this.password = userRequest.getPassword();
+    this.phoneNumber = userRequest.getPhoneNumber();
   }
 }
