@@ -5,6 +5,16 @@ Insert into address_data (city, postal_code, street, street_number) values ('Zag
 Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Ulica sira', 34);
 Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Ulica tuge', 89);
 Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Duga ulica', 125);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Abramovićeva', 12);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Alagovićeva', 43);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Babulek', 55);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Maceljska', 17);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Maglići', 9);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Olovska', 21);
+Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Đurđevačka', 25);
+Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Osječka', 63);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Osorska', 101);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Padine', 1);
 
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Toni', 'Martinčić', 'toni.martincic@fer.hr', 'password', '091 342 5643');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Mirko', 'Randić', 'mirko.randic@fer.hr', 'password', '098 897 2543');
@@ -26,3 +36,25 @@ Insert into patient (first_name, last_name, mail, password, address_data_id, pho
 Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Petra', 'Horvat', 'petra.horvat@gmail.com', 'password', 5, '095 321 5567');
 Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Iva', 'Kozar', 'iva.kozar@gmail.com', 'password', 6, '095 443 7096');
 Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Leon', 'Lučić', 'leon.lucic@gmail.com', 'password', 7, '095 160 0143');
+
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Valentina', 'Kunić', 'valentina.kunic@gmail.com', 'password', '095 160 0143');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Petra', 'Petrić', 'petra.petric@gmail.com', 'password', '095 162 3542');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Mia', 'Franjić', 'mia.franjic@gmail.com', 'password', '095 330 0193');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Iris', 'Martinčić', 'iris.martincic@gmail.com', 'password', '095 999 5676');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Dino', 'Šemsudin', 'dino.semsudin@gmail.com', 'password', '091 202 1333');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Damir', 'Fazlinović', 'damir.fazlinovic@gmail.com', 'password', '098 675 8898');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Siniša', 'Varga', 'sinisa.varga@gmail.com', 'password', '095 087 7789');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Dinko', 'Poklepović', 'dinko.poklepovic@gmail.com', 'password', '098 586 0988');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Josip', 'Paladino', 'josip.paladino@gmail.com', 'password', '091 434 7845');
+Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Ivan', 'Petrović', 'ivan.petrovic@gmail.com', 'password', '095 332 2232');
+
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Luka', 'Novak', 'luka.novak@gmail.com', 'password', 8, '091 331 9087');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Mirko', 'Marić', 'mirko.maric@gmail.com', 'password', 9, '091 096 4519');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Rudi', 'Kovačević', 'rudi.kovacevic@gmail.com', 'password', 10, '091 385 9573');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Karlo', 'Babić', 'karlo.babic@gmail.com', 'password', 11, '098 443 5600');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Jerko', 'Kovačić', 'jerko.kovacic@gmail.com', 'password', 12, '095 879 9090');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Maja', 'Jurić', 'maja.juric@gmail.com', 'password', 13, '095 321 5567');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Nikolina', 'Matić', 'nikolina.matic@gmail.com', 'password', 14, '095 443 7096');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Josipa', 'Petrović', 'josipa.petrovic@gmail.com', 'password', 15, '095 160 0143');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Ivan', 'Primorac', 'ivan.primorac@gmail.com', 'password', 16, '091 164 0143');
+Insert into general_practitioner (first_name, last_name, mail, password, address_data_id, phone_number) values ('Vesna', 'Kozar', 'vesna.kozar@gmail.com', 'password', 17, '091 443 1211');
