@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import NavigationBar from './navigationBar/NavigationBar';
+import NavigationBar from '../../navigationBar/NavigationBar';
 
-class ThirdComponent extends React.Component {
+class MedicalSpecialists extends React.Component {
   render() {
     return (
       <section>
         <NavigationBar/>
-        <span>Third component</span>
+        <span>MedicalSpecialists</span>
       </section>
     );
   }
@@ -21,4 +21,4 @@ function mapDispatchToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThirdComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalSpecialists);

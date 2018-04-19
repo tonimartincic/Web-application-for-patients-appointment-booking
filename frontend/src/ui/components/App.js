@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Route, Router} from 'react-router-dom';
-import FirstComponent from './FirstComponent';
-import SecondComponent from './SecondComponent';
-import ThirdComponent from './ThirdComponent';
+import Administrators from './users/administrators/Administrators';
+import GeneralPractitioners from './users/generalPractitioners/GeneralPractitioners';
+import MedicalSpecialists from './users/medicalSpecialists/MedicalSpecialists';
+import Patients from './users/patients/Patients';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
 import {history} from './history/history';
@@ -32,9 +33,11 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <PrivateRoute exact path='/'><FirstComponent/></PrivateRoute>
-          <PrivateRoute exact path='/second-component'><SecondComponent/></PrivateRoute>
-          <PrivateRoute exact path='/third-component'><ThirdComponent/></PrivateRoute>
+          <PrivateRoute exact path='/'><Administrators/></PrivateRoute>
+          <PrivateRoute exact path='/administrators'><Administrators/></PrivateRoute>
+          <PrivateRoute exact path='/general-practitioners'><GeneralPractitioners/></PrivateRoute>
+          <PrivateRoute exact path='/medical-specialists'><MedicalSpecialists/></PrivateRoute>
+          <PrivateRoute exact path='/patients'><Patients/></PrivateRoute>
           <Route exact path='/login' component={Login}/>
         </div>
       </Router>

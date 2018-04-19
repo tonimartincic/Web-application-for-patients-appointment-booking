@@ -23,24 +23,31 @@ class NavigationBar extends Component {
         <Nav className={styles.navCenter}>
           <NavItem
             componentClass={Link}
-            to='/'
-            href='/'
+            to='/administrators'
+            href='/administrators'
           >
-            <span className={styles.span}>First Component</span>
+            <span className={styles.span}>Administratori</span>
           </NavItem>
           <NavItem
             componentClass={Link}
-            to='/second-component'
-            href='/second-component'
+            to='/general-practitioners'
+            href='/general-practitioners'
           >
-            <span className={styles.span}>Second component</span>
+            <span className={styles.span}>Liječnici opće prakse</span>
           </NavItem>
           <NavItem
             componentClass={Link}
-            to='/third-component'
-            href='/third-component'
+            to='/medical-specialists'
+            href='/medical-specialists'
           >
-            <span className={styles.span}>Third component</span>
+            <span className={styles.span}>Liječnici specijalisti</span>
+          </NavItem>
+          <NavItem
+            componentClass={Link}
+            to='/patients'
+            href='/patients'
+          >
+            <span className={styles.span}>Pacijenti</span>
           </NavItem>
           <NavItem>
             <Settings/>

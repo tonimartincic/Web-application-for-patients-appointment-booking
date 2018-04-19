@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import NavigationBar from './navigationBar/NavigationBar';
+import NavigationBar from '../../navigationBar/NavigationBar';
 
-class FirstComponent extends React.Component {
+class Administrators extends React.Component {
   render() {
     return (
       <section>
         <NavigationBar/>
-        <span>First component</span>
+        <span>Administrators</span>
       </section>
     );
   }
@@ -21,4 +21,4 @@ function mapDispatchToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirstComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(Administrators);

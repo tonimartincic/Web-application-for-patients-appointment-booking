@@ -6,7 +6,7 @@ export default async function fetchUserData() {
   try {
     const user = JSON.parse(localStorage.getItem('user'));
     const response = await axios.get(`/api/users/${user.id}/${user.type}`);
-    
+
     return {
       type: types.FETCH_USER_DATA_SUCCESS,
       data: response.data,
@@ -24,7 +24,7 @@ export async function validateUser(user) {
     const response = await axios.post('/api/login', user);
     if (response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
-      history.push('/');
+      history.push('/administrators');
     }
 
     return {
