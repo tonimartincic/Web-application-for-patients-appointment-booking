@@ -18,9 +18,9 @@ class Settings extends Component {
         <UserData/>
         <NavDropdown
           title={
-            <span className={styles.navDropdownSpan}>
-              {this.props.userData.firstName + ' ' + this.props.userData.lastName}
-              </span>
+            <span className={styles.span}>
+              <span className='glyphicon glyphicon-cog'/> Postavke
+            </span>
           }
           id='nav-dropdown'
         >

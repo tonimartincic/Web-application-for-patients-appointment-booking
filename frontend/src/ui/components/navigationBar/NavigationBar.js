@@ -11,11 +11,13 @@ class NavigationBar extends Component {
       <Navbar className={styles.navBar}>
         <Navbar.Header className={styles.navCenter}>
           <Navbar.Brand>
-            <Link to='/'>
-              <span className={styles.spanSnarp}>
-                Snarp
-              </span>
-            </Link>
+            <section className={styles.sectionTitle}>
+              <span className={styles.letter} data-letter="S">S</span>
+              <span className={styles.letter} data-letter="N">N</span>
+              <span className={styles.letter} data-letter="A">A</span>
+              <span className={styles.letter} data-letter="R">R</span>
+              <span className={styles.letter} data-letter="P">P</span>
+            </section>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav className={styles.navCenter}>
@@ -43,14 +45,22 @@ class NavigationBar extends Component {
           <NavItem>
             <Settings/>
           </NavItem>
+          <NavItem>
+            <span className={styles.spanNoHover}>
+               <span
+                 className='glyphicon glyphicon-user'/> {this.props.userData.firstName + ' ' + this.props.userData.lastName}
+            </span>
+          </NavItem>
         </Nav>
       </Navbar>
     );
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    userData: state.userData,
+  };
 }
 
 function mapDispatchToProps() {
