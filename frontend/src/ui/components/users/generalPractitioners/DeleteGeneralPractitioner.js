@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteGeneralPractitioner} from '../../../../actionCreators/generalPractitionersActionCreators';
 import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
+import * as styles from './deleteGeneralPractitioner.css'
 
 class DeleteGeneralPractitioner extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class DeleteGeneralPractitioner extends React.Component {
         postalCode: null,
         street: null,
         streetNumber: null,
+        phoneNumber: null,
       },
     };
 
@@ -36,6 +38,7 @@ class DeleteGeneralPractitioner extends React.Component {
         postalCode: null,
         street: null,
         streetNumber: null,
+        phoneNumber: null,
       },
     });
   };
@@ -54,6 +57,7 @@ class DeleteGeneralPractitioner extends React.Component {
               postalCode: this.props.generalPractitioners[i].postalCode,
               street: this.props.generalPractitioners[i].street,
               streetNumber: this.props.generalPractitioners[i].streetNumber,
+              phoneNumber: this.props.generalPractitioners[i].phoneNumber,
             }
           });
       }
@@ -159,16 +163,33 @@ class DeleteGeneralPractitioner extends React.Component {
                         </Col>
                       </Row>
                     </ListGroupItem>
+                    <ListGroupItem>
+                      <Row>
+                        <Col md={7} mdOffset={1}>
+                          <p><b>Broj mobitela:</b> {this.state.selectedGeneralPractitioner.phoneNumber}</p>
+                        </Col>
+                      </Row>
+                    </ListGroupItem>
                   </ListGroup>
                   <Row>
                     <Col mdOffset={1} md={4}>
-                      <Button onClick={() => this.handleDelete()}>Obriši liječnika opće prakse</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => this.handleDelete()}
+                      >
+                        Obriši liječnika opće prakse
+                      </Button>
                     </Col>
                     <Col md={5}>
-                      <Button onClick={() => {
-                        this.props.setDeleteGeneralPractitionerClicked(false);
-                        this.resetState();
-                      }}>Odustani</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => {
+                          this.props.setDeleteGeneralPractitionerClicked(false);
+                          this.resetState();
+                        }}
+                      >
+                        Odustani
+                      </Button>
                     </Col>
                   </Row>
                 </When>

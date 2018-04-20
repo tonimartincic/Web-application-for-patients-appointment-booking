@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {deleteMedicalSpecialist} from '../../../../actionCreators/medicalSpecialistsActionCreators';
 import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
+import * as styles from './deleteMedicalSpecialist.css'
 
 class DeleteMedicalSpecialist extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class DeleteMedicalSpecialist extends React.Component {
         firstName: null,
         lastName: null,
         mail: null,
+        phoneNumber: null,
       },
     };
 
@@ -28,6 +30,7 @@ class DeleteMedicalSpecialist extends React.Component {
         firstName: null,
         lastName: null,
         mail: null,
+        phoneNumber: null,
       },
     });
   };
@@ -42,6 +45,7 @@ class DeleteMedicalSpecialist extends React.Component {
               firstName: this.props.medicalSpecialists[i].firstName,
               lastName: this.props.medicalSpecialists[i].lastName,
               mail: this.props.medicalSpecialists[i].mail,
+              phoneNumber: this.props.medicalSpecialists[i].phoneNumber,
             }
           });
       }
@@ -119,16 +123,33 @@ class DeleteMedicalSpecialist extends React.Component {
                         </Col>
                       </Row>
                     </ListGroupItem>
+                    <ListGroupItem>
+                      <Row>
+                        <Col md={7} mdOffset={1}>
+                          <p><b>Broj mobitela:</b> {this.state.selectedMedicalSpecialist.phoneNumber}</p>
+                        </Col>
+                      </Row>
+                    </ListGroupItem>
                   </ListGroup>
                   <Row>
                     <Col mdOffset={1} md={4}>
-                      <Button onClick={() => this.handleDelete()}>Obriši liječnika specijalista</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => this.handleDelete()}
+                      >
+                        Obriši liječnika specijalista
+                      </Button>
                     </Col>
                     <Col md={4}>
-                      <Button onClick={() => {
-                        this.props.setDeleteMedicalSpecialistClicked(false);
-                        this.resetState();
-                      }}>Odustani</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => {
+                          this.props.setDeleteMedicalSpecialistClicked(false);
+                          this.resetState();
+                        }}
+                      >
+                        Odustani
+                      </Button>
                     </Col>
                   </Row>
                 </When>

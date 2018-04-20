@@ -13,6 +13,7 @@ import {
   Modal,
   Row
 } from 'react-bootstrap';
+import * as styles from './deleteAdministrator.css'
 
 class DeleteAdministrator extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class DeleteAdministrator extends React.Component {
         firstName: null,
         lastName: null,
         mail: null,
+        phoneNumber: null,
       },
     };
 
@@ -41,6 +43,7 @@ class DeleteAdministrator extends React.Component {
         firstName: null,
         lastName: null,
         mail: null,
+        phoneNumber: null,
       },
     });
   };
@@ -55,6 +58,7 @@ class DeleteAdministrator extends React.Component {
               firstName: this.props.administrators[i].firstName,
               lastName: this.props.administrators[i].lastName,
               mail: this.props.administrators[i].mail,
+              phoneNumber: this.props.administrators[i].phoneNumber,
             }
           });
       }
@@ -146,6 +150,13 @@ class DeleteAdministrator extends React.Component {
                         </Col>
                       </Row>
                     </ListGroupItem>
+                    <ListGroupItem>
+                      <Row>
+                        <Col md={7} mdOffset={1}>
+                          <p><b>Broj mobitela:</b> {this.state.selectedAdministrator.phoneNumber}</p>
+                        </Col>
+                      </Row>
+                    </ListGroupItem>
                   </ListGroup>
                   <Choose>
                     <When condition={this.state.cannotDeleteYourselfValidation}>
@@ -157,13 +168,23 @@ class DeleteAdministrator extends React.Component {
                   </Choose>
                   <Row>
                     <Col mdOffset={1} md={4}>
-                      <Button onClick={() => this.handleDelete()}>Obriši administratora</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => this.handleDelete()}
+                      >
+                        Obriši administratora
+                      </Button>
                     </Col>
                     <Col md={4}>
-                      <Button onClick={() => {
-                        this.props.setDeleteAdministratorClicked(false);
-                        this.resetState();
-                      }}>Odustani</Button>
+                      <Button
+                        className={styles.button}
+                        onClick={() => {
+                          this.props.setDeleteAdministratorClicked(false);
+                          this.resetState();
+                        }}
+                      >
+                        Odustani
+                      </Button>
                     </Col>
                   </Row>
                 </When>

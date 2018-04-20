@@ -110,7 +110,6 @@ class Login extends Component {
                     <Col>
                       <Button
                         className={styles.button}
-                        bsStyle='primary'
                         type='submit'
                         onClick={this.handleSubmit}
                       ><span>Prijava</span></Button>
@@ -120,7 +119,6 @@ class Login extends Component {
                     <Col>
                       <Button
                         className={styles.button}
-                        bsStyle='warning'
                         type='button'
                         onClick={this.handleDelete}
                       ><span>Resetiraj</span></Button>
