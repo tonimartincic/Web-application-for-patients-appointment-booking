@@ -156,7 +156,7 @@ class DeleteAdministrator extends React.Component {
                     </When>
                   </Choose>
                   <Row>
-                    <Col mdOffset={1} md={3}>
+                    <Col mdOffset={1} md={4}>
                       <Button onClick={() => this.handleDelete()}>Obriši administratora</Button>
                     </Col>
                     <Col md={4}>

@@ -1,10 +1,43 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
+import AddGeneralPractitioner from './AddGeneralPractitioner';
+import EditGeneralPractitioner from './EditGeneralPractitioner';
+import DeleteGeneralPractitioner from './DeleteGeneralPractitioner';
+import * as styles from './generalPractitioners.css';
 
 class GeneralPractitioners extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      addGeneralPractitionerClicked: false,
+      editGeneralPractitionerClicked: false,
+      deleteGeneralPractitionerClicked: false,
+    };
+
+    this.setAddGeneralPractitionerClicked = this.setAddGeneralPractitionerClicked.bind(this);
+    this.setEditGeneralPractitionerClicked = this.setEditGeneralPractitionerClicked.bind(this);
+    this.setDeleteGeneralPractitionerClicked = this.setDeleteGeneralPractitionerClicked.bind(this);
+  }
+
+  setAddGeneralPractitionerClicked = value =>
+    this.setState({
+      addGeneralPractitionerClicked: value,
+    });
+
+  setEditGeneralPractitionerClicked = value =>
+    this.setState({
+      editGeneralPractitionerClicked: value,
+    });
+
+  setDeleteGeneralPractitionerClicked = value =>
+    this.setState({
+      deleteGeneralPractitionerClicked: value,
+    });
+
   render() {
     return (
       <section>
@@ -46,6 +79,42 @@ class GeneralPractitioners extends React.Component {
                 </tbody>
               </Table>
             </Col>
+          </Row>
+          <Row>
+            <div>
+              <Col md={8} mdOffset={3}>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setAddGeneralPractitionerClicked(value)}
+                >
+                  Dodaj
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setEditGeneralPractitionerClicked(value)}
+                >
+                  Uredi
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setDeleteGeneralPractitionerClicked(value)}
+                >
+                  Obriši
+                </Button>
+              </Col>
+            </div>
+            <AddGeneralPractitioner
+              addGeneralPractitionerClicked={this.state.addGeneralPractitionerClicked}
+              setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
+            />
+            <EditGeneralPractitioner
+              editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
+              setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
+            />
+            <DeleteGeneralPractitioner
+              deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
+              setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
+            />
           </Row>
         </Grid>
         <Footer/>
