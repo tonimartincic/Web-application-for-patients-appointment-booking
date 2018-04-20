@@ -51,7 +51,7 @@ export async function editAnnouncement(administrator) {
 
 export async function deleteAdministrator(id) {
   try {
-    await axios.delete('/api/administrators' + id);
+    await axios.delete('/api/administrators/' + id);
 
     return {
       type: types.DELETE_ADMINISTRATOR_SUCCESS,

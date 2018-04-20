@@ -1,7 +1,7 @@
 .span {
-  color: black;
+  color: white;
 }
 
 .span:hover {
-  color: #4b4b4c;
+  color: gray;
 }

@@ -51,7 +51,7 @@ export async function editPatient(patient) {
 
 export async function deletePatient(id) {
   try {
-    await axios.delete('/api/patients' + id);
+    await axios.delete('/api/patients/' + id);
 
     return {
       type: types.DELETE_PATIENT_SUCCESS,

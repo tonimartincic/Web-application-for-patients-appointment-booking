@@ -51,7 +51,7 @@ export async function editGeneralPractitioner(generalPractitioner) {
 
 export async function deleteGeneralPractitioner(id) {
   try {
-    await axios.delete('/api/general-practitioners' + id);
+    await axios.delete('/api/general-practitioners/' + id);
 
     return {
       type: types.DELETE_GENERAL_PRACTITIONER_SUCCESS,

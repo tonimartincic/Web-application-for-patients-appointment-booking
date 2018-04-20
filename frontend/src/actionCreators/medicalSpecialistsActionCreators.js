@@ -51,7 +51,7 @@ export async function editMedicalSpecialist(medicalSpecialist) {
 
 export async function deleteMedicalSpecialist(id) {
   try {
-    await axios.delete('/api/medical-specialists' + id);
+    await axios.delete('/api/medical-specialists/' + id);
 
     return {
       type: types.DELETE_MEDICAL_SPECIALIST_SUCCESS,
