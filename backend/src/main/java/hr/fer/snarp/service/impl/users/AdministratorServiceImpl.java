@@ -1,6 +1,7 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.constants.UserConstants;
 import hr.fer.snarp.domain.users.administrator.Administrator;
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
@@ -34,6 +35,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
   @Override
   public AdministratorResponse add(final AdministratorRequest administratorRequest) {
+    administratorRequest.setPassword(UserConstants.DEFAULT_PASSWORD);
     return getAdministratorResponse(this.administratorRepository.save(new Administrator(administratorRequest)));
   }
 

@@ -1,6 +1,7 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.constants.UserConstants;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistRequest;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
@@ -34,6 +35,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
 
   @Override
   public MedicalSpecialistResponse add(final MedicalSpecialistRequest medicalSpecialistRequest) {
+    medicalSpecialistRequest.setPassword(UserConstants.DEFAULT_PASSWORD);
     return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(new MedicalSpecialist(medicalSpecialistRequest)));
   }
 
