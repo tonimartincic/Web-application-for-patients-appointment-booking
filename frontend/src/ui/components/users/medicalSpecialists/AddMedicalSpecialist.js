@@ -60,7 +60,7 @@ class AddMedicalSpecialist extends React.Component {
     }
 
     if (!errorExists) {
-      const patient =
+      const medicalSpecialist =
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
@@ -68,7 +68,7 @@ class AddMedicalSpecialist extends React.Component {
           phoneNumber: this.state.phoneNumber,
         };
 
-      this.props.addMedicalSpecialist(patient);
+      this.props.addMedicalSpecialist(medicalSpecialist);
       this.props.setAddMedicalSpecialistClicked(false);
 
       this.resetState();
@@ -100,17 +100,18 @@ class AddMedicalSpecialist extends React.Component {
       return false;
     }
 
-    const allUsers =
+    const allEntitiesWithMail =
       [
         ...this.props.administrators,
         ...this.props.generalPractitioners,
         ...this.props.medicalSpecialists,
         ...this.props.patients,
+        ...this.props.hospitals,
       ];
 
-    for (let i = 0; i < allUsers.length; i = i + 1) {
-      if (allUsers[i] !== null) {
-        if (allUsers[i].mail === this.state.mail.trim()) {
+    for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
+      if (allEntitiesWithMail[i] !== null) {
+        if (allEntitiesWithMail[i].mail === this.state.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -295,6 +296,7 @@ function mapStateToProps(state) {
     generalPractitioners: state.generalPractitioners,
     medicalSpecialists: state.medicalSpecialists,
     patients: state.patients,
+    hospitals: state.hospitals,
   };
 }
 

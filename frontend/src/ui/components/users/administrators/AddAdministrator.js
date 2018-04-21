@@ -99,17 +99,18 @@ class AddAdministrator extends React.Component {
       return false;
     }
 
-    const allUsers =
+    const allEntitiesWithMail =
       [
         ...this.props.administrators,
         ...this.props.generalPractitioners,
         ...this.props.medicalSpecialists,
         ...this.props.patients,
+        ...this.props.hospitals,
       ];
 
-    for (let i = 0; i < allUsers.length; i = i + 1) {
-      if (allUsers[i] !== null) {
-        if (allUsers[i].mail === this.state.mail.trim()) {
+    for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
+      if (allEntitiesWithMail[i] !== null) {
+        if (allEntitiesWithMail[i].mail === this.state.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -294,6 +295,7 @@ function mapStateToProps(state) {
     generalPractitioners: state.generalPractitioners,
     medicalSpecialists: state.medicalSpecialists,
     patients: state.patients,
+    hospitals: state.hospitals,
   };
 }
 
