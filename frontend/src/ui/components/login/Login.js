@@ -59,7 +59,7 @@ class Login extends Component {
       <section className={styles.sectionMain}>
         <Grid className={styles.container}>
           <Row>
-            <Col md={6} mdOffset={3}>
+            <Col md={12}>
               <section className={styles.sectionTitle}>
                 <span className={styles.letter} data-letter="S">S</span>
                 <span className={styles.letter} data-letter="N">N</span>

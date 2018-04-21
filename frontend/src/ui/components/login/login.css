@@ -6,7 +6,8 @@
 
 .sectionTitle {
   font-family: serif;
-  padding-left: 10%;
+  width: 100%;
+  text-align: center;
 }
 
 .sectionSpacing {
