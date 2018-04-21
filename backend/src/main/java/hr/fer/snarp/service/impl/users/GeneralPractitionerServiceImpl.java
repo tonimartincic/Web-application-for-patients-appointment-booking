@@ -1,6 +1,7 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.constants.UserConstants;
 import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
@@ -39,6 +40,8 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
 
   @Override
   public GeneralPractitionerResponse add(final GeneralPractitionerRequest generalPractitionerRequest) {
+    generalPractitionerRequest.setPassword(UserConstants.DEFAULT_PASSWORD);
+
     final GeneralPractitioner generalPractitioner = new GeneralPractitioner(generalPractitionerRequest);
     final AddressData addressData =
       this.addressDataService.add(

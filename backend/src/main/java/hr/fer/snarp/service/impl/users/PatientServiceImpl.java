@@ -1,6 +1,7 @@
 package hr.fer.snarp.service.impl.users;
 
 import com.google.common.collect.Lists;
+import hr.fer.snarp.constants.UserConstants;
 import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientRequest;
@@ -39,6 +40,8 @@ public class PatientServiceImpl implements PatientService {
 
   @Override
   public PatientResponse add(final PatientRequest patientRequest) {
+    patientRequest.setPassword(UserConstants.DEFAULT_PASSWORD);
+
     final Patient patient = new Patient(patientRequest);
     final AddressData addressData =
       this.addressDataService.add(
