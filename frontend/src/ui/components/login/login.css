@@ -6,7 +6,8 @@
 
 .sectionTitle {
   font-family: serif;
-  padding-left: 10%;
+  width: 100%;
+  text-align: center;
 }
 
 .sectionSpacing {
@@ -16,7 +17,7 @@
 }
 
 .sectionMain {
-  background: url('http://oi68.tinypic.com/2pzwjgp.jpg') no-repeat center center fixed;
+  background: url('https://image.ibb.co/gSGumx/stethoscope_2617701.jpg') no-repeat center center fixed;
   background-size: cover;
   padding-top: 5em;
   height: 100vh;
