@@ -137,10 +137,10 @@ class DeleteMedicalSpecialist extends React.Component {
                         className={styles.button}
                         onClick={() => this.handleDelete()}
                       >
-                        Obriši liječnika specijalista
+                        <span className='glyphicon glyphicon-trash'/> Obriši
                       </Button>
                     </Col>
-                    <Col md={4}>
+                    <Col mdOffset={2} md={4}>
                       <Button
                         className={styles.button}
                         onClick={() => {
@@ -148,7 +148,7 @@ class DeleteMedicalSpecialist extends React.Component {
                           this.resetState();
                         }}
                       >
-                        Odustani
+                        <span className='glyphicon glyphicon-share-alt'/> Odustani
                       </Button>
                     </Col>
                   </Row>

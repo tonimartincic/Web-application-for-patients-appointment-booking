@@ -85,19 +85,19 @@ class Hospitals extends React.Component {
                   className={styles.button}
                   onClick={value => this.setAddHospitalClicked(value)}
                 >
-                  Dodaj
+                  <span className='glyphicon glyphicon-plus'/> Dodaj
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setEditHospitalClicked(value)}
                 >
-                  Uredi
+                  <span className='glyphicon glyphicon-edit'/> Uredi
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setDeleteHospitalClicked(value)}
                 >
-                  Obriši
+                  <span className='glyphicon glyphicon-trash'/> Obriši
                 </Button>
               </Col>
             </div>

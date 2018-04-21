@@ -79,19 +79,19 @@ class Administrators extends React.Component {
                   className={styles.button}
                   onClick={value => this.setAddAdministratorClicked(value)}
                 >
-                  Dodaj
+                  <span className='glyphicon glyphicon-plus'/> Dodaj
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setEditAdministratorClicked(value)}
                 >
-                  Uredi
+                  <span className='glyphicon glyphicon-edit'/> Uredi
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setDeleteAdministratorClicked(value)}
                 >
-                  Obriši
+                  <span className='glyphicon glyphicon-trash'/> Obriši
                 </Button>
               </Col>
             </div>

@@ -1,4 +1,14 @@
 .button {
+  margin: 0.2em;
+  width: 100%;
   background-color: #50566d;
   color: white;
+}
+
+.pInvalid {
+  color: black;
+}
+
+.sectionInvalid {
+  margin-top: 0.3em;
 }

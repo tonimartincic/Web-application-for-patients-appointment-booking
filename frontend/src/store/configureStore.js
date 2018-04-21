@@ -3,7 +3,7 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import rootReducer from '../reducers/rootReducer';
 
 export default function createInitStore() {
-  const middlewares = process.env.NODE_ENV === 'development' ? //REMOVE || true IN PRODUCTION
+  const middlewares = process.env.NODE_ENV === 'dev' ?
     [
       applyMiddleware(asyncAwait),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
