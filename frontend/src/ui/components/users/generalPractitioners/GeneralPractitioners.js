@@ -87,19 +87,19 @@ class GeneralPractitioners extends React.Component {
                   className={styles.button}
                   onClick={value => this.setAddGeneralPractitionerClicked(value)}
                 >
-                  Dodaj
+                  <span className='glyphicon glyphicon-plus'/> Dodaj
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setEditGeneralPractitionerClicked(value)}
                 >
-                  Uredi
+                  <span className='glyphicon glyphicon-edit'/> Uredi
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setDeleteGeneralPractitionerClicked(value)}
                 >
-                  Obriši
+                  <span className='glyphicon glyphicon-trash'/> Obriši
                 </Button>
               </Col>
             </div>

@@ -17,7 +17,7 @@ export default async function fetchAdministrators() {
   }
 }
 
-export async function addNewAnnouncement(administrator) {
+export async function addAdministrator(administrator) {
   try {
     const response = await axios.post('/api/administrators', administrator);
 

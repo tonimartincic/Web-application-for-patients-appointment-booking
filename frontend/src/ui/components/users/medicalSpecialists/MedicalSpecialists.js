@@ -79,19 +79,19 @@ class MedicalSpecialists extends React.Component {
                   className={styles.button}
                   onClick={value => this.setAddMedicalSpecialistClicked(value)}
                 >
-                  Dodaj
+                  <span className='glyphicon glyphicon-plus'/> Dodaj
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setEditMedicalSpecialistClicked(value)}
                 >
-                  Uredi
+                  <span className='glyphicon glyphicon-edit'/> Uredi
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setDeleteMedicalSpecialistClicked(value)}
                 >
-                  Obriši
+                  <span className='glyphicon glyphicon-trash'/> Obriši
                 </Button>
               </Col>
             </div>

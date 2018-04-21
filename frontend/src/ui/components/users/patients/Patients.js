@@ -87,19 +87,19 @@ class Patients extends React.Component {
                   className={styles.button}
                   onClick={value => this.setAddPatientClicked(value)}
                 >
-                  Dodaj
+                  <span className='glyphicon glyphicon-plus'/> Dodaj
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setEditPatientClicked(value)}
                 >
-                  Uredi
+                  <span className='glyphicon glyphicon-edit'/> Uredi
                 </Button>
                 <Button
                   className={styles.button}
                   onClick={value => this.setDeletePatientClicked(value)}
                 >
-                  Obriši
+                  <span className='glyphicon glyphicon-trash'/> Obriši
                 </Button>
               </Col>
             </div>
