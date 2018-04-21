@@ -1,10 +1,43 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
+import AddPatient from './AddPatient';
+import EditPatient from './EditPatient';
+import DeletePatient from './DeletePatient';
+import * as styles from './patients.css';
 
 class Patients extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      addPatientClicked: false,
+      editPatientClicked: false,
+      deletePatientClicked: false,
+    };
+
+    this.setAddPatientClicked = this.setAddPatientClicked.bind(this);
+    this.setEditPatientClicked = this.setEditPatientClicked.bind(this);
+    this.setDeletePatientClicked = this.setDeletePatientClicked.bind(this);
+  }
+
+  setAddPatientClicked = value =>
+    this.setState({
+      addPatientClicked: value,
+    });
+
+  setEditPatientClicked = value =>
+    this.setState({
+      editPatientClicked: value,
+    });
+
+  setDeletePatientClicked = value =>
+    this.setState({
+      deletePatientClicked: value,
+    });
+
   render() {
     return (
       <section>
@@ -46,6 +79,42 @@ class Patients extends React.Component {
                 </tbody>
               </Table>
             </Col>
+          </Row>
+          <Row>
+            <div>
+              <Col md={8} mdOffset={3}>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setAddPatientClicked(value)}
+                >
+                  Dodaj
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setEditPatientClicked(value)}
+                >
+                  Uredi
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setDeletePatientClicked(value)}
+                >
+                  Obriši
+                </Button>
+              </Col>
+            </div>
+            <AddPatient
+              addPatientClicked={this.state.addPatientClicked}
+              setAddPatientClicked={value => this.setAddPatientClicked(value)}
+            />
+            <EditPatient
+              editPatientClicked={this.state.editPatientClicked}
+              setEditPatientClicked={value => this.setEditPatientClicked(value)}
+            />
+            <DeletePatient
+              deletePatientClicked={this.state.deletePatientClicked}
+              setDeletePatientClicked={value => this.setDeletePatientClicked(value)}
+            />
           </Row>
         </Grid>
         <Footer/>

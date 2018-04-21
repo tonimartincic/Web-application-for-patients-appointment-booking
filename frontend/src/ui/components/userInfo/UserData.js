@@ -43,6 +43,15 @@ class UserData extends React.Component {
               </Row>
               <Row>
                 <Col md={8} mdOffset={1}>
+                  <h4>Broj mobitela:
+                    {
+                      ' ' + this.props.userData.phoneNumber
+                    }
+                  </h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={8} mdOffset={1}>
                   <h4>Vrsta korisnika:
                     {
                       ' ' + this.props.userData.type

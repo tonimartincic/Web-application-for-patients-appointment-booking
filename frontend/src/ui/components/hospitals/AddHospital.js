@@ -2,14 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Modal} from 'react-bootstrap';
 
-class AddPatient extends React.Component {
+class AddHospital extends React.Component {
   render() {
     return (
       <section>
         <Modal
-          show={this.props.addPatientClicked}
+          show={this.props.addHospitalClicked}
           onHide={() => {
-            this.props.setAddPatientClicked(false);
+            this.props.setAddHospitalClicked(false);
             this.resetState();
           }
           }
@@ -28,4 +28,4 @@ function mapDispatchToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPatient);
+export default connect(mapStateToProps, mapDispatchToProps)(AddHospital);

@@ -1,10 +1,43 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
+import AddHospital from './AddHospital';
+import EditHospital from './EditHospital';
+import DeleteHospital from './DeleteHospital';
 import Footer from '../footer/Footer';
+import * as styles from './hospitals.css'
 
 class Hospitals extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      addHospitalClicked: false,
+      editHospitalClicked: false,
+      deleteHospitalClicked: false,
+    };
+
+    this.setAddHospitalClicked = this.setAddHospitalClicked.bind(this);
+    this.setEditHospitalClicked = this.setEditHospitalClicked.bind(this);
+    this.setDeleteHospitalClicked = this.setDeleteHospitalClicked.bind(this);
+  }
+
+  setAddHospitalClicked = value =>
+    this.setState({
+      addHospitalClicked: value,
+    });
+
+  setEditHospitalClicked = value =>
+    this.setState({
+      editHospitalClicked: value,
+    });
+
+  setDeleteHospitalClicked = value =>
+    this.setState({
+      deleteHospitalClicked: value,
+    });
+
   render() {
     return (
       <section>
@@ -44,6 +77,42 @@ class Hospitals extends React.Component {
                 </tbody>
               </Table>
             </Col>
+          </Row>
+          <Row>
+            <div>
+              <Col md={8} mdOffset={3}>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setAddHospitalClicked(value)}
+                >
+                  Dodaj
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setEditHospitalClicked(value)}
+                >
+                  Uredi
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setDeleteHospitalClicked(value)}
+                >
+                  Obriši
+                </Button>
+              </Col>
+            </div>
+            <AddHospital
+              addHospitalClicked={this.state.addHospitalClicked}
+              setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
+            />
+            <EditHospital
+              editHospitalClicked={this.state.editHospitalClicked}
+              setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
+            />
+            <DeleteHospital
+              deleteHospitalClicked={this.state.deleteHospitalClicked}
+              setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
+            />
           </Row>
         </Grid>
         <Footer/>

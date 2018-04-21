@@ -1,10 +1,43 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
+import AddMedicalSpecialist from './AddMedicalSpecialist';
+import EditMedicalSpecialist from './EditMedicalSpecialist';
+import DeleteMedicalSpecialist from './DeleteMedicalSpecialist';
+import * as styles from './medicalSpecialists.css';
 
 class MedicalSpecialists extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      addMedicalSpecialistClicked: false,
+      editMedicalSpecialistClicked: false,
+      deleteMedicalSpecialistClicked: false,
+    };
+
+    this.setAddMedicalSpecialistClicked = this.setAddMedicalSpecialistClicked.bind(this);
+    this.setEditMedicalSpecialistClicked = this.setEditMedicalSpecialistClicked.bind(this);
+    this.setDeleteMedicalSpecialistClicked = this.setDeleteMedicalSpecialistClicked.bind(this);
+  }
+
+  setAddMedicalSpecialistClicked = value =>
+    this.setState({
+      addMedicalSpecialistClicked: value,
+    });
+
+  setEditMedicalSpecialistClicked = value =>
+    this.setState({
+      editMedicalSpecialistClicked: value,
+    });
+
+  setDeleteMedicalSpecialistClicked = value =>
+    this.setState({
+      deleteMedicalSpecialistClicked: value,
+    });
+
   render() {
     return (
       <section>
@@ -38,6 +71,42 @@ class MedicalSpecialists extends React.Component {
                 </tbody>
               </Table>
             </Col>
+          </Row>
+          <Row>
+            <div>
+              <Col md={8} mdOffset={3}>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setAddMedicalSpecialistClicked(value)}
+                >
+                  Dodaj
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setEditMedicalSpecialistClicked(value)}
+                >
+                  Uredi
+                </Button>
+                <Button
+                  className={styles.button}
+                  onClick={value => this.setDeleteMedicalSpecialistClicked(value)}
+                >
+                  Obriši
+                </Button>
+              </Col>
+            </div>
+            <AddMedicalSpecialist
+              addMedicalSpecialistClicked={this.state.addMedicalSpecialistClicked}
+              setAddMedicalSpecialistClicked={value => this.setAddMedicalSpecialistClicked(value)}
+            />
+            <EditMedicalSpecialist
+              editMedicalSpecialistClicked={this.state.editMedicalSpecialistClicked}
+              setEditMedicalSpecialistClicked={value => this.setEditMedicalSpecialistClicked(value)}
+            />
+            <DeleteMedicalSpecialist
+              deleteMedicalSpecialistClicked={this.state.deleteMedicalSpecialistClicked}
+              setDeleteMedicalSpecialistClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
+            />
           </Row>
         </Grid>
         <Footer/>
