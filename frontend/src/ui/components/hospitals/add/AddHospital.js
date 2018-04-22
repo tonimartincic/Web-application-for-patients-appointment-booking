@@ -1,16 +1,15 @@
 import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import * as styles from './addPatient.css';
-import {addPatient} from "../../../../actionCreators/patientsActionCreators";
+import * as styles from '../hospitals.css';
+import {addHospital} from "../../../../actionCreators/hospitalsActionCreators";
 
-class AddPatient extends React.Component {
+class AddHospital extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
+      name: null,
       mail: null,
       phoneNumber: null,
       city: null,
@@ -18,8 +17,7 @@ class AddPatient extends React.Component {
       street: null,
       streetNumber: null,
 
-      firstNameValidation: null,
-      lastNameValidation: null,
+      nameValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
@@ -31,8 +29,7 @@ class AddPatient extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-    this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this);
     this.handleChangeCity = this.handleChangeCity.bind(this);
@@ -43,17 +40,9 @@ class AddPatient extends React.Component {
 
   handleSubmit() {
     let errorExists = false;
-    if (this.state.firstName === null || this.state.firstName.trim() === '') {
+    if (this.state.name === null || this.state.name.trim() === '') {
       this.setState({
-        firstNameValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (this.state.lastName === null || this.state.lastName.trim() === '') {
-      this.setState({
-        lastNameValidation: 'error',
+        nameValidation: 'error',
       });
 
       errorExists = true;
@@ -104,10 +93,9 @@ class AddPatient extends React.Component {
     }
 
     if (!errorExists) {
-      const patient =
+      const hospital =
         {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
+          name: this.state.name,
           mail: this.state.mail,
           phoneNumber: this.state.phoneNumber,
           city: this.state.city,
@@ -116,8 +104,8 @@ class AddPatient extends React.Component {
           streetNumber: this.state.streetNumber,
         };
 
-      this.props.addPatient(patient);
-      this.props.setAddPatientClicked(false);
+      this.props.addHospital(hospital);
+      this.props.setAddHospitalClicked(false);
 
       this.resetState();
     }
@@ -125,8 +113,7 @@ class AddPatient extends React.Component {
 
   resetState = () => {
     this.setState({
-      firstName: null,
-      lastName: null,
+      name: null,
       mail: null,
       phoneNumber: null,
       city: null,
@@ -134,8 +121,7 @@ class AddPatient extends React.Component {
       street: null,
       streetNumber: null,
 
-      firstNameValidation: null,
-      lastNameValidation: null,
+      nameValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
@@ -189,17 +175,10 @@ class AddPatient extends React.Component {
     return true;
   }
 
-  handleChangeFirstName(e) {
+  handleChangeName(e) {
     this.setState({
-      firstName: e.target.value,
-      firstNameValidation: null,
-    });
-  }
-
-  handleChangeLastName(e) {
-    this.setState({
-      lastName: e.target.value,
-      lastNameValidation: null,
+      name: e.target.value,
+      nameValidation: null,
     });
   }
 
@@ -251,51 +230,33 @@ class AddPatient extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.addPatientClicked}
+          show={this.props.addHospitalClicked}
           onHide={() => {
-            this.props.setAddPatientClicked(false);
+            this.props.setAddHospitalClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novog pacijenta</Modal.Title>
+            <Modal.Title>Dodaj novu bolnicu</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
               <FormGroup
                 controlId="formBasicText"
-                validationState={this.state.firstNameValidation}
+                validationState={this.state.nameValidation}
               >
-                <ControlLabel>Ime</ControlLabel>
+                <ControlLabel>Naziv</ControlLabel>
                 <FormControl
                   type="text"
-                  placeholder="Unesite ime"
-                  onChange={this.handleChangeFirstName}
+                  placeholder="Unesite naziv"
+                  onChange={this.handleChangeName}
                 />
                 <Row>
                   <Col md={4}>
                     <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.firstNameValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti ime.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.lastNameValidation}>
-                <ControlLabel>Prezime</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite prezime"
-                  onChange={this.handleChangeLastName}
-                />
-                <Row>
-                  <Col md={4}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.lastNameValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti prezime.</p>
+                      <Collapse in={this.state.nameValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti naziv.</p>
                       </Collapse>
                     </section>
                   </Col>
@@ -327,17 +288,17 @@ class AddPatient extends React.Component {
               </FormGroup>
               <FormGroup
                 validationState={this.state.phoneNumberValidation}>
-                <ControlLabel>Broj mobitela</ControlLabel>
+                <ControlLabel>Telefonski broj</ControlLabel>
                 <FormControl
                   type="text"
-                  placeholder="Unesite broj mobitela"
+                  placeholder="Unesite telefonski broj"
                   onChange={this.handleChangePhoneNumber}
                 />
                 <Row>
                   <Col md={6}>
                     <section className={styles.sectionInvalid}>
                       <Collapse in={this.state.phoneNumberValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti broj mobitela.</p>
+                        <p className={styles.pInvalid}>Morate unijeti telefonski broj.</p>
                       </Collapse>
                     </section>
                   </Col>
@@ -431,7 +392,7 @@ class AddPatient extends React.Component {
                 <Button
                   className={styles.button}
                   onClick={() => {
-                    this.props.setAddPatientClicked(false);
+                    this.props.setAddHospitalClicked(false);
                     this.resetState();
                   }}
                 >
@@ -458,8 +419,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addPatient: patient => dispatch(addPatient(patient)),
+    addHospital: hospital => dispatch(addHospital(hospital)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPatient);
+export default connect(mapStateToProps, mapDispatchToProps)(AddHospital);

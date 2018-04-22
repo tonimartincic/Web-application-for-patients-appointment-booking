@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import * as styles from './addMedicalSpecialist.css';
-import {addMedicalSpecialist} from "../../../../actionCreators/medicalSpecialistsActionCreators";
+import * as styles from './addGeneralPractitioner.css';
+import {addGeneralPractitioner} from "../../../../../actionCreators/generalPractitionersActionCreators";
 
-class AddMedicalSpecialist extends React.Component {
+class AddGeneralPractitioner extends React.Component {
   constructor(props) {
     super(props);
 
@@ -13,6 +13,10 @@ class AddMedicalSpecialist extends React.Component {
       lastName: null,
       mail: null,
       phoneNumber: null,
+      city: null,
+      postalCode: null,
+      street: null,
+      streetNumber: null,
 
       firstNameValidation: null,
       lastNameValidation: null,
@@ -20,6 +24,10 @@ class AddMedicalSpecialist extends React.Component {
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
+      cityValidation: null,
+      postalCodeValidation: null,
+      streetValidation: null,
+      streetNumberValidation: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,6 +35,10 @@ class AddMedicalSpecialist extends React.Component {
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this);
+    this.handleChangeCity = this.handleChangeCity.bind(this);
+    this.handleChangePostalCode = this.handleChangePostalCode.bind(this);
+    this.handleChangeStreet = this.handleChangeStreet.bind(this);
+    this.handleChangeStreetNumber = this.handleChangeStreetNumber.bind(this);
   }
 
   handleSubmit() {
@@ -55,21 +67,57 @@ class AddMedicalSpecialist extends React.Component {
       errorExists = true;
     }
 
+    if (this.state.city === null || this.state.city.trim() === '') {
+      this.setState({
+        cityValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.postalCode === null || this.state.postalCode.trim() === '') {
+      this.setState({
+        postalCodeValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.street === null || this.state.street.trim() === '') {
+      this.setState({
+        streetValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.streetNumber === null || this.state.streetNumber.trim() === '') {
+      this.setState({
+        streetNumberValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
     if (!this.checkEmail()) {
       errorExists = true;
     }
 
     if (!errorExists) {
-      const medicalSpecialist =
+      const generalPractitioner =
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
           mail: this.state.mail,
           phoneNumber: this.state.phoneNumber,
+          city: this.state.city,
+          postalCode: this.state.postalCode,
+          street: this.state.street,
+          streetNumber: this.state.streetNumber,
         };
 
-      this.props.addMedicalSpecialist(medicalSpecialist);
-      this.props.setAddMedicalSpecialistClicked(false);
+      this.props.addGeneralPractitioner(generalPractitioner);
+      this.props.setAddGeneralPractitionerClicked(false);
 
       this.resetState();
     }
@@ -81,6 +129,10 @@ class AddMedicalSpecialist extends React.Component {
       lastName: null,
       mail: null,
       phoneNumber: null,
+      city: null,
+      postalCode: null,
+      street: null,
+      streetNumber: null,
 
       firstNameValidation: null,
       lastNameValidation: null,
@@ -88,6 +140,10 @@ class AddMedicalSpecialist extends React.Component {
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
+      cityValidation: null,
+      postalCodeValidation: null,
+      streetValidation: null,
+      streetNumberValidation: null,
     });
   };
 
@@ -163,19 +219,47 @@ class AddMedicalSpecialist extends React.Component {
     });
   }
 
+  handleChangeCity(e) {
+    this.setState({
+      city: e.target.value,
+      cityValidation: null,
+    });
+  }
+
+  handleChangePostalCode(e) {
+    this.setState({
+      postalCode: e.target.value,
+      postalCodeValidation: null,
+    });
+  }
+
+  handleChangeStreet(e) {
+    this.setState({
+      street: e.target.value,
+      streetValidation: null,
+    });
+  }
+
+  handleChangeStreetNumber(e) {
+    this.setState({
+      streetNumber: e.target.value,
+      streetNumberValidation: null,
+    });
+  }
+
   render() {
     return (
       <section>
         <Modal
-          show={this.props.addMedicalSpecialistClicked}
+          show={this.props.addGeneralPractitionerClicked}
           onHide={() => {
-            this.props.setAddMedicalSpecialistClicked(false);
+            this.props.setAddGeneralPractitionerClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novog liječnika specijalista</Modal.Title>
+            <Modal.Title>Dodaj novog specijalista obiteljske medicine</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -259,6 +343,78 @@ class AddMedicalSpecialist extends React.Component {
                   </Col>
                 </Row>
               </FormGroup>
+              <FormGroup
+                validationState={this.state.cityValidation}>
+                <ControlLabel>Grad</ControlLabel>
+                <FormControl
+                  type="text"
+                  placeholder="Unesite grad"
+                  onChange={this.handleChangeCity}
+                />
+                <Row>
+                  <Col md={6}>
+                    <section className={styles.sectionInvalid}>
+                      <Collapse in={this.state.cityValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti grad.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
+              <FormGroup
+                validationState={this.state.postalCodeValidation}>
+                <ControlLabel>Poštanski broj</ControlLabel>
+                <FormControl
+                  type="text"
+                  placeholder="Unesite poštanski broj"
+                  onChange={this.handleChangePostalCode}
+                />
+                <Row>
+                  <Col md={6}>
+                    <section className={styles.sectionInvalid}>
+                      <Collapse in={this.state.postalCodeValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti poštanski broj.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
+              <FormGroup
+                validationState={this.state.streetValidation}>
+                <ControlLabel>Ulica</ControlLabel>
+                <FormControl
+                  type="text"
+                  placeholder="Unesite ulicu"
+                  onChange={this.handleChangeStreet}
+                />
+                <Row>
+                  <Col md={6}>
+                    <section className={styles.sectionInvalid}>
+                      <Collapse in={this.state.streetValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti ulicu.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
+              <FormGroup
+                validationState={this.state.streetNumberValidation}>
+                <ControlLabel>Kućni broj</ControlLabel>
+                <FormControl
+                  type="text"
+                  placeholder="Unesite kućni broj"
+                  onChange={this.handleChangeStreetNumber}
+                />
+                <Row>
+                  <Col md={6}>
+                    <section className={styles.sectionInvalid}>
+                      <Collapse in={this.state.streetNumberValidation === 'error'}>
+                        <p className={styles.pInvalid}>Morate unijeti kućni broj.</p>
+                      </Collapse>
+                    </section>
+                  </Col>
+                </Row>
+              </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -275,7 +431,7 @@ class AddMedicalSpecialist extends React.Component {
                 <Button
                   className={styles.button}
                   onClick={() => {
-                    this.props.setAddMedicalSpecialistClicked(false);
+                    this.props.setAddGeneralPractitionerClicked(false);
                     this.resetState();
                   }}
                 >
@@ -302,8 +458,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addMedicalSpecialist: medicalSpecialist => dispatch(addMedicalSpecialist(medicalSpecialist)),
+    addGeneralPractitioner: generalPractitioner => dispatch(addGeneralPractitioner(generalPractitioner)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddMedicalSpecialist);
+export default connect(mapStateToProps, mapDispatchToProps)(AddGeneralPractitioner);

@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
-import AddMedicalSpecialist from './AddMedicalSpecialist';
-import EditMedicalSpecialist from './EditMedicalSpecialist';
-import DeleteMedicalSpecialist from './DeleteMedicalSpecialist';
+import AddMedicalSpecialist from './add/AddMedicalSpecialist';
+import EditMedicalSpecialist from './edit/EditMedicalSpecialist';
+import DeleteMedicalSpecialist from './delete/DeleteMedicalSpecialist';
 import * as styles from './medicalSpecialists.css';
 
 class MedicalSpecialists extends React.Component {

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import * as styles from './addGeneralPractitioner.css';
-import {addGeneralPractitioner} from "../../../../actionCreators/generalPractitionersActionCreators";
+import * as styles from './addPatient.css';
+import {addPatient} from "../../../../../actionCreators/patientsActionCreators";
 
-class AddGeneralPractitioner extends React.Component {
+class AddPatient extends React.Component {
   constructor(props) {
     super(props);
 
@@ -104,7 +104,7 @@ class AddGeneralPractitioner extends React.Component {
     }
 
     if (!errorExists) {
-      const generalPractitioner =
+      const patient =
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
@@ -116,8 +116,8 @@ class AddGeneralPractitioner extends React.Component {
           streetNumber: this.state.streetNumber,
         };
 
-      this.props.addGeneralPractitioner(generalPractitioner);
-      this.props.setAddGeneralPractitionerClicked(false);
+      this.props.addPatient(patient);
+      this.props.setAddPatientClicked(false);
 
       this.resetState();
     }
@@ -251,15 +251,15 @@ class AddGeneralPractitioner extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.addGeneralPractitionerClicked}
+          show={this.props.addPatientClicked}
           onHide={() => {
-            this.props.setAddGeneralPractitionerClicked(false);
+            this.props.setAddPatientClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novog liječnika opće prakse</Modal.Title>
+            <Modal.Title>Dodaj novog pacijenta</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -431,7 +431,7 @@ class AddGeneralPractitioner extends React.Component {
                 <Button
                   className={styles.button}
                   onClick={() => {
-                    this.props.setAddGeneralPractitionerClicked(false);
+                    this.props.setAddPatientClicked(false);
                     this.resetState();
                   }}
                 >
@@ -458,8 +458,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addGeneralPractitioner: generalPractitioner => dispatch(addGeneralPractitioner(generalPractitioner)),
+    addPatient: patient => dispatch(addPatient(patient)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddGeneralPractitioner);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPatient);

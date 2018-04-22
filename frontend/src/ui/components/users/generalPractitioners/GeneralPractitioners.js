@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
-import AddGeneralPractitioner from './AddGeneralPractitioner';
-import EditGeneralPractitioner from './EditGeneralPractitioner';
-import DeleteGeneralPractitioner from './DeleteGeneralPractitioner';
+import AddGeneralPractitioner from './add/AddGeneralPractitioner';
+import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
+import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
 import * as styles from './generalPractitioners.css';
 
 class GeneralPractitioners extends React.Component {

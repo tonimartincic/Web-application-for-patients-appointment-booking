@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import * as styles from './addAdministrator.css';
-import {addAdministrator} from "../../../../actionCreators/administratorsActionCreators";
+import * as styles from './addMedicalSpecialist.css';
+import {addMedicalSpecialist} from "../../../../../actionCreators/medicalSpecialistsActionCreators";
 
-class AddAdministrator extends React.Component {
+class AddMedicalSpecialist extends React.Component {
   constructor(props) {
     super(props);
 
@@ -60,7 +60,7 @@ class AddAdministrator extends React.Component {
     }
 
     if (!errorExists) {
-      const administrator =
+      const medicalSpecialist =
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
@@ -68,8 +68,8 @@ class AddAdministrator extends React.Component {
           phoneNumber: this.state.phoneNumber,
         };
 
-      this.props.addAdministrator(administrator);
-      this.props.setAddAdministratorClicked(false);
+      this.props.addMedicalSpecialist(medicalSpecialist);
+      this.props.setAddMedicalSpecialistClicked(false);
 
       this.resetState();
     }
@@ -81,6 +81,7 @@ class AddAdministrator extends React.Component {
       lastName: null,
       mail: null,
       phoneNumber: null,
+
       firstNameValidation: null,
       lastNameValidation: null,
       phoneNumberValidation: null,
@@ -166,15 +167,15 @@ class AddAdministrator extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.addAdministratorClicked}
+          show={this.props.addMedicalSpecialistClicked}
           onHide={() => {
-            this.props.setAddAdministratorClicked(false);
+            this.props.setAddMedicalSpecialistClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Dodaj novog administratora</Modal.Title>
+            <Modal.Title>Dodaj novog liječnika specijalista</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -274,7 +275,7 @@ class AddAdministrator extends React.Component {
                 <Button
                   className={styles.button}
                   onClick={() => {
-                    this.props.setAddAdministratorClicked(false);
+                    this.props.setAddMedicalSpecialistClicked(false);
                     this.resetState();
                   }}
                 >
@@ -301,8 +302,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addAdministrator: administrator => dispatch(addAdministrator(administrator)),
+    addMedicalSpecialist: medicalSpecialist => dispatch(addMedicalSpecialist(medicalSpecialist)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAdministrator);
+export default connect(mapStateToProps, mapDispatchToProps)(AddMedicalSpecialist);

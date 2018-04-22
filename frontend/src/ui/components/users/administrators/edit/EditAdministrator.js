@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {editAdministrator} from '../../../../actionCreators/administratorsActionCreators';
+import {editAdministrator} from '../../../../../actionCreators/administratorsActionCreators';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
+import * as constants from '../../../../../constants/values';
 import * as styles from './editAdministrator.css'
 
 class EditAdministrator extends React.Component {
@@ -124,10 +125,8 @@ class EditAdministrator extends React.Component {
 
     for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
       if (allEntitiesWithMail[i] !== null) {
-        if (allEntitiesWithMail[i].type !== null &&
-          allEntitiesWithMail[i].type !== undefined &&
-          allEntitiesWithMail[i].type === 'Administrator' &&
-          allEntitiesWithMail[i].id == this.state.selectedAdministrator.id) {
+        if (allEntitiesWithMail[i].type === constants.ADMINISTRATOR &&
+          allEntitiesWithMail[i].id === this.state.selectedAdministrator.id) {
           continue;
         }
 

@@ -1,63 +1,60 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deletePatient} from '../../../../actionCreators/patientsActionCreators';
+import {deleteHospital} from '../../../../actionCreators/hospitalsActionCreators';
 import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
-import * as styles from './deletePatient.css'
+import * as styles from './deleteHospital.css'
 
-class DeletePatient extends React.Component {
+class DeleteHospital extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       dropdownValue: null,
-      selectedPatient: {
+      selectedHospital: {
         id: null,
-        firstName: null,
-        lastName: null,
-        mail: null,
+        name: null,
         city: null,
         postalCode: null,
         street: null,
         streetNumber: null,
         phoneNumber: null,
+        mail: null,
       },
     };
 
-    this.handleChangeSelectedPatient = this.handleChangeSelectedPatient.bind(this);
+    this.handleChangeSelectedHospital = this.handleChangeSelectedHospital.bind(this);
   }
 
   resetState = () => {
     this.setState({
       dropdownValue: null,
-      selectedPatient: {
+      selectedHospital: {
         id: null,
-        firstName: null,
-        lastName: null,
-        mail: null,
+        name: null,
         city: null,
         postalCode: null,
         street: null,
         streetNumber: null,
         phoneNumber: null,
+        mail: null,
       },
     });
   };
 
-  handleChangeSelectedPatient = (event) => {
-    for (let i = 0; i < this.props.patients.length; ++i) {
-      if (this.props.patients[i] !== null) {
-        if (this.props.patients[i].id == event.target.value)
+  handleChangeSelectedHospital = (event) => {
+    for (let i = 0; i < this.props.hospitals.length; ++i) {
+      if (this.props.hospitals[i] !== null) {
+        if (this.props.hospitals[i].id == event.target.value)
           this.setState({
-            selectedPatient: {
-              id: this.props.patients[i].id,
-              firstName: this.props.patients[i].firstName,
-              lastName: this.props.patients[i].lastName,
-              mail: this.props.patients[i].mail,
-              city: this.props.patients[i].city,
-              postalCode: this.props.patients[i].postalCode,
-              street: this.props.patients[i].street,
-              streetNumber: this.props.patients[i].streetNumber,
-              phoneNumber: this.props.patients[i].phoneNumber,
+            selectedHospital: {
+              id: this.props.hospitals[i].id,
+              name: this.props.hospitals[i].name,
+              city: this.props.hospitals[i].city,
+              postalCode: this.props.hospitals[i].postalCode,
+              street: this.props.hospitals[i].street,
+              streetNumber: this.props.hospitals[i].streetNumber,
+              phoneNumber: this.props.hospitals[i].phoneNumber,
+              mail: this.props.hospitals[i].mail,
             }
           });
       }
@@ -69,8 +66,8 @@ class DeletePatient extends React.Component {
   };
 
   handleDelete = () => {
-    this.props.deletePatient(this.state.selectedPatient.id);
-    this.props.setDeletePatientClicked(false);
+    this.props.deleteHospital(this.state.selectedHospital.id);
+    this.props.setDeleteHospitalClicked(false);
     this.resetState();
   };
 
@@ -78,32 +75,31 @@ class DeletePatient extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.deletePatientClicked}
+          show={this.props.deleteHospitalClicked}
           onHide={() => {
-            this.props.setDeletePatientClicked(false);
+            this.props.setDeleteHospitalClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Obriši pacijenta</Modal.Title>
+            <Modal.Title>Obriši bolnicu</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ControlLabel>Odaberi pacijenta</ControlLabel>
+            <ControlLabel>Odaberi bolnicu</ControlLabel>
             <FormGroup controlId="formControlsSelect">
               <FormControl
                 componentClass='select'
                 placeholder='Odaberi'
-                onChange={this.handleChangeSelectedPatient}
+                onChange={this.handleChangeSelectedHospital}
               >
                 <option value="select">Odaberi</option>
                 {
-                  this.props.patients
-                    .map(patient => {
-                      const fullName = patient.firstName + " " + patient.lastName + " - " + patient.mail;
+                  this.props.hospitals
+                    .map(hospital => {
                       return (
-                        <option key={patient.id} value={patient.id}>
-                          {fullName}
+                        <option key={hospital.id} value={hospital.id}>
+                          {hospital.name}
                         </option>)
                     })
                 }
@@ -117,56 +113,49 @@ class DeletePatient extends React.Component {
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
+                          <p><b>Naziv:</b> {this.state.selectedHospital.name}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
+                          <p><b>Grad:</b> {this.state.selectedHospital.city}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
+                          <p><b>Poštanski broj:</b> {this.state.selectedHospital.postalCode}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
+                          <p><b>Ulica:</b> {this.state.selectedHospital.street}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
+                          <p><b>Kućni broj:</b> {this.state.selectedHospital.streetNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
+                          <p><b>Mail:</b> {this.state.selectedHospital.mail}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
+                          <p><b>Telefonski broj:</b> {this.state.selectedHospital.phoneNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
@@ -184,7 +173,7 @@ class DeletePatient extends React.Component {
                       <Button
                         className={styles.button}
                         onClick={() => {
-                          this.props.setDeletePatientClicked(false);
+                          this.props.setDeleteHospitalClicked(false);
                           this.resetState();
                         }}
                       >
@@ -205,14 +194,14 @@ class DeletePatient extends React.Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
-    patients: state.patients,
+    hospitals: state.hospitals,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    deletePatient: id => dispatch(deletePatient(id)),
+    deleteHospital: id => dispatch(deleteHospital(id)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeletePatient);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteHospital);

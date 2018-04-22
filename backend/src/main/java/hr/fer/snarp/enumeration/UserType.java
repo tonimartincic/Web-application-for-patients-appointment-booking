@@ -3,7 +3,7 @@ package hr.fer.snarp.enumeration;
 public enum UserType {
 
   PATIENT(1L, "Pacijent"),
-  GENERAL_PRACTITIONER(2L, "Liječnik opće medicine"),
+  GENERAL_PRACTITIONER(2L, "Specijalist obiteljske medicine"),
   MEDICAL_SPECIALIST(3L, "Liječnik specijalist"),
   ADMINISTRATOR(4L, "Administrator");
 
