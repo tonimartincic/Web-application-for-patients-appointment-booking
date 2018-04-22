@@ -46,6 +46,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     administratorFromDatabase.setFirstName(administratorRequest.getFirstName());
     administratorFromDatabase.setLastName(administratorRequest.getLastName());
     administratorFromDatabase.setMail(administratorRequest.getMail());
+    administratorFromDatabase.setPhoneNumber(administratorRequest.getPhoneNumber());
 
     return getAdministratorResponse(this.administratorRepository.save(administratorFromDatabase));
   }

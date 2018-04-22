@@ -65,6 +65,7 @@ public class PatientServiceImpl implements PatientService {
     patientFromDatabase.setFirstName(patientRequest.getFirstName());
     patientFromDatabase.setLastName(patientRequest.getLastName());
     patientFromDatabase.setMail(patientRequest.getMail());
+    patientFromDatabase.setPhoneNumber(patientRequest.getPhoneNumber());
 
     final AddressData addressData =
       this.addressDataService.add(

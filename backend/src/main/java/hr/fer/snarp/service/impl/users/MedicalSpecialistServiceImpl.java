@@ -46,6 +46,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     medicalSpecialistFromDatabase.setFirstName(medicalSpecialistRequest.getFirstName());
     medicalSpecialistFromDatabase.setLastName(medicalSpecialistRequest.getLastName());
     medicalSpecialistFromDatabase.setMail(medicalSpecialistRequest.getMail());
+    medicalSpecialistFromDatabase.setPhoneNumber(medicalSpecialistRequest.getPhoneNumber());
 
     return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
   }
