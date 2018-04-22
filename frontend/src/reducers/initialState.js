@@ -13,7 +13,9 @@ const initialState = {
 
   referrals: [],
 
-  userData: [],
+  userData: {
+    invalidUserNameAndPassword: false,
+  },
 
   users: [],
 

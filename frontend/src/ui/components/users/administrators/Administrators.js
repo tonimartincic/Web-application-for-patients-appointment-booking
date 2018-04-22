@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
-import AddAdministrator from './AddAdministrator';
-import EditAdministrator from './EditAdministrator';
-import DeleteAdministrator from './DeleteAdministrator';
+import AddAdministrator from './add/AddAdministrator';
+import EditAdministrator from './edit/EditAdministrator';
+import DeleteAdministrator from './delete/DeleteAdministrator';
 import * as styles from './administrators.css'
 
 class Administrators extends React.Component {

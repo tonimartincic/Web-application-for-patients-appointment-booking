@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Button, Col, Collapse, FormControl, Grid, Row} from 'react-bootstrap';
 import {validateUser} from '../../../actionCreators/userDataActionCreators';
+import {setInvalidUserNameAndPasswordValue} from '../../../actions/userDataActions';
 import styles from './login.css';
 
 class Login extends Component {
@@ -14,7 +15,6 @@ class Login extends Component {
     this.state = {
       mail: '',
       password: '',
-      invalidUserNameAndPassword: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,23 +35,26 @@ class Login extends Component {
   handleChangeUserId = (event) => {
     this.setState({
       mail: event.target.value,
-      invalidUserNameAndPassword: false,
     });
+
+    this.props.setInvalidUserNameAndPasswordValue(false);
   };
 
   handleChangePass = (event) => {
     this.setState({
       password: event.target.value,
-      invalidUserNameAndPassword: false,
     });
+
+    this.props.setInvalidUserNameAndPasswordValue(false);
   };
 
   handleDelete = () => {
     this.setState({
       mail: '',
       password: '',
-      invalidUserNameAndPassword: false,
     });
+
+    this.props.setInvalidUserNameAndPasswordValue(false);
   };
 
   render() {
@@ -99,7 +102,7 @@ class Login extends Component {
                 <Row>
                   <Col>
                     <section>
-                      <Collapse in={this.state.invalidUserNameAndPassword}>
+                      <Collapse in={this.props.userData.invalidUserNameAndPassword}>
                         <p className={styles.pInvalid}>Uneseni podatci nisu ispravni.</p>
                       </Collapse>
                     </section>
@@ -112,7 +115,11 @@ class Login extends Component {
                         className={styles.button}
                         type='submit'
                         onClick={this.handleSubmit}
-                      ><span>Prijava</span></Button>
+                      >
+                        <span>
+                          <span className='glyphicon glyphicon-log-in'/> Prijava
+                        </span>
+                      </Button>
                     </Col>
                   </Row>
                   <Row>
@@ -121,7 +128,11 @@ class Login extends Component {
                         className={styles.button}
                         type='button'
                         onClick={this.handleDelete}
-                      ><span>Resetiraj</span></Button>
+                      >
+                        <span>
+                          <span className='glyphicon glyphicon-remove'/> Resetiraj
+                        </span>
+                      </Button>
                     </Col>
                   </Row>
                 </section>
@@ -142,7 +153,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    validateUser: (user) => dispatch(validateUser(user)),
+    validateUser: user => dispatch(validateUser(user)),
+    setInvalidUserNameAndPasswordValue: value => dispatch(setInvalidUserNameAndPasswordValue(value)),
   };
 }
 

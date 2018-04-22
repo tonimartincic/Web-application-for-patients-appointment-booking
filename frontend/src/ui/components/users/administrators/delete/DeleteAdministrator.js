@@ -1,16 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteMedicalSpecialist} from '../../../../actionCreators/medicalSpecialistsActionCreators';
-import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
-import * as styles from './deleteMedicalSpecialist.css'
+import {deleteAdministrator} from '../../../../../actionCreators/administratorsActionCreators';
+import {
+  Alert,
+  Button,
+  Col,
+  ControlLabel,
+  FormControl,
+  FormGroup,
+  ListGroup,
+  ListGroupItem,
+  Modal,
+  Row
+} from 'react-bootstrap';
+import * as styles from './deleteAdministrator.css'
 
-class DeleteMedicalSpecialist extends React.Component {
+class DeleteAdministrator extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       dropdownValue: null,
-      selectedMedicalSpecialist: {
+      cannotDeleteYourselfValidation: null,
+      selectedAdministrator: {
         id: null,
         firstName: null,
         lastName: null,
@@ -19,13 +31,14 @@ class DeleteMedicalSpecialist extends React.Component {
       },
     };
 
-    this.handleChangeSelectedMedicalSpecialist = this.handleChangeSelectedMedicalSpecialist.bind(this);
+    this.handleChangeSelectedAdministrator = this.handleChangeSelectedAdministrator.bind(this);
   }
 
   resetState = () => {
     this.setState({
       dropdownValue: null,
-      selectedMedicalSpecialist: {
+      cannotDeleteYourselfValidation: null,
+      selectedAdministrator: {
         id: null,
         firstName: null,
         lastName: null,
@@ -35,17 +48,17 @@ class DeleteMedicalSpecialist extends React.Component {
     });
   };
 
-  handleChangeSelectedMedicalSpecialist = (event) => {
-    for (let i = 0; i < this.props.medicalSpecialists.length; ++i) {
-      if (this.props.medicalSpecialists[i] !== null) {
-        if (this.props.medicalSpecialists[i].id == event.target.value)
+  handleChangeSelectedAdministrator = (event) => {
+    for (let i = 0; i < this.props.administrators.length; ++i) {
+      if (this.props.administrators[i] !== null) {
+        if (this.props.administrators[i].id == event.target.value)
           this.setState({
-            selectedMedicalSpecialist: {
-              id: this.props.medicalSpecialists[i].id,
-              firstName: this.props.medicalSpecialists[i].firstName,
-              lastName: this.props.medicalSpecialists[i].lastName,
-              mail: this.props.medicalSpecialists[i].mail,
-              phoneNumber: this.props.medicalSpecialists[i].phoneNumber,
+            selectedAdministrator: {
+              id: this.props.administrators[i].id,
+              firstName: this.props.administrators[i].firstName,
+              lastName: this.props.administrators[i].lastName,
+              mail: this.props.administrators[i].mail,
+              phoneNumber: this.props.administrators[i].phoneNumber,
             }
           });
       }
@@ -53,44 +66,58 @@ class DeleteMedicalSpecialist extends React.Component {
 
     this.setState({
       dropdownValue: event.target.value,
+      cannotDeleteYourselfValidation: null,
     });
   };
 
   handleDelete = () => {
-    this.props.deleteMedicalSpecialist(this.state.selectedMedicalSpecialist.id);
-    this.props.setDeleteMedicalSpecialistClicked(false);
-    this.resetState();
+    if (this.state.selectedAdministrator.id === this.props.userData.id) {
+      this.setState({
+        cannotDeleteYourselfValidation: true,
+      });
+    } else {
+      this.props.deleteAdministrator(this.state.selectedAdministrator.id);
+      this.props.setDeleteAdministratorClicked(false);
+      this.resetState();
+    }
   };
+
+  handleAlertDismiss() {
+    this.setState({
+      cannotDeleteYourselfValidation: false,
+    });
+  }
+  ;
 
   render() {
     return (
       <section>
         <Modal
-          show={this.props.deleteMedicalSpecialistClicked}
+          show={this.props.deleteAdministratorClicked}
           onHide={() => {
-            this.props.setDeleteMedicalSpecialistClicked(false);
+            this.props.setDeleteAdministratorClicked(false);
             this.resetState();
           }
           }
         >
           <Modal.Header closeButton>
-            <Modal.Title>Obriši liječnika specijalista</Modal.Title>
+            <Modal.Title>Obriši administratora</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ControlLabel>Odaberi liječnika specijalista</ControlLabel>
+            <ControlLabel>Odaberi administratora</ControlLabel>
             <FormGroup controlId="formControlsSelect">
               <FormControl
                 componentClass='select'
                 placeholder='Odaberi'
-                onChange={this.handleChangeSelectedMedicalSpecialist}
+                onChange={this.handleChangeSelectedAdministrator}
               >
                 <option value="select">Odaberi</option>
                 {
-                  this.props.medicalSpecialists
-                    .map(medicalSpecialist => {
-                      const fullName = medicalSpecialist.firstName + " " + medicalSpecialist.lastName + " - " + medicalSpecialist.mail;
+                  this.props.administrators
+                    .map(administrator => {
+                      const fullName = administrator.firstName + " " + administrator.lastName + " - " + administrator.mail;
                       return (
-                        <option key={medicalSpecialist.id} value={medicalSpecialist.id}>
+                        <option key={administrator.id} value={administrator.id}>
                           {fullName}
                         </option>)
                     })
@@ -105,32 +132,40 @@ class DeleteMedicalSpecialist extends React.Component {
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Ime:</b> {this.state.selectedMedicalSpecialist.firstName}</p>
+                          <p><b>Ime:</b> {this.state.selectedAdministrator.firstName}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Prezime:</b> {this.state.selectedMedicalSpecialist.lastName}</p>
+                          <p><b>Prezime:</b> {this.state.selectedAdministrator.lastName}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedMedicalSpecialist.mail}</p>
+                          <p><b>Mail:</b> {this.state.selectedAdministrator.mail}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Broj mobitela:</b> {this.state.selectedMedicalSpecialist.phoneNumber}</p>
+                          <p><b>Broj mobitela:</b> {this.state.selectedAdministrator.phoneNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
+                  <Choose>
+                    <When condition={this.state.cannotDeleteYourselfValidation}>
+                      <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
+                        <h4>Ne možete obrisati sami sebe</h4>
+                        <p>Samo vas drugi administrator može obrisati</p>
+                      </Alert>
+                    </When>
+                  </Choose>
                   <Row>
                     <Col mdOffset={1} md={4}>
                       <Button
@@ -144,7 +179,7 @@ class DeleteMedicalSpecialist extends React.Component {
                       <Button
                         className={styles.button}
                         onClick={() => {
-                          this.props.setDeleteMedicalSpecialistClicked(false);
+                          this.props.setDeleteAdministratorClicked(false);
                           this.resetState();
                         }}
                       >
@@ -165,14 +200,14 @@ class DeleteMedicalSpecialist extends React.Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
-    medicalSpecialists: state.medicalSpecialists,
+    administrators: state.administrators,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteMedicalSpecialist: id => dispatch(deleteMedicalSpecialist(id)),
+    deleteAdministrator: id => dispatch(deleteAdministrator(id)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteMedicalSpecialist);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteAdministrator);

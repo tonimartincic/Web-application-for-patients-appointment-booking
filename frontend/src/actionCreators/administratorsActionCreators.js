@@ -33,7 +33,7 @@ export async function addAdministrator(administrator) {
   }
 }
 
-export async function editAnnouncement(administrator) {
+export async function editAdministrator(administrator) {
   try {
     const response = await axios.put('/api/administrators', administrator);
 

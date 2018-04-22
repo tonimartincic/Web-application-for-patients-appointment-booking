@@ -60,6 +60,8 @@ public class HospitalServiceImpl implements HospitalService {
     final Hospital hospitalFromDatabase = this.hospitalRepository.findOne(hospitalRequest.getId());
 
     hospitalFromDatabase.setName(hospitalRequest.getName());
+    hospitalFromDatabase.setMail(hospitalRequest.getMail());
+    hospitalFromDatabase.setPhoneNumber(hospitalRequest.getPhoneNumber());
 
     final AddressData addressData =
       this.addressDataService.add(

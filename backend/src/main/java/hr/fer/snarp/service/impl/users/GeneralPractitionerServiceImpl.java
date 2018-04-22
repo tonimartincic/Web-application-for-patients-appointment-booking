@@ -65,6 +65,7 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     generalPractitionerFromDatabase.setFirstName(generalPractitionerRequest.getFirstName());
     generalPractitionerFromDatabase.setLastName(generalPractitionerRequest.getLastName());
     generalPractitionerFromDatabase.setMail(generalPractitionerRequest.getMail());
+    generalPractitionerFromDatabase.setPhoneNumber(generalPractitionerRequest.getPhoneNumber());
 
     final AddressData addressData =
       this.addressDataService.add(

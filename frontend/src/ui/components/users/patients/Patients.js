@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
-import AddPatient from './AddPatient';
-import EditPatient from './EditPatient';
-import DeletePatient from './DeletePatient';
+import AddPatient from './add/AddPatient';
+import EditPatient from './edit/EditPatient';
+import DeletePatient from './delete/DeletePatient';
 import * as styles from './patients.css';
 
 class Patients extends React.Component {

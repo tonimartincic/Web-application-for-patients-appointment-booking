@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AddHospital from './AddHospital';
-import EditHospital from './EditHospital';
-import DeleteHospital from './DeleteHospital';
+import AddHospital from './add/AddHospital';
+import EditHospital from './edit/EditHospital';
+import DeleteHospital from './delete/DeleteHospital';
 import Footer from '../footer/Footer';
 import * as styles from './hospitals.css'
 
