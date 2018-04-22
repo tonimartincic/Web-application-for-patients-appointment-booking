@@ -1,15 +1,14 @@
 import React from 'react';
 import {Col, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux'
-import {setShowingUserData} from '../../../actions/showingUserDataActions';
-import * as constants from '../../../constants/values';
+import * as constants from '../../../../constants/values';
 
-class UserData extends React.Component {
+class UserInfo extends React.Component {
   render() {
     return (
       <section>
-        <Modal show={this.props.showingUserData}
-               onHide={() => this.props.setShowingUserData(false)}>
+        <Modal show={this.props.showUserInfoClicked}
+               onHide={() => this.props.setShowUserInfoClicked(false)}>
           <Modal.Header closeButton>
             <Modal.Title>O meni</Modal.Title>
           </Modal.Header>
@@ -99,14 +98,11 @@ class UserData extends React.Component {
 function mapStateToProps(state) {
   return {
     userData: state.userData,
-    showingUserData: state.showingUserData,
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setShowingUserData: value => dispatch(setShowingUserData(value)),
-  };
+function mapDispatchToProps() {
+  return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserData);
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

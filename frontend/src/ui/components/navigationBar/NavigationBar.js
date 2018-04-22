@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './navigationBar.css';
-import Settings from '../userInfo/Settings';
+import Settings from '../settings/Settings';
 import {history} from '../history/history';
 
 class NavigationBar extends Component {
