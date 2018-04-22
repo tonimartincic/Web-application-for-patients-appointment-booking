@@ -30,7 +30,7 @@ Dodavanje podnožja stranice. Rad na administratorskim ekranima, dodavanje tabli
 Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica.
 
 21.4.2018.
-Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica.
+Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica. Rad na dizajnu aplikacije.
 
 22.4.2018.
-Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica.
+Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica. Rad na dizajnu aplikacije.
