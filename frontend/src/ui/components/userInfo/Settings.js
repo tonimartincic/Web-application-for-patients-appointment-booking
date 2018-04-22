@@ -27,7 +27,7 @@ class Settings extends Component {
           <MenuItem onClick={() => {
             this.props.setShowingUserData(true);
           }}>
-            <span className='glyphicon glyphicon-info-sign'/> &nbsp;&nbsp; Informacije
+            <span className='glyphicon glyphicon-info-sign'/> &nbsp;&nbsp; O meni
           </MenuItem>
           <MenuItem divider/>
           <MenuItem onClick={() => this.logout()}>
