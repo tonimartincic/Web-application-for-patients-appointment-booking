@@ -31,3 +31,6 @@ Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolni
 
 21.4.2018.
 Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica.
+
+22.4.2018.
+Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica.
