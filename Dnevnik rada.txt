@@ -34,3 +34,6 @@ Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolni
 
 22.4.2018.
 Dodavanje funkcionalnosti za dodavanje, uređivanje i brisanje korisnika i bolnica. Rad na dizajnu aplikacije.
+
+23.4.2018.
+Dodavanje mogućnosti promjene lozinke korisnika.
