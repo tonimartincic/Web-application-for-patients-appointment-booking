@@ -16,8 +16,6 @@ public interface GeneralPractitionerService {
 
   GeneralPractitionerResponse edit(GeneralPractitionerRequest generalPractitionerRequest);
 
-  GeneralPractitionerResponse editPassword(GeneralPractitionerRequest generalPractitionerRequest);
-
   void deleteById(Long id);
 
   GeneralPractitioner getByMailAndPassword(String mail, String password);

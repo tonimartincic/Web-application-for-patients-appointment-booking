@@ -83,15 +83,6 @@ public class PatientServiceImpl implements PatientService {
   }
 
   @Override
-  public PatientResponse editPassword(final PatientRequest patientRequest) {
-    final Patient patientFromDatabase = this.patientRepository.findOne(patientRequest.getId());
-
-    patientFromDatabase.setPassword(patientRequest.getPassword());
-
-    return getPatientResponse(this.patientRepository.save(patientFromDatabase));
-  }
-
-  @Override
   public void deleteById(final Long id) {
     this.patientRepository.delete(id);
   }
@@ -101,7 +92,7 @@ public class PatientServiceImpl implements PatientService {
     return this.patientRepository.findByMailAndPassword(mail, password);
   }
 
-  private List<PatientResponse> getPatientResponses(final List<Patient> patients) {
+  public static List<PatientResponse> getPatientResponses(final List<Patient> patients) {
     final List<PatientResponse> patientResponses = new ArrayList<>();
 
     for (final Patient patient : patients) {
@@ -111,7 +102,7 @@ public class PatientServiceImpl implements PatientService {
     return patientResponses;
   }
 
-  private PatientResponse getPatientResponse(final Patient patient) {
+  public static PatientResponse getPatientResponse(final Patient patient) {
     return new PatientResponse(patient);
   }
 }

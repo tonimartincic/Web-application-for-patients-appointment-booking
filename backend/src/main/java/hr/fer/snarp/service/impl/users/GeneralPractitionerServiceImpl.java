@@ -83,15 +83,6 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
   }
 
   @Override
-  public GeneralPractitionerResponse editPassword(final GeneralPractitionerRequest generalPractitionerRequest) {
-    final GeneralPractitioner generalPractitionerFromDatabase = this.generalPractitionerRepository.findOne(generalPractitionerRequest.getId());
-
-    generalPractitionerFromDatabase.setPassword(generalPractitionerRequest.getPassword());
-
-    return getGeneralPractitionerResponse(this.generalPractitionerRepository.save(generalPractitionerFromDatabase));
-  }
-
-  @Override
   public void deleteById(final Long id) {
     this.generalPractitionerRepository.delete(id);
   }
@@ -101,7 +92,7 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     return this.generalPractitionerRepository.findByMailAndPassword(mail, password);
   }
 
-  private List<GeneralPractitionerResponse> getGeneralPractitionerResponses(final List<GeneralPractitioner> generalPractitioners) {
+  public static List<GeneralPractitionerResponse> getGeneralPractitionerResponses(final List<GeneralPractitioner> generalPractitioners) {
     final List<GeneralPractitionerResponse> generalPractitionerResponses = new ArrayList<>();
 
     for (final GeneralPractitioner generalPractitioner : generalPractitioners) {
@@ -111,7 +102,7 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     return generalPractitionerResponses;
   }
 
-  private GeneralPractitionerResponse getGeneralPractitionerResponse(final GeneralPractitioner generalPractitioner) {
+  public static GeneralPractitionerResponse getGeneralPractitionerResponse(final GeneralPractitioner generalPractitioner) {
     return new GeneralPractitionerResponse(generalPractitioner);
   }
 }

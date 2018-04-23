@@ -41,6 +41,13 @@ export default function userDataReducer(state = initialState.userData, action) {
           invalidUserNameAndPassword: action.value,
         });
 
+    case types.CHANGE_PASSWORD_SUCCESS: {
+      return action.data;
+    }
+
+    case types.CHANGE_PASSWORD_FAILURE:
+      return state;
+
     default:
       return state;
   }

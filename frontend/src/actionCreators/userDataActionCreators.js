@@ -38,3 +38,22 @@ export async function validateUser(user) {
     };
   }
 }
+
+export async function changePassword(user) {
+  try {
+    const response = await axios.put('/api/users/change-password', user);
+    if (response.data !== '') {
+      localStorage.setItem('user', JSON.stringify(response.data));
+    }
+
+    return {
+      type: types.CHANGE_PASSWORD_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.CHANGE_PASSWORD_FAILURE,
+      data: err,
+    };
+  }
+}

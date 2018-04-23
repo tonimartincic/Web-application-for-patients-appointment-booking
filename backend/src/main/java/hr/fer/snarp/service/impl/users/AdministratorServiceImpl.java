@@ -52,15 +52,6 @@ public class AdministratorServiceImpl implements AdministratorService {
   }
 
   @Override
-  public AdministratorResponse editPassword(final AdministratorRequest administratorRequest) {
-    final Administrator administratorFromDatabase = this.administratorRepository.findOne(administratorRequest.getId());
-
-    administratorFromDatabase.setPassword(administratorRequest.getPassword());
-
-    return getAdministratorResponse(this.administratorRepository.save(administratorFromDatabase));
-  }
-
-  @Override
   public void deleteById(final Long id) {
     this.administratorRepository.delete(id);
   }
@@ -70,7 +61,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     return this.administratorRepository.findByMailAndPassword(mail, password);
   }
 
-  private List<AdministratorResponse> getAdministratorResponses(final List<Administrator> administrators) {
+  public static List<AdministratorResponse> getAdministratorResponses(final List<Administrator> administrators) {
     final List<AdministratorResponse> administratorResponses = new ArrayList<>();
 
     for (final Administrator administrator : administrators) {
@@ -80,7 +71,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     return administratorResponses;
   }
 
-  private AdministratorResponse getAdministratorResponse(final Administrator administrator) {
+  public static AdministratorResponse getAdministratorResponse(final Administrator administrator) {
     return new AdministratorResponse(administrator);
   }
 }

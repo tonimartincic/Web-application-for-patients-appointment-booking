@@ -44,11 +44,6 @@ public class PatientController {
     return this.patientService.edit(patientRequest);
   }
 
-  @PutMapping("/api/patients/edit-password")
-  public PatientResponse editPatientPassword(@RequestBody final PatientRequest patientRequest) {
-    return this.patientService.editPassword(patientRequest);
-  }
-
   @DeleteMapping("/api/patients/{id}")
   public void deletePatientById(@PathVariable final Long id) {
     this.patientService.deleteById(id);
