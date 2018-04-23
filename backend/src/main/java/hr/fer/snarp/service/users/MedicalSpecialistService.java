@@ -16,8 +16,6 @@ public interface MedicalSpecialistService {
 
   MedicalSpecialistResponse edit(MedicalSpecialistRequest medicalSpecialistRequest);
 
-  MedicalSpecialistResponse editPassword(MedicalSpecialistRequest medicalSpecialistRequest);
-
   void deleteById(Long id);
 
   MedicalSpecialist getByMailAndPassword(String mail, String password);

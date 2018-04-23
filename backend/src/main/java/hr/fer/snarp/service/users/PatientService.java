@@ -16,8 +16,6 @@ public interface PatientService {
 
   PatientResponse edit(PatientRequest patientRequest);
 
-  PatientResponse editPassword(PatientRequest patientRequest);
-
   void deleteById(Long id);
 
   Patient getByMailAndPassword(String mail, String password);

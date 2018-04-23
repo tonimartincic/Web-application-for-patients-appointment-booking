@@ -16,8 +16,6 @@ public interface AdministratorService {
 
   AdministratorResponse edit(AdministratorRequest administratorRequest);
 
-  AdministratorResponse editPassword(AdministratorRequest administratorRequest);
-
   void deleteById(Long id);
 
   Administrator getByMailAndPassword(String mail, String password);

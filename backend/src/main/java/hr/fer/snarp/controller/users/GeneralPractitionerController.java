@@ -44,11 +44,6 @@ public class GeneralPractitionerController {
     return this.generalPractitionerService.edit(generalPractitionerRequest);
   }
 
-  @PutMapping("/api/general-practitioners/edit-password")
-  public GeneralPractitionerResponse editGeneralPractitionerPassword(@RequestBody final GeneralPractitionerRequest generalPractitionerRequest) {
-    return this.generalPractitionerService.editPassword(generalPractitionerRequest);
-  }
-
   @DeleteMapping("/api/general-practitioners/{id}")
   public void deleteGeneralPractitionerById(@PathVariable final Long id) {
     this.generalPractitionerService.deleteById(id);

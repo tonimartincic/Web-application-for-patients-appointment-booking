@@ -44,11 +44,6 @@ public class AdministratorController {
     return this.administratorService.edit(administratorRequest);
   }
 
-  @PutMapping("/api/administrators/edit-password")
-  public AdministratorResponse editAdministratorPassword(@RequestBody final AdministratorRequest administratorRequest) {
-    return this.administratorService.editPassword(administratorRequest);
-  }
-
   @DeleteMapping("/api/administrators/{id}")
   public void deleteAdministratorById(@PathVariable final Long id) {
     this.administratorService.deleteById(id);

@@ -52,15 +52,6 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
   }
 
   @Override
-  public MedicalSpecialistResponse editPassword(final MedicalSpecialistRequest medicalSpecialistRequest) {
-    final MedicalSpecialist medicalSpecialistFromDatabase = this.medicalSpecialistRepository.findOne(medicalSpecialistRequest.getId());
-
-    medicalSpecialistFromDatabase.setPassword(medicalSpecialistRequest.getPassword());
-
-    return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
-  }
-
-  @Override
   public void deleteById(final Long id) {
     this.medicalSpecialistRepository.delete(id);
   }
@@ -70,7 +61,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     return this.medicalSpecialistRepository.findByMailAndPassword(mail, password);
   }
 
-  private List<MedicalSpecialistResponse> getMedicalSpecialistResponses(final List<MedicalSpecialist> medicalSpecialists) {
+  public static List<MedicalSpecialistResponse> getMedicalSpecialistResponses(final List<MedicalSpecialist> medicalSpecialists) {
     final List<MedicalSpecialistResponse> medicalSpecialistResponses = new ArrayList<>();
 
     for (final MedicalSpecialist medicalSpecialist : medicalSpecialists) {
@@ -80,7 +71,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     return medicalSpecialistResponses;
   }
 
-  private MedicalSpecialistResponse getMedicalSpecialistResponse(final MedicalSpecialist medicalSpecialist) {
+  public static MedicalSpecialistResponse getMedicalSpecialistResponse(final MedicalSpecialist medicalSpecialist) {
     return new MedicalSpecialistResponse(medicalSpecialist);
   }
 }

@@ -28,7 +28,7 @@ public enum UserType {
     switch (name) {
       case "Pacijent":
         return UserType.PATIENT;
-      case "Liječnik opće medicine":
+      case "Specijalist obiteljske medicine":
         return UserType.GENERAL_PRACTITIONER;
       case "Liječnik specijalist":
         return UserType.MEDICAL_SPECIALIST;

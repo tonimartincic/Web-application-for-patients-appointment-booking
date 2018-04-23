@@ -44,11 +44,6 @@ public class MedicalSpecialistController {
     return this.medicalSpecialistService.edit(medicalSpecialistRequest);
   }
 
-  @PutMapping("/api/medical-specialists/edit-password")
-  public MedicalSpecialistResponse editMedicalSpecialistPassword(@RequestBody final MedicalSpecialistRequest medicalSpecialistRequest) {
-    return this.medicalSpecialistService.editPassword(medicalSpecialistRequest);
-  }
-
   @DeleteMapping("/api/medical-specialists/{id}")
   public void deleteMedicalSpecialistById(@PathVariable final Long id) {
     this.medicalSpecialistService.deleteById(id);
