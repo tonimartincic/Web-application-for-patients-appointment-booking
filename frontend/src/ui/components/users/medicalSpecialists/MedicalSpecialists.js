@@ -45,6 +45,11 @@ class MedicalSpecialists extends React.Component {
         <Grid>
           <Row>
             <Col md={12}>
+              <h2 className={styles.h2}>Liječnici specijalisti</h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
               <Table striped bordered condensed hover>
                 <thead>
                 <tr>

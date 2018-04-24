@@ -38,6 +38,7 @@ Insert into administrator (first_name, last_name, mail, password, phone_number) 
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Mihovil', 'Ćaćić', 'mihovil.cacic@gmail.com', 'password', '098 223 4378');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Antonio', 'Anđelić', 'antonio.andelic@gmail.com', 'password', '098 174 8943');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Bruno', 'Pašalić', 'bruno.pasalic@gmail.com', 'password', '091 565 3345');
+Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Ivana', 'Mršić', 'ivana.mrsic@fer.hr', 'password', '095 565 1122');
 
 Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Marko', 'Marković', 'marko.markovic@gmail.com', 'password', 1, '091 331 9087');
 Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Mirko', 'Marković', 'mirko.markovic@gmail.com', 'password', 1, '091 096 4519');

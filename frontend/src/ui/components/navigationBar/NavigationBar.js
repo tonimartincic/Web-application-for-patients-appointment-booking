@@ -47,14 +47,14 @@ class NavigationBar extends Component {
               history.push('/medical-specialists');
             }}
             >
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp;Liječnici specijalisti
+              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Liječnici specijalisti
             </MenuItem>
             <MenuItem divider/>
             <MenuItem onClick={() => {
               history.push('/patients');
             }}
             >
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp;Pacijenti
+              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Pacijenti
             </MenuItem>
           </NavDropdown>
           <NavItem
