@@ -1,18 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deletePatient} from '../../../../../actionCreators/patientsActionCreators';
-import {
-  Button,
-  Col,
-  ControlLabel,
-  FormControl,
-  FormGroup,
-  Grid,
-  ListGroup,
-  ListGroupItem,
-  Modal,
-  Row
-} from 'react-bootstrap';
+import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import * as styles from './deletePatient.css'
 
 class DeletePatient extends React.Component {
@@ -131,84 +120,82 @@ class DeletePatient extends React.Component {
                 <When
                   condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
                   <ListGroup>
-                    <Grid>
-                      <Row>
-                        <Col md={3}>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>OIB:</b> {this.state.selectedPatient.oib}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Datum rođenja:</b> {this.state.selectedPatient.dateOfBirth}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                        </Col>
-                        <Col md={3}>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                          <ListGroupItem>
-                            <Row>
-                              <Col md={12}>
-                                <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
-                              </Col>
-                            </Row>
-                          </ListGroupItem>
-                        </Col>
-                      </Row>
-                    </Grid>
+                    <Row>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>OIB:</b> {this.state.selectedPatient.oib}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Datum rođenja:</b> {this.state.selectedPatient.dateOfBirth}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
                   </ListGroup>
                   <Row>
                     <Col mdOffset={1} md={4}>
