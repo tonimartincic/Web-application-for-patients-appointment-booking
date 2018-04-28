@@ -112,7 +112,8 @@ class DeleteGeneralPractitioner extends React.Component {
             <FormGroup controlId="formControlsSelect">
               <Choose>
                 <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
+                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
+                >
                   <ListGroup>
                     <ListGroupItem>
                       <Row>
@@ -171,31 +172,39 @@ class DeleteGeneralPractitioner extends React.Component {
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
-                  <Row>
-                    <Col mdOffset={1} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => this.handleDelete()}
-                      >
-                        <span className='glyphicon glyphicon-trash'/> Obriši
-                      </Button>
-                    </Col>
-                    <Col mdOffset={2} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => {
-                          this.props.setDeleteGeneralPractitionerClicked(false);
-                          this.resetState();
-                        }}
-                      >
-                        <span className='glyphicon glyphicon-share-alt'/> Odustani
-                      </Button>
-                    </Col>
-                  </Row>
                 </When>
               </Choose>
             </FormGroup>
           </Modal.Body>
+          <Choose>
+            <When
+              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
+            >
+              <Modal.Footer>
+                <Row>
+                  <Col mdOffset={1} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.handleDelete()}
+                    >
+                      <span className='glyphicon glyphicon-trash'/> Obriši
+                    </Button>
+                  </Col>
+                  <Col mdOffset={2} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => {
+                        this.props.setDeleteGeneralPractitionerClicked(false);
+                        this.resetState();
+                      }}
+                    >
+                      <span className='glyphicon glyphicon-share-alt'/> Odustani
+                    </Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
+            </When>
+          </Choose>
         </Modal>
       </section>
     );
