@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
+import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
 import AddGeneralPractitioner from './add/AddGeneralPractitioner';
 import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
 import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
+import AddEditDeleteButtons from '../../AddEditDeleteButtons';
 import * as styles from './generalPractitioners.css';
 
 class GeneralPractitioners extends React.Component {
@@ -43,6 +44,18 @@ class GeneralPractitioners extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
+          <AddGeneralPractitioner
+            addGeneralPractitionerClicked={this.state.addGeneralPractitionerClicked}
+            setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
+          />
+          <EditGeneralPractitioner
+            editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
+            setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
+          />
+          <DeleteGeneralPractitioner
+            deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
+            setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
+          />
           <Row>
             <Col md={12}>
               <h2 className={styles.h2}>Specijalisti obiteljske medicine</h2>
@@ -86,40 +99,13 @@ class GeneralPractitioners extends React.Component {
             </Col>
           </Row>
           <Row>
-            <div>
-              <Col md={8} mdOffset={3}>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setAddGeneralPractitionerClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-plus'/> Dodaj
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setEditGeneralPractitionerClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-edit'/> Uredi
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setDeleteGeneralPractitionerClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-trash'/> Obriši
-                </Button>
-              </Col>
-            </div>
-            <AddGeneralPractitioner
-              addGeneralPractitionerClicked={this.state.addGeneralPractitionerClicked}
-              setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
-            />
-            <EditGeneralPractitioner
-              editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
-              setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
-            />
-            <DeleteGeneralPractitioner
-              deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
-              setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
-            />
+            <Col md={8} mdOffset={3}>
+              <AddEditDeleteButtons
+                setAddClicked={value => this.setAddGeneralPractitionerClicked(value)}
+                setEditClicked={value => this.setEditGeneralPractitionerClicked(value)}
+                setDeleteClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
+              />
+            </Col>
           </Row>
         </Grid>
         <Footer/>
