@@ -442,7 +442,8 @@ class EditPatient extends React.Component {
             <FormGroup controlId="formControlsSelect">
               <Choose>
                 <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
+                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
+                >
                   <Row>
                     <Col md={6}>
                       <FormGroup
@@ -673,31 +674,39 @@ class EditPatient extends React.Component {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col mdOffset={1} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => this.handleSubmit()}
-                      >
-                        <span className='glyphicon glyphicon-floppy-save'/> Spremi promjene
-                      </Button>
-                    </Col>
-                    <Col mdOffset={2} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => {
-                          this.props.setEditPatientClicked(false);
-                          this.resetState();
-                        }}
-                      >
-                        <span className='glyphicon glyphicon-share-alt'/> Odustani
-                      </Button>
-                    </Col>
-                  </Row>
                 </When>
               </Choose>
             </FormGroup>
           </Modal.Body>
+          <Choose>
+            <When
+              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
+            >
+              <Modal.Footer>
+                <Row>
+                  <Col mdOffset={1} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.handleSubmit()}
+                    >
+                      <span className='glyphicon glyphicon-floppy-save'/> Spremi promjene
+                    </Button>
+                  </Col>
+                  <Col mdOffset={2} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => {
+                        this.props.setEditPatientClicked(false);
+                        this.resetState();
+                      }}
+                    >
+                      <span className='glyphicon glyphicon-share-alt'/> Odustani
+                    </Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
+            </When>
+          </Choose>
         </Modal>
       </section>
     );
