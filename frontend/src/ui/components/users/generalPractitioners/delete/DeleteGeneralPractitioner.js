@@ -115,62 +115,68 @@ class DeleteGeneralPractitioner extends React.Component {
                   condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
                 >
                   <ListGroup>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Ime:</b> {this.state.selectedGeneralPractitioner.firstName}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Prezime:</b> {this.state.selectedGeneralPractitioner.lastName}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedGeneralPractitioner.mail}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Grad:</b> {this.state.selectedGeneralPractitioner.city}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Poštanski broj:</b> {this.state.selectedGeneralPractitioner.postalCode}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Ulica:</b> {this.state.selectedGeneralPractitioner.street}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Kućni broj:</b> {this.state.selectedGeneralPractitioner.streetNumber}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Broj mobitela:</b> {this.state.selectedGeneralPractitioner.phoneNumber}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
+                    <Row>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ime:</b> {this.state.selectedGeneralPractitioner.firstName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Prezime:</b> {this.state.selectedGeneralPractitioner.lastName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Mail:</b> {this.state.selectedGeneralPractitioner.mail}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Broj mobitela:</b> {this.state.selectedGeneralPractitioner.phoneNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Grad:</b> {this.state.selectedGeneralPractitioner.city}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Poštanski broj:</b> {this.state.selectedGeneralPractitioner.postalCode}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ulica:</b> {this.state.selectedGeneralPractitioner.street}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Kućni broj:</b> {this.state.selectedGeneralPractitioner.streetNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
                   </ListGroup>
                 </When>
               </Choose>

@@ -43,3 +43,4 @@ Rad na prikazu uputnica.
 
 28.4.2018.
 Rad na prikazu uputnica. Dodavanje novih polja kod pacijenta i uputnice. Dodavanje podataka u bazu podataka.
+Rad na dizajnu aplikacije.
