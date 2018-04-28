@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 import AddReferral from './add/AddReferral';
 import EditReferral from './edit/EditReferral';
 import DeleteReferral from './delete/DeleteReferral';
-import AddEditDeleteButtons from '../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './referrals.css'
 
 class Referrals extends React.Component {

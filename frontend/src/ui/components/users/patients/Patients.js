@@ -6,7 +6,7 @@ import Footer from '../../footer/Footer';
 import AddPatient from './add/AddPatient';
 import EditPatient from './edit/EditPatient';
 import DeletePatient from './delete/DeletePatient';
-import AddEditDeleteButtons from '../../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './patients.css';
 
 class Patients extends React.Component {

@@ -5,7 +5,7 @@ import NavigationBar from '../navigationBar/NavigationBar';
 import AddHospital from './add/AddHospital';
 import EditHospital from './edit/EditHospital';
 import DeleteHospital from './delete/DeleteHospital';
-import AddEditDeleteButtons from '../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import Footer from '../footer/Footer';
 import * as styles from './hospitals.css'
 

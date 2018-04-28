@@ -6,7 +6,7 @@ import Footer from '../../footer/Footer';
 import AddGeneralPractitioner from './add/AddGeneralPractitioner';
 import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
 import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
-import AddEditDeleteButtons from '../../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './generalPractitioners.css';
 
 class GeneralPractitioners extends React.Component {

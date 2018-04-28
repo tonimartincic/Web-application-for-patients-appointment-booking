@@ -6,7 +6,7 @@ import Footer from '../../footer/Footer';
 import AddMedicalSpecialist from './add/AddMedicalSpecialist';
 import EditMedicalSpecialist from './edit/EditMedicalSpecialist';
 import DeleteMedicalSpecialist from './delete/DeleteMedicalSpecialist';
-import AddEditDeleteButtons from '../../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './medicalSpecialists.css';
 
 class MedicalSpecialists extends React.Component {

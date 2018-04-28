@@ -6,7 +6,7 @@ import Footer from '../../footer/Footer';
 import AddAdministrator from './add/AddAdministrator';
 import EditAdministrator from './edit/EditAdministrator';
 import DeleteAdministrator from './delete/DeleteAdministrator';
-import AddEditDeleteButtons from '../../AddEditDeleteButtons';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './administrators.css'
 
 class Administrators extends React.Component {
