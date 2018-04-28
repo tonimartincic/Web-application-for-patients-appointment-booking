@@ -75,7 +75,7 @@ class ChangePassword extends React.Component {
       };
 
       this.props.changePassword(user);
-      this.props.setChangePasswordClicked();
+      this.props.setChangePasswordClicked(false);
       this.resetState();
     }
   }
@@ -100,7 +100,6 @@ class ChangePassword extends React.Component {
       newPasswordsMatchingValidation: null,
       emptyPasswordFieldsValidation: null,
     });
-
 
   render() {
     return (

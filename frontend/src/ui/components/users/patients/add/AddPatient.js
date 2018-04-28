@@ -1,8 +1,11 @@
 import React from 'react';
-import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
+import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Grid, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import * as styles from './addPatient.css';
+import DatePicker from 'react-bootstrap-date-picker';
 import {addPatient} from "../../../../../actionCreators/patientsActionCreators";
+import * as styles from './addPatient.css';
+import * as constants from '../../../../../constants/values';
+import * as dateUtil from '../../../../../utils/DateUtil';
 
 class AddPatient extends React.Component {
   constructor(props) {
@@ -11,6 +14,8 @@ class AddPatient extends React.Component {
     this.state = {
       firstName: null,
       lastName: null,
+      oib: null,
+      dateOfBirth: null,
       mail: null,
       phoneNumber: null,
       city: null,
@@ -20,6 +25,8 @@ class AddPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      oibValidation: null,
+      dateOfBirthValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
@@ -33,6 +40,8 @@ class AddPatient extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeOIB = this.handleChangeOIB.bind(this);
+    this.handleChangeDateOfBirth = this.handleChangeDateOfBirth.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
     this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this);
     this.handleChangeCity = this.handleChangeCity.bind(this);
@@ -43,6 +52,7 @@ class AddPatient extends React.Component {
 
   handleSubmit() {
     let errorExists = false;
+
     if (this.state.firstName === null || this.state.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
@@ -54,6 +64,22 @@ class AddPatient extends React.Component {
     if (this.state.lastName === null || this.state.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.oib === null || this.state.oib.trim() === '') {
+      this.setState({
+        oibValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.dateOfBirth === null || this.state.dateOfBirth.trim() === '') {
+      this.setState({
+        dateOfBirthValidation: 'error',
       });
 
       errorExists = true;
@@ -108,6 +134,8 @@ class AddPatient extends React.Component {
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
+          oib: this.state.oib,
+          dateOfBirth: dateUtil.constructDateFromDatePickerForBackend(this.state.dateOfBirth),
           mail: this.state.mail,
           phoneNumber: this.state.phoneNumber,
           city: this.state.city,
@@ -127,6 +155,8 @@ class AddPatient extends React.Component {
     this.setState({
       firstName: null,
       lastName: null,
+      oib: null,
+      dateOfBirth: null,
       mail: null,
       phoneNumber: null,
       city: null,
@@ -136,6 +166,8 @@ class AddPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      oibValidation: null,
+      dateOfBirthValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
@@ -203,6 +235,20 @@ class AddPatient extends React.Component {
     });
   }
 
+  handleChangeOIB(e) {
+    this.setState({
+      oib: e.target.value,
+      oibValidation: null,
+    });
+  }
+
+  handleChangeDateOfBirth(value) {
+    this.setState({
+      dateOfBirth: value,
+      dateOfBirthValidation: null,
+    });
+  }
+
   handleChangePhoneNumber(e) {
     this.setState({
       phoneNumber: e.target.value,
@@ -262,160 +308,207 @@ class AddPatient extends React.Component {
             <Modal.Title>Dodaj novog pacijenta</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
-              <FormGroup
-                controlId="formBasicText"
-                validationState={this.state.firstNameValidation}
-              >
-                <ControlLabel>Ime</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite ime"
-                  onChange={this.handleChangeFirstName}
-                />
-                <Row>
-                  <Col md={4}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.firstNameValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti ime.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.lastNameValidation}>
-                <ControlLabel>Prezime</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite prezime"
-                  onChange={this.handleChangeLastName}
-                />
-                <Row>
-                  <Col md={4}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.lastNameValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti prezime.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.mailValidationAlreadyExists || this.state.mailValidationNotCorrectFormat || this.state.mailValidationEmptyString}>
-                <ControlLabel>Mail</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite mail"
-                  onChange={this.handleChangeMail}
-                />
-                <Row>
-                  <Col md={7}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.mailValidationEmptyString === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti mail adresu.</p>
-                      </Collapse>
-                      <Collapse in={this.state.mailValidationNotCorrectFormat === 'error'}>
-                        <p className={styles.pInvalid}>Format unesene mail adrese nije ispravan.</p>
-                      </Collapse>
-                      <Collapse in={this.state.mailValidationAlreadyExists === 'error'}>
-                        <p className={styles.pInvalid}>Unesena mail adresa već postoji.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.phoneNumberValidation}>
-                <ControlLabel>Broj mobitela</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite broj mobitela"
-                  onChange={this.handleChangePhoneNumber}
-                />
-                <Row>
-                  <Col md={6}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.phoneNumberValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti broj mobitela.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.cityValidation}>
-                <ControlLabel>Grad</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite grad"
-                  onChange={this.handleChangeCity}
-                />
-                <Row>
-                  <Col md={6}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.cityValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti grad.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.postalCodeValidation}>
-                <ControlLabel>Poštanski broj</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite poštanski broj"
-                  onChange={this.handleChangePostalCode}
-                />
-                <Row>
-                  <Col md={6}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.postalCodeValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti poštanski broj.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.streetValidation}>
-                <ControlLabel>Ulica</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite ulicu"
-                  onChange={this.handleChangeStreet}
-                />
-                <Row>
-                  <Col md={6}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.streetValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti ulicu.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup
-                validationState={this.state.streetNumberValidation}>
-                <ControlLabel>Kućni broj</ControlLabel>
-                <FormControl
-                  type="text"
-                  placeholder="Unesite kućni broj"
-                  onChange={this.handleChangeStreetNumber}
-                />
-                <Row>
-                  <Col md={6}>
-                    <section className={styles.sectionInvalid}>
-                      <Collapse in={this.state.streetNumberValidation === 'error'}>
-                        <p className={styles.pInvalid}>Morate unijeti kućni broj.</p>
-                      </Collapse>
-                    </section>
-                  </Col>
-                </Row>
-              </FormGroup>
-            </form>
+            <Grid>
+              <Row>
+                <Col md={3}>
+                  <FormGroup
+                    controlId="formBasicText"
+                    validationState={this.state.firstNameValidation}
+                  >
+                    <ControlLabel>Ime</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite ime"
+                      onChange={this.handleChangeFirstName}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.firstNameValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti ime.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.lastNameValidation}>
+                    <ControlLabel>Prezime</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite prezime"
+                      onChange={this.handleChangeLastName}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.lastNameValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti prezime.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.oibValidation}>
+                    <ControlLabel>OIB</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite oib"
+                      onChange={this.handleChangeOIB}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.oibValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti OIB.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    controlId="paymentDueInput"
+                    validationState={this.state.dateOfBirthValidation}
+                  >
+                    <ControlLabel>Datum rođenja</ControlLabel>
+                    <DatePicker
+                      value={this.state.dateOfBirth}
+                      dateFormat='DD-MM-YYYY'
+                      weekStartsOn={1}
+                      dayLabels={constants.datePickerDayNames}
+                      monthLabels={constants.monthNames}
+                      onChange={this.handleChangeDateOfBirth}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section>
+                          <Collapse in={this.state.dateOfBirthValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti datum rođenja.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.mailValidationAlreadyExists || this.state.mailValidationNotCorrectFormat || this.state.mailValidationEmptyString}>
+                    <ControlLabel>Mail</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite mail"
+                      onChange={this.handleChangeMail}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.mailValidationEmptyString === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti mail adresu.</p>
+                          </Collapse>
+                          <Collapse in={this.state.mailValidationNotCorrectFormat === 'error'}>
+                            <p className={styles.pInvalid}>Format unesene mail adrese nije ispravan.</p>
+                          </Collapse>
+                          <Collapse in={this.state.mailValidationAlreadyExists === 'error'}>
+                            <p className={styles.pInvalid}>Unesena mail adresa već postoji.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                </Col>
+                <Col md={3}>
+                  <FormGroup
+                    validationState={this.state.phoneNumberValidation}>
+                    <ControlLabel>Broj mobitela</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite broj mobitela"
+                      onChange={this.handleChangePhoneNumber}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.phoneNumberValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti broj mobitela.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.cityValidation}>
+                    <ControlLabel>Grad</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite grad"
+                      onChange={this.handleChangeCity}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.cityValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti grad.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.postalCodeValidation}>
+                    <ControlLabel>Poštanski broj</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite poštanski broj"
+                      onChange={this.handleChangePostalCode}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.postalCodeValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti poštanski broj.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.streetValidation}>
+                    <ControlLabel>Ulica</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite ulicu"
+                      onChange={this.handleChangeStreet}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.streetValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti ulicu.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  <FormGroup
+                    validationState={this.state.streetNumberValidation}>
+                    <ControlLabel>Kućni broj</ControlLabel>
+                    <FormControl
+                      type="text"
+                      placeholder="Unesite kućni broj"
+                      onChange={this.handleChangeStreetNumber}
+                    />
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.sectionInvalid}>
+                          <Collapse in={this.state.streetNumberValidation === 'error'}>
+                            <p className={styles.pInvalid}>Morate unijeti kućni broj.</p>
+                          </Collapse>
+                        </section>
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Grid>
           </Modal.Body>
           <Modal.Footer>
             <Row>

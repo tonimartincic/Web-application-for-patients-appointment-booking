@@ -55,6 +55,8 @@ class Patients extends React.Component {
                 <tr>
                   <th>Ime</th>
                   <th>Prezime</th>
+                  <th>OIB</th>
+                  <th>Datum rođenja</th>
                   <th>Mail</th>
                   <th>Grad</th>
                   <th>Poštanski broj</th>
@@ -71,6 +73,8 @@ class Patients extends React.Component {
                           <tr key={index}>
                             <td>{patient.firstName}</td>
                             <td>{patient.lastName}</td>
+                            <td>{patient.oib}</td>
+                            <td>{patient.dateOfBirth}</td>
                             <td>{patient.mail}</td>
                             <td>{patient.city}</td>
                             <td>{patient.postalCode}</td>
