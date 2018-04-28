@@ -21,4 +21,6 @@ public class PatientRequest extends UserRequest {
 
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dateOfBirth;
+
+  private String sex;
 }

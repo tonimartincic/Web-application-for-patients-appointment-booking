@@ -14,6 +14,7 @@ class AddPatient extends React.Component {
     this.state = {
       firstName: null,
       lastName: null,
+      sex: null,
       oib: null,
       dateOfBirth: null,
       mail: null,
@@ -25,6 +26,7 @@ class AddPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      sexValidation: null,
       oibValidation: null,
       dateOfBirthValidation: null,
       phoneNumberValidation: null,
@@ -40,6 +42,7 @@ class AddPatient extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeSex = this.handleChangeSex.bind(this);
     this.handleChangeOIB = this.handleChangeOIB.bind(this);
     this.handleChangeDateOfBirth = this.handleChangeDateOfBirth.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
@@ -64,6 +67,15 @@ class AddPatient extends React.Component {
     if (this.state.lastName === null || this.state.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.sex === null || this.state.sex === '' ||
+      this.state.sex === 'select' || this.state.sex === 'Odaberi') {
+      this.setState({
+        sexValidation: 'error',
       });
 
       errorExists = true;
@@ -134,6 +146,7 @@ class AddPatient extends React.Component {
         {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
+          sex: this.state.sex,
           oib: this.state.oib,
           dateOfBirth: dateUtil.constructDateFromDatePickerForBackend(this.state.dateOfBirth),
           mail: this.state.mail,
@@ -155,6 +168,7 @@ class AddPatient extends React.Component {
     this.setState({
       firstName: null,
       lastName: null,
+      sex: null,
       oib: null,
       dateOfBirth: null,
       mail: null,
@@ -166,6 +180,7 @@ class AddPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      sexValidation: null,
       oibValidation: null,
       dateOfBirthValidation: null,
       phoneNumberValidation: null,
@@ -232,6 +247,13 @@ class AddPatient extends React.Component {
     this.setState({
       lastName: e.target.value,
       lastNameValidation: null,
+    });
+  }
+
+  handleChangeSex(e) {
+    this.setState({
+      sex: e.target.value,
+      sexValidation: null,
     });
   }
 
@@ -343,6 +365,29 @@ class AddPatient extends React.Component {
                       <section className={styles.sectionInvalid}>
                         <Collapse in={this.state.lastNameValidation === 'error'}>
                           <p className={styles.pInvalid}>Morate unijeti prezime.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup
+                  validationState={this.state.sexValidation}
+                >
+                  <ControlLabel>Spol</ControlLabel>
+                  <FormControl
+                    componentClass="select"
+                    placeholder="select"
+                    onChange={this.handleChangeSex}
+                  >
+                    <option value="select">Odaberi</option>
+                    <option value="M">M</option>
+                    <option value="Ž">Ž</option>
+                  </FormControl>
+                  <Row>
+                    <Col md={12}>
+                      <section>
+                        <Collapse in={this.state.sexValidation === 'error'}>
+                          <p className={styles.pInvalid}>Morate odabrati spol.</p>
                         </Collapse>
                       </section>
                     </Col>

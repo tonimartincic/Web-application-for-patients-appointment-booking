@@ -18,6 +18,7 @@ class EditPatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
         oib: null,
         dateOfBirth: null,
         mail: null,
@@ -30,6 +31,7 @@ class EditPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      sexValidation: null,
       oibValidation: null,
       dateOfBirthValidation: null,
       phoneNumberValidation: null,
@@ -46,6 +48,7 @@ class EditPatient extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
+    this.handleChangeSex = this.handleChangeSex.bind(this);
     this.handleChangeOIB = this.handleChangeOIB.bind(this);
     this.handleChangeDateOfBirth = this.handleChangeDateOfBirth.bind(this);
     this.handleChangeMail = this.handleChangeMail.bind(this);
@@ -64,6 +67,7 @@ class EditPatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
         oib: null,
         dateOfBirth: null,
         mail: null,
@@ -76,6 +80,7 @@ class EditPatient extends React.Component {
 
       firstNameValidation: null,
       lastNameValidation: null,
+      sexValidation: null,
       oibValidation: null,
       dateOfBirthValidation: null,
       phoneNumberValidation: null,
@@ -103,6 +108,15 @@ class EditPatient extends React.Component {
     if (this.state.selectedPatient.lastName === null || this.state.selectedPatient.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
+      });
+
+      errorExists = true;
+    }
+
+    if (this.state.selectedPatient.sex === null || this.state.selectedPatient.sex === '' ||
+      this.state.selectedPatient.sex === 'select' || this.state.selectedPatient.sex === 'Odaberi') {
+      this.setState({
+        sexValidation: 'error',
       });
 
       errorExists = true;
@@ -174,6 +188,7 @@ class EditPatient extends React.Component {
           id: this.state.selectedPatient.id,
           firstName: this.state.selectedPatient.firstName,
           lastName: this.state.selectedPatient.lastName,
+          sex: this.state.selectedPatient.sex,
           oib: this.state.selectedPatient.oib,
           dateOfBirth: dateUtil.constructDateFromDatePickerForBackend(this.state.selectedPatient.dateOfBirth),
           mail: this.state.selectedPatient.mail,
@@ -247,6 +262,7 @@ class EditPatient extends React.Component {
               id: this.props.patients[i].id,
               firstName: this.props.patients[i].firstName,
               lastName: this.props.patients[i].lastName,
+              sex: this.props.patients[i].sex,
               oib: this.props.patients[i].oib,
               dateOfBirth: dateUtil.createDateForDatePickerFromDateFromBackend(this.props.patients[i].dateOfBirth),
               mail: this.props.patients[i].mail,
@@ -284,6 +300,17 @@ class EditPatient extends React.Component {
       },
 
       lastNameValidation: null,
+    });
+  }
+
+  handleChangeSex(e) {
+    this.setState({
+      selectedPatient: {
+        ...this.state.selectedPatient,
+        sex: e.target.value,
+      },
+
+      sexValidation: null,
     });
   }
 
@@ -453,6 +480,30 @@ class EditPatient extends React.Component {
                             <section className={styles.sectionInvalid}>
                               <Collapse in={this.state.lastNameValidation === 'error'}>
                                 <p className={styles.pInvalid}>Morate unijeti prezime.</p>
+                              </Collapse>
+                            </section>
+                          </Col>
+                        </Row>
+                      </FormGroup>
+                      <FormGroup
+                        validationState={this.state.sexValidation}
+                      >
+                        <ControlLabel>Spol</ControlLabel>
+                        <FormControl
+                          componentClass="select"
+                          placeholder="select"
+                          onChange={this.handleChangeSex}
+                          value={this.state.selectedPatient.sex}
+                        >
+                          <option value="select">Odaberi</option>
+                          <option value="M">M</option>
+                          <option value="Ž">Ž</option>
+                        </FormControl>
+                        <Row>
+                          <Col md={12}>
+                            <section>
+                              <Collapse in={this.state.sexValidation === 'error'}>
+                                <p className={styles.pInvalid}>Morate odabrati spol.</p>
                               </Collapse>
                             </section>
                           </Col>

@@ -23,6 +23,8 @@ public class PatientResponse extends UserResponse {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dateOfBirth;
 
+  private String sex;
+
   public PatientResponse(final Patient patient) {
     super(patient, UserType.PATIENT);
 
@@ -32,5 +34,6 @@ public class PatientResponse extends UserResponse {
     this.streetNumber = patient.getAddressData().getStreetNumber();
     this.OIB = patient.getOIB();
     this.dateOfBirth = patient.getDateOfBirth();
+    this.sex = patient.getSex();
   }
 }

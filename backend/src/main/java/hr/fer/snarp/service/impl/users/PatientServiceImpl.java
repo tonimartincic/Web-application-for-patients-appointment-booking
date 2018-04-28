@@ -68,6 +68,7 @@ public class PatientServiceImpl implements PatientService {
     patientFromDatabase.setPhoneNumber(patientRequest.getPhoneNumber());
     patientFromDatabase.setOIB(patientRequest.getOIB());
     patientFromDatabase.setDateOfBirth(patientRequest.getDateOfBirth());
+    patientFromDatabase.setSex(patientRequest.getSex());
 
     final AddressData addressData =
       this.addressDataService.add(

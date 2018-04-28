@@ -43,20 +43,18 @@ public class Referral {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
-  public Referral() {
-  }
+  private String diagnosis;
 
-  public Referral(final ReferralType referralType, final DepartmentType departmentType, final Patient patient, final GeneralPractitioner generalPractitioner) {
-    this.referralType = referralType;
-    this.departmentType = departmentType;
-    this.patient = patient;
-    this.generalPractitioner = generalPractitioner;
-    this.createdOn = LocalDate.now();
+  private String remark;
+
+  public Referral() {
   }
 
   public Referral(final ReferralRequest referralRequest) {
     this.referralType = ReferralType.getByName(referralRequest.getReferralType());
     this.departmentType = DepartmentType.getByDescription(referralRequest.getDepartmentType());
+    this.diagnosis = referralRequest.getDiagnosis();
+    this.remark = referralRequest.getRemark();
   }
 
   @Override

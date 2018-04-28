@@ -25,6 +25,10 @@ public class ReferralResponse {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
+  private String diagnosis;
+
+  private String remark;
+
   public ReferralResponse(final Referral referral) {
     this.id = referral.getId();
     this.referralName = referral.getReferralType().getName();
@@ -33,5 +37,7 @@ public class ReferralResponse {
     this.patient = referral.getPatient();
     this.generalPractitioner = referral.getGeneralPractitioner();
     this.createdOn = referral.getCreatedOn();
+    this.diagnosis = referral.getDiagnosis();
+    this.remark = referral.getRemark();
   }
 }

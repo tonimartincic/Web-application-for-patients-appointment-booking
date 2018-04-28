@@ -14,6 +14,7 @@ class DeletePatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
         oib: null,
         dateOfBirth: null,
         mail: null,
@@ -35,6 +36,7 @@ class DeletePatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
         oib: null,
         dateOfBirth: null,
         mail: null,
@@ -56,6 +58,7 @@ class DeletePatient extends React.Component {
               id: this.props.patients[i].id,
               firstName: this.props.patients[i].firstName,
               lastName: this.props.patients[i].lastName,
+              sex: this.props.patients[i].sex,
               oib: this.props.patients[i].oib,
               dateOfBirth: this.props.patients[i].dateOfBirth,
               mail: this.props.patients[i].mail,
@@ -133,6 +136,13 @@ class DeletePatient extends React.Component {
                           <Row>
                             <Col md={12}>
                               <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Spol:</b> {this.state.selectedPatient.sex}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>

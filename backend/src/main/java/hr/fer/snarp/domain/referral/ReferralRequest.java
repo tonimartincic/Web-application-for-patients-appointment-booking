@@ -20,4 +20,8 @@ public class ReferralRequest {
 
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
+
+  private String diagnosis;
+
+  private String remark;
 }

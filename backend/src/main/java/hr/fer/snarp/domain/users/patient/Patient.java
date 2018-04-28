@@ -30,6 +30,8 @@ public class Patient extends User {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate dateOfBirth;
 
+  private String sex;
+
   @JsonIgnore
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Referral> referrals;
@@ -42,5 +44,6 @@ public class Patient extends User {
 
     this.OIB = patientRequest.getOIB();
     this.dateOfBirth = patientRequest.getDateOfBirth();
+    this.sex = patientRequest.getSex();
   }
 }
