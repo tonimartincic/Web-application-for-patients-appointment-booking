@@ -16,6 +16,4 @@ public class MedicalSpecialist extends User {
   public MedicalSpecialist(final MedicalSpecialistRequest medicalSpecialistRequest) {
     super(medicalSpecialistRequest, UserType.MEDICAL_SPECIALIST);
   }
-
-
 }

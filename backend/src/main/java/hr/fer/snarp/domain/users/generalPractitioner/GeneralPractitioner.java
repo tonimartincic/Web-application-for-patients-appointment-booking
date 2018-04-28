@@ -32,6 +32,4 @@ public class GeneralPractitioner extends User {
   public GeneralPractitioner(final GeneralPractitionerRequest generalPractitionerRequest) {
     super(generalPractitionerRequest, UserType.GENERAL_PRACTITIONER);
   }
-
-
 }
