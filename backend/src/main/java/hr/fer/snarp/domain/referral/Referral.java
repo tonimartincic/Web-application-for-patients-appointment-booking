@@ -1,6 +1,7 @@
 package hr.fer.snarp.domain.referral;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.common.base.Objects;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.enumeration.DepartmentType;
@@ -42,19 +43,37 @@ public class Referral {
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
-  public Referral() {
-  }
+  private String diagnosis;
 
-  public Referral(final ReferralType referralType, final DepartmentType departmentType, final Patient patient, final GeneralPractitioner generalPractitioner) {
-    this.referralType = referralType;
-    this.departmentType = departmentType;
-    this.patient = patient;
-    this.generalPractitioner = generalPractitioner;
-    this.createdOn = LocalDate.now();
+  private String remark;
+
+  public Referral() {
   }
 
   public Referral(final ReferralRequest referralRequest) {
     this.referralType = ReferralType.getByName(referralRequest.getReferralType());
     this.departmentType = DepartmentType.getByDescription(referralRequest.getDepartmentType());
+    this.diagnosis = referralRequest.getDiagnosis();
+    this.remark = referralRequest.getRemark();
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    final Referral referral = (Referral) o;
+    return Objects.equal(this.id, referral.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(super.hashCode(), this.id);
   }
 }

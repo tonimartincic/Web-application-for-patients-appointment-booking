@@ -1,6 +1,8 @@
 package hr.fer.snarp.domain.referral;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitioner;
+import hr.fer.snarp.domain.users.patient.Patient;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -10,23 +12,32 @@ public class ReferralResponse {
 
   private Long id;
 
-  private String referralType;
+  private String referralName;
+
+  private String referralGroup;
 
   private String departmentType;
 
-  private Long patientId;
+  private Patient patient;
 
-  private Long generalPractitionerId;
+  private GeneralPractitioner generalPractitioner;
 
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate createdOn;
 
+  private String diagnosis;
+
+  private String remark;
+
   public ReferralResponse(final Referral referral) {
     this.id = referral.getId();
-    this.referralType = referral.getReferralType().getName();
+    this.referralName = referral.getReferralType().getName();
+    this.referralGroup = referral.getReferralType().getGroup();
     this.departmentType = referral.getDepartmentType().getDescription();
-    this.patientId = referral.getPatient().getId();
-    this.generalPractitionerId = referral.getGeneralPractitioner().getId();
+    this.patient = referral.getPatient();
+    this.generalPractitioner = referral.getGeneralPractitioner();
     this.createdOn = referral.getCreatedOn();
+    this.diagnosis = referral.getDiagnosis();
+    this.remark = referral.getRemark();
   }
 }

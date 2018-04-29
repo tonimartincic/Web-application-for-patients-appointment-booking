@@ -64,6 +64,8 @@ public class ReferralServiceImpl implements ReferralService {
     referralFromDatabase.setDepartmentType(DepartmentType.getByDescription(referralRequest.getDepartmentType()));
     referralFromDatabase.setPatient(this.patientRepository.findOne(referralRequest.getPatientId()));
     referralFromDatabase.setGeneralPractitioner(this.generalPractitionerRepository.findOne(referralRequest.getGeneralPractitionerId()));
+    referralFromDatabase.setDiagnosis(referralRequest.getDiagnosis());
+    referralFromDatabase.setRemark(referralRequest.getRemark());
 
     return getReferralResponse(this.referralRepository.save(referralFromDatabase));
   }

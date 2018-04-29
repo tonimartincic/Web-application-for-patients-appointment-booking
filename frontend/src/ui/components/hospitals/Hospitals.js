@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
+import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
 import AddHospital from './add/AddHospital';
 import EditHospital from './edit/EditHospital';
 import DeleteHospital from './delete/DeleteHospital';
+import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import Footer from '../footer/Footer';
 import * as styles from './hospitals.css'
 
@@ -43,6 +44,18 @@ class Hospitals extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
+          <AddHospital
+            addHospitalClicked={this.state.addHospitalClicked}
+            setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
+          />
+          <EditHospital
+            editHospitalClicked={this.state.editHospitalClicked}
+            setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
+          />
+          <DeleteHospital
+            deleteHospitalClicked={this.state.deleteHospitalClicked}
+            setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
+          />
           <Row>
             <Col md={12}>
               <h2 className={styles.h2}>Bolnice</h2>
@@ -84,40 +97,13 @@ class Hospitals extends React.Component {
             </Col>
           </Row>
           <Row>
-            <div>
-              <Col md={8} mdOffset={3}>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setAddHospitalClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-plus'/> Dodaj
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setEditHospitalClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-edit'/> Uredi
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setDeleteHospitalClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-trash'/> Obriši
-                </Button>
-              </Col>
-            </div>
-            <AddHospital
-              addHospitalClicked={this.state.addHospitalClicked}
-              setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
-            />
-            <EditHospital
-              editHospitalClicked={this.state.editHospitalClicked}
-              setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
-            />
-            <DeleteHospital
-              deleteHospitalClicked={this.state.deleteHospitalClicked}
-              setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
-            />
+            <Col md={8} mdOffset={3}>
+              <AddEditDeleteButtons
+                setAddClicked={value => this.setAddHospitalClicked(value)}
+                setEditClicked={value => this.setEditHospitalClicked(value)}
+                setDeleteClicked={value => this.setDeleteHospitalClicked(value)}
+              />
+            </Col>
           </Row>
         </Grid>
         <Footer/>

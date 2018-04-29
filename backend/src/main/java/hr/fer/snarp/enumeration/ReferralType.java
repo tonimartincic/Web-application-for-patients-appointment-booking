@@ -32,6 +32,10 @@ public enum ReferralType {
     return this.name;
   }
 
+  public String getGroup() {
+    return this.group;
+  }
+
   public static ReferralType getByName(final String name) {
     switch (name) {
       case "A1 - Konzilijarni pregled":

@@ -100,6 +100,15 @@
       <column name="address_data_id" type="bigint">
         <constraints nullable="false"/>
       </column>
+      <column name="oib" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date_of_birth" type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sex" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
   </changeSet>
 
@@ -176,6 +185,9 @@
       </column>
       <column name="created_on" type="date">
         <constraints nullable="false"/>
+      </column>
+      <column name="remark" type="varchar(255)">
+        <constraints nullable="true"/>
       </column>
     </createTable>
   </changeSet>

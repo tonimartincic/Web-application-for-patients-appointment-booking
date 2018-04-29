@@ -26,6 +26,7 @@ Insert into address_data (city, postal_code, street, street_number) values ('Sis
 Insert into address_data (city, postal_code, street, street_number) values ('Bjelovar', 43000, 'Šubićeva', 56);
 Insert into address_data (city, postal_code, street, street_number) values ('Popovača', 44317, 'Držićeva', 4);
 Insert into address_data (city, postal_code, street, street_number) values ('Lipik', 34551, 'Vinogradska', 13);
+Insert into address_data (city, postal_code, street, street_number) values ('Zagreb', 10000, 'Ilica', 138);
 
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Toni', 'Martinčić', 'toni.martincic@fer.hr', 'password', '091 342 5643');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Mirko', 'Randić', 'mirko.randic@fer.hr', 'password', '098 897 2543');
@@ -40,14 +41,15 @@ Insert into administrator (first_name, last_name, mail, password, phone_number) 
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Bruno', 'Pašalić', 'bruno.pasalic@gmail.com', 'password', '091 565 3345');
 Insert into administrator (first_name, last_name, mail, password, phone_number) values ('Ivana', 'Mršić', 'ivana.mrsic@fer.hr', 'password', '095 565 1122');
 
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Marko', 'Marković', 'marko.markovic@gmail.com', 'password', 1, '091 331 9087');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Mirko', 'Marković', 'mirko.markovic@gmail.com', 'password', 1, '091 096 4519');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Petar', 'Zecimir', 'petar.zecimir@gmail.com', 'password', 2, '091 385 9573');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Miroslav', 'Puška', 'miroslav.puska@gmail.com', 'password', 3, '098 443 5600');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Vladimir', 'Primorac', 'vladimir.primorac@gmail.com', 'password', 4, '095 879 9090');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Petra', 'Horvat', 'petra.horvat@gmail.com', 'password', 5, '095 321 5567');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Iva', 'Kozar', 'iva.kozar@gmail.com', 'password', 6, '095 443 7096');
-Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number) values ('Leon', 'Lučić', 'leon.lucic@gmail.com', 'password', 7, '095 160 0143');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Marko', 'Marković', 'marko.markovic@gmail.com', 'password', 1, '091 331 9087', '10525231193', parsedatetime('09.11.1984', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Mirko', 'Marković', 'mirko.markovic@gmail.com', 'password', 1, '091 096 4519', '74180178817', parsedatetime('19.03.1981', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Petar', 'Zecimir', 'petar.zecimir@gmail.com', 'password', 2, '091 385 9573', '53569680271', parsedatetime('11.06.1972', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Miroslav', 'Puška', 'miroslav.puska@gmail.com', 'password', 3, '098 443 5600', '02851978197', parsedatetime('01.08.2000', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Vladimir', 'Primorac', 'vladimir.primorac@gmail.com', 'password', 4, '095 879 9090', '89362962652', parsedatetime('25.03.1996', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Petra', 'Horvat', 'petra.horvat@gmail.com', 'password', 5, '095 321 5567', '94304389503', parsedatetime('30.07.1990', 'dd.MM.yyyy'), 'Ž');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Iva', 'Kozar', 'iva.kozar@gmail.com', 'password', 6, '095 443 7096', '82056631214', parsedatetime('13.04.1989', 'dd.MM.yyyy'), 'Ž');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Leon', 'Lučić', 'leon.lucic@gmail.com', 'password', 7, '095 160 0143', '00669951982', parsedatetime('15.09.1964', 'dd.MM.yyyy'), 'M');
+Insert into patient (first_name, last_name, mail, password, address_data_id, phone_number, oib, date_of_birth, sex) values ('Mislav', 'Marić', 'mislav.maric@gmail.com', 'password', 29, '095 888 1233', '88132932264', parsedatetime('19.02.1977', 'dd.MM.yyyy'), 'M');
 
 Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Valentina', 'Kunić', 'valentina.kunic@gmail.com', 'password', '095 160 0143');
 Insert into medical_specialist (first_name, last_name, mail, password, phone_number) values ('Petra', 'Petrić', 'petra.petric@gmail.com', 'password', '095 162 3542');
@@ -82,3 +84,13 @@ Insert into hospital (name, address_data_id, phone_number, mail) values ('Opća 
 Insert into hospital (name, address_data_id, phone_number, mail) values ('Opća bolnica Bjelovar', 26, '06 4563 321', 'bolnica.bjelovar@gmail.com');
 Insert into hospital (name, address_data_id, phone_number, mail) values ('Psihijatrijska bolnica "Dr. Ivan Barbot" Popovača', 27, '07 7865 667', 'psihijatrija.popovaca@gmail.com');
 Insert into hospital (name, address_data_id, phone_number, mail) values ('Specijalna bolnica za medicinsku rehabilitaciju Lipik', 28, '08 8898 555', 'bolnica.lipik@gmail.com');
+
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on, remark) values ('ADVISORY_HEALTH_CARE_A1', 'ANESTHESIOLOGY_REANIMATOLOGY_AND_INTENSIVE_CARE', 1, 1, CURRENT_DATE(), 'Molim hitno');
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('ADVISORY_HEALTH_CARE_A2', 'CARDIOLOGY', 2, 1, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('ADVISORY_HEALTH_CARE_A3', 'OTORHINOLARYNGOLOGY', 3, 1, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('HOSPITALIZATION_B', 'CARDIOVASCULAR_DISEASES', 4, 2, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('SPECIALIST_HEALTH_CARE_C1', 'CHIRURGY', 5, 3, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('SPECIALIST_HEALTH_CARE_C2', 'NEUROCHIRURGY', 6, 3, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('SPECIALIST_HEALTH_CARE_C3', 'NEUROLOGY', 7, 4, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('OUTPATIENT_TREATMENT_D1', 'EYE_DISEASES', 8, 4, CURRENT_DATE());
+Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on) values ('OUTPATIENT_TREATMENT_D2', 'ONCOLOGY', 9, 4, CURRENT_DATE());

@@ -14,6 +14,9 @@ class DeletePatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
+        oib: null,
+        dateOfBirth: null,
         mail: null,
         city: null,
         postalCode: null,
@@ -33,6 +36,9 @@ class DeletePatient extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
+        sex: null,
+        oib: null,
+        dateOfBirth: null,
         mail: null,
         city: null,
         postalCode: null,
@@ -52,6 +58,9 @@ class DeletePatient extends React.Component {
               id: this.props.patients[i].id,
               firstName: this.props.patients[i].firstName,
               lastName: this.props.patients[i].lastName,
+              sex: this.props.patients[i].sex,
+              oib: this.props.patients[i].oib,
+              dateOfBirth: this.props.patients[i].dateOfBirth,
               mail: this.props.patients[i].mail,
               city: this.props.patients[i].city,
               postalCode: this.props.patients[i].postalCode,
@@ -114,88 +123,123 @@ class DeletePatient extends React.Component {
                 <When
                   condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
                   <ListGroup>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Row>
-                        <Col md={7} mdOffset={1}>
-                          <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
+                    <Row>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Spol:</b> {this.state.selectedPatient.sex}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>OIB:</b> {this.state.selectedPatient.oib}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Datum rođenja:</b> {this.state.selectedPatient.dateOfBirth}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                      <Col md={6}>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
                   </ListGroup>
-                  <Row>
-                    <Col mdOffset={1} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => this.handleDelete()}
-                      >
-                        <span className='glyphicon glyphicon-trash'/> Obriši
-                      </Button>
-                    </Col>
-                    <Col mdOffset={2} md={4}>
-                      <Button
-                        className={styles.button}
-                        onClick={() => {
-                          this.props.setDeletePatientClicked(false);
-                          this.resetState();
-                        }}
-                      >
-                        <span className='glyphicon glyphicon-share-alt'/> Odustani
-                      </Button>
-                    </Col>
-                  </Row>
                 </When>
               </Choose>
             </FormGroup>
           </Modal.Body>
+          <Choose>
+            <When
+              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
+            >
+              <Modal.Footer>
+                <Row>
+                  <Col mdOffset={1} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.handleDelete()}
+                    >
+                      <span className='glyphicon glyphicon-trash'/> Obriši
+                    </Button>
+                  </Col>
+                  <Col mdOffset={2} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => {
+                        this.props.setDeletePatientClicked(false);
+                        this.resetState();
+                      }}
+                    >
+                      <span className='glyphicon glyphicon-share-alt'/> Odustani
+                    </Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
+            </When>
+          </Choose>
         </Modal>
       </section>
     );

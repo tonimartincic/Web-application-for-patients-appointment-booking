@@ -1,5 +1,6 @@
 package hr.fer.snarp.domain.addressData;
 
+import com.google.common.base.Objects;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -31,5 +32,25 @@ public class AddressData {
     this.postalCode = postalCode;
     this.street = street;
     this.streetNumber = streetNumber;
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    final AddressData that = (AddressData) o;
+    return Objects.equal(this.id, that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(super.hashCode(), this.id);
   }
 }

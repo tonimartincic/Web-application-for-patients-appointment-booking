@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
+import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
 import AddMedicalSpecialist from './add/AddMedicalSpecialist';
 import EditMedicalSpecialist from './edit/EditMedicalSpecialist';
 import DeleteMedicalSpecialist from './delete/DeleteMedicalSpecialist';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './medicalSpecialists.css';
 
 class MedicalSpecialists extends React.Component {
@@ -43,6 +44,18 @@ class MedicalSpecialists extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
+          <AddMedicalSpecialist
+            addMedicalSpecialistClicked={this.state.addMedicalSpecialistClicked}
+            setAddMedicalSpecialistClicked={value => this.setAddMedicalSpecialistClicked(value)}
+          />
+          <EditMedicalSpecialist
+            editMedicalSpecialistClicked={this.state.editMedicalSpecialistClicked}
+            setEditMedicalSpecialistClicked={value => this.setEditMedicalSpecialistClicked(value)}
+          />
+          <DeleteMedicalSpecialist
+            deleteMedicalSpecialistClicked={this.state.deleteMedicalSpecialistClicked}
+            setDeleteMedicalSpecialistClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
+          />
           <Row>
             <Col md={12}>
               <h2 className={styles.h2}>Liječnici specijalisti</h2>
@@ -78,40 +91,13 @@ class MedicalSpecialists extends React.Component {
             </Col>
           </Row>
           <Row>
-            <div>
-              <Col md={8} mdOffset={3}>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setAddMedicalSpecialistClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-plus'/> Dodaj
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setEditMedicalSpecialistClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-edit'/> Uredi
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setDeleteMedicalSpecialistClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-trash'/> Obriši
-                </Button>
-              </Col>
-            </div>
-            <AddMedicalSpecialist
-              addMedicalSpecialistClicked={this.state.addMedicalSpecialistClicked}
-              setAddMedicalSpecialistClicked={value => this.setAddMedicalSpecialistClicked(value)}
-            />
-            <EditMedicalSpecialist
-              editMedicalSpecialistClicked={this.state.editMedicalSpecialistClicked}
-              setEditMedicalSpecialistClicked={value => this.setEditMedicalSpecialistClicked(value)}
-            />
-            <DeleteMedicalSpecialist
-              deleteMedicalSpecialistClicked={this.state.deleteMedicalSpecialistClicked}
-              setDeleteMedicalSpecialistClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
-            />
+            <Col md={8} mdOffset={3}>
+              <AddEditDeleteButtons
+                setAddClicked={value => this.setAddMedicalSpecialistClicked(value)}
+                setEditClicked={value => this.setEditMedicalSpecialistClicked(value)}
+                setDeleteClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
+              />
+            </Col>
           </Row>
         </Grid>
         <Footer/>

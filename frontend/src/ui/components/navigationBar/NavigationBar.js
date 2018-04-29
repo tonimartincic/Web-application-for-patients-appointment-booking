@@ -25,8 +25,8 @@ class NavigationBar extends Component {
           <NavDropdown
             title={
               <span className={styles.span}>
-                  <span className='glyphicon glyphicon-user'/> Korisnici
-                </span>
+                <span className='glyphicon glyphicon-user'/> Korisnici
+              </span>
             }
             id='nav-dropdown'
           >
@@ -64,6 +64,15 @@ class NavigationBar extends Component {
           >
               <span className={styles.span}>
                 <span className='glyphicon glyphicon-header'/> Bolnice
+              </span>
+          </NavItem>
+          <NavItem
+            componentClass={Link}
+            to='/referrals'
+            href='/referrals'
+          >
+              <span className={styles.span}>
+                <span className='glyphicon glyphicon-folder-open'/> &nbsp;Uputnice
               </span>
           </NavItem>
           <NavItem>

@@ -1,5 +1,6 @@
 package hr.fer.snarp.domain.department;
 
+import com.google.common.base.Objects;
 import hr.fer.snarp.domain.hospital.Hospital;
 import hr.fer.snarp.enumeration.DepartmentType;
 import lombok.Data;
@@ -38,5 +39,25 @@ public class Department {
 
   public Department(final DepartmentRequest departmentRequest) {
     this.type = DepartmentType.getByDescription(departmentRequest.getType());
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    final Department that = (Department) o;
+    return Objects.equal(this.id, that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(super.hashCode(), this.id);
   }
 }

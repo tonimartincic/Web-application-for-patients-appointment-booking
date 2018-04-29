@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Button, Col, Grid, Row, Table} from 'react-bootstrap';
+import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import Footer from '../../footer/Footer';
 import AddAdministrator from './add/AddAdministrator';
 import EditAdministrator from './edit/EditAdministrator';
 import DeleteAdministrator from './delete/DeleteAdministrator';
+import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './administrators.css'
 
 class Administrators extends React.Component {
@@ -43,6 +44,18 @@ class Administrators extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
+          <AddAdministrator
+            addAdministratorClicked={this.state.addAdministratorClicked}
+            setAddAdministratorClicked={value => this.setAddAdministratorClicked(value)}
+          />
+          <EditAdministrator
+            editAdministratorClicked={this.state.editAdministratorClicked}
+            setEditAdministratorClicked={value => this.setEditAdministratorClicked(value)}
+          />
+          <DeleteAdministrator
+            deleteAdministratorClicked={this.state.deleteAdministratorClicked}
+            setDeleteAdministratorClicked={value => this.setDeleteAdministratorClicked(value)}
+          />
           <Row>
             <Col md={12}>
               <h2 className={styles.h2}>Administratori</h2>
@@ -78,40 +91,13 @@ class Administrators extends React.Component {
             </Col>
           </Row>
           <Row>
-            <div>
-              <Col md={8} mdOffset={3}>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setAddAdministratorClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-plus'/> Dodaj
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setEditAdministratorClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-edit'/> Uredi
-                </Button>
-                <Button
-                  className={styles.button}
-                  onClick={value => this.setDeleteAdministratorClicked(value)}
-                >
-                  <span className='glyphicon glyphicon-trash'/> Obriši
-                </Button>
-              </Col>
-            </div>
-            <AddAdministrator
-              addAdministratorClicked={this.state.addAdministratorClicked}
-              setAddAdministratorClicked={value => this.setAddAdministratorClicked(value)}
-            />
-            <EditAdministrator
-              editAdministratorClicked={this.state.editAdministratorClicked}
-              setEditAdministratorClicked={value => this.setEditAdministratorClicked(value)}
-            />
-            <DeleteAdministrator
-              deleteAdministratorClicked={this.state.deleteAdministratorClicked}
-              setDeleteAdministratorClicked={value => this.setDeleteAdministratorClicked(value)}
-            />
+            <Col md={8} mdOffset={3}>
+              <AddEditDeleteButtons
+                setAddClicked={value => this.setAddAdministratorClicked(value)}
+                setEditClicked={value => this.setEditAdministratorClicked(value)}
+                setDeleteClicked={value => this.setDeleteAdministratorClicked(value)}
+              />
+            </Col>
           </Row>
         </Grid>
         <Footer/>
