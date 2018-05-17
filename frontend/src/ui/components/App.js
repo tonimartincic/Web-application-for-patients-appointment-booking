@@ -10,14 +10,16 @@ import Referrals from './referrals/Referrals';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
 import {history} from './history/history';
-import fetchUserData from '../../actionCreators/userDataActionCreators';
-import fetchAdministrators from '../../actionCreators/administratorsActionCreators';
-import fetchGeneralPractitioners from '../../actionCreators/generalPractitionersActionCreators';
-import fetchMedicalSpecialists from '../../actionCreators/medicalSpecialistsActionCreators';
-import fetchPatients from '../../actionCreators/patientsActionCreators';
-import fetchDepartments from '../../actionCreators/departmentsActionCreators';
-import fetchHospitals from '../../actionCreators/hospitalsActionCreators';
-import fetchReferrals from '../../actionCreators/referralsActionCreators';
+import fetchUserData from '../../actionCreators/userData/userDataActionCreators';
+import fetchAdministrators from '../../actionCreators/users/administratorsActionCreators';
+import fetchGeneralPractitioners from '../../actionCreators/users/generalPractitionersActionCreators';
+import fetchMedicalSpecialists from '../../actionCreators/users/medicalSpecialistsActionCreators';
+import fetchPatients from '../../actionCreators/users/patientsActionCreators';
+import fetchDepartments from '../../actionCreators/departments/departmentsActionCreators';
+import fetchHospitals from '../../actionCreators/hospitals/hospitalsActionCreators';
+import fetchReferrals from '../../actionCreators/referrals/referralsActionCreators';
+import fetchReferralTypes from '../../actionCreators/referrals/referralTypesActionCreators';
+import fetchDepartmentTypes from '../../actionCreators/departments/departmentTypesActionCreators';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -29,7 +31,9 @@ class App extends React.Component {
       .then(() => this.props.fetchPatients())
       .then(() => this.props.fetchDepartments())
       .then(() => this.props.fetchHospitals())
-      .then(() => this.props.fetchReferrals());
+      .then(() => this.props.fetchReferrals())
+      .then(() => this.props.fetchReferralTypes())
+      .then(() => this.props.fetchDepartmentTypes());
   }
 
   render() {
@@ -64,6 +68,8 @@ function mapDispatchToProps(dispatch) {
     fetchDepartments: () => dispatch(fetchDepartments()),
     fetchHospitals: () => dispatch(fetchHospitals()),
     fetchReferrals: () => dispatch(fetchReferrals()),
+    fetchReferralTypes: () => dispatch(fetchReferralTypes()),
+    fetchDepartmentTypes: () => dispatch(fetchDepartmentTypes()),
   };
 }
 

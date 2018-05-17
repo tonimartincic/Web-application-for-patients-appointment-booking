@@ -1,5 +1,5 @@
-import initialState from './initialState';
-import * as types from '../actions/actionTypes';
+import initialState from '../initialState';
+import * as types from '../../actions/actionTypes';
 
 export default function userDataReducer(state = initialState.userData, action) {
   switch (action.type) {

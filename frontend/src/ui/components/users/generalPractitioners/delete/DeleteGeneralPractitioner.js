@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteGeneralPractitioner} from '../../../../../actionCreators/generalPractitionersActionCreators';
+import {deleteGeneralPractitioner} from '../../../../../actionCreators/users/generalPractitionersActionCreators';
 import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import * as styles from './deleteGeneralPractitioner.css'
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {editPatient} from '../../../../../actionCreators/patientsActionCreators';
+import {editPatient} from '../../../../../actionCreators/users/patientsActionCreators';
 import DatePicker from 'react-bootstrap-date-picker';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import * as constants from '../../../../../constants/values';

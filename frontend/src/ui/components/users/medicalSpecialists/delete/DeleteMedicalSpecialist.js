@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteMedicalSpecialist} from '../../../../../actionCreators/medicalSpecialistsActionCreators';
+import {deleteMedicalSpecialist} from '../../../../../actionCreators/users/medicalSpecialistsActionCreators';
 import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import * as styles from './deleteMedicalSpecialist.css'
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as styles from './addGeneralPractitioner.css';
-import {addGeneralPractitioner} from "../../../../../actionCreators/generalPractitionersActionCreators";
+import {addGeneralPractitioner} from "../../../../../actionCreators/users/generalPractitionersActionCreators";
 
 class AddGeneralPractitioner extends React.Component {
   constructor(props) {
