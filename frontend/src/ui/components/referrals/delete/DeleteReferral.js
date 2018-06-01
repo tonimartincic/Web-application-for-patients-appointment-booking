@@ -1,65 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteReferral} from '../../../../actionCreators/referrals/referralsActionCreators';
-import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
+import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deleteReferral.css'
 
 class DeleteReferral extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dropdownValue: null,
-      selectedReferral: {
-        id: null,
-        referralName: null,
-        patientFirstName: null,
-        patientLastName: null,
-        createdOn: null,
-      },
-    };
-
-    this.handleChangeSelectedReferral = this.handleChangeSelectedReferral.bind(this);
-  }
-
-  resetState = () => {
-    this.setState({
-      dropdownValue: null,
-      selectedReferral: {
-        id: null,
-        referralName: null,
-        patientFirstName: null,
-        patientLastName: null,
-        createdOn: null,
-      },
-    });
-  };
-
-  handleChangeSelectedReferral = (event) => {
-    for (let i = 0; i < this.props.referrals.length; ++i) {
-      if (this.props.referrals[i] !== null) {
-        if (this.props.referrals[i].id == event.target.value)
-          this.setState({
-            selectedReferral: {
-              id: this.props.referrals[i].id,
-              referralName: this.props.referrals[i].referralName,
-              patientFirstName: this.props.referrals[i].patient.firstName,
-              patientLastName: this.props.referrals[i].patient.lastName,
-              createdOn: this.props.referrals[i].createdOn,
-            }
-          });
-      }
-    }
-
-    this.setState({
-      dropdownValue: event.target.value,
-    });
-  };
-
   handleDelete = () => {
-    this.props.deleteReferral(this.state.selectedReferral.id);
+    this.props.deleteReferral(this.props.referral.id);
     this.props.setDeleteReferralClicked(false);
-    this.resetState();
+    this.props.resetState();
   };
 
   render() {
@@ -69,73 +18,52 @@ class DeleteReferral extends React.Component {
           show={this.props.deleteReferralClicked}
           onHide={() => {
             this.props.setDeleteReferralClicked(false);
-            this.resetState();
           }
           }
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Obriši uputnicu</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ControlLabel>Odaberi uputnicu</ControlLabel>
-            <FormGroup controlId="formControlsSelect">
-              <FormControl
-                componentClass='select'
-                placeholder='Odaberi'
-                onChange={this.handleChangeSelectedReferral}
-              >
-                <option value="select">Odaberi</option>
-                {
-                  this.props.referrals
-                    .map(referral => {
-                      const fullName = referral.patient.firstName + " " + referral.patient.lastName + " / " + referral.referralName + " / " + referral.createdOn;
-                      return (
-                        <option key={referral.id} value={referral.id}>
-                          {fullName}
-                        </option>)
-                    })
-                }
-              </FormControl>
-            </FormGroup>
-            <FormGroup controlId="formControlsSelect">
-              <Choose>
-                <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
+          <Choose>
+            <When condition={this.props.referral != null}>
+              <Modal.Header closeButton>
+                <Modal.Title>Obriši uputnicu</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formControlsSelect">
                   <ListGroup>
                     <Row>
                       <Col md={12}>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Pacijent:</b> {this.state.selectedReferral.patientFirstName} {this.state.selectedReferral.patientLastName}</p>
+                              <p><b>Pacijent:</b> {this.props.referral.patient.firstName} {this.props.referral.patient.lastName}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Vrsta uputnice:</b> {this.state.selectedReferral.referralName}</p>
+                              <p><b>Vrsta uputnice:</b> {this.props.referral.referralGroup}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Datum kreiranja:</b> {this.state.selectedReferral.createdOn}</p>
+                              <p><b>Podvrsta uputnice:</b> {this.props.referral.referralName}</p>
+                            </Col>
+                          </Row>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                          <Row>
+                            <Col md={12}>
+                              <p><b>Datum kreiranja:</b> {this.props.referral.createdOn}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                       </Col>
                     </Row>
                   </ListGroup>
-                </When>
-              </Choose>
-            </FormGroup>
-          </Modal.Body>
-          <Choose>
-            <When
-              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
-            >
+                </FormGroup>
+              </Modal.Body>
               <Modal.Footer>
                 <Row>
                   <Col mdOffset={1} md={4}>
@@ -151,7 +79,6 @@ class DeleteReferral extends React.Component {
                       className={styles.button}
                       onClick={() => {
                         this.props.setDeleteReferralClicked(false);
-                        this.resetState();
                       }}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
@@ -160,6 +87,11 @@ class DeleteReferral extends React.Component {
                 </Row>
               </Modal.Footer>
             </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati uputnicu.</p>
+              </Alert>
+            </Otherwise>
           </Choose>
         </Modal>
       </section>
@@ -167,10 +99,8 @@ class DeleteReferral extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    referrals: state.referrals,
-  };
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

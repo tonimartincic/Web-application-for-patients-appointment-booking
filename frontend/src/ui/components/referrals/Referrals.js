@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table, Button} from 'react-bootstrap';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import {Col, Grid, Row} from 'react-bootstrap';
+import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import NavigationBar from '../navigationBar/NavigationBar';
 import Footer from '../footer/Footer';
 import AddReferral from './add/AddReferral';
 import EditReferral from './edit/EditReferral';
 import DeleteReferral from './delete/DeleteReferral';
-import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './referrals.css'
 
 class Referrals extends React.Component {
@@ -14,15 +16,30 @@ class Referrals extends React.Component {
     super(props);
 
     this.state = {
+      referral: null,
       addReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
     };
 
+    this.setReferral = this.setReferral.bind(this);
     this.setAddReferralClicked = this.setAddReferralClicked.bind(this);
     this.setEditReferralClicked = this.setEditReferralClicked.bind(this);
     this.setDeleteReferralClicked = this.setDeleteReferralClicked.bind(this);
   }
+
+  resetState = () =>
+    this.setState({
+      referral: null,
+      addReferralClicked: false,
+      editReferralClicked: false,
+      deleteReferralClicked: false,
+    });
+
+  setReferral = row =>
+    this.setState({
+      referral: row,
+    });
 
   setAddReferralClicked = value =>
     this.setState({
@@ -40,21 +57,80 @@ class Referrals extends React.Component {
     });
 
   render() {
+    const columns = [{
+      dataField: 'id',
+      text: 'ID',
+      sort: true,
+    }, {
+      dataField: 'patient.firstName',
+      text: 'Ime pacijenta',
+      sort: true,
+    }, {
+      dataField: 'patient.lastName',
+      text: 'Prezime pacijenta',
+      sort: true,
+    }, {
+      dataField: 'referralGroup',
+      text: 'Vrsta uputnice',
+      sort: true,
+    },{
+      dataField: 'referralName',
+      text: 'Podvrsta uputnice',
+      sort: true,
+    },{
+      dataField: 'createdOn',
+      text: 'Datum kreiranja',
+      sort: true,
+    }];
+
+    const options = {
+      paginationSize: 4,
+      pageStartIndex: 0,
+      firstPageText: 'Prva',
+      prePageText: 'Nazad',
+      nextPageText: 'Naprijed',
+      lastPageText: 'Zadnja',
+      nextPageTitle: 'Prva stranica',
+      prePageTitle: 'Prethodna stranica',
+      firstPageTitle: 'Iduća stranica',
+      lastPageTitle: 'Zadnja stranica',
+      sizePerPageList: [{
+        text: '5', value: 5
+      }, {
+        text: '10', value: 10
+      }, {
+        text: 'Sve', value: this.props.referrals.length
+      }]
+    };
+
+    const selectRow = {
+      mode: 'radio',
+      clickToSelect: true,
+      bgColor: '#467dd6',
+
+      onSelect: this.setReferral,
+      selected: this.state.referral === null ? null : [this.state.referral.id],
+    };
+
     return (
       <section>
         <NavigationBar/>
         <Grid>
           <AddReferral
+            referral={this.state.referral}
             addReferralClicked={this.state.addReferralClicked}
             setAddReferralClicked={value => this.setAddReferralClicked(value)}
           />
           <EditReferral
+            referral={this.state.referral}
             editReferralClicked={this.state.editReferralClicked}
             setEditReferralClicked={value => this.setEditReferralClicked(value)}
           />
           <DeleteReferral
+            referral={this.state.referral}
             deleteReferralClicked={this.state.deleteReferralClicked}
             setDeleteReferralClicked={value => this.setDeleteReferralClicked(value)}
+            resetState={() => this.resetState()}
           />
           <Row>
             <Col md={12}>
@@ -63,55 +139,16 @@ class Referrals extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <Table striped bordered condensed hover>
-                <thead>
-                <tr>
-                  <th>Pacijent</th>
-                  <th>Vrsta uputnice</th>
-                  <th>Datum kreiranja</th>
-                  <th><span className={styles.span}>Otvori</span></th>
-                  <th><span className={styles.span}>Uredi</span></th>
-                  <th><span className={styles.span}>Obriši</span></th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                  this.props.referrals
-                    .map((referral, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{referral.patient.firstName} {referral.patient.lastName}</td>
-                            <td>{referral.referralName}</td>
-                            <td>{referral.createdOn}</td>
-                            <td>
-                              <Button>
-                                Pregledaj
-                              </Button>
-                            </td>
-                            <th>
-                              <Button className={styles.button}>
-                                <span className='glyphicon glyphicon-eye-open'/>
-                              </Button>
-                            </th>
-                            <th>
-                              <Button className={styles.button}>
-                                <span className='glyphicon glyphicon-edit'/>
-                              </Button>
-                            </th>
-                            <th>
-                              <Button
-                                className={styles.button}
-                                onClick={value => this.setDeleteReferralClicked(value)}
-                              >
-                                <span className='glyphicon glyphicon-trash'/>
-                              </Button>
-                            </th>
-                          </tr>)
-                      }
-                    )
-                }
-                </tbody>
-              </Table>
+              <BootstrapTable
+                keyField='id'
+                data={this.props.referrals}
+                columns={columns}
+                striped
+                hover
+                condensed
+                pagination={paginationFactory(options)}
+                selectRow={selectRow}
+              />
             </Col>
           </Row>
           <Row>
