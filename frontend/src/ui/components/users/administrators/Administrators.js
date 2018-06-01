@@ -91,7 +91,7 @@ class Administrators extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={8} mdOffset={3}>
+            <Col md={12}>
               <AddEditDeleteButtons
                 setAddClicked={value => this.setAddAdministratorClicked(value)}
                 setEditClicked={value => this.setEditAdministratorClicked(value)}

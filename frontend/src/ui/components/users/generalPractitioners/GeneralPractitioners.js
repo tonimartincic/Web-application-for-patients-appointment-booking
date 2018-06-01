@@ -99,7 +99,7 @@ class GeneralPractitioners extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={8} mdOffset={3}>
+            <Col md={12}>
               <AddEditDeleteButtons
                 setAddClicked={value => this.setAddGeneralPractitionerClicked(value)}
                 setEditClicked={value => this.setEditGeneralPractitionerClicked(value)}

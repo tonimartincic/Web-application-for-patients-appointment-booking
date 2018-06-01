@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 import styles from './addEditDeleteButtons.css';
 
 const AddEditDeleteButtons = props => (
-  <section>
+  <section className={styles.section}>
     <Button
       className={styles.button}
       onClick={value => props.setAddClicked(value)}

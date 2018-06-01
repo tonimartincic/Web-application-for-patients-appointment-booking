@@ -105,7 +105,7 @@ class Patients extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={8} mdOffset={3}>
+            <Col md={12}>
               <AddEditDeleteButtons
                 setAddClicked={value => this.setAddPatientClicked(value)}
                 setEditClicked={value => this.setEditPatientClicked(value)}

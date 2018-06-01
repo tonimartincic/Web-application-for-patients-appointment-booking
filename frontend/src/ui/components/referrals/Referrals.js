@@ -152,7 +152,7 @@ class Referrals extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={8} mdOffset={3}>
+            <Col md={12}>
               <AddEditDeleteButtons
                 setAddClicked={value => this.setAddReferralClicked(value)}
                 setEditClicked={value => this.setEditReferralClicked(value)}
