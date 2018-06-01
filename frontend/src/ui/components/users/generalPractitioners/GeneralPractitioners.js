@@ -1,27 +1,46 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import AddGeneralPractitioner from './add/AddGeneralPractitioner';
 import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
 import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './generalPractitioners.css';
+import * as colors from '../../../../constants/colors';
+import * as tables from '../../../../constants/tables';
 
 class GeneralPractitioners extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      generalPractitioner: null,
       addGeneralPractitionerClicked: false,
       editGeneralPractitionerClicked: false,
       deleteGeneralPractitionerClicked: false,
     };
 
+    this.setGeneralPractitioner = this.setGeneralPractitioner.bind(this);
     this.setAddGeneralPractitionerClicked = this.setAddGeneralPractitionerClicked.bind(this);
     this.setEditGeneralPractitionerClicked = this.setEditGeneralPractitionerClicked.bind(this);
     this.setDeleteGeneralPractitionerClicked = this.setDeleteGeneralPractitionerClicked.bind(this);
   }
+
+  resetState = () =>
+    this.setState({
+      generalPractitioner: null,
+      addGeneralPractitionerClicked: false,
+      editGeneralPractitionerClicked: false,
+      deleteGeneralPractitionerClicked: false,
+    });
+
+  setGeneralPractitioner = row =>
+    this.setState({
+      generalPractitioner: row,
+    });
 
   setAddGeneralPractitionerClicked = value =>
     this.setState({
@@ -39,6 +58,62 @@ class GeneralPractitioners extends React.Component {
     });
 
   render() {
+    const columns = [{
+      dataField: 'id',
+      text: 'ID',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'firstName',
+      text: 'Ime',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'lastName',
+      text: 'Prezime',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'mail',
+      text: 'Mail',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'city',
+      text: 'Grad',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'postalCode',
+      text: 'Poštanski broj',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'street',
+      text: 'Ulica',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'streetNumber',
+      text: 'Kućni Broj',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'phoneNumber',
+      text: 'Broj mobitela',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }];
+
+    const selectRow = {
+      mode: 'radio',
+      clickToSelect: true,
+      bgColor: colors.SELECTED_ROW,
+
+      onSelect: this.setGeneralPractitioner,
+      selected: this.state.generalPractitioner === null ? null : [this.state.generalPractitioner.id],
+    };
+
     return (
       <section>
         <NavigationBar/>
@@ -48,12 +123,16 @@ class GeneralPractitioners extends React.Component {
             setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
           />
           <EditGeneralPractitioner
+            generalPractitioner={this.state.generalPractitioner}
             editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
             setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
+            resetState={() => this.resetState()}
           />
           <DeleteGeneralPractitioner
+            generalPractitioner={this.state.generalPractitioner}
             deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
             setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
+            resetState={() => this.resetState()}
           />
           <Row>
             <Col md={12}>
@@ -62,39 +141,17 @@ class GeneralPractitioners extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <Table striped bordered condensed hover>
-                <thead>
-                <tr>
-                  <th>Ime</th>
-                  <th>Prezime</th>
-                  <th>Mail</th>
-                  <th>Grad</th>
-                  <th>Poštanski broj</th>
-                  <th>Ulica</th>
-                  <th>Kućni Broj</th>
-                  <th>Broj mobitela</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                  this.props.generalPractitioners
-                    .map((generalPractitioner, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{generalPractitioner.firstName}</td>
-                            <td>{generalPractitioner.lastName}</td>
-                            <td>{generalPractitioner.mail}</td>
-                            <td>{generalPractitioner.city}</td>
-                            <td>{generalPractitioner.postalCode}</td>
-                            <td>{generalPractitioner.street}</td>
-                            <td>{generalPractitioner.streetNumber}</td>
-                            <td>{generalPractitioner.phoneNumber}</td>
-                          </tr>)
-                      }
-                    )
-                }
-                </tbody>
-              </Table>
+              <BootstrapTable
+                keyField='id'
+                data={this.props.generalPractitioners}
+                columns={columns}
+                striped
+                hover
+                condensed
+                bordered
+                pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
+                selectRow={selectRow}
+              />
             </Col>
           </Row>
           <Row>

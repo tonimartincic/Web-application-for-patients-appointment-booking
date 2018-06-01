@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {Col, Grid, Row, Well} from 'react-bootstrap';
+import {Col, Grid, Row} from 'react-bootstrap';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import NavigationBar from '../navigationBar/NavigationBar';
 import AddReferral from './add/AddReferral';
@@ -105,7 +105,6 @@ class Referrals extends React.Component {
         <NavigationBar/>
         <Grid>
           <AddReferral
-            referral={this.state.referral}
             addReferralClicked={this.state.addReferralClicked}
             setAddReferralClicked={value => this.setAddReferralClicked(value)}
           />
@@ -118,6 +117,7 @@ class Referrals extends React.Component {
             referral={this.state.referral}
             editReferralClicked={this.state.editReferralClicked}
             setEditReferralClicked={value => this.setEditReferralClicked(value)}
+            resetState={() => this.resetState()}
           />
           <DeleteReferral
             referral={this.state.referral}

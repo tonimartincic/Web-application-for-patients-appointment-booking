@@ -1,27 +1,46 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
 import AddAdministrator from './add/AddAdministrator';
 import EditAdministrator from './edit/EditAdministrator';
 import DeleteAdministrator from './delete/DeleteAdministrator';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import * as styles from './administrators.css'
+import * as colors from '../../../../constants/colors';
+import * as tables from '../../../../constants/tables';
 
 class Administrators extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      administrator: null,
       addAdministratorClicked: false,
       editAdministratorClicked: false,
       deleteAdministratorClicked: false,
     };
 
+    this.setAdministrator = this.setAdministrator.bind(this);
     this.setAddAdministratorClicked = this.setAddAdministratorClicked.bind(this);
     this.setEditAdministratorClicked = this.setEditAdministratorClicked.bind(this);
     this.setDeleteAdministratorClicked = this.setDeleteAdministratorClicked.bind(this);
   }
+
+  resetState = () =>
+    this.setState({
+      administrator: null,
+      addAdministratorClicked: false,
+      editAdministratorClicked: false,
+      deleteAdministratorClicked: false,
+    });
+
+  setAdministrator = row =>
+    this.setState({
+      administrator: row,
+    });
 
   setAddAdministratorClicked = value =>
     this.setState({
@@ -39,6 +58,42 @@ class Administrators extends React.Component {
     });
 
   render() {
+    const columns = [{
+      dataField: 'id',
+      text: 'ID',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'firstName',
+      text: 'Ime',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'lastName',
+      text: 'Prezime',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'mail',
+      text: 'Mail',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
+      dataField: 'phoneNumber',
+      text: 'Broj mobitela',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }];
+
+    const selectRow = {
+      mode: 'radio',
+      clickToSelect: true,
+      bgColor: colors.SELECTED_ROW,
+
+      onSelect: this.setAdministrator,
+      selected: this.state.administrator === null ? null : [this.state.administrator.id],
+    };
+
     return (
       <section>
         <NavigationBar/>
@@ -48,12 +103,16 @@ class Administrators extends React.Component {
             setAddAdministratorClicked={value => this.setAddAdministratorClicked(value)}
           />
           <EditAdministrator
+            administrator={this.state.administrator}
             editAdministratorClicked={this.state.editAdministratorClicked}
             setEditAdministratorClicked={value => this.setEditAdministratorClicked(value)}
+            resetState={() => this.resetState()}
           />
           <DeleteAdministrator
+            administrator={this.state.administrator}
             deleteAdministratorClicked={this.state.deleteAdministratorClicked}
             setDeleteAdministratorClicked={value => this.setDeleteAdministratorClicked(value)}
+            resetState={() => this.resetState()}
           />
           <Row>
             <Col md={12}>
@@ -62,31 +121,17 @@ class Administrators extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <Table striped bordered condensed hover>
-                <thead>
-                <tr>
-                  <th>Ime</th>
-                  <th>Prezime</th>
-                  <th>Mail</th>
-                  <th>Broj mobitela</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                  this.props.administrators
-                    .map((administrator, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>{administrator.firstName}</td>
-                            <td>{administrator.lastName}</td>
-                            <td>{administrator.mail}</td>
-                            <td>{administrator.phoneNumber}</td>
-                          </tr>)
-                      }
-                    )
-                }
-                </tbody>
-              </Table>
+              <BootstrapTable
+                keyField='id'
+                data={this.props.administrators}
+                columns={columns}
+                striped
+                hover
+                condensed
+                bordered
+                pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
+                selectRow={selectRow}
+              />
             </Col>
           </Row>
           <Row>

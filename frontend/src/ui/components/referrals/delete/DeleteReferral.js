@@ -22,7 +22,7 @@ class DeleteReferral extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.referral != null}>
+            <When condition={this.props.referral !== null}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši uputnicu</Modal.Title>
               </Modal.Header>

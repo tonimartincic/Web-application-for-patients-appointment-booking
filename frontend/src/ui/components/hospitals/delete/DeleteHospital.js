@@ -1,74 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteHospital} from '../../../../actionCreators/hospitals/hospitalsActionCreators';
-import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
+import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deleteHospital.css'
 
 class DeleteHospital extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dropdownValue: null,
-      selectedHospital: {
-        id: null,
-        name: null,
-        city: null,
-        postalCode: null,
-        street: null,
-        streetNumber: null,
-        phoneNumber: null,
-        mail: null,
-      },
-    };
-
-    this.handleChangeSelectedHospital = this.handleChangeSelectedHospital.bind(this);
-  }
-
-  resetState = () => {
-    this.setState({
-      dropdownValue: null,
-      selectedHospital: {
-        id: null,
-        name: null,
-        city: null,
-        postalCode: null,
-        street: null,
-        streetNumber: null,
-        phoneNumber: null,
-        mail: null,
-      },
-    });
-  };
-
-  handleChangeSelectedHospital = (event) => {
-    for (let i = 0; i < this.props.hospitals.length; ++i) {
-      if (this.props.hospitals[i] !== null) {
-        if (this.props.hospitals[i].id == event.target.value)
-          this.setState({
-            selectedHospital: {
-              id: this.props.hospitals[i].id,
-              name: this.props.hospitals[i].name,
-              city: this.props.hospitals[i].city,
-              postalCode: this.props.hospitals[i].postalCode,
-              street: this.props.hospitals[i].street,
-              streetNumber: this.props.hospitals[i].streetNumber,
-              phoneNumber: this.props.hospitals[i].phoneNumber,
-              mail: this.props.hospitals[i].mail,
-            }
-          });
-      }
-    }
-
-    this.setState({
-      dropdownValue: event.target.value,
-    });
-  };
-
   handleDelete = () => {
-    this.props.deleteHospital(this.state.selectedHospital.id);
+    this.props.deleteHospital(this.props.hospital.id);
     this.props.setDeleteHospitalClicked(false);
-    this.resetState();
+    this.props.resetState();
   };
 
   render() {
@@ -78,96 +18,69 @@ class DeleteHospital extends React.Component {
           show={this.props.deleteHospitalClicked}
           onHide={() => {
             this.props.setDeleteHospitalClicked(false);
-            this.resetState();
           }
           }
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Obriši bolnicu</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ControlLabel>Odaberi bolnicu</ControlLabel>
-            <FormGroup controlId="formControlsSelect">
-              <FormControl
-                componentClass='select'
-                placeholder='Odaberi'
-                onChange={this.handleChangeSelectedHospital}
-              >
-                <option value="select">Odaberi</option>
-                {
-                  this.props.hospitals
-                    .map(hospital => {
-                      return (
-                        <option key={hospital.id} value={hospital.id}>
-                          {hospital.name}
-                        </option>)
-                    })
-                }
-              </FormControl>
-            </FormGroup>
-            <FormGroup controlId="formControlsSelect">
-              <Choose>
-                <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
-                >
+          <Choose>
+            <When condition={this.props.hospital !== null}>
+              <Modal.Header closeButton>
+                <Modal.Title>Obriši bolnicu</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formControlsSelect">
                   <ListGroup>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Naziv:</b> {this.state.selectedHospital.name}</p>
+                          <p><b>Naziv:</b> {this.props.hospital.name}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Grad:</b> {this.state.selectedHospital.city}</p>
+                          <p><b>Grad:</b> {this.props.hospital.city}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Poštanski broj:</b> {this.state.selectedHospital.postalCode}</p>
+                          <p><b>Poštanski broj:</b> {this.props.hospital.postalCode}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Ulica:</b> {this.state.selectedHospital.street}</p>
+                          <p><b>Ulica:</b> {this.props.hospital.street}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Kućni broj:</b> {this.state.selectedHospital.streetNumber}</p>
+                          <p><b>Kućni broj:</b> {this.props.hospital.streetNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedHospital.mail}</p>
+                          <p><b>Mail:</b> {this.props.hospital.mail}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Telefonski broj:</b> {this.state.selectedHospital.phoneNumber}</p>
+                          <p><b>Telefonski broj:</b> {this.props.hospital.phoneNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
-                </When>
-              </Choose>
-            </FormGroup>
-          </Modal.Body>
-          <Choose>
-            <When
-              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
+                </FormGroup>
+              </Modal.Body>
               <Modal.Footer>
                 <Row>
                   <Col mdOffset={1} md={4}>
@@ -183,7 +96,6 @@ class DeleteHospital extends React.Component {
                       className={styles.button}
                       onClick={() => {
                         this.props.setDeleteHospitalClicked(false);
-                        this.resetState();
                       }}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
@@ -192,6 +104,11 @@ class DeleteHospital extends React.Component {
                 </Row>
               </Modal.Footer>
             </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati bolnicu.</p>
+              </Alert>
+            </Otherwise>
           </Choose>
         </Modal>
       </section>
@@ -199,11 +116,8 @@ class DeleteHospital extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userData: state.userData,
-    hospitals: state.hospitals,
-  };
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
