@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as styles from '../hospitals.css';
-import {addHospital} from "../../../../actionCreators/hospitalsActionCreators";
+import {addHospital} from "../../../../actionCreators/hospitals/hospitalsActionCreators";
 
 class AddHospital extends React.Component {
   constructor(props) {

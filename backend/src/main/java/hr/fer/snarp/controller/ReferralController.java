@@ -48,4 +48,9 @@ public class ReferralController {
   public void deleteReferralById(@PathVariable final Long id) {
     this.referralService.deleteById(id);
   }
+
+  @GetMapping("/api/referrals/types")
+  public List<String> getReferralTypes() {
+    return this.referralService.getReferralTypes();
+  }
 }

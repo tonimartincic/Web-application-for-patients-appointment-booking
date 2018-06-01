@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as styles from './addMedicalSpecialist.css';
-import {addMedicalSpecialist} from "../../../../../actionCreators/medicalSpecialistsActionCreators";
+import {addMedicalSpecialist} from "../../../../../actionCreators/users/medicalSpecialistsActionCreators";
 
 class AddMedicalSpecialist extends React.Component {
   constructor(props) {

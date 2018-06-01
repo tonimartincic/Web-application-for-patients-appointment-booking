@@ -69,6 +69,9 @@ class Referrals extends React.Component {
                   <th>Pacijent</th>
                   <th>Vrsta uputnice</th>
                   <th>Datum kreiranja</th>
+                  <th><span className={styles.span}>Otvori</span></th>
+                  <th><span className={styles.span}>Uredi</span></th>
+                  <th><span className={styles.span}>Obriši</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,6 +88,24 @@ class Referrals extends React.Component {
                                 Pregledaj
                               </Button>
                             </td>
+                            <th>
+                              <Button className={styles.button}>
+                                <span className='glyphicon glyphicon-eye-open'/>
+                              </Button>
+                            </th>
+                            <th>
+                              <Button className={styles.button}>
+                                <span className='glyphicon glyphicon-edit'/>
+                              </Button>
+                            </th>
+                            <th>
+                              <Button
+                                className={styles.button}
+                                onClick={value => this.setDeleteReferralClicked(value)}
+                              >
+                                <span className='glyphicon glyphicon-trash'/>
+                              </Button>
+                            </th>
                           </tr>)
                       }
                     )

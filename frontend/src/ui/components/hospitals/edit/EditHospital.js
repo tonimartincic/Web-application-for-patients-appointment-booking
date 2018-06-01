@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {editHospital} from '../../../../actionCreators/hospitalsActionCreators';
+import {editHospital} from '../../../../actionCreators/hospitals/hospitalsActionCreators';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import * as styles from './editHospital.css'
 

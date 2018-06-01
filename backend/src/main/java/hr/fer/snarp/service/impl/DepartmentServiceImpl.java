@@ -5,6 +5,7 @@ import hr.fer.snarp.domain.department.Department;
 import hr.fer.snarp.domain.department.DepartmentRequest;
 import hr.fer.snarp.domain.department.DepartmentResponse;
 import hr.fer.snarp.enumeration.DepartmentType;
+import hr.fer.snarp.enumeration.ReferralType;
 import hr.fer.snarp.repository.DepartmentRepository;
 import hr.fer.snarp.repository.HospitalRepository;
 import hr.fer.snarp.service.DepartmentService;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -59,6 +62,11 @@ public class DepartmentServiceImpl implements DepartmentService {
   @Override
   public void deleteById(final Long id) {
     this.departmentRepository.delete(id);
+  }
+
+  @Override
+  public List<String> getDepartmentTypes() {
+    return Arrays.stream(DepartmentType.values()).map(DepartmentType::getDescription).collect(Collectors.toList());
   }
 
   private List<DepartmentResponse> getDepartmentResponses(final List<Department> departments) {

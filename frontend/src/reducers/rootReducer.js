@@ -1,13 +1,14 @@
 import {combineReducers} from 'redux';
-import administratorsReducer from './administratorsReducer';
-import departmentsReducer from "./departmentsReducer";
-import generalPractitionersReducer from "./generalPractitionersReducer";
-import hospitalsReducer from "./hospitalsReducer";
-import medicalSpecialistsReducer from "./medicalSpecialistsReducer";
-import patientsReducer from "./patientsReducer";
-import referralsReducer from "./referralsReducer";
-import usersReducer from "./usersReducer";
-import userDataReducer from './userDataReducer';
+import administratorsReducer from './users/administratorsReducer';
+import departmentsReducer from "./departments/departmentsReducer";
+import generalPractitionersReducer from "./users/generalPractitionersReducer";
+import hospitalsReducer from "./hospitals/hospitalsReducer";
+import medicalSpecialistsReducer from "./users/medicalSpecialistsReducer";
+import patientsReducer from "./users/patientsReducer";
+import referralsReducer from "./referrals/referralsReducer";
+import userDataReducer from './userData/userDataReducer';
+import referralTypesReducer from "./referrals/referralTypesReducer";
+import departmentTypesReducer from "./departments/departmentTypesReducer";
 
 const rootReducer = combineReducers({
   administrators: administratorsReducer,
@@ -17,8 +18,9 @@ const rootReducer = combineReducers({
   medicalSpecialists: medicalSpecialistsReducer,
   patients: patientsReducer,
   referrals: referralsReducer,
-  users: usersReducer,
   userData: userDataReducer,
+  referralTypes: referralTypesReducer,
+  departmentTypes: departmentTypesReducer,
 });
 
 export default rootReducer;

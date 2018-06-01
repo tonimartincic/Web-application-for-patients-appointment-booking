@@ -1,3 +1,13 @@
 .h2 {
   margin-bottom: 1em;
 }
+
+.button {
+  width: 100%;
+  background-color: #50566d;
+  color: white;
+}
+
+.span {
+  color: gray;
+}

@@ -1,5 +1,5 @@
-import initialState from './initialState';
-import * as types from '../actions/actionTypes';
+import initialState from '../initialState';
+import * as types from '../../actions/actionTypes';
 
 export default function patientsReducer(state = initialState.patients, action) {
   const newPatients = [];

@@ -1,6 +1,7 @@
 package hr.fer.snarp.service.impl;
 
 import com.google.common.collect.Lists;
+import com.sun.org.apache.regexp.internal.RE;
 import hr.fer.snarp.domain.referral.Referral;
 import hr.fer.snarp.domain.referral.ReferralRequest;
 import hr.fer.snarp.domain.referral.ReferralResponse;
@@ -14,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReferralServiceImpl implements ReferralService {
@@ -73,6 +76,11 @@ public class ReferralServiceImpl implements ReferralService {
   @Override
   public void deleteById(final Long id) {
     this.referralRepository.delete(id);
+  }
+
+  @Override
+  public List<String> getReferralTypes() {
+    return Arrays.stream(ReferralType.values()).map(ReferralType::getName).collect(Collectors.toList());
   }
 
   private List<ReferralResponse> getReferralResponses(final List<Referral> referrals) {

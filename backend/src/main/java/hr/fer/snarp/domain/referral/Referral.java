@@ -55,6 +55,7 @@ public class Referral {
     this.departmentType = DepartmentType.getByDescription(referralRequest.getDepartmentType());
     this.diagnosis = referralRequest.getDiagnosis();
     this.remark = referralRequest.getRemark();
+    this.createdOn = LocalDate.now();
   }
 
   @Override

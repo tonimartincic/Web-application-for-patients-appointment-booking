@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteAdministrator} from '../../../../../actionCreators/administratorsActionCreators';
+import {deleteAdministrator} from '../../../../../actionCreators/users/administratorsActionCreators';
 import {
   Alert,
   Button,

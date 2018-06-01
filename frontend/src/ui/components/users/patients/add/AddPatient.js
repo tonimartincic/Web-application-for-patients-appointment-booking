@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import DatePicker from 'react-bootstrap-date-picker';
-import {addPatient} from "../../../../../actionCreators/patientsActionCreators";
+import {addPatient} from "../../../../../actionCreators/users/patientsActionCreators";
 import * as styles from './addPatient.css';
 import * as constants from '../../../../../constants/values';
 import * as dateUtil from '../../../../../utils/DateUtil';

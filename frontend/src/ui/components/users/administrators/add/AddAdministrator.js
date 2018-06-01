@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as styles from './addAdministrator.css';
-import {addAdministrator} from "../../../../../actionCreators/administratorsActionCreators";
+import {addAdministrator} from "../../../../../actionCreators/users/administratorsActionCreators";
 
 class AddAdministrator extends React.Component {
   constructor(props) {

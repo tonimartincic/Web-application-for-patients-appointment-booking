@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {editAdministrator} from '../../../../../actionCreators/administratorsActionCreators';
+import {editAdministrator} from '../../../../../actionCreators/users/administratorsActionCreators';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import * as constants from '../../../../../constants/values';
 import * as styles from './editAdministrator.css'
