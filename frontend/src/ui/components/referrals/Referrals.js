@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Col, Grid, Row, Table} from 'react-bootstrap';
+import {Col, Grid, Row, Table, Button} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
 import Footer from '../footer/Footer';
 import AddReferral from './add/AddReferral';
@@ -80,6 +80,11 @@ class Referrals extends React.Component {
                             <td>{referral.patient.firstName} {referral.patient.lastName}</td>
                             <td>{referral.referralName}</td>
                             <td>{referral.createdOn}</td>
+                            <td>
+                              <Button>
+                                Pregledaj
+                              </Button>
+                            </td>
                           </tr>)
                       }
                     )
