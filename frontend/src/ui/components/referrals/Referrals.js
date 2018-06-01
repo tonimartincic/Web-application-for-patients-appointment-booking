@@ -2,14 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {Col, Grid, Row} from 'react-bootstrap';
+import {Col, Grid, Row, Well} from 'react-bootstrap';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import NavigationBar from '../navigationBar/NavigationBar';
-import Footer from '../footer/Footer';
 import AddReferral from './add/AddReferral';
+import ViewReferral from './view/ViewReferral';
 import EditReferral from './edit/EditReferral';
 import DeleteReferral from './delete/DeleteReferral';
 import * as styles from './referrals.css'
+import * as colors from '../../../constants/colors';
+import * as tables from '../../../constants/tables';
 
 class Referrals extends React.Component {
   constructor(props) {
@@ -61,52 +63,38 @@ class Referrals extends React.Component {
       dataField: 'id',
       text: 'ID',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     }, {
       dataField: 'patient.firstName',
       text: 'Ime pacijenta',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     }, {
       dataField: 'patient.lastName',
       text: 'Prezime pacijenta',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     }, {
       dataField: 'referralGroup',
       text: 'Vrsta uputnice',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     },{
       dataField: 'referralName',
       text: 'Podvrsta uputnice',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     },{
       dataField: 'createdOn',
       text: 'Datum kreiranja',
       sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     }];
-
-    const options = {
-      paginationSize: 4,
-      pageStartIndex: 0,
-      firstPageText: 'Prva',
-      prePageText: 'Nazad',
-      nextPageText: 'Naprijed',
-      lastPageText: 'Zadnja',
-      nextPageTitle: 'Prva stranica',
-      prePageTitle: 'Prethodna stranica',
-      firstPageTitle: 'Iduća stranica',
-      lastPageTitle: 'Zadnja stranica',
-      sizePerPageList: [{
-        text: '5', value: 5
-      }, {
-        text: '10', value: 10
-      }, {
-        text: 'Sve', value: this.props.referrals.length
-      }]
-    };
 
     const selectRow = {
       mode: 'radio',
       clickToSelect: true,
-      bgColor: '#467dd6',
+      bgColor: colors.SELECTED_ROW,
 
       onSelect: this.setReferral,
       selected: this.state.referral === null ? null : [this.state.referral.id],
@@ -121,6 +109,11 @@ class Referrals extends React.Component {
             addReferralClicked={this.state.addReferralClicked}
             setAddReferralClicked={value => this.setAddReferralClicked(value)}
           />
+          {/*<ViewReferral*/}
+            {/*referral={this.state.referral}*/}
+            {/*addReferralClicked={this.state.addReferralClicked}*/}
+            {/*setAddReferralClicked={value => this.setAddReferralClicked(value)}*/}
+          {/*/>*/}
           <EditReferral
             referral={this.state.referral}
             editReferralClicked={this.state.editReferralClicked}
@@ -146,7 +139,8 @@ class Referrals extends React.Component {
                 striped
                 hover
                 condensed
-                pagination={paginationFactory(options)}
+                bordered
+                pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
             </Col>
@@ -161,7 +155,6 @@ class Referrals extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <Footer/>
       </section>
     );
   }

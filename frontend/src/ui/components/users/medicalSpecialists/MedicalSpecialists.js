@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import Footer from '../../footer/Footer';
 import AddMedicalSpecialist from './add/AddMedicalSpecialist';
 import EditMedicalSpecialist from './edit/EditMedicalSpecialist';
 import DeleteMedicalSpecialist from './delete/DeleteMedicalSpecialist';
@@ -100,7 +99,6 @@ class MedicalSpecialists extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <Footer/>
       </section>
     );
   }

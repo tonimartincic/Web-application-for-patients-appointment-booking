@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import Footer from '../../footer/Footer';
 import AddAdministrator from './add/AddAdministrator';
 import EditAdministrator from './edit/EditAdministrator';
 import DeleteAdministrator from './delete/DeleteAdministrator';
@@ -100,7 +99,6 @@ class Administrators extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <Footer/>
       </section>
     );
   }

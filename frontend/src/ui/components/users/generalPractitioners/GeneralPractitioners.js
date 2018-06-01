@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import Footer from '../../footer/Footer';
 import AddGeneralPractitioner from './add/AddGeneralPractitioner';
 import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
 import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
@@ -108,7 +107,6 @@ class GeneralPractitioners extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <Footer/>
       </section>
     );
   }

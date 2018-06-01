@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Col, Grid, Row, Table} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import Footer from '../../footer/Footer';
 import AddPatient from './add/AddPatient';
 import EditPatient from './edit/EditPatient';
 import DeletePatient from './delete/DeletePatient';
@@ -114,7 +113,6 @@ class Patients extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <Footer/>
       </section>
     );
   }
