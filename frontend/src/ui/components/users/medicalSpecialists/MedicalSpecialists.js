@@ -71,6 +71,8 @@ class MedicalSpecialists extends React.Component {
   setAddMedicalSpecialistClicked = value =>
     this.setState({
       addMedicalSpecialistClicked: value,
+      medicalSpecialist: {},
+      medicalSpecialistSelected: false,
     });
 
   setEditMedicalSpecialistClicked = value =>

@@ -81,6 +81,7 @@ class Hospitals extends React.Component {
     this.setState({
       addHospitalClicked: value,
       hospital: {},
+      hospitalSelected: false,
     });
 
   setEditHospitalClicked = value =>

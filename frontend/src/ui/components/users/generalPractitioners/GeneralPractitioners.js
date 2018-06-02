@@ -83,6 +83,9 @@ class GeneralPractitioners extends React.Component {
   setAddGeneralPractitionerClicked = value =>
     this.setState({
       addGeneralPractitionerClicked: value,
+      generalPractitioner: {},
+      generalPractitionerSelected: false,
+
     });
 
   setEditGeneralPractitionerClicked = value =>

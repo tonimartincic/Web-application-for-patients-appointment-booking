@@ -85,15 +85,34 @@ class Patients extends React.Component {
       streetNumberValidation: null,
     });
 
-  setPatient = row =>
+  setPatient = row => {
+    const patient =
+      {
+        id: row.id,
+        firstName: row.firstName,
+        lastName: row.lastName,
+        sex: row.sex,
+        oib: row.oib,
+        dateOfBirth: dateUtil.createDateForDatePickerFromDateFromBackend(row.dateOfBirth),
+        mail: row.mail,
+        phoneNumber: row.phoneNumber,
+        city: row.city,
+        postalCode: row.postalCode,
+        street: row.street,
+        streetNumber: row.streetNumber,
+      };
+
     this.setState({
-      patient: row,
+      patient,
       patientSelected: true,
     });
+  }
 
   setAddPatientClicked = value =>
     this.setState({
       addPatientClicked: value,
+      patient: {},
+      patientSelected: null,
     });
 
   setEditPatientClicked = value =>

@@ -9,7 +9,7 @@ class AddEditPatient extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.editPatientClicked}
+          show={this.props.addPatientClicked || this.props.editPatientClicked}
           onHide={() => this.props.resetState()}
         >
           <Choose>

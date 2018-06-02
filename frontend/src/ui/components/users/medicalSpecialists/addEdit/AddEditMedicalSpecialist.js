@@ -7,7 +7,7 @@ class AddEditMedicalSpecialist extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.editMedicalSpecialistClicked}
+          show={this.props.addMedicalSpecialistClicked || this.props.editMedicalSpecialistClicked}
           onHide={() => this.props.resetState()}
         >
           <Choose>

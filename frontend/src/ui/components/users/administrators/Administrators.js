@@ -75,6 +75,8 @@ class Administrators extends React.Component {
   setAddAdministratorClicked = value =>
     this.setState({
       addAdministratorClicked: value,
+      administrator: {},
+      administratorSelected: false,
     });
 
   setEditAdministratorClicked = value =>

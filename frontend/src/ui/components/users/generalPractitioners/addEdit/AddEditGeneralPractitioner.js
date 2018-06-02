@@ -7,7 +7,7 @@ class AddEditGeneralPractitioner extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.editGeneralPractitionerClicked}
+          show={this.props.addGeneralPractitionerClicked || this.props.editGeneralPractitionerClicked}
           onHide={() => this.props.resetState()}
         >
           <Choose>

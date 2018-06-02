@@ -69,6 +69,8 @@ class Referrals extends React.Component {
   setAddReferralClicked = value =>
     this.setState({
       addReferralClicked: value,
+      referral: {},
+      referralSelected: false,
     });
 
   setEditReferralClicked = value =>
@@ -266,6 +268,7 @@ class Referrals extends React.Component {
             patientIdValidation={this.state.patientIdValidation}
             diagnosisValidation={this.state.diagnosisValidation}
 
+            patients={this.props.patients}
             departmentTypes={this.props.departmentTypes}
             referralTypes={this.props.referralTypes}
           />
