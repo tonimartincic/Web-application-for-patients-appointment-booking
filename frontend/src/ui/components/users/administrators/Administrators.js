@@ -17,7 +17,7 @@ class Administrators extends React.Component {
     super(props);
 
     this.state = {
-      administrator: null,
+      administrator: {},
       administratorSelected: false,
 
       addAdministratorClicked: false,
@@ -35,15 +35,20 @@ class Administrators extends React.Component {
 
   resetState = () =>
     this.setState({
-      administrator: null,
+      administrator: {},
+      administratorSelected: false,
+
       addAdministratorClicked: false,
       editAdministratorClicked: false,
       deleteAdministratorClicked: false,
+
+      cannotDeleteYourselfValidation: false,
     });
 
   setAdministrator = row =>
     this.setState({
       administrator: row,
+      administratorSelected: true,
     });
 
   setAddAdministratorClicked = value =>

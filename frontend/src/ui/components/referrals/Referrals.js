@@ -18,7 +18,7 @@ class Referrals extends React.Component {
     super(props);
 
     this.state = {
-      referral: null,
+      referral: {},
       referralSelected: false,
 
       addReferralClicked: false,
@@ -34,7 +34,9 @@ class Referrals extends React.Component {
 
   resetState = () =>
     this.setState({
-      referral: null,
+      referral: {},
+      referralSelected: false,
+
       addReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
@@ -43,6 +45,7 @@ class Referrals extends React.Component {
   setReferral = row =>
     this.setState({
       referral: row,
+      referralSelected: true,
     });
 
   setAddReferralClicked = value =>

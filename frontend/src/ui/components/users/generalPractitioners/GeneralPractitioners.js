@@ -17,7 +17,7 @@ class GeneralPractitioners extends React.Component {
     super(props);
 
     this.state = {
-      generalPractitioner: null,
+      generalPractitioner: {},
       generalPractitionerSelected: false,
 
       addGeneralPractitionerClicked: false,
@@ -33,7 +33,9 @@ class GeneralPractitioners extends React.Component {
 
   resetState = () =>
     this.setState({
-      generalPractitioner: null,
+      generalPractitioner: {},
+      generalPractitionerSelected: false,
+
       addGeneralPractitionerClicked: false,
       editGeneralPractitionerClicked: false,
       deleteGeneralPractitionerClicked: false,
@@ -42,6 +44,7 @@ class GeneralPractitioners extends React.Component {
   setGeneralPractitioner = row =>
     this.setState({
       generalPractitioner: row,
+      generalPractitionerSelected: true,
     });
 
   setAddGeneralPractitionerClicked = value =>

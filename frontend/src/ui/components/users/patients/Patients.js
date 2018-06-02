@@ -17,7 +17,7 @@ class Patients extends React.Component {
     super(props);
 
     this.state = {
-      patient: null,
+      patient: {},
       patientSelected: null,
 
       addPatientClicked: false,
@@ -33,7 +33,9 @@ class Patients extends React.Component {
 
   resetState = () =>
     this.setState({
-      patient: null,
+      patient: {},
+      patientSelected: null,
+
       addPatientClicked: false,
       editPatientClicked: false,
       deletePatientClicked: false,
@@ -42,6 +44,7 @@ class Patients extends React.Component {
   setPatient = row =>
     this.setState({
       patient: row,
+      patientSelected: true,
     });
 
   setAddPatientClicked = value =>

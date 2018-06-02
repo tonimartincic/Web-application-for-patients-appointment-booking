@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, Button, Col, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import {changePassword} from "../../../../actionCreators/userData/userDataActionCreators";
-import * as styles from '../../users/administrators/add/addAdministrator.css';
+import * as styles from './changePassword.css';
 
 class ChangePassword extends React.Component {
   constructor(props) {

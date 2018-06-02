@@ -17,7 +17,7 @@ class MedicalSpecialists extends React.Component {
     super(props);
 
     this.state = {
-      medicalSpecialist: null,
+      medicalSpecialist: {},
       medicalSpecialistSelected: false,
 
       addMedicalSpecialistClicked: false,
@@ -33,7 +33,9 @@ class MedicalSpecialists extends React.Component {
 
   resetState = () =>
     this.setState({
-      medicalSpecialist: null,
+      medicalSpecialist: {},
+      medicalSpecialistSelected: false,
+
       addMedicalSpecialistClicked: false,
       editMedicalSpecialistClicked: false,
       deleteMedicalSpecialistClicked: false,
@@ -42,6 +44,7 @@ class MedicalSpecialists extends React.Component {
   setMedicalSpecialist = row =>
     this.setState({
       medicalSpecialist: row,
+      medicalSpecialistSelected: true,
     });
 
   setAddMedicalSpecialistClicked = value =>
