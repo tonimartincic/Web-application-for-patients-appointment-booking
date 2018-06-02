@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as types from '../../actions/actionTypes';
 import {history} from '../../ui/components/history/history';
+import * as constants from '../../constants/values';
 
 export default async function fetchUserData() {
   try {
@@ -24,7 +25,12 @@ export async function validateUser(user) {
     const response = await axios.post('/api/login', user);
     if (response.data !== '') {
       localStorage.setItem('user', JSON.stringify(response.data));
-      history.push('/administrators');
+
+      if(response.data.type === constants.ADMINISTRATOR) {
+        history.push('/administrators');
+      } else {
+        history.push('/referrals');
+      }
     }
 
     return {

@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <section className={styles.section}>
-          <PrivateRoute exact path='/'><Administrators/></PrivateRoute>
+          <PrivateRoute exact path='/'><Login/></PrivateRoute>
           <PrivateRoute exact path='/administrators'><Administrators/></PrivateRoute>
           <PrivateRoute exact path='/general-practitioners'><GeneralPractitioners/></PrivateRoute>
           <PrivateRoute exact path='/medical-specialists'><MedicalSpecialists/></PrivateRoute>
