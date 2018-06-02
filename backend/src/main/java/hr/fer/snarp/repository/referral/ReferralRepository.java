@@ -1,4 +1,4 @@
-package hr.fer.snarp.repository;
+package hr.fer.snarp.repository.referral;
 
 import hr.fer.snarp.domain.referral.Referral;
 import org.springframework.data.repository.CrudRepository;

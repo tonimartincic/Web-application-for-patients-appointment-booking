@@ -5,7 +5,7 @@ import hr.fer.snarp.domain.examanation.Examination;
 import hr.fer.snarp.domain.examanation.ExaminationRequest;
 import hr.fer.snarp.domain.examanation.ExaminationResponse;
 import hr.fer.snarp.enumeration.ExaminationStatus;
-import hr.fer.snarp.repository.ExaminationRepository;
+import hr.fer.snarp.repository.examination.ExaminationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

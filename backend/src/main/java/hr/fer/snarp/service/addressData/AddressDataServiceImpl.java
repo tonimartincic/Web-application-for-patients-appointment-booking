@@ -2,8 +2,7 @@ package hr.fer.snarp.service.addressData;
 
 import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.addressData.AddressData;
-import hr.fer.snarp.repository.AddressDataRepository;
-import hr.fer.snarp.service.addressData.AddressDataService;
+import hr.fer.snarp.repository.addressData.AddressDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

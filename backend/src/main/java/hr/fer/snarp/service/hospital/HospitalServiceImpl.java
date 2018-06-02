@@ -5,7 +5,7 @@ import hr.fer.snarp.domain.addressData.AddressData;
 import hr.fer.snarp.domain.hospital.Hospital;
 import hr.fer.snarp.domain.hospital.HospitalRequest;
 import hr.fer.snarp.domain.hospital.HospitalResponse;
-import hr.fer.snarp.repository.HospitalRepository;
+import hr.fer.snarp.repository.hospital.HospitalRepository;
 import hr.fer.snarp.service.addressData.AddressDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

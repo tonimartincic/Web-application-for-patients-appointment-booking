@@ -1,4 +1,4 @@
-package hr.fer.snarp.repository;
+package hr.fer.snarp.repository.department;
 
 import hr.fer.snarp.domain.department.Department;
 import org.springframework.data.repository.CrudRepository;

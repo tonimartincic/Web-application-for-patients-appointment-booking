@@ -5,8 +5,8 @@ import hr.fer.snarp.domain.department.Department;
 import hr.fer.snarp.domain.department.DepartmentRequest;
 import hr.fer.snarp.domain.department.DepartmentResponse;
 import hr.fer.snarp.enumeration.DepartmentType;
-import hr.fer.snarp.repository.DepartmentRepository;
-import hr.fer.snarp.repository.HospitalRepository;
+import hr.fer.snarp.repository.department.DepartmentRepository;
+import hr.fer.snarp.repository.hospital.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

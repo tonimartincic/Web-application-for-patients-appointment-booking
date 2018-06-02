@@ -1,4 +1,4 @@
-package hr.fer.snarp.repository;
+package hr.fer.snarp.repository.examination;
 
 import hr.fer.snarp.domain.examanation.Examination;
 import org.springframework.data.repository.CrudRepository;

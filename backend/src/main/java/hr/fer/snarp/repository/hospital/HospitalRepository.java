@@ -1,4 +1,4 @@
-package hr.fer.snarp.repository;
+package hr.fer.snarp.repository.hospital;
 
 import hr.fer.snarp.domain.hospital.Hospital;
 import org.springframework.data.repository.CrudRepository;

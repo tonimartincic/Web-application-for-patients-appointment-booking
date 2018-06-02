@@ -6,7 +6,7 @@ import hr.fer.snarp.domain.referral.ReferralRequest;
 import hr.fer.snarp.domain.referral.ReferralResponse;
 import hr.fer.snarp.enumeration.DepartmentType;
 import hr.fer.snarp.enumeration.ReferralType;
-import hr.fer.snarp.repository.ReferralRepository;
+import hr.fer.snarp.repository.referral.ReferralRepository;
 import hr.fer.snarp.repository.users.GeneralPractitionerRepository;
 import hr.fer.snarp.repository.users.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
