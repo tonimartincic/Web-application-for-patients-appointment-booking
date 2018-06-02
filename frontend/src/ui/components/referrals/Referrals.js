@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {Col, Grid, Row} from 'react-bootstrap';
+import {Button, Col, Grid, Row} from 'react-bootstrap';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import NavigationBar from '../navigationBar/NavigationBar';
 import ViewReferral from './view/ViewReferral';
@@ -22,6 +22,7 @@ class Referrals extends React.Component {
       referralSelected: false,
 
       addReferralClicked: false,
+      viewReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
 
@@ -34,6 +35,7 @@ class Referrals extends React.Component {
     this.setReferral = this.setReferral.bind(this);
 
     this.setAddReferralClicked = this.setAddReferralClicked.bind(this);
+    this.setViewReferralClicked = this.setViewReferralClicked.bind(this);
     this.setEditReferralClicked = this.setEditReferralClicked.bind(this);
     this.setDeleteReferralClicked = this.setDeleteReferralClicked.bind(this);
 
@@ -51,6 +53,7 @@ class Referrals extends React.Component {
       referralSelected: false,
 
       addReferralClicked: false,
+      viewReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
 
@@ -71,6 +74,11 @@ class Referrals extends React.Component {
       addReferralClicked: value,
       referral: {},
       referralSelected: false,
+    });
+
+  setViewReferralClicked = value =>
+    this.setState({
+      viewReferralClicked: value,
     });
 
   setEditReferralClicked = value =>
@@ -242,11 +250,13 @@ class Referrals extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          {/*<ViewReferral*/}
-            {/*referral={this.state.referral}*/}
-            {/*addReferralClicked={this.state.addReferralClicked}*/}
-            {/*setAddReferralClicked={value => this.setAddReferralClicked(value)}*/}
-          {/*/>*/}
+          <ViewReferral
+            referral={this.state.referral}
+            referralSelected={this.state.referralSelected}
+
+            viewReferralClicked={this.state.viewReferralClicked}
+            resetState={() => this.resetState()}
+          />
           <AddEditReferral
             referral={this.state.referral}
             referralSelected={this.state.referralSelected}
@@ -300,6 +310,12 @@ class Referrals extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
+              <Button
+                className={styles.button}
+                onClick={() => this.setViewReferralClicked(true)}
+              >
+                <span className='glyphicon glyphicon-eye-open'/> Pregled
+              </Button>
               <AddEditDeleteButtons
                 setAddClicked={value => this.setAddReferralClicked(value)}
                 setEditClicked={value => this.setEditReferralClicked(value)}

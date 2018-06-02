@@ -12,3 +12,8 @@
 .sectionInvalid {
   margin-top: 0.3em;
 }
+
+.alert {
+  text-align: center;
+  margin-bottom: 0;
+}

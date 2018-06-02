@@ -1,0 +1,11 @@
+.button {
+  margin: 0.2em;
+  width: 100%;
+  background-color: #50566d;
+  color: white;
+}
+
+.alert {
+  text-align: center;
+  margin-bottom: 0;
+}
