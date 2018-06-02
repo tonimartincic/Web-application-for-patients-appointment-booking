@@ -16,10 +16,12 @@ import fetchGeneralPractitioners from '../../actionCreators/users/generalPractit
 import fetchMedicalSpecialists from '../../actionCreators/users/medicalSpecialistsActionCreators';
 import fetchPatients from '../../actionCreators/users/patientsActionCreators';
 import fetchDepartments from '../../actionCreators/departments/departmentsActionCreators';
+import fetchExaminations from '../../actionCreators/examinations/examinationsActionCreators';
 import fetchHospitals from '../../actionCreators/hospitals/hospitalsActionCreators';
 import fetchReferrals from '../../actionCreators/referrals/referralsActionCreators';
 import fetchReferralTypes from '../../actionCreators/referrals/referralTypesActionCreators';
 import fetchDepartmentTypes from '../../actionCreators/departments/departmentTypesActionCreators';
+import fetchExaminationStatuses from '../../actionCreators/examinations/examinationStatusesActionCreators';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -30,10 +32,12 @@ class App extends React.Component {
       .then(() => this.props.fetchMedicalSpecialists())
       .then(() => this.props.fetchPatients())
       .then(() => this.props.fetchDepartments())
+      .then(() => this.props.fetchExaminations())
       .then(() => this.props.fetchHospitals())
       .then(() => this.props.fetchReferrals())
       .then(() => this.props.fetchReferralTypes())
-      .then(() => this.props.fetchDepartmentTypes());
+      .then(() => this.props.fetchDepartmentTypes())
+      .then(() => this.props.fetchExaminationStatuses());
   }
 
   render() {
@@ -66,10 +70,12 @@ function mapDispatchToProps(dispatch) {
     fetchMedicalSpecialists: () => dispatch(fetchMedicalSpecialists()),
     fetchPatients: () => dispatch(fetchPatients()),
     fetchDepartments: () => dispatch(fetchDepartments()),
+    fetchExaminations: () => dispatch(fetchExaminations()),
     fetchHospitals: () => dispatch(fetchHospitals()),
     fetchReferrals: () => dispatch(fetchReferrals()),
     fetchReferralTypes: () => dispatch(fetchReferralTypes()),
     fetchDepartmentTypes: () => dispatch(fetchDepartmentTypes()),
+    fetchExaminationStatuses: () => dispatch(fetchExaminationStatuses()),
   };
 }
 
