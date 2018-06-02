@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import styles from './navigationBar.css';
 import Settings from '../settings/Settings';
 import {history} from '../history/history';
+import * as constants from '../../../constants/values';
 
 class NavigationBar extends Component {
   render() {
@@ -74,15 +75,19 @@ class NavigationBar extends Component {
                 <span className='glyphicon glyphicon-header'/> Bolnice
               </span>
           </NavItem>
-          <NavItem
-            componentClass={Link}
-            to='/referrals'
-            href='/referrals'
-          >
-              <span className={styles.span}>
-                <span className='glyphicon glyphicon-folder-open'/> &nbsp;Uputnice
-              </span>
-          </NavItem>
+          <Choose>
+            <When condition={this.props.userData.type !== constants.ADMINISTRATOR}>
+              <NavItem
+                componentClass={Link}
+                to='/referrals'
+                href='/referrals'
+              >
+                  <span className={styles.span}>
+                    <span className='glyphicon glyphicon-folder-open'/> &nbsp;Uputnice
+                  </span>
+              </NavItem>
+            </When>
+          </Choose>
           <NavItem>
             <Settings/>
           </NavItem>
