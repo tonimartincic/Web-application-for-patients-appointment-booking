@@ -345,9 +345,7 @@ class Hospitals extends React.Component {
             hospitalSelected={this.state.hospitalSelected}
 
             addHospitalClicked={this.state.addHospitalClicked}
-            setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
             editHospitalClicked={this.state.editHospitalClicked}
-            setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
 
             resetState={() => this.resetState()}
 
@@ -375,7 +373,6 @@ class Hospitals extends React.Component {
             hospitalSelected={this.state.hospitalSelected}
 
             deleteHospitalClicked={this.state.deleteHospitalClicked}
-            setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}

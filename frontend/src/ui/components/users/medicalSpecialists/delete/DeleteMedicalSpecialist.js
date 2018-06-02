@@ -8,10 +8,7 @@ class DeleteMedicalSpecialist extends React.Component {
       <section>
         <Modal
           show={this.props.deleteMedicalSpecialistClicked}
-          onHide={() => {
-            this.props.setDeleteMedicalSpecialistClicked(false);
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.medicalSpecialistSelected}>
@@ -65,9 +62,7 @@ class DeleteMedicalSpecialist extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeleteMedicalSpecialistClicked(false);
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>

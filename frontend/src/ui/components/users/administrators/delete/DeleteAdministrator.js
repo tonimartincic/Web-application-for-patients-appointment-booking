@@ -8,10 +8,7 @@ class DeleteAdministrator extends React.Component {
       <section>
         <Modal
           show={this.props.deleteAdministratorClicked}
-          onHide={() => {
-            this.props.setDeleteAdministratorClicked(false);
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.administratorSelected}>
@@ -73,9 +70,7 @@ class DeleteAdministrator extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeleteAdministratorClicked(false);
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>

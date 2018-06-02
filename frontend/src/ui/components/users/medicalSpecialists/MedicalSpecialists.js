@@ -86,7 +86,7 @@ class MedicalSpecialists extends React.Component {
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.selectedMedicalSpecialist.firstName === null || this.state.selectedMedicalSpecialist.firstName.trim() === '') {
+    if (this.state.medicalSpecialist.firstName == null || this.state.medicalSpecialist.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
       });
@@ -94,7 +94,7 @@ class MedicalSpecialists extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedMedicalSpecialist.lastName === null || this.state.selectedMedicalSpecialist.lastName.trim() === '') {
+    if (this.state.medicalSpecialist.lastName == null || this.state.medicalSpecialist.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
       });
@@ -102,7 +102,7 @@ class MedicalSpecialists extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedMedicalSpecialist.phoneNumber === null || this.state.selectedMedicalSpecialist.phoneNumber.trim() === '') {
+    if (this.state.medicalSpecialist.phoneNumber == null || this.state.medicalSpecialist.phoneNumber.trim() === '') {
       this.setState({
         phoneNumberValidation: 'error',
       });
@@ -115,24 +115,18 @@ class MedicalSpecialists extends React.Component {
     }
 
     if (!errorExists) {
-      const medicalSpecialist =
-        {
-          id: this.state.selectedMedicalSpecialist.id,
-          firstName: this.state.selectedMedicalSpecialist.firstName,
-          lastName: this.state.selectedMedicalSpecialist.lastName,
-          mail: this.state.selectedMedicalSpecialist.mail,
-          phoneNumber: this.state.selectedMedicalSpecialist.phoneNumber,
-        };
-
-      this.props.editMedicalSpecialist(medicalSpecialist);
-      this.props.setEditMedicalSpecialistClicked(false);
+      if(this.state.addMedicalSpecialistClicked) {
+        this.props.addMedicalSpecialist(this.state.medicalSpecialist);
+      } else {
+        this.props.editMedicalSpecialist(this.state.medicalSpecialist);
+      }
 
       this.resetState();
     }
   }
 
   checkEmail() {
-    if (this.state.selectedMedicalSpecialist.mail === null || this.state.selectedMedicalSpecialist.mail.trim() === '') {
+    if (this.state.medicalSpecialist.mail == null || this.state.medicalSpecialist.mail.trim() === '') {
       this.setState({
         mailValidationEmptyString: 'error',
       });
@@ -152,11 +146,11 @@ class MedicalSpecialists extends React.Component {
     for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
       if (allEntitiesWithMail[i] !== null) {
         if (allEntitiesWithMail[i].type === constants.MEDICAL_SPECIALIST &&
-          allEntitiesWithMail[i].id === this.state.selectedMedicalSpecialist.id) {
+          allEntitiesWithMail[i].id === this.state.medicalSpecialist.id) {
           continue;
         }
 
-        if (allEntitiesWithMail[i].mail === this.state.selectedMedicalSpecialist.mail.trim()) {
+        if (allEntitiesWithMail[i].mail === this.state.medicalSpecialist.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -167,7 +161,7 @@ class MedicalSpecialists extends React.Component {
     }
 
     let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.selectedMedicalSpecialist.mail.trim())) {
+    if (!re.test(this.state.medicalSpecialist.mail.trim())) {
       this.setState({
         mailValidationNotCorrectFormat: 'error',
       });
@@ -178,51 +172,47 @@ class MedicalSpecialists extends React.Component {
     return true;
   }
 
-  handleChangeFirstName(e) {
+  handleChangeFirstName = event =>
     this.setState({
-      selectedMedicalSpecialist: {
-        ...this.state.selectedMedicalSpecialist,
-        firstName: e.target.value,
+      medicalSpecialist: {
+        ...this.state.medicalSpecialist,
+        firstName: event.target.value,
       },
 
       firstNameValidation: null,
     });
-  }
 
-  handleChangeLastName(e) {
+  handleChangeLastName = event =>
     this.setState({
-      selectedMedicalSpecialist: {
-        ...this.state.selectedMedicalSpecialist,
-        lastName: e.target.value,
+      medicalSpecialist: {
+        ...this.state.medicalSpecialist,
+        lastName: event.target.value,
       },
 
       lastNameValidation: null,
     });
-  }
 
-  handleChangePhoneNumber(e) {
+  handleChangePhoneNumber = event =>
     this.setState({
-      selectedMedicalSpecialist: {
-        ...this.state.selectedMedicalSpecialist,
-        phoneNumber: e.target.value,
+      medicalSpecialist: {
+        ...this.state.medicalSpecialist,
+        phoneNumber: event.target.value,
       },
 
       phoneNumberValidation: null,
     });
-  }
 
-  handleChangeMail(e) {
+  handleChangeMail = event =>
     this.setState({
-      selectedMedicalSpecialist: {
-        ...this.state.selectedMedicalSpecialist,
-        mail: e.target.value,
+      medicalSpecialist: {
+        ...this.state.medicalSpecialist,
+        mail: event.target.value,
       },
 
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
     });
-  }
 
   handleDelete = () => {
     this.props.deleteMedicalSpecialist(this.state.medicalSpecialist.id);
@@ -277,18 +267,28 @@ class MedicalSpecialists extends React.Component {
             medicalSpecialistSelected={this.state.medicalSpecialistSelected}
 
             addMedicalSpecialistClicked={this.state.addMedicalSpecialistClicked}
-            setAddMedicalSpecialistClicked={value => this.setAddMedicalSpecialistClicked(value)}
             editMedicalSpecialistClicked={this.state.editMedicalSpecialistClicked}
-            setEditMedicalSpecialistClicked={value => this.setEditMedicalSpecialistClicked(value)}
 
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeFirstName={event => this.handleChangeFirstName(event)}
+            handleChangeLastName={event => this.handleChangeLastName(event)}
+            handleChangeMail={event => this.handleChangeMail(event)}
+            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
+
+            firstNameValidation={this.state.firstNameValidation}
+            lastNameValidation={this.state.lastNameValidation}
+            phoneNumberValidation={this.state.phoneNumberValidation}
+            mailValidationEmptyString={this.state.mailValidationEmptyString}
+            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
+            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
           />
           <DeleteMedicalSpecialist
             medicalSpecialist={this.state.medicalSpecialist}
             medicalSpecialistSelected={this.state.medicalSpecialistSelected}
 
             deleteMedicalSpecialistClicked={this.state.deleteMedicalSpecialistClicked}
-            setDeleteMedicalSpecialistClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}

@@ -8,10 +8,7 @@ class DeleteGeneralPractitioner extends React.Component {
       <section>
         <Modal
           show={this.props.deleteGeneralPractitionerClicked}
-          onHide={() => {
-            this.props.setDeleteGeneralPractitionerClicked(false);
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.generalPractitionerSelected}>
@@ -99,9 +96,7 @@ class DeleteGeneralPractitioner extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeleteGeneralPractitionerClicked(false);
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>

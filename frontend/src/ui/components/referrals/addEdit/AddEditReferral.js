@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
+import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './addEditReferral.css';
 
 class AddEditReferral extends React.Component {
@@ -8,12 +8,7 @@ class AddEditReferral extends React.Component {
       <section>
         <Modal
           show={this.props.addReferralClicked || this.props.editReferralClicked}
-          onHide={() => {
-            this.props.setAddReferralClicked(false);
-            this.props.setEditReferralClicked(false);
-            this.props.resetState();
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.addReferralClicked || this.props.referralSelected}>
@@ -30,7 +25,8 @@ class AddEditReferral extends React.Component {
                       <FormControl
                         componentClass='select'
                         placeholder='Odaberi'
-                        onChange={this.handleChangeReferralType}
+                        onChange={this.props.handleChangeReferralType}
+                        value={this.props.referral.referralType}
                       >
                         <option value="select">Odaberi</option>
                         {
@@ -45,7 +41,7 @@ class AddEditReferral extends React.Component {
                       <Row>
                         <Col md={12}>
                           <section className={styles.sectionInvalid}>
-                            <Collapse in={this.state.referralTypeValidation === 'error'}>
+                            <Collapse in={this.props.referralTypeValidation === 'error'}>
                               <p className={styles.pInvalid}>Morate odabrati vrstu uputnice.</p>
                             </Collapse>
                           </section>
@@ -53,13 +49,14 @@ class AddEditReferral extends React.Component {
                       </Row>
                     </FormGroup>
                     <FormGroup
-                      validationState={this.state.departmentTypeValidation}
+                      validationState={this.props.departmentTypeValidation}
                     >
                       <ControlLabel>Odaberi odjel</ControlLabel>
                       <FormControl
                         componentClass='select'
                         placeholder='Odaberi'
-                        onChange={this.handleChangeDepartmentType}
+                        onChange={this.props.handleChangeDepartmentType}
+                        value={this.props.referral.departmentType}
                       >
                         <option value="select">Odaberi</option>
                         {
@@ -74,7 +71,7 @@ class AddEditReferral extends React.Component {
                       <Row>
                         <Col md={12}>
                           <section className={styles.sectionInvalid}>
-                            <Collapse in={this.state.departmentTypeValidation === 'error'}>
+                            <Collapse in={this.props.departmentTypeValidation === 'error'}>
                               <p className={styles.pInvalid}>Morate odabrati odjel.</p>
                             </Collapse>
                           </section>
@@ -82,13 +79,14 @@ class AddEditReferral extends React.Component {
                       </Row>
                     </FormGroup>
                     <FormGroup
-                      validationState={this.state.patientIdValidation}
+                      validationState={this.props.patientIdValidation}
                     >
                       <ControlLabel>Odaberi pacijenta</ControlLabel>
                       <FormControl
                         componentClass='select'
                         placeholder='Odaberi'
-                        onChange={this.handleChangePatientId}
+                        onChange={this.props.handleChangePatientId}
+                        value={this.props.referral.patientId}
                       >
                         <option value="select">Odaberi</option>
                         {
@@ -103,7 +101,7 @@ class AddEditReferral extends React.Component {
                       <Row>
                         <Col md={12}>
                           <section className={styles.sectionInvalid}>
-                            <Collapse in={this.state.patientIdValidation === 'error'}>
+                            <Collapse in={this.props.patientIdValidation === 'error'}>
                               <p className={styles.pInvalid}>Morate odabrati pacijenta.</p>
                             </Collapse>
                           </section>
@@ -111,18 +109,19 @@ class AddEditReferral extends React.Component {
                       </Row>
                     </FormGroup>
                     <FormGroup
-                      validationState={this.state.diagnosisValidation}
+                      validationState={this.props.diagnosisValidation}
                     >
                       <ControlLabel>Dijagnoza</ControlLabel>
                       <FormControl
                         type="text"
                         placeholder="Unesite dijagnozu"
-                        onChange={this.handleChangeDiagnosis}
+                        onChange={this.props.handleChangeDiagnosis}
+                        value={this.props.referral.diagnosis}
                       />
                       <Row>
                         <Col md={12}>
                           <section className={styles.sectionInvalid}>
-                            <Collapse in={this.state.diagnosisValidation === 'error'}>
+                            <Collapse in={this.props.diagnosisValidation === 'error'}>
                               <p className={styles.pInvalid}>Morate unijeti dijagnozu.</p>
                             </Collapse>
                           </section>
@@ -134,7 +133,8 @@ class AddEditReferral extends React.Component {
                       <FormControl
                         type="text"
                         placeholder="Unesite napomenu"
-                        onChange={this.handleChangeRemark}
+                        onChange={this.props.handleChangeRemark}
+                        value={this.props.referral.remark}
                       />
                     </FormGroup>
                   </Col>
@@ -145,7 +145,7 @@ class AddEditReferral extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleSubmit()}
+                      onClick={() => this.props.handleSubmit()}
                     >
                       <span className='glyphicon glyphicon-plus'/> Spremi
                     </Button>
@@ -153,10 +153,7 @@ class AddEditReferral extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setAddReferralClicked(false);
-                        this.resetState();
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>
@@ -164,6 +161,11 @@ class AddEditReferral extends React.Component {
                 </Row>
               </Modal.Footer>
             </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati uputnicu.</p>
+              </Alert>
+            </Otherwise>
           </Choose>
         </Modal>
       </section>

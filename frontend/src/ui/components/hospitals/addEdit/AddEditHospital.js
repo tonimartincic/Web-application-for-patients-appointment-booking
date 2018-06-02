@@ -8,12 +8,7 @@ class AddEditHospital extends React.Component {
       <section>
         <Modal
           show={this.props.addHospitalClicked || this.props.editHospitalClicked}
-          onHide={() => {
-            this.props.setAddHospitalClicked(false);
-            this.props.setEditHospitalClicked(false);
-            this.props.resetState();
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.addHospitalClicked || this.props.hospitalSelected}>
@@ -177,7 +172,6 @@ class AddEditHospital extends React.Component {
                     <Button
                       className={styles.button}
                       onClick={() => {
-                        this.props.setEditHospitalClicked(false);
                         this.props.resetState();
                       }}
                     >

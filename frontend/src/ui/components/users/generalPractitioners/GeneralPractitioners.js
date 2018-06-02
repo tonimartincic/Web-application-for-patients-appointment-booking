@@ -98,7 +98,7 @@ class GeneralPractitioners extends React.Component {
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.selectedGeneralPractitioner.firstName === null || this.state.selectedGeneralPractitioner.firstName.trim() === '') {
+    if (this.state.generalPractitioner.firstName == null || this.state.generalPractitioner.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
       });
@@ -106,7 +106,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.lastName === null || this.state.selectedGeneralPractitioner.lastName.trim() === '') {
+    if (this.state.generalPractitioner.lastName == null || this.state.generalPractitioner.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
       });
@@ -114,7 +114,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.phoneNumber === null || this.state.selectedGeneralPractitioner.phoneNumber.trim() === '') {
+    if (this.state.generalPractitioner.phoneNumber == null || this.state.generalPractitioner.phoneNumber.trim() === '') {
       this.setState({
         phoneNumberValidation: 'error',
       });
@@ -122,7 +122,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.city === null || this.state.selectedGeneralPractitioner.city.trim() === '') {
+    if (this.state.generalPractitioner.city == null || this.state.generalPractitioner.city.trim() === '') {
       this.setState({
         cityValidation: 'error',
       });
@@ -130,7 +130,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.postalCode === null || this.state.selectedGeneralPractitioner.postalCode.toString().trim() === '') {
+    if (this.state.generalPractitioner.postalCode == null || this.state.generalPractitioner.postalCode.toString().trim() === '') {
       this.setState({
         postalCodeValidation: 'error',
       });
@@ -138,7 +138,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.street === null || this.state.selectedGeneralPractitioner.street.trim() === '') {
+    if (this.state.generalPractitioner.street == null || this.state.generalPractitioner.street.trim() === '') {
       this.setState({
         streetValidation: 'error',
       });
@@ -146,7 +146,7 @@ class GeneralPractitioners extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedGeneralPractitioner.streetNumber === null || this.state.selectedGeneralPractitioner.streetNumber.toString().trim() === '') {
+    if (this.state.generalPractitioner.streetNumber == null || this.state.generalPractitioner.streetNumber.toString().trim() === '') {
       this.setState({
         streetNumberValidation: 'error',
       });
@@ -159,28 +159,18 @@ class GeneralPractitioners extends React.Component {
     }
 
     if (!errorExists) {
-      const generalPractitioner =
-        {
-          id: this.state.selectedGeneralPractitioner.id,
-          firstName: this.state.selectedGeneralPractitioner.firstName,
-          lastName: this.state.selectedGeneralPractitioner.lastName,
-          mail: this.state.selectedGeneralPractitioner.mail,
-          phoneNumber: this.state.selectedGeneralPractitioner.phoneNumber,
-          city: this.state.selectedGeneralPractitioner.city,
-          postalCode: this.state.selectedGeneralPractitioner.postalCode,
-          street: this.state.selectedGeneralPractitioner.street,
-          streetNumber: this.state.selectedGeneralPractitioner.streetNumber,
-        };
-
-      this.props.editGeneralPractitioner(generalPractitioner);
-      this.props.setEditGeneralPractitionerClicked(false);
+      if(this.state.addGeneralPractitionerClicked) {
+        this.props.addGeneralPractitioner(this.state.generalPractitioner);
+      } else {
+        this.props.editGeneralPractitioner(this.state.generalPractitioner);
+      }
 
       this.resetState();
     }
   }
 
   checkEmail() {
-    if (this.state.selectedGeneralPractitioner.mail === null || this.state.selectedGeneralPractitioner.mail.trim() === '') {
+    if (this.state.generalPractitioner.mail == null || this.state.generalPractitioner.mail.trim() === '') {
       this.setState({
         mailValidationEmptyString: 'error',
       });
@@ -200,11 +190,11 @@ class GeneralPractitioners extends React.Component {
     for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
       if (allEntitiesWithMail[i] !== null) {
         if (allEntitiesWithMail[i].type === constants.GENERAL_PRACTITIONER &&
-          allEntitiesWithMail[i].id === this.state.selectedGeneralPractitioner.id) {
+          allEntitiesWithMail[i].id === this.state.generalPractitioner.id) {
           continue;
         }
 
-        if (allEntitiesWithMail[i].mail === this.state.selectedGeneralPractitioner.mail.trim()) {
+        if (allEntitiesWithMail[i].mail === this.state.generalPractitioner.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -215,7 +205,7 @@ class GeneralPractitioners extends React.Component {
     }
 
     let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.selectedGeneralPractitioner.mail.trim())) {
+    if (!re.test(this.state.generalPractitioner.mail.trim())) {
       this.setState({
         mailValidationNotCorrectFormat: 'error',
       });
@@ -226,95 +216,87 @@ class GeneralPractitioners extends React.Component {
     return true;
   }
 
-  handleChangeFirstName(e) {
+  handleChangeFirstName = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        firstName: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        firstName: event.target.value,
       },
 
       firstNameValidation: null,
     });
-  }
 
-  handleChangeLastName(e) {
+  handleChangeLastName = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        lastName: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        lastName: event.target.value,
       },
 
       lastNameValidation: null,
     });
-  }
 
-  handleChangePhoneNumber(e) {
+  handleChangePhoneNumber = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        phoneNumber: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        phoneNumber: event.target.value,
       },
 
       phoneNumberValidation: null,
     });
-  }
 
-  handleChangeMail(e) {
+  handleChangeMail = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        mail: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        mail: event.target.value,
       },
 
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
     });
-  }
 
-  handleChangeCity(e) {
+  handleChangeCity = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        city: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        city: event.target.value,
       },
 
       cityValidation: null,
     });
-  }
 
-  handleChangePostalCode(e) {
+  handleChangePostalCode = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        postalCode: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        postalCode: event.target.value,
       },
 
       postalCodeValidation: null,
     });
-  }
 
-  handleChangeStreet(e) {
+  handleChangeStreet = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        street: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        street: event.target.value,
       },
 
       streetValidation: null,
     });
-  }
 
-  handleChangeStreetNumber(e) {
+  handleChangeStreetNumber = event =>
     this.setState({
-      selectedGeneralPractitioner: {
-        ...this.state.selectedGeneralPractitioner,
-        streetNumber: e.target.value,
+      generalPractitioner: {
+        ...this.state.generalPractitioner,
+        streetNumber: event.target.value,
       },
 
       streetNumberValidation: null,
     });
-  }
 
   handleDelete = () => {
     this.props.deleteGeneralPractitioner(this.state.generalPractitioner.id);
@@ -388,18 +370,36 @@ class GeneralPractitioners extends React.Component {
             generalPractitionerSelected={this.state.generalPractitionerSelected}
 
             addGeneralPractitionerClicked={this.state.addGeneralPractitionerClicked}
-            setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
             editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
-            setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
 
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeFirstName={event => this.handleChangeFirstName(event)}
+            handleChangeLastName={event => this.handleChangeLastName(event)}
+            handleChangeMail={event => this.handleChangeMail(event)}
+            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
+            handleChangeCity={event => this.handleChangeCity(event)}
+            handleChangePostalCode={event => this.handleChangePostalCode(event)}
+            handleChangeStreet={event => this.handleChangeStreet(event)}
+            handleChangeStreetNumber={event => this.handleChangeStreetNumber(event)}
+
+            firstNameValidation={this.state.firstNameValidation}
+            lastNameValidation={this.state.lastNameValidation}
+            phoneNumberValidation={this.state.phoneNumberValidation}
+            mailValidationEmptyString={this.state.mailValidationEmptyString}
+            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
+            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
+            cityValidation={this.state.cityValidation}
+            postalCodeValidation={this.state.postalCodeValidation}
+            streetValidation={this.state.streetValidation}
+            streetNumberValidation={this.state.streetNumberValidation}
           />
           <DeleteGeneralPractitioner
             generalPractitioner={this.state.generalPractitioner}
             generalPractitionerSelected={this.state.generalPractitionerSelected}
 
             deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
-            setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}

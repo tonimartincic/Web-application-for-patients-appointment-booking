@@ -25,13 +25,14 @@ class Administrators extends React.Component {
       editAdministratorClicked: false,
       deleteAdministratorClicked: false,
 
-      cannotDeleteYourselfValidation: false,
       firstNameValidation: null,
       lastNameValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
+
+      cannotDeleteYourselfValidation: false,
     };
 
     this.setAdministrator = this.setAdministrator.bind(this);
@@ -55,13 +56,14 @@ class Administrators extends React.Component {
       editAdministratorClicked: false,
       deleteAdministratorClicked: false,
 
-      cannotDeleteYourselfValidation: false,
       firstNameValidation: null,
       lastNameValidation: null,
       phoneNumberValidation: null,
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
+
+      cannotDeleteYourselfValidation: false,
     });
 
   setAdministrator = row =>
@@ -88,7 +90,7 @@ class Administrators extends React.Component {
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.selectedAdministrator.firstName === null || this.state.selectedAdministrator.firstName.trim() === '') {
+    if (this.state.administrator.firstName == null || this.state.administrator.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
       });
@@ -96,7 +98,7 @@ class Administrators extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedAdministrator.lastName === null || this.state.selectedAdministrator.lastName.trim() === '') {
+    if (this.state.administrator.lastName == null || this.state.administrator.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
       });
@@ -104,7 +106,7 @@ class Administrators extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedAdministrator.phoneNumber === null || this.state.selectedAdministrator.phoneNumber.trim() === '') {
+    if (this.state.administrator.phoneNumber == null || this.state.administrator.phoneNumber.trim() === '') {
       this.setState({
         phoneNumberValidation: 'error',
       });
@@ -117,24 +119,18 @@ class Administrators extends React.Component {
     }
 
     if (!errorExists) {
-      const administrator =
-        {
-          id: this.state.selectedAdministrator.id,
-          firstName: this.state.selectedAdministrator.firstName,
-          lastName: this.state.selectedAdministrator.lastName,
-          mail: this.state.selectedAdministrator.mail,
-          phoneNumber: this.state.selectedAdministrator.phoneNumber,
-        };
-
-      this.props.editAdministrator(administrator);
-      this.props.setEditAdministratorClicked(false);
+      if(this.state.addAdministratorClicked) {
+        this.props.addAdministrator(this.state.administrator);
+      } else {
+        this.props.editAdministrator(this.state.administrator);
+      }
 
       this.resetState();
     }
   }
 
   checkEmail() {
-    if (this.state.selectedAdministrator.mail === null || this.state.selectedAdministrator.mail.trim() === '') {
+    if (this.state.administrator.mail == null || this.state.administrator.mail.trim() === '') {
       this.setState({
         mailValidationEmptyString: 'error',
       });
@@ -154,11 +150,11 @@ class Administrators extends React.Component {
     for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
       if (allEntitiesWithMail[i] !== null) {
         if (allEntitiesWithMail[i].type === constants.ADMINISTRATOR &&
-          allEntitiesWithMail[i].id === this.state.selectedAdministrator.id) {
+          allEntitiesWithMail[i].id === this.state.administrator.id) {
           continue;
         }
 
-        if (allEntitiesWithMail[i].mail === this.state.selectedAdministrator.mail.trim()) {
+        if (allEntitiesWithMail[i].mail === this.state.administrator.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -169,7 +165,7 @@ class Administrators extends React.Component {
     }
 
     let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.selectedAdministrator.mail.trim())) {
+    if (!re.test(this.state.administrator.mail.trim())) {
       this.setState({
         mailValidationNotCorrectFormat: 'error',
       });
@@ -180,51 +176,47 @@ class Administrators extends React.Component {
     return true;
   }
 
-  handleChangeFirstName(e) {
+  handleChangeFirstName = event =>
     this.setState({
-      selectedAdministrator: {
-        ...this.state.selectedAdministrator,
-        firstName: e.target.value,
+      administrator: {
+        ...this.state.administrator,
+        firstName: event.target.value,
       },
 
       firstNameValidation: null,
     });
-  }
 
-  handleChangeLastName(e) {
+  handleChangeLastName = event =>
     this.setState({
-      selectedAdministrator: {
-        ...this.state.selectedAdministrator,
-        lastName: e.target.value,
+      administrator: {
+        ...this.state.administrator,
+        lastName: event.target.value,
       },
 
       lastNameValidation: null,
     });
-  }
 
-  handleChangePhoneNumber(e) {
+  handleChangePhoneNumber = event =>
     this.setState({
-      selectedAdministrator: {
-        ...this.state.selectedAdministrator,
-        phoneNumber: e.target.value,
+      administrator: {
+        ...this.state.administrator,
+        phoneNumber: event.target.value,
       },
 
       phoneNumberValidation: null,
     });
-  }
 
-  handleChangeMail(e) {
+  handleChangeMail = event =>
     this.setState({
-      selectedAdministrator: {
-        ...this.state.selectedAdministrator,
-        mail: e.target.value,
+      administrator: {
+        ...this.state.administrator,
+        mail: event.target.value,
       },
 
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
     });
-  }
 
   handleDelete = () => {
     if (this.state.administrator.id === this.props.userData.id) {
@@ -292,21 +284,33 @@ class Administrators extends React.Component {
             administratorSelected={this.state.administratorSelected}
 
             addAdministratorClicked={this.state.addAdministratorClicked}
-            setAddAdministratorClicked={value => this.setAddAdministratorClicked(value)}
             editAdministratorClicked={this.state.editAdministratorClicked}
-            setEditAdministratorClicked={value => this.setEditAdministratorClicked(value)}
 
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeFirstName={event => this.handleChangeFirstName(event)}
+            handleChangeLastName={event => this.handleChangeLastName(event)}
+            handleChangeMail={event => this.handleChangeMail(event)}
+            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
+
+            firstNameValidation={this.state.firstNameValidation}
+            lastNameValidation={this.state.lastNameValidation}
+            phoneNumberValidation={this.state.phoneNumberValidation}
+            mailValidationEmptyString={this.state.mailValidationEmptyString}
+            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
+            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
           />
           <DeleteAdministrator
             administrator={this.state.administrator}
             administratorSelected={this.state.administratorSelected}
 
             deleteAdministratorClicked={this.state.deleteAdministratorClicked}
-            setDeleteAdministratorClicked={value => this.setDeleteAdministratorClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}
+
+            cannotDeleteYourselfValidation={this.state.cannotDeleteYourselfValidation}
           />
           <Row>
             <Col md={12}>

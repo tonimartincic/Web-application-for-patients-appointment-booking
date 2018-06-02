@@ -8,10 +8,7 @@ class DeleteReferral extends React.Component {
       <section>
         <Modal
           show={this.props.deleteReferralClicked}
-          onHide={() => {
-            this.props.setDeleteReferralClicked(false);
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
           <Choose>
             <When condition={this.props.referralSelected}>
@@ -69,9 +66,7 @@ class DeleteReferral extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeleteReferralClicked(false);
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>

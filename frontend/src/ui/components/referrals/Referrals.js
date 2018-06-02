@@ -53,6 +53,11 @@ class Referrals extends React.Component {
       addReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
+
+      referralTypeValidation: null,
+      departmentTypeValidation: null,
+      patientIdValidation: null,
+      diagnosisValidation: null,
     });
 
   setReferral = row =>
@@ -134,22 +139,6 @@ class Referrals extends React.Component {
       this.resetState();
     }
   }
-
-  resetState = () => {
-    this.setState({
-      referral: {},
-      referralSelected: false,
-
-      addReferralClicked: false,
-      editReferralClicked: false,
-      deleteReferralClicked: false,
-
-      referralTypeValidation: null,
-      departmentTypeValidation: null,
-      patientIdValidation: null,
-      diagnosisValidation: null,
-    });
-  };
 
   handleChangeReferralType = event =>
     this.setState({
@@ -261,18 +250,30 @@ class Referrals extends React.Component {
             referralSelected={this.state.referralSelected}
 
             addReferralClicked={this.state.addReferralClicked}
-            setAddReferralClicked={value => this.setAddReferralClicked(value)}
             editReferralClicked={this.state.editReferralClicked}
-            setEditReferralClicked={value => this.setEditReferralClicked(value)}
 
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeReferralType={event => this.handleChangeReferralType(event)}
+            handleChangeDepartmentType={event => this.handleChangeDepartmentType(event)}
+            handleChangePatientId={event => this.handleChangePatientId(event)}
+            handleChangeDiagnosis={event => this.handleChangeDiagnosis(event)}
+            handleChangeRemark={event => this.handleChangeRemark(event)}
+
+            referralTypeValidation={this.state.referralTypeValidation}
+            departmentTypeValidation={this.state.departmentTypeValidation}
+            patientIdValidation={this.state.patientIdValidation}
+            diagnosisValidation={this.state.diagnosisValidation}
+
+            departmentTypes={this.props.departmentTypes}
+            referralTypes={this.props.referralTypes}
           />
           <DeleteReferral
             referral={this.state.referral}
             referralSelected={this.state.referralSelected}
 
             deleteReferralClicked={this.state.deleteReferralClicked}
-            setDeleteReferralClicked={value => this.setDeleteReferralClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}

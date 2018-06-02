@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
+import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './addEditAdministrator.css'
 
 class AddEditAdministrator extends React.Component {
@@ -7,125 +7,127 @@ class AddEditAdministrator extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.editAdministratorClicked}
-          onHide={() => {
-            this.props.setEditAdministratorClicked(false);
-            this.resetState();
-          }
-          }
+          show={this.props.addAdministratorClicked || this.props.editAdministratorClicked}
+          onHide={() => this.props.resetState()}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>{this.props.addAdministratorClicked ? 'Dodaj administratora' : 'Uredi administratora'}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FormGroup
-              controlId="formBasicText"
-              validationState={this.state.firstNameValidation}
-            >
-              <ControlLabel>Ime</ControlLabel>
-              <FormControl
-                type="text"
-                placeholder="Unesite ime"
-                onChange={this.handleChangeFirstName}
-                value={this.state.selectedAdministrator.firstName}
-              />
-              <Row>
-                <Col md={4}>
-                  <section className={styles.sectionInvalid}>
-                    <Collapse in={this.state.firstNameValidation === 'error'}>
-                      <p className={styles.pInvalid}>Morate unijeti ime.</p>
-                    </Collapse>
-                  </section>
-                </Col>
-              </Row>
-            </FormGroup>
-            <FormGroup
-              validationState={this.state.lastNameValidation}>
-              <ControlLabel>Prezime</ControlLabel>
-              <FormControl
-                type="text"
-                placeholder="Unesite prezime"
-                onChange={this.handleChangeLastName}
-                value={this.state.selectedAdministrator.lastName}
-              />
-              <Row>
-                <Col md={4}>
-                  <section className={styles.sectionInvalid}>
-                    <Collapse in={this.state.lastNameValidation === 'error'}>
-                      <p className={styles.pInvalid}>Morate unijeti prezime.</p>
-                    </Collapse>
-                  </section>
-                </Col>
-              </Row>
-            </FormGroup>
-            <FormGroup
-              validationState={this.state.mailValidationAlreadyExists || this.state.mailValidationNotCorrectFormat || this.state.mailValidationEmptyString}>
-              <ControlLabel>Mail</ControlLabel>
-              <FormControl
-                type="text"
-                placeholder="Unesite mail"
-                onChange={this.handleChangeMail}
-                value={this.state.selectedAdministrator.mail}
-              />
-              <Row>
-                <Col md={7}>
-                  <section className={styles.sectionInvalid}>
-                    <Collapse in={this.state.mailValidationEmptyString === 'error'}>
-                      <p className={styles.pInvalid}>Morate unijeti mail adresu.</p>
-                    </Collapse>
-                    <Collapse in={this.state.mailValidationNotCorrectFormat === 'error'}>
-                      <p className={styles.pInvalid}>Format unesene mail adrese nije ispravan.</p>
-                    </Collapse>
-                    <Collapse in={this.state.mailValidationAlreadyExists === 'error'}>
-                      <p className={styles.pInvalid}>Unesena mail adresa već postoji.</p>
-                    </Collapse>
-                  </section>
-                </Col>
-              </Row>
-            </FormGroup>
-            <FormGroup
-              validationState={this.state.phoneNumberValidation}>
-              <ControlLabel>Broj mobitela</ControlLabel>
-              <FormControl
-                type="text"
-                placeholder="Unesite broj mobitela"
-                onChange={this.handleChangePhoneNumber}
-                value={this.state.selectedAdministrator.phoneNumber}
-              />
-              <Row>
-                <Col md={6}>
-                  <section className={styles.sectionInvalid}>
-                    <Collapse in={this.state.phoneNumberValidation === 'error'}>
-                      <p className={styles.pInvalid}>Morate unijeti broj mobitela.</p>
-                    </Collapse>
-                  </section>
-                </Col>
-              </Row>
-            </FormGroup>
-          </Modal.Body>
-          <Modal.Footer>
-            <Row>
-              <Col mdOffset={1} md={4}>
-                <Button
-                  className={styles.button}
-                  onClick={() => this.handleSubmit()}
+          <Choose>
+            <When condition={this.props.addAdministratorClicked || this.props.administratorSelected}>
+              <Modal.Header closeButton>
+                <Modal.Title>{this.props.addAdministratorClicked ? 'Dodaj administratora' : 'Uredi administratora'}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup
+                  controlId="formBasicText"
+                  validationState={this.props.firstNameValidation}
                 >
-                  <span className='glyphicon glyphicon-floppy-save'/> Spremi
-                </Button>
-              </Col>
-              <Col mdOffset={2} md={4}>
-                <Button
-                  className={styles.button}
-                  onClick={() => {
-                    this.props.setEditAdministratorClicked(false);
-                    this.resetState();
-                  }}
-                >
-                  <span className='glyphicon glyphicon-share-alt'/> Odustani
-                </Button>
-              </Col>
-            </Row>
-          </Modal.Footer>
+                  <ControlLabel>Ime</ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Unesite ime"
+                    onChange={this.props.handleChangeFirstName}
+                    value={this.props.administrator.firstName}
+                  />
+                  <Row>
+                    <Col md={4}>
+                      <section className={styles.sectionInvalid}>
+                        <Collapse in={this.props.firstNameValidation === 'error'}>
+                          <p className={styles.pInvalid}>Morate unijeti ime.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup
+                  validationState={this.props.lastNameValidation}>
+                  <ControlLabel>Prezime</ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Unesite prezime"
+                    onChange={this.props.handleChangeLastName}
+                    value={this.props.administrator.lastName}
+                  />
+                  <Row>
+                    <Col md={4}>
+                      <section className={styles.sectionInvalid}>
+                        <Collapse in={this.props.lastNameValidation === 'error'}>
+                          <p className={styles.pInvalid}>Morate unijeti prezime.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup
+                  validationState={this.props.mailValidationAlreadyExists || this.props.mailValidationNotCorrectFormat || this.props.mailValidationEmptyString}>
+                  <ControlLabel>Mail</ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Unesite mail"
+                    onChange={this.props.handleChangeMail}
+                    value={this.props.administrator.mail}
+                  />
+                  <Row>
+                    <Col md={7}>
+                      <section className={styles.sectionInvalid}>
+                        <Collapse in={this.props.mailValidationEmptyString === 'error'}>
+                          <p className={styles.pInvalid}>Morate unijeti mail adresu.</p>
+                        </Collapse>
+                        <Collapse in={this.props.mailValidationNotCorrectFormat === 'error'}>
+                          <p className={styles.pInvalid}>Format unesene mail adrese nije ispravan.</p>
+                        </Collapse>
+                        <Collapse in={this.props.mailValidationAlreadyExists === 'error'}>
+                          <p className={styles.pInvalid}>Unesena mail adresa već postoji.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup
+                  validationState={this.props.phoneNumberValidation}>
+                  <ControlLabel>Broj mobitela</ControlLabel>
+                  <FormControl
+                    type="text"
+                    placeholder="Unesite broj mobitela"
+                    onChange={this.props.handleChangePhoneNumber}
+                    value={this.props.administrator.phoneNumber}
+                  />
+                  <Row>
+                    <Col md={6}>
+                      <section className={styles.sectionInvalid}>
+                        <Collapse in={this.props.phoneNumberValidation === 'error'}>
+                          <p className={styles.pInvalid}>Morate unijeti broj mobitela.</p>
+                        </Collapse>
+                      </section>
+                    </Col>
+                  </Row>
+                </FormGroup>
+              </Modal.Body>
+              <Modal.Footer>
+                <Row>
+                  <Col mdOffset={1} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.props.handleSubmit()}
+                    >
+                      <span className='glyphicon glyphicon-floppy-save'/> Spremi
+                    </Button>
+                  </Col>
+                  <Col mdOffset={2} md={4}>
+                    <Button
+                      className={styles.button}
+                      onClick={() => this.props.resetState()}
+                    >
+                      <span className='glyphicon glyphicon-share-alt'/> Odustani
+                    </Button>
+                  </Col>
+                </Row>
+              </Modal.Footer>
+            </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati Administratora.</p>
+              </Alert>
+            </Otherwise>
+          </Choose>
         </Modal>
       </section>
     );

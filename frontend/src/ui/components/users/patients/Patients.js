@@ -109,7 +109,7 @@ class Patients extends React.Component {
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.selectedPatient.firstName === null || this.state.selectedPatient.firstName.trim() === '') {
+    if (this.state.patient.firstName == null || this.state.patient.firstName.trim() === '') {
       this.setState({
         firstNameValidation: 'error',
       });
@@ -117,7 +117,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.lastName === null || this.state.selectedPatient.lastName.trim() === '') {
+    if (this.state.patient.lastName == null || this.state.patient.lastName.trim() === '') {
       this.setState({
         lastNameValidation: 'error',
       });
@@ -125,8 +125,8 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.sex === null || this.state.selectedPatient.sex === '' ||
-      this.state.selectedPatient.sex === 'select' || this.state.selectedPatient.sex === 'Odaberi') {
+    if (this.state.patient.sex == null || this.state.patient.sex === '' ||
+      this.state.patient.sex === 'select' || this.state.patient.sex === 'Odaberi') {
       this.setState({
         sexValidation: 'error',
       });
@@ -134,7 +134,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.oib === null || this.state.selectedPatient.oib.trim() === '') {
+    if (this.state.patient.oib == null || this.state.patient.oib.trim() === '') {
       this.setState({
         oibValidation: 'error',
       });
@@ -142,7 +142,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.dateOfBirth === null || this.state.selectedPatient.dateOfBirth.trim() === '') {
+    if (this.state.patient.dateOfBirth == null || this.state.patient.dateOfBirth.trim() === '') {
       this.setState({
         dateOfBirthValidation: 'error',
       });
@@ -150,7 +150,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.phoneNumber === null || this.state.selectedPatient.phoneNumber.trim() === '') {
+    if (this.state.patient.phoneNumber == null || this.state.patient.phoneNumber.trim() === '') {
       this.setState({
         phoneNumberValidation: 'error',
       });
@@ -158,7 +158,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.city === null || this.state.selectedPatient.city.trim() === '') {
+    if (this.state.patient.city == null || this.state.patient.city.trim() === '') {
       this.setState({
         cityValidation: 'error',
       });
@@ -166,7 +166,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.postalCode === null || this.state.selectedPatient.postalCode.toString().trim() === '') {
+    if (this.state.patient.postalCode == null || this.state.patient.postalCode.toString().trim() === '') {
       this.setState({
         postalCodeValidation: 'error',
       });
@@ -174,7 +174,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.street === null || this.state.selectedPatient.street.trim() === '') {
+    if (this.state.patient.street == null || this.state.patient.street.trim() === '') {
       this.setState({
         streetValidation: 'error',
       });
@@ -182,7 +182,7 @@ class Patients extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.selectedPatient.streetNumber === null || this.state.selectedPatient.streetNumber.toString().trim() === '') {
+    if (this.state.patient.streetNumber == null || this.state.patient.streetNumber.toString().trim() === '') {
       this.setState({
         streetNumberValidation: 'error',
       });
@@ -197,29 +197,32 @@ class Patients extends React.Component {
     if (!errorExists) {
       const patient =
         {
-          id: this.state.selectedPatient.id,
-          firstName: this.state.selectedPatient.firstName,
-          lastName: this.state.selectedPatient.lastName,
-          sex: this.state.selectedPatient.sex,
-          oib: this.state.selectedPatient.oib,
-          dateOfBirth: dateUtil.constructDateFromDatePickerForBackend(this.state.selectedPatient.dateOfBirth),
-          mail: this.state.selectedPatient.mail,
-          phoneNumber: this.state.selectedPatient.phoneNumber,
-          city: this.state.selectedPatient.city,
-          postalCode: this.state.selectedPatient.postalCode,
-          street: this.state.selectedPatient.street,
-          streetNumber: this.state.selectedPatient.streetNumber,
+          id: this.state.patient.id,
+          firstName: this.state.patient.firstName,
+          lastName: this.state.patient.lastName,
+          sex: this.state.patient.sex,
+          oib: this.state.patient.oib,
+          dateOfBirth: dateUtil.constructDateFromDatePickerForBackend(this.state.patient.dateOfBirth),
+          mail: this.state.patient.mail,
+          phoneNumber: this.state.patient.phoneNumber,
+          city: this.state.patient.city,
+          postalCode: this.state.patient.postalCode,
+          street: this.state.patient.street,
+          streetNumber: this.state.patient.streetNumber,
         };
 
-      this.props.editPatient(patient);
-      this.props.setEditPatientClicked(false);
+      if(this.state.addPatientClicked) {
+        this.props.addPatient(patient);
+      } else {
+        this.props.addPatient(patient);
+      }
 
       this.resetState();
     }
   }
 
   checkEmail() {
-    if (this.state.selectedPatient.mail === null || this.state.selectedPatient.mail.trim() === '') {
+    if (this.state.patient.mail == null || this.state.patient.mail.trim() === '') {
       this.setState({
         mailValidationEmptyString: 'error',
       });
@@ -239,11 +242,11 @@ class Patients extends React.Component {
     for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
       if (allEntitiesWithMail[i] !== null) {
         if (allEntitiesWithMail[i].type === constants.PATIENT &&
-          allEntitiesWithMail[i].id === this.state.selectedPatient.id) {
+          allEntitiesWithMail[i].id === this.state.patient.id) {
           continue;
         }
 
-        if (allEntitiesWithMail[i].mail === this.state.selectedPatient.mail.trim()) {
+        if (allEntitiesWithMail[i].mail === this.state.patient.mail.trim()) {
           this.setState({
             mailValidationAlreadyExists: 'error',
           });
@@ -254,7 +257,7 @@ class Patients extends React.Component {
     }
 
     let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.selectedPatient.mail.trim())) {
+    if (!re.test(this.state.patient.mail.trim())) {
       this.setState({
         mailValidationNotCorrectFormat: 'error',
       });
@@ -265,128 +268,117 @@ class Patients extends React.Component {
     return true;
   }
 
-  handleChangeFirstName(e) {
+  handleChangeFirstName = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        firstName: e.target.value,
+      patient: {
+        ...this.state.patient,
+        firstName: event.target.value,
       },
 
       firstNameValidation: null,
     });
-  }
 
-  handleChangeLastName(e) {
+  handleChangeLastName = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        lastName: e.target.value,
+      patient: {
+        ...this.state.patient,
+        lastName: event.target.value,
       },
 
       lastNameValidation: null,
     });
-  }
 
-  handleChangeSex(e) {
+  handleChangeSex = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        sex: e.target.value,
+      patient: {
+        ...this.state.patient,
+        sex: event.target.value,
       },
 
       sexValidation: null,
     });
-  }
 
-  handleChangeOIB(e) {
+  handleChangeOIB = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        oib: e.target.value,
+      patient: {
+        ...this.state.patient,
+        oib: event.target.value,
       },
 
       oibValidation: null,
     });
-  }
 
-  handleChangeDateOfBirth(value) {
+  handleChangeDateOfBirth = value =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
+      patient: {
+        ...this.state.patient,
         dateOfBirth: value,
       },
 
       dateOfBirthValidation: null,
     });
-  }
 
-  handleChangePhoneNumber(e) {
+  handleChangePhoneNumber = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        phoneNumber: e.target.value,
+      patient: {
+        ...this.state.patient,
+        phoneNumber: event.target.value,
       },
 
       phoneNumberValidation: null,
     });
-  }
 
-  handleChangeMail(e) {
+  handleChangeMail = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        mail: e.target.value,
+      patient: {
+        ...this.state.patient,
+        mail: event.target.value,
       },
 
       mailValidationEmptyString: null,
       mailValidationAlreadyExists: null,
       mailValidationNotCorrectFormat: null,
     });
-  }
 
-  handleChangeCity(e) {
+  handleChangeCity = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        city: e.target.value,
+      patient: {
+        ...this.state.patient,
+        city: event.target.value,
       },
 
       cityValidation: null,
     });
-  }
 
-  handleChangePostalCode(e) {
+  handleChangePostalCode = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        postalCode: e.target.value,
+      patient: {
+        ...this.state.patient,
+        postalCode: event.target.value,
       },
 
       postalCodeValidation: null,
     });
-  }
 
-  handleChangeStreet(e) {
+  handleChangeStreet = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        street: e.target.value,
+      patient: {
+        ...this.state.patient,
+        street: event.target.value,
       },
 
       streetValidation: null,
     });
-  }
 
-  handleChangeStreetNumber(e) {
+  handleChangeStreetNumber = event =>
     this.setState({
-      selectedPatient: {
-        ...this.state.selectedPatient,
-        streetNumber: e.target.value,
+      patient: {
+        ...this.state.patient,
+        streetNumber: event.target.value,
       },
 
       streetNumberValidation: null,
     });
-  }
 
   handleDelete = () => {
     this.props.deletePatient(this.state.patient.id);
@@ -476,18 +468,42 @@ class Patients extends React.Component {
             patientSelected={this.state.patientSelected}
 
             addPatientClicked={this.state.addPatientClicked}
-            setAddPatientClicked={value => this.setAddPatientClicked(value)}
             editPatientClicked={this.state.editPatientClicked}
-            setEditPatientClicked={value => this.setEditPatientClicked(value)}
 
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeFirstName={event => this.handleChangeFirstName(event)}
+            handleChangeLastName={event => this.handleChangeLastName(event)}
+            handleChangeSex={event => this.handleChangeSex(event)}
+            handleChangeOIB={event => this.handleChangeOIB(event)}
+            handleChangeDateOfBirth={event => this.handleChangeDateOfBirth(event)}
+            handleChangeMail={event => this.handleChangeMail(event)}
+            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
+            handleChangeCity={event => this.handleChangeCity(event)}
+            handleChangePostalCode={event => this.handleChangePostalCode(event)}
+            handleChangeStreet={event => this.handleChangeStreet(event)}
+            handleChangeStreetNumber={event => this.handleChangeStreetNumber(event)}
+
+            firstNameValidation={this.state.firstNameValidation}
+            lastNameValidation={this.state.lastNameValidation}
+            sexValidation={this.state.sexValidation}
+            oibValidation={this.state.oibValidation}
+            dateOfBirthValidation={this.state.dateOfBirthValidation}
+            phoneNumberValidation={this.state.phoneNumberValidation}
+            mailValidationEmptyString={this.state.mailValidationEmptyString}
+            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
+            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
+            cityValidation={this.state.cityValidation}
+            postalCodeValidation={this.state.postalCodeValidation}
+            streetValidation={this.state.streetValidation}
+            streetNumberValidation={this.state.streetNumberValidation}
           />
           <DeletePatient
             patient={this.state.patient}
             patientSelected={this.state.patientSelected}
 
             deletePatientClicked={this.state.deletePatientClicked}
-            setDeletePatientClicked={value => this.setDeletePatientClicked(value)}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}
