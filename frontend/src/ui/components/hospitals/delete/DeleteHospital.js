@@ -1,6 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteHospital} from '../../../../actionCreators/hospitals/hospitalsActionCreators';
 import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deleteHospital.css'
 
@@ -22,7 +20,7 @@ class DeleteHospital extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.hospital !== null}>
+            <When condition={this.props.hospitalSelected}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši bolnicu</Modal.Title>
               </Modal.Header>
@@ -116,14 +114,4 @@ class DeleteHospital extends React.Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteHospital: id => dispatch(deleteHospital(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteHospital);
+export default DeleteHospital;

@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AddHospital from './add/AddHospital';
-import EditHospital from './edit/EditHospital';
+import AddEditHospital from './addEdit/AddEditHospital';
 import DeleteHospital from './delete/DeleteHospital';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {addHospital, editHospital, deleteHospital} from "../../../actionCreators/hospitals/hospitalsActionCreators";
 import * as styles from './hospitals.css'
 import * as colors from '../../../constants/colors';
 import * as tables from '../../../constants/tables';
@@ -17,7 +17,8 @@ class Hospitals extends React.Component {
     super(props);
 
     this.state = {
-      hospital: null,
+      hospital: {},
+      hospitalSelected: false,
 
       addHospitalClicked: false,
       editHospitalClicked: false,
@@ -52,7 +53,8 @@ class Hospitals extends React.Component {
 
   resetState = () =>
     this.setState({
-      hospital: null,
+      hospital: {},
+      hospitalSelected: false,
 
       addHospitalClicked: false,
       editHospitalClicked: false,
@@ -72,11 +74,13 @@ class Hospitals extends React.Component {
   setHospital = row =>
     this.setState({
       hospital: row,
+      hospitalSelected: true,
     });
 
   setAddHospitalClicked = value =>
     this.setState({
       addHospitalClicked: value,
+      hospital: {},
     });
 
   setEditHospitalClicked = value =>
@@ -92,7 +96,7 @@ class Hospitals extends React.Component {
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.hospital.name === null || this.state.hospital.name.trim() === '') {
+    if (this.state.hospital.name == null || this.state.hospital.name.trim() === '') {
       this.setState({
         nameValidation: 'error',
       });
@@ -100,7 +104,7 @@ class Hospitals extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.hospital.phoneNumber === null || this.state.hospital.phoneNumber.trim() === '') {
+    if (this.state.hospital.phoneNumber == null || this.state.hospital.phoneNumber.trim() === '') {
       this.setState({
         phoneNumberValidation: 'error',
       });
@@ -108,7 +112,7 @@ class Hospitals extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.hospital.city === null || this.state.hospital.city.trim() === '') {
+    if (this.state.hospital.city == null || this.state.hospital.city.trim() === '') {
       this.setState({
         cityValidation: 'error',
       });
@@ -116,7 +120,7 @@ class Hospitals extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.hospital.postalCode === null || this.state.hospital.postalCode.toString().trim() === '') {
+    if (this.state.hospital.postalCode == null || this.state.hospital.postalCode.toString().trim() === '') {
       this.setState({
         postalCodeValidation: 'error',
       });
@@ -124,7 +128,7 @@ class Hospitals extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.hospital.street === null || this.state.hospital.street.trim() === '') {
+    if (this.state.hospital.street == null || this.state.hospital.street.trim() === '') {
       this.setState({
         streetValidation: 'error',
       });
@@ -132,7 +136,7 @@ class Hospitals extends React.Component {
       errorExists = true;
     }
 
-    if (this.state.hospital.streetNumber === null || this.state.hospital.streetNumber.toString().trim() === '') {
+    if (this.state.hospital.streetNumber == null || this.state.hospital.streetNumber.toString().trim() === '') {
       this.setState({
         streetNumberValidation: 'error',
       });
@@ -145,16 +149,18 @@ class Hospitals extends React.Component {
     }
 
     if (!errorExists) {
-      this.props.editHospital(this.state.hospital);
-      this.props.setEditHospitalClicked(false);
+      if(this.state.addHospitalClicked) {
+        this.props.addHospital(this.state.hospital);
+      } else {
+        this.props.editHospital(this.state.hospital);
+      }
 
       this.resetState();
-      this.props.resetState();
     }
   }
 
   checkEmail() {
-    if (this.state.hospital.mail === null || this.state.hospital.mail.trim() === '') {
+    if (this.state.hospital.mail == null || this.state.hospital.mail.trim() === '') {
       this.setState({
         mailValidationEmptyString: 'error',
       });
@@ -200,31 +206,31 @@ class Hospitals extends React.Component {
     return true;
   }
 
-  handleChangeName = e =>
+  handleChangeName = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        name: e.target.value,
+        name: event.target.value,
       },
 
       nameValidation: null,
     });
 
-  handleChangePhoneNumber = e =>
+  handleChangePhoneNumber = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        phoneNumber: e.target.value,
+        phoneNumber: event.target.value,
       },
 
       phoneNumberValidation: null,
     });
 
-  handleChangeMail = e =>
+  handleChangeMail = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        mail: e.target.value,
+        mail: event.target.value,
       },
 
       mailValidationEmptyString: null,
@@ -232,41 +238,41 @@ class Hospitals extends React.Component {
       mailValidationNotCorrectFormat: null,
     });
 
-  handleChangeCity = e =>
+  handleChangeCity = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        city: e.target.value,
+        city: event.target.value,
       },
 
       cityValidation: null,
     });
 
-  handleChangePostalCode = e =>
+  handleChangePostalCode = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        postalCode: e.target.value,
+        postalCode: event.target.value,
       },
 
       postalCodeValidation: null,
     });
 
-  handleChangeStreet = e =>
+  handleChangeStreet = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        street: e.target.value,
+        street: event.target.value,
       },
 
       streetValidation: null,
     });
 
-  handleChangeStreetNumber = e =>
+  handleChangeStreetNumber = event =>
     this.setState({
       hospital: {
         ...this.state.hospital,
-        streetNumber: e.target.value,
+        streetNumber: event.target.value,
       },
 
       streetNumberValidation: null,
@@ -328,21 +334,43 @@ class Hospitals extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddHospital
+          <AddEditHospital
+            hospital={this.state.hospital}
+            hospitalSelected={this.state.hospitalSelected}
+
             addHospitalClicked={this.state.addHospitalClicked}
             setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
-          />
-          <EditHospital
-            hospital={this.state.hospital}
             editHospitalClicked={this.state.editHospitalClicked}
             setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
             resetState={() => this.resetState()}
+
+            handleSubmit={() => this.handleSubmit()}
+            handleChangeName={event => this.handleChangeName(event)}
+            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
+            handleChangeMail={event => this.handleChangeMail(event)}
+            handleChangeCity={event => this.handleChangeCity(event)}
+            handleChangePostalCode={event => this.handleChangePostalCode(event)}
+            handleChangeStreet={event => this.handleChangeStreet(event)}
+            handleChangeStreetNumber={event => this.handleChangeStreetNumber(event)}
+
+            nameValidation={this.state.nameValidation}
+            phoneNumberValidation={this.state.phoneNumberValidation}
+            mailValidationEmptyString={this.state.mailValidationEmptyString}
+            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
+            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
+            cityValidation={this.state.cityValidation}
+            postalCodeValidation={this.state.postalCodeValidation}
+            streetValidation={this.state.streetValidation}
+            streetNumberValidation={this.state.streetNumberValidation}
           />
           <DeleteHospital
             hospital={this.state.hospital}
+            hospitalSelected={this.state.hospitalSelected}
+
             deleteHospitalClicked={this.state.deleteHospitalClicked}
             setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
             resetState={() => this.resetState()}
+            deleteHospital={id => this.props.deleteHospital(id)}
           />
           <Row>
             <Col md={12}>
@@ -389,8 +417,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addHospital: hospital => dispatch(addHospital(hospital)),
+    editHospital: hospital => dispatch(editHospital(hospital)),
+    deleteHospital: id => dispatch(deleteHospital(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Hospitals);

@@ -6,19 +6,19 @@ const AddEditDeleteButtons = props => (
   <section className={styles.section}>
     <Button
       className={styles.button}
-      onClick={value => props.setAddClicked(value)}
+      onClick={() => props.setAddClicked(true)}
     >
       <span className='glyphicon glyphicon-plus'/> Dodaj
     </Button>
     <Button
       className={styles.button}
-      onClick={value => props.setEditClicked(value)}
+      onClick={() => props.setEditClicked(true)}
     >
       <span className='glyphicon glyphicon-edit'/> Uredi
     </Button>
     <Button
       className={styles.button}
-      onClick={value => props.setDeleteClicked(value)}
+      onClick={() => props.setDeleteClicked(true)}
     >
       <span className='glyphicon glyphicon-trash'/> Obriši
     </Button>
