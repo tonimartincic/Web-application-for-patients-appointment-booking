@@ -2,7 +2,7 @@ package hr.fer.snarp.controller.users;
 
 import hr.fer.snarp.domain.users.administrator.AdministratorRequest;
 import hr.fer.snarp.domain.users.administrator.AdministratorResponse;
-import hr.fer.snarp.service.users.AdministratorService;
+import hr.fer.snarp.service.users.administrator.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

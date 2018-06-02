@@ -19,11 +19,15 @@ const initialState = {
 
   users: [],
 
+  examinations: [],
+
   showingUserData: false,
 
   referralTypes: [],
 
   departmentTypes: [],
+
+  examinationStatuses: [],
 };
 
 export default initialState;

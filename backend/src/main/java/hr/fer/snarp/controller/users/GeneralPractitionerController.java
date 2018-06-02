@@ -2,7 +2,7 @@ package hr.fer.snarp.controller.users;
 
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerRequest;
 import hr.fer.snarp.domain.users.generalPractitioner.GeneralPractitionerResponse;
-import hr.fer.snarp.service.users.GeneralPractitionerService;
+import hr.fer.snarp.service.users.generalPractitioner.GeneralPractitionerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
