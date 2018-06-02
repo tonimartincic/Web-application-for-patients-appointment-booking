@@ -106,7 +106,9 @@ class ChangePassword extends React.Component {
       <Modal show={this.props.changePasswordClicked}
              onHide={() => this.props.setChangePasswordClicked(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Promijeni lozinku</Modal.Title>
+          <Modal.Title className={styles.modalTitle}>
+            Promijeni lozinku
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>

@@ -13,7 +13,9 @@ class DeleteHospital extends React.Component {
           <Choose>
             <When condition={this.props.hospitalSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>Obriši bolnicu</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši bolnicu
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup controlId="formControlsSelect">

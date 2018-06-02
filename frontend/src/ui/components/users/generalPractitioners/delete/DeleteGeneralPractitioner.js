@@ -13,7 +13,9 @@ class DeleteGeneralPractitioner extends React.Component {
           <Choose>
             <When condition={this.props.generalPractitionerSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>Obriši specijalista obiteljske medicine</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši specijalista obiteljske medicine
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup controlId="formControlsSelect">

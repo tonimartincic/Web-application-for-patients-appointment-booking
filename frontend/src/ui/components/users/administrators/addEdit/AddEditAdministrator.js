@@ -13,7 +13,9 @@ class AddEditAdministrator extends React.Component {
           <Choose>
             <When condition={this.props.addAdministratorClicked || this.props.administratorSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addAdministratorClicked ? 'Dodaj administratora' : 'Uredi administratora'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addAdministratorClicked ? 'Dodaj administratora' : 'Uredi administratora'}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup

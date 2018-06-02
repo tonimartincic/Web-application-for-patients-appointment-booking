@@ -13,7 +13,9 @@ class AddEditGeneralPractitioner extends React.Component {
           <Choose>
             <When condition={this.props.addGeneralPractitionerClicked || this.props.generalPractitionerSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addGeneralPractitionerClicked ? 'Dodaj specijalista obiteljske medicine' : 'Uredi specijalista obiteljske medicine'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addGeneralPractitionerClicked ? 'Dodaj specijalista obiteljske medicine' : 'Uredi specijalista obiteljske medicine'}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Row>

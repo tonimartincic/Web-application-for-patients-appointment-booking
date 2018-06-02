@@ -13,7 +13,9 @@ class DeleteAdministrator extends React.Component {
           <Choose>
             <When condition={this.props.administratorSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>Obriši administratora</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši administratora
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup controlId="formControlsSelect">

@@ -15,7 +15,9 @@ class AddEditPatient extends React.Component {
           <Choose>
             <When condition={this.props.addPatientClicked || this.props.patientSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addPatientClicked ? 'Dodaj pacijenta' : 'Uredi pacijenta'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addPatientClicked ? 'Dodaj pacijenta' : 'Uredi pacijenta'}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Row>

@@ -13,7 +13,9 @@ class AddEditMedicalSpecialist extends React.Component {
           <Choose>
             <When condition={this.props.addMedicalSpecialistClicked || this.props.medicalSpecialistSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addMedicalSpecialistClicked ? 'Dodaj liječnika specijalista' : 'Uredi liječnika specijalista'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addMedicalSpecialistClicked ? 'Dodaj liječnika specijalista' : 'Uredi liječnika specijalista'}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup

@@ -13,7 +13,9 @@ class AddEditHospital extends React.Component {
           <Choose>
             <When condition={this.props.addHospitalClicked || this.props.hospitalSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addHospitalClicked ? 'Dodaj bolnicu' : 'Uredi bolnicu'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addHospitalClicked ? 'Dodaj bolnicu' : 'Uredi bolnicu'}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup

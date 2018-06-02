@@ -1,7 +1,12 @@
 .span {
+  font-weight: bold;
   color: white;
 }
 
 .span:hover {
   color: gray;
+}
+
+.spanMenuItem {
+  font-weight: bold;
 }

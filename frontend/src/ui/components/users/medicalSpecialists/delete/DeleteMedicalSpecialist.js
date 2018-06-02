@@ -13,7 +13,9 @@ class DeleteMedicalSpecialist extends React.Component {
           <Choose>
             <When condition={this.props.medicalSpecialistSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>Obriši liječnika specijalista</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši liječnika specijalista
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup controlId="formControlsSelect">

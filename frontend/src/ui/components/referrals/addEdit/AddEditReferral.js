@@ -13,7 +13,9 @@ class AddEditReferral extends React.Component {
           <Choose>
             <When condition={this.props.addReferralClicked || this.props.referralSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>{this.props.addReferralClicked ? 'Dodaj uputnicu' : 'Uredi uputnicu'}</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  {this.props.addReferralClicked ? 'Dodaj uputnicu' : 'Uredi uputnicu'}
+                  </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Row>

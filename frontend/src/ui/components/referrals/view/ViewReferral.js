@@ -13,7 +13,9 @@ class ViewReferral extends React.Component {
           <Choose>
             <When condition={this.props.referralSelected}>
               <Modal.Header closeButton>
-                <Modal.Title>Pregled uputnice</Modal.Title>
+                <Modal.Title className={styles.modalTitle}>
+                  Pregled uputnice
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <FormGroup controlId="formControlsSelect">
