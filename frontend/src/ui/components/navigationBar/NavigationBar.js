@@ -28,7 +28,7 @@ class NavigationBar extends Component {
               <NavDropdown
                 title={
                   <span className={styles.span}>
-                    <span className='glyphicon glyphicon-user'/> Korisnici
+                    <span className='glyphicon glyphicon-user'/> &nbsp;Korisnici
                   </span>
                 }
                 id='nav-dropdown'
@@ -74,7 +74,20 @@ class NavigationBar extends Component {
                 href='/hospitals'
               >
                   <span className={styles.span}>
-                    <span className='glyphicon glyphicon-header'/> Bolnice
+                    <span className='glyphicon glyphicon-header'/> &nbsp;Bolnice
+                  </span>
+              </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.type === constants.GENERAL_PRACTITIONER}>
+              <NavItem
+                componentClass={Link}
+                to='/patients'
+                href='/patients'
+              >
+                  <span className={styles.span}>
+                    <span className='glyphicon glyphicon-user'/> &nbsp;Pacijenti
                   </span>
               </NavItem>
             </When>
