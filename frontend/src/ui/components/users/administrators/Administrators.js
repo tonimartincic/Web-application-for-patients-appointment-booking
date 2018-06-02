@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import AddAdministrator from './add/AddAdministrator';
-import EditAdministrator from './edit/EditAdministrator';
+import AddEditAdministrator from './addEdit/AddEditAdministrator';
 import DeleteAdministrator from './delete/DeleteAdministrator';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {addAdministrator, editAdministrator, deleteAdministrator} from '../../../../actionCreators/users/administratorsActionCreators';
 import * as styles from './administrators.css'
 import * as colors from '../../../../constants/colors';
 import * as tables from '../../../../constants/tables';
@@ -18,9 +18,13 @@ class Administrators extends React.Component {
 
     this.state = {
       administrator: null,
+      administratorSelected: false,
+
       addAdministratorClicked: false,
       editAdministratorClicked: false,
       deleteAdministratorClicked: false,
+
+      cannotDeleteYourselfValidation: false,
     };
 
     this.setAdministrator = this.setAdministrator.bind(this);
@@ -56,6 +60,26 @@ class Administrators extends React.Component {
     this.setState({
       deleteAdministratorClicked: value,
     });
+
+  handleDelete = () => {
+    if (this.state.administrator.id === this.props.userData.id) {
+      this.setState({
+        cannotDeleteYourselfValidation: true,
+      });
+
+      return;
+    }
+
+    this.props.deleteAdministrator(this.state.administrator.id);
+    this.setDeleteAdministratorClicked(false);
+    this.resetState();
+  };
+
+  handleAlertDismiss() {
+    this.setState({
+      cannotDeleteYourselfValidation: false,
+    });
+  };
 
   render() {
     const columns = [{
@@ -98,21 +122,26 @@ class Administrators extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddAdministrator
+          <AddEditAdministrator
+            administrator={this.state.administrator}
+            administratorSelected={this.state.administratorSelected}
+
             addAdministratorClicked={this.state.addAdministratorClicked}
             setAddAdministratorClicked={value => this.setAddAdministratorClicked(value)}
-          />
-          <EditAdministrator
-            administrator={this.state.administrator}
             editAdministratorClicked={this.state.editAdministratorClicked}
             setEditAdministratorClicked={value => this.setEditAdministratorClicked(value)}
+
             resetState={() => this.resetState()}
           />
           <DeleteAdministrator
             administrator={this.state.administrator}
+            administratorSelected={this.state.administratorSelected}
+
             deleteAdministratorClicked={this.state.deleteAdministratorClicked}
             setDeleteAdministratorClicked={value => this.setDeleteAdministratorClicked(value)}
+
             resetState={() => this.resetState()}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -125,10 +154,7 @@ class Administrators extends React.Component {
                 keyField='id'
                 data={this.props.administrators}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
@@ -155,8 +181,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addAdministrator: administrator => dispatch(addAdministrator(administrator)),
+    editAdministrator: administrator => dispatch(editAdministrator(administrator)),
+    deleteAdministrator: id => dispatch(deleteAdministrator(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Administrators);

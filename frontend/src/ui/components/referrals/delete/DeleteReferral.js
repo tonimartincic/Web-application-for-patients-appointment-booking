@@ -1,16 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteReferral} from '../../../../actionCreators/referrals/referralsActionCreators';
 import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deleteReferral.css'
 
 class DeleteReferral extends React.Component {
-  handleDelete = () => {
-    this.props.deleteReferral(this.props.referral.id);
-    this.props.setDeleteReferralClicked(false);
-    this.props.resetState();
-  };
-
   render() {
     return (
       <section>
@@ -22,7 +14,7 @@ class DeleteReferral extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.referral !== null}>
+            <When condition={this.props.referralSelected}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši uputnicu</Modal.Title>
               </Modal.Header>
@@ -69,7 +61,7 @@ class DeleteReferral extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -99,14 +91,4 @@ class DeleteReferral extends React.Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteReferral: id => dispatch(deleteReferral(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteReferral);
+export default DeleteReferral;

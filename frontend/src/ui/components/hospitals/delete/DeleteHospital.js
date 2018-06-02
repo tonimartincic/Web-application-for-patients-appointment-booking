@@ -3,12 +3,6 @@ import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} fro
 import * as styles from './deleteHospital.css'
 
 class DeleteHospital extends React.Component {
-  handleDelete = () => {
-    this.props.deleteHospital(this.props.hospital.id);
-    this.props.setDeleteHospitalClicked(false);
-    this.props.resetState();
-  };
-
   render() {
     return (
       <section>
@@ -84,7 +78,7 @@ class DeleteHospital extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>

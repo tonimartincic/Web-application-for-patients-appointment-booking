@@ -5,10 +5,10 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AddReferral from './add/AddReferral';
 import ViewReferral from './view/ViewReferral';
-import EditReferral from './edit/EditReferral';
+import AddEditReferral from './addEdit/AddEditReferral';
 import DeleteReferral from './delete/DeleteReferral';
+import {addReferral, editReferral, deleteReferral} from '../../../actionCreators/referrals/referralsActionCreators';
 import * as styles from './referrals.css'
 import * as colors from '../../../constants/colors';
 import * as tables from '../../../constants/tables';
@@ -19,6 +19,8 @@ class Referrals extends React.Component {
 
     this.state = {
       referral: null,
+      referralSelected: false,
+
       addReferralClicked: false,
       editReferralClicked: false,
       deleteReferralClicked: false,
@@ -57,6 +59,12 @@ class Referrals extends React.Component {
     this.setState({
       deleteReferralClicked: value,
     });
+
+  handleDelete = () => {
+    this.props.deleteReferral(this.state.referral.id);
+    this.setDeleteReferralClicked(false);
+    this.resetState();
+  };
 
   render() {
     const columns = [{
@@ -104,26 +112,31 @@ class Referrals extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddReferral
-            addReferralClicked={this.state.addReferralClicked}
-            setAddReferralClicked={value => this.setAddReferralClicked(value)}
-          />
           {/*<ViewReferral*/}
             {/*referral={this.state.referral}*/}
             {/*addReferralClicked={this.state.addReferralClicked}*/}
             {/*setAddReferralClicked={value => this.setAddReferralClicked(value)}*/}
           {/*/>*/}
-          <EditReferral
+          <AddEditReferral
             referral={this.state.referral}
+            referralSelected={this.state.referralSelected}
+
+            addReferralClicked={this.state.addReferralClicked}
+            setAddReferralClicked={value => this.setAddReferralClicked(value)}
             editReferralClicked={this.state.editReferralClicked}
             setEditReferralClicked={value => this.setEditReferralClicked(value)}
+
             resetState={() => this.resetState()}
           />
           <DeleteReferral
             referral={this.state.referral}
+            referralSelected={this.state.referralSelected}
+
             deleteReferralClicked={this.state.deleteReferralClicked}
             setDeleteReferralClicked={value => this.setDeleteReferralClicked(value)}
+
             resetState={() => this.resetState()}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -136,10 +149,7 @@ class Referrals extends React.Component {
                 keyField='id'
                 data={this.props.referrals}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
@@ -166,8 +176,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addReferral: referral => dispatch(addReferral(referral)),
+    editReferral: referral => dispatch(editReferral(referral)),
+    deleteReferral: id => dispatch(deleteReferral(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Referrals);

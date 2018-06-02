@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import AddGeneralPractitioner from './add/AddGeneralPractitioner';
-import EditGeneralPractitioner from './edit/EditGeneralPractitioner';
+import AddEditGeneralPractitioner from './addEdit/AddEditGeneralPractitioner';
 import DeleteGeneralPractitioner from './delete/DeleteGeneralPractitioner';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {addGeneralPractitioner, editGeneralPractitioner, deleteGeneralPractitioner} from '../../../../actionCreators/users/generalPractitionersActionCreators';
 import * as styles from './generalPractitioners.css';
 import * as colors from '../../../../constants/colors';
 import * as tables from '../../../../constants/tables';
@@ -18,6 +18,8 @@ class GeneralPractitioners extends React.Component {
 
     this.state = {
       generalPractitioner: null,
+      generalPractitionerSelected: false,
+
       addGeneralPractitionerClicked: false,
       editGeneralPractitionerClicked: false,
       deleteGeneralPractitionerClicked: false,
@@ -56,6 +58,12 @@ class GeneralPractitioners extends React.Component {
     this.setState({
       deleteGeneralPractitionerClicked: value,
     });
+
+  handleDelete = () => {
+    this.props.deleteGeneralPractitioner(this.state.generalPractitioner.id);
+    this.setDeleteGeneralPractitionerClicked(false);
+    this.resetState();
+  };
 
   render() {
     const columns = [{
@@ -118,21 +126,26 @@ class GeneralPractitioners extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddGeneralPractitioner
+          <AddEditGeneralPractitioner
+            generalPractitioner={this.state.generalPractitioner}
+            generalPractitionerSelected={this.state.generalPractitionerSelected}
+
             addGeneralPractitionerClicked={this.state.addGeneralPractitionerClicked}
             setAddGeneralPractitionerClicked={value => this.setAddGeneralPractitionerClicked(value)}
-          />
-          <EditGeneralPractitioner
-            generalPractitioner={this.state.generalPractitioner}
             editGeneralPractitionerClicked={this.state.editGeneralPractitionerClicked}
             setEditGeneralPractitionerClicked={value => this.setEditGeneralPractitionerClicked(value)}
+
             resetState={() => this.resetState()}
           />
           <DeleteGeneralPractitioner
             generalPractitioner={this.state.generalPractitioner}
+            generalPractitionerSelected={this.state.generalPractitionerSelected}
+
             deleteGeneralPractitionerClicked={this.state.deleteGeneralPractitionerClicked}
             setDeleteGeneralPractitionerClicked={value => this.setDeleteGeneralPractitionerClicked(value)}
+
             resetState={() => this.resetState()}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -145,10 +158,7 @@ class GeneralPractitioners extends React.Component {
                 keyField='id'
                 data={this.props.generalPractitioners}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
@@ -175,8 +185,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addGeneralPractitioner: generalPractitioner => dispatch(addGeneralPractitioner(generalPractitioner)),
+    editGeneralPractitioner: generalPractitioner => dispatch(editGeneralPractitioner(generalPractitioner)),
+    deleteGeneralPractitioner: id => dispatch(deleteGeneralPractitioner(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralPractitioners);

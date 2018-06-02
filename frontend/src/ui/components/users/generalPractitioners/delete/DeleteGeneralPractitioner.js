@@ -1,16 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteGeneralPractitioner} from '../../../../../actionCreators/users/generalPractitionersActionCreators';
 import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deleteGeneralPractitioner.css'
 
 class DeleteGeneralPractitioner extends React.Component {
-  handleDelete = () => {
-    this.props.deleteGeneralPractitioner(this.props.generalPractitioner.id);
-    this.props.setDeleteGeneralPractitionerClicked(false);
-    this.props.resetState();
-  };
-
   render() {
     return (
       <section>
@@ -22,7 +14,7 @@ class DeleteGeneralPractitioner extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.generalPractitioner !== null}>
+            <When condition={this.props.generalPractitionerSelected}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši specijalista obiteljske medicine</Modal.Title>
               </Modal.Header>
@@ -99,7 +91,7 @@ class DeleteGeneralPractitioner extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -129,14 +121,4 @@ class DeleteGeneralPractitioner extends React.Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteGeneralPractitioner: id => dispatch(deleteGeneralPractitioner(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteGeneralPractitioner);
+export default DeleteGeneralPractitioner;

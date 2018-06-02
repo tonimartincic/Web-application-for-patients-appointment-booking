@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import AddPatient from './add/AddPatient';
-import EditPatient from './edit/EditPatient';
+import AddEditPatient from './addEdit/AddEditPatient';
 import DeletePatient from './delete/DeletePatient';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {addPatient, editPatient, deletePatient} from '../../../../actionCreators/users/patientsActionCreators';
 import * as styles from './patients.css';
 import * as colors from '../../../../constants/colors';
 import * as tables from '../../../../constants/tables';
@@ -18,6 +18,8 @@ class Patients extends React.Component {
 
     this.state = {
       patient: null,
+      patientSelected: null,
+
       addPatientClicked: false,
       editPatientClicked: false,
       deletePatientClicked: false,
@@ -56,6 +58,12 @@ class Patients extends React.Component {
     this.setState({
       deletePatientClicked: value,
     });
+
+  handleDelete = () => {
+    this.props.deletePatient(this.state.patient.id);
+    this.setDeletePatientClicked(false);
+    this.resetState();
+  };
 
   render() {
     const columns = [{
@@ -134,21 +142,26 @@ class Patients extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddPatient
+          <AddEditPatient
+            patient={this.state.patient}
+            patientSelected={this.state.patientSelected}
+
             addPatientClicked={this.state.addPatientClicked}
             setAddPatientClicked={value => this.setAddPatientClicked(value)}
-          />
-          <EditPatient
-            patient={this.state.patient}
             editPatientClicked={this.state.editPatientClicked}
             setEditPatientClicked={value => this.setEditPatientClicked(value)}
+
             resetState={() => this.resetState()}
           />
           <DeletePatient
             patient={this.state.patient}
+            patientSelected={this.state.patientSelected}
+
             deletePatientClicked={this.state.deletePatientClicked}
             setDeletePatientClicked={value => this.setDeletePatientClicked(value)}
+
             resetState={() => this.resetState()}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -161,10 +174,7 @@ class Patients extends React.Component {
                 keyField='id'
                 data={this.props.patients}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
@@ -191,8 +201,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addPatient: patient => dispatch(addPatient(patient)),
+    editPatient: patient => dispatch(editPatient(patient)),
+    deletePatient: id => dispatch(deletePatient(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Patients);

@@ -4,7 +4,7 @@ import {editPatient} from '../../../../../actionCreators/users/patientsActionCre
 import DatePicker from 'react-bootstrap-date-picker';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
 import * as constants from '../../../../../constants/values';
-import * as styles from './editPatient.css'
+import * as styles from './addEditPatient.css'
 import * as dateUtil from '../../../../../utils/DateUtil';
 
 class EditPatient extends React.Component {

@@ -7,7 +7,7 @@ import NavigationBar from '../navigationBar/NavigationBar';
 import AddEditHospital from './addEdit/AddEditHospital';
 import DeleteHospital from './delete/DeleteHospital';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
-import {addHospital, editHospital, deleteHospital} from "../../../actionCreators/hospitals/hospitalsActionCreators";
+import {addHospital, editHospital, deleteHospital} from '../../../actionCreators/hospitals/hospitalsActionCreators';
 import * as styles from './hospitals.css'
 import * as colors from '../../../constants/colors';
 import * as tables from '../../../constants/tables';
@@ -158,6 +158,12 @@ class Hospitals extends React.Component {
       this.resetState();
     }
   }
+
+  handleDelete = () => {
+    this.props.deleteHospital(this.state.hospital.id);
+    this.setDeleteHospitalClicked(false);
+    this.resetState();
+  };
 
   checkEmail() {
     if (this.state.hospital.mail == null || this.state.hospital.mail.trim() === '') {
@@ -342,6 +348,7 @@ class Hospitals extends React.Component {
             setAddHospitalClicked={value => this.setAddHospitalClicked(value)}
             editHospitalClicked={this.state.editHospitalClicked}
             setEditHospitalClicked={value => this.setEditHospitalClicked(value)}
+
             resetState={() => this.resetState()}
 
             handleSubmit={() => this.handleSubmit()}
@@ -369,8 +376,9 @@ class Hospitals extends React.Component {
 
             deleteHospitalClicked={this.state.deleteHospitalClicked}
             setDeleteHospitalClicked={value => this.setDeleteHospitalClicked(value)}
+
             resetState={() => this.resetState()}
-            deleteHospital={id => this.props.deleteHospital(id)}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -383,10 +391,7 @@ class Hospitals extends React.Component {
                 keyField='id'
                 data={this.props.hospitals}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />

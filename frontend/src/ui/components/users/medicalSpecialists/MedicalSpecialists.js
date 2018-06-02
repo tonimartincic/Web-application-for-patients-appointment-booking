@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../../navigationBar/NavigationBar';
-import AddMedicalSpecialist from './add/AddMedicalSpecialist';
-import EditMedicalSpecialist from './edit/EditMedicalSpecialist';
+import AddEditMedicalSpecialist from './addEdit/AddEditMedicalSpecialist';
 import DeleteMedicalSpecialist from './delete/DeleteMedicalSpecialist';
 import AddEditDeleteButtons from '../../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {addMedicalSpecialist, editMedicalSpecialist, deleteMedicalSpecialist} from '../../../../actionCreators/users/medicalSpecialistsActionCreators';
 import * as styles from './medicalSpecialists.css';
 import * as colors from '../../../../constants/colors';
 import * as tables from '../../../../constants/tables';
@@ -18,6 +18,8 @@ class MedicalSpecialists extends React.Component {
 
     this.state = {
       medicalSpecialist: null,
+      medicalSpecialistSelected: false,
+
       addMedicalSpecialistClicked: false,
       editMedicalSpecialistClicked: false,
       deleteMedicalSpecialistClicked: false,
@@ -56,6 +58,13 @@ class MedicalSpecialists extends React.Component {
     this.setState({
       deleteMedicalSpecialistClicked: value,
     });
+
+  handleDelete = () => {
+    this.props.deleteMedicalSpecialist(this.state.medicalSpecialist.id);
+    this.setDeleteMedicalSpecialistClicked(false);
+    this.resetState();
+  };
+
 
   render() {
     const columns = [{
@@ -98,21 +107,26 @@ class MedicalSpecialists extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddMedicalSpecialist
+          <AddEditMedicalSpecialist
+            medicalSpecialist={this.state.medicalSpecialist}
+            medicalSpecialistSelected={this.state.medicalSpecialistSelected}
+
             addMedicalSpecialistClicked={this.state.addMedicalSpecialistClicked}
             setAddMedicalSpecialistClicked={value => this.setAddMedicalSpecialistClicked(value)}
-          />
-          <EditMedicalSpecialist
-            medicalSpecialist={this.state.medicalSpecialist}
             editMedicalSpecialistClicked={this.state.editMedicalSpecialistClicked}
             setEditMedicalSpecialistClicked={value => this.setEditMedicalSpecialistClicked(value)}
+
             resetState={() => this.resetState()}
           />
           <DeleteMedicalSpecialist
             medicalSpecialist={this.state.medicalSpecialist}
+            medicalSpecialistSelected={this.state.medicalSpecialistSelected}
+
             deleteMedicalSpecialistClicked={this.state.deleteMedicalSpecialistClicked}
             setDeleteMedicalSpecialistClicked={value => this.setDeleteMedicalSpecialistClicked(value)}
+
             resetState={() => this.resetState()}
+            handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
@@ -125,10 +139,7 @@ class MedicalSpecialists extends React.Component {
                 keyField='id'
                 data={this.props.medicalSpecialists}
                 columns={columns}
-                striped
-                hover
-                condensed
-                bordered
+                striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
                 selectRow={selectRow}
               />
@@ -155,8 +166,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    addMedicalSpecialist: medicalSpecialist => dispatch(addMedicalSpecialist(medicalSpecialist)),
+    editMedicalSpecialist: medicalSpecialist => dispatch(editMedicalSpecialist(medicalSpecialist)),
+    deleteMedicalSpecialist: id => dispatch(deleteMedicalSpecialist(id)),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MedicalSpecialists);

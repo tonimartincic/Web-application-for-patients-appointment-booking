@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {editAdministrator} from '../../../../../actionCreators/users/administratorsActionCreators';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
 import * as constants from '../../../../../constants/values';
-import * as styles from './editAdministrator.css'
+import * as styles from './addEditAdministrator.css'
 
 class EditAdministrator extends React.Component {
   constructor(props) {

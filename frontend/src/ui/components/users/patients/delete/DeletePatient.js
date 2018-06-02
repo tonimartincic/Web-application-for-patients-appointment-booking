@@ -1,16 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deletePatient} from '../../../../../actionCreators/users/patientsActionCreators';
 import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deletePatient.css'
 
 class DeletePatient extends React.Component {
-  handleDelete = () => {
-    this.props.deletePatient(this.props.patient.id);
-    this.props.setDeletePatientClicked(false);
-    this.props.resetState();
-  };
-
   render() {
     return (
       <section>
@@ -22,7 +14,7 @@ class DeletePatient extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.patient !== null}>
+            <When condition={this.props.patientSelected}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši pacijenta</Modal.Title>
               </Modal.Header>
@@ -120,7 +112,7 @@ class DeletePatient extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -150,14 +142,4 @@ class DeletePatient extends React.Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deletePatient: id => dispatch(deletePatient(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeletePatient);
+export default DeletePatient;

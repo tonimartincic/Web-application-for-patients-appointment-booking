@@ -1,38 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteAdministrator} from '../../../../../actionCreators/users/administratorsActionCreators';
 import {Alert, Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import * as styles from './deleteAdministrator.css'
 
 class DeleteAdministrator extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      cannotDeleteYourselfValidation: false,
-    };
-  }
-
-  handleDelete = () => {
-    if (this.props.administrator.id === this.props.userData.id) {
-      this.setState({
-        cannotDeleteYourselfValidation: true,
-      });
-
-      return;
-    }
-
-    this.props.deleteAdministrator(this.props.administrator.id);
-    this.props.setDeleteAdministratorClicked(false);
-    this.props.resetState();
-  };
-
-  handleAlertDismiss() {
-    this.setState({
-      cannotDeleteYourselfValidation: false,
-    });
-  };
-
   render() {
     return (
       <section>
@@ -44,7 +14,7 @@ class DeleteAdministrator extends React.Component {
           }
         >
           <Choose>
-            <When condition={this.props.administrator !== null}>
+            <When condition={this.props.administratorSelected}>
               <Modal.Header closeButton>
                 <Modal.Title>Obriši administratora</Modal.Title>
               </Modal.Header>
@@ -81,8 +51,8 @@ class DeleteAdministrator extends React.Component {
                     </ListGroupItem>
                   </ListGroup>
                   <Choose>
-                    <When condition={this.state.cannotDeleteYourselfValidation}>
-                      <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
+                    <When condition={this.props.cannotDeleteYourselfValidation}>
+                      <Alert bsStyle="danger" onDismiss={() => this.props.handleAlertDismiss()}>
                         <h4>Ne možete obrisati sami sebe</h4>
                         <p>Samo vas drugi administrator može obrisati</p>
                       </Alert>
@@ -95,7 +65,7 @@ class DeleteAdministrator extends React.Component {
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -125,16 +95,4 @@ class DeleteAdministrator extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userData: state.userData,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteAdministrator: id => dispatch(deleteAdministrator(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteAdministrator);
+export default DeleteAdministrator;

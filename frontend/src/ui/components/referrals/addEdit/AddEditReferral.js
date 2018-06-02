@@ -2,9 +2,9 @@ import React from 'react';
 import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {addReferral} from "../../../../actionCreators/referrals/referralsActionCreators";
-import * as styles from './addReferral.css';
+import * as styles from './addEditReferral.css';
 
-class AddReferral extends React.Component {
+class EditReferral extends React.Component {
   constructor(props) {
     super(props);
 
@@ -166,9 +166,9 @@ class AddReferral extends React.Component {
                     {
                       this.props.referralTypes
                         .map((referralType, index) =>
-                            <option key={index} value={referralType}>
-                              {referralType}
-                            </option>
+                          <option key={index} value={referralType}>
+                            {referralType}
+                          </option>
                         )
                     }
                   </FormControl>
@@ -314,4 +314,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddReferral);
+export default connect(mapStateToProps, mapDispatchToProps)(EditReferral);
