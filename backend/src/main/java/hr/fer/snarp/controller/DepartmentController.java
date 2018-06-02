@@ -48,4 +48,9 @@ public class DepartmentController {
   public void deleteDepartmentById(@PathVariable final Long id) {
     this.departmentService.deleteById(id);
   }
+
+  @GetMapping("/api/departments/types")
+  public List<String> getDepartmentTypes() {
+    return this.departmentService.getDepartmentTypes();
+  }
 }

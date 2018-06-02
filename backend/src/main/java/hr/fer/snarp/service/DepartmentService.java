@@ -16,4 +16,6 @@ public interface DepartmentService {
   DepartmentResponse edit(DepartmentRequest departmentRequest);
 
   void deleteById(Long id);
+
+  List<String> getDepartmentTypes();
 }

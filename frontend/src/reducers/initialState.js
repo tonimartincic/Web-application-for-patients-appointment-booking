@@ -20,6 +20,10 @@ const initialState = {
   users: [],
 
   showingUserData: false,
+
+  referralTypes: [],
+
+  departmentTypes: [],
 };
 
 export default initialState;

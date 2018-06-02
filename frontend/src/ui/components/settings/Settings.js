@@ -56,23 +56,31 @@ class Settings extends Component {
           <MenuItem onClick={() => {
             this.setShowUserInfoClicked(true);
           }}>
-            <span className='glyphicon glyphicon-info-sign'/> &nbsp;&nbsp; O meni
+            <span className={styles.spanMenuItem}>
+              <span className='glyphicon glyphicon-info-sign'/> &nbsp;&nbsp; O meni
+            </span>
           </MenuItem>
           <MenuItem divider/>
           <MenuItem onClick={() => {
             this.setEditUserDataClicked(true);
           }}>
-            <span className='glyphicon glyphicon-edit'/> &nbsp;&nbsp; Promijeni osobne podatke
+            <span className={styles.spanMenuItem}>
+              <span className='glyphicon glyphicon-edit'/> &nbsp;&nbsp; Promijeni osobne podatke
+            </span>
           </MenuItem>
           <MenuItem divider/>
           <MenuItem onClick={() => {
             this.setChangePasswordClicked(true);
           }}>
-            <span className='glyphicon glyphicon-eye-close'/> &nbsp;&nbsp; Promijeni lozinku
+            <span className={styles.spanMenuItem}>
+              <span className='glyphicon glyphicon-eye-close'/> &nbsp;&nbsp; Promijeni lozinku
+            </span>
           </MenuItem>
           <MenuItem divider/>
           <MenuItem onClick={() => this.logout()}>
-            <span className='glyphicon glyphicon-log-out'/> &nbsp;&nbsp; Odjava
+            <span className={styles.spanMenuItem}>
+              <span className='glyphicon glyphicon-log-out'/> &nbsp;&nbsp; Odjava
+            </span>
           </MenuItem>
         </NavDropdown>
         <UserInfo

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Button, Col, Collapse, FormControl, Grid, Row} from 'react-bootstrap';
-import {validateUser} from '../../../actionCreators/userDataActionCreators';
-import {setInvalidUserNameAndPasswordValue} from '../../../actions/userDataActions';
+import {validateUser} from '../../../actionCreators/userData/userDataActionCreators';
+import {setInvalidUserNameAndPasswordValue} from '../../../actions/userData/userDataActions';
 import styles from './login.css';
 
 class Login extends Component {

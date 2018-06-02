@@ -1,169 +1,66 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deletePatient} from '../../../../../actionCreators/patientsActionCreators';
-import {Button, Col, ControlLabel, FormControl, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
+import {Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row, Alert} from 'react-bootstrap';
 import * as styles from './deletePatient.css'
 
 class DeletePatient extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dropdownValue: null,
-      selectedPatient: {
-        id: null,
-        firstName: null,
-        lastName: null,
-        sex: null,
-        oib: null,
-        dateOfBirth: null,
-        mail: null,
-        city: null,
-        postalCode: null,
-        street: null,
-        streetNumber: null,
-        phoneNumber: null,
-      },
-    };
-
-    this.handleChangeSelectedPatient = this.handleChangeSelectedPatient.bind(this);
-  }
-
-  resetState = () => {
-    this.setState({
-      dropdownValue: null,
-      selectedPatient: {
-        id: null,
-        firstName: null,
-        lastName: null,
-        sex: null,
-        oib: null,
-        dateOfBirth: null,
-        mail: null,
-        city: null,
-        postalCode: null,
-        street: null,
-        streetNumber: null,
-        phoneNumber: null,
-      },
-    });
-  };
-
-  handleChangeSelectedPatient = (event) => {
-    for (let i = 0; i < this.props.patients.length; ++i) {
-      if (this.props.patients[i] !== null) {
-        if (this.props.patients[i].id == event.target.value)
-          this.setState({
-            selectedPatient: {
-              id: this.props.patients[i].id,
-              firstName: this.props.patients[i].firstName,
-              lastName: this.props.patients[i].lastName,
-              sex: this.props.patients[i].sex,
-              oib: this.props.patients[i].oib,
-              dateOfBirth: this.props.patients[i].dateOfBirth,
-              mail: this.props.patients[i].mail,
-              city: this.props.patients[i].city,
-              postalCode: this.props.patients[i].postalCode,
-              street: this.props.patients[i].street,
-              streetNumber: this.props.patients[i].streetNumber,
-              phoneNumber: this.props.patients[i].phoneNumber,
-            }
-          });
-      }
-    }
-
-    this.setState({
-      dropdownValue: event.target.value,
-    });
-  };
-
-  handleDelete = () => {
-    this.props.deletePatient(this.state.selectedPatient.id);
-    this.props.setDeletePatientClicked(false);
-    this.resetState();
-  };
-
   render() {
     return (
       <section>
         <Modal
           show={this.props.deletePatientClicked}
-          onHide={() => {
-            this.props.setDeletePatientClicked(false);
-            this.resetState();
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Obriši pacijenta</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ControlLabel>Odaberi pacijenta</ControlLabel>
-            <FormGroup controlId="formControlsSelect">
-              <FormControl
-                componentClass='select'
-                placeholder='Odaberi'
-                onChange={this.handleChangeSelectedPatient}
-              >
-                <option value="select">Odaberi</option>
-                {
-                  this.props.patients
-                    .map(patient => {
-                      const fullName = patient.firstName + " " + patient.lastName + " - " + patient.mail;
-                      return (
-                        <option key={patient.id} value={patient.id}>
-                          {fullName}
-                        </option>)
-                    })
-                }
-              </FormControl>
-            </FormGroup>
-            <FormGroup controlId="formControlsSelect">
-              <Choose>
-                <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}>
+          <Choose>
+            <When condition={this.props.patientSelected}>
+              <Modal.Header closeButton>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši pacijenta
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formControlsSelect">
                   <ListGroup>
                     <Row>
                       <Col md={6}>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Ime:</b> {this.state.selectedPatient.firstName}</p>
+                              <p><b>Ime:</b> {this.props.patient.firstName}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Prezime:</b> {this.state.selectedPatient.lastName}</p>
+                              <p><b>Prezime:</b> {this.props.patient.lastName}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Spol:</b> {this.state.selectedPatient.sex}</p>
+                              <p><b>Spol:</b> {this.props.patient.sex}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>OIB:</b> {this.state.selectedPatient.oib}</p>
+                              <p><b>OIB:</b> {this.props.patient.oib}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Datum rođenja:</b> {this.state.selectedPatient.dateOfBirth}</p>
+                              <p><b>Datum rođenja:</b> {this.props.patient.dateOfBirth}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Mail:</b> {this.state.selectedPatient.mail}</p>
+                              <p><b>Mail:</b> {this.props.patient.mail}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
@@ -172,55 +69,49 @@ class DeletePatient extends React.Component {
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Grad:</b> {this.state.selectedPatient.city}</p>
+                              <p><b>Grad:</b> {this.props.patient.city}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Poštanski broj:</b> {this.state.selectedPatient.postalCode}</p>
+                              <p><b>Poštanski broj:</b> {this.props.patient.postalCode}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Ulica:</b> {this.state.selectedPatient.street}</p>
+                              <p><b>Ulica:</b> {this.props.patient.street}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Kućni broj:</b> {this.state.selectedPatient.streetNumber}</p>
+                              <p><b>Kućni broj:</b> {this.props.patient.streetNumber}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                         <ListGroupItem>
                           <Row>
                             <Col md={12}>
-                              <p><b>Broj mobitela:</b> {this.state.selectedPatient.phoneNumber}</p>
+                              <p><b>Broj mobitela:</b> {this.props.patient.phoneNumber}</p>
                             </Col>
                           </Row>
                         </ListGroupItem>
                       </Col>
                     </Row>
                   </ListGroup>
-                </When>
-              </Choose>
-            </FormGroup>
-          </Modal.Body>
-          <Choose>
-            <When
-              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
-            >
+                </FormGroup>
+              </Modal.Body>
               <Modal.Footer>
                 <Row>
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -228,10 +119,7 @@ class DeletePatient extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeletePatientClicked(false);
-                        this.resetState();
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>
@@ -239,6 +127,11 @@ class DeletePatient extends React.Component {
                 </Row>
               </Modal.Footer>
             </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati pacijenta.</p>
+              </Alert>
+            </Otherwise>
           </Choose>
         </Modal>
       </section>
@@ -246,17 +139,4 @@ class DeletePatient extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userData: state.userData,
-    patients: state.patients,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deletePatient: id => dispatch(deletePatient(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeletePatient);
+export default DeletePatient;

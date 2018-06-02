@@ -1,186 +1,70 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {deleteAdministrator} from '../../../../../actionCreators/administratorsActionCreators';
-import {
-  Alert,
-  Button,
-  Col,
-  ControlLabel,
-  FormControl,
-  FormGroup,
-  ListGroup,
-  ListGroupItem,
-  Modal,
-  Row
-} from 'react-bootstrap';
+import {Alert, Button, Col, FormGroup, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import * as styles from './deleteAdministrator.css'
 
 class DeleteAdministrator extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dropdownValue: null,
-      cannotDeleteYourselfValidation: null,
-      selectedAdministrator: {
-        id: null,
-        firstName: null,
-        lastName: null,
-        mail: null,
-        phoneNumber: null,
-      },
-    };
-
-    this.handleChangeSelectedAdministrator = this.handleChangeSelectedAdministrator.bind(this);
-  }
-
-  resetState = () => {
-    this.setState({
-      dropdownValue: null,
-      cannotDeleteYourselfValidation: null,
-      selectedAdministrator: {
-        id: null,
-        firstName: null,
-        lastName: null,
-        mail: null,
-        phoneNumber: null,
-      },
-    });
-  };
-
-  handleChangeSelectedAdministrator = (event) => {
-    for (let i = 0; i < this.props.administrators.length; ++i) {
-      if (this.props.administrators[i] !== null) {
-        if (this.props.administrators[i].id == event.target.value)
-          this.setState({
-            selectedAdministrator: {
-              id: this.props.administrators[i].id,
-              firstName: this.props.administrators[i].firstName,
-              lastName: this.props.administrators[i].lastName,
-              mail: this.props.administrators[i].mail,
-              phoneNumber: this.props.administrators[i].phoneNumber,
-            }
-          });
-      }
-    }
-
-    this.setState({
-      dropdownValue: event.target.value,
-      cannotDeleteYourselfValidation: null,
-    });
-  };
-
-  handleDelete = () => {
-    if (this.state.selectedAdministrator.id === this.props.userData.id) {
-      this.setState({
-        cannotDeleteYourselfValidation: true,
-      });
-    } else {
-      this.props.deleteAdministrator(this.state.selectedAdministrator.id);
-      this.props.setDeleteAdministratorClicked(false);
-      this.resetState();
-    }
-  };
-
-  handleAlertDismiss() {
-    this.setState({
-      cannotDeleteYourselfValidation: false,
-    });
-  }
-  ;
-
   render() {
     return (
       <section>
         <Modal
           show={this.props.deleteAdministratorClicked}
-          onHide={() => {
-            this.props.setDeleteAdministratorClicked(false);
-            this.resetState();
-          }
-          }
+          onHide={() => this.props.resetState()}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Obriši administratora</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ControlLabel>Odaberi administratora</ControlLabel>
-            <FormGroup controlId="formControlsSelect">
-              <FormControl
-                componentClass='select'
-                placeholder='Odaberi'
-                onChange={this.handleChangeSelectedAdministrator}
-              >
-                <option value="select">Odaberi</option>
-                {
-                  this.props.administrators
-                    .map(administrator => {
-                      const fullName = administrator.firstName + " " + administrator.lastName + " - " + administrator.mail;
-                      return (
-                        <option key={administrator.id} value={administrator.id}>
-                          {fullName}
-                        </option>)
-                    })
-                }
-              </FormControl>
-            </FormGroup>
-            <FormGroup controlId="formControlsSelect">
-              <Choose>
-                <When
-                  condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
-                >
+          <Choose>
+            <When condition={this.props.administratorSelected}>
+              <Modal.Header closeButton>
+                <Modal.Title className={styles.modalTitle}>
+                  Obriši administratora
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FormGroup controlId="formControlsSelect">
                   <ListGroup>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Ime:</b> {this.state.selectedAdministrator.firstName}</p>
+                          <p><b>Ime:</b> {this.props.administrator.firstName}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Prezime:</b> {this.state.selectedAdministrator.lastName}</p>
+                          <p><b>Prezime:</b> {this.props.administrator.lastName}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Mail:</b> {this.state.selectedAdministrator.mail}</p>
+                          <p><b>Mail:</b> {this.props.administrator.mail}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                       <Row>
                         <Col md={7} mdOffset={1}>
-                          <p><b>Broj mobitela:</b> {this.state.selectedAdministrator.phoneNumber}</p>
+                          <p><b>Broj mobitela:</b> {this.props.administrator.phoneNumber}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
                   </ListGroup>
                   <Choose>
-                    <When condition={this.state.cannotDeleteYourselfValidation}>
-                      <Alert bsStyle="danger" onDismiss={() => this.handleAlertDismiss()}>
+                    <When condition={this.props.cannotDeleteYourselfValidation}>
+                      <Alert bsStyle="danger" onDismiss={() => this.props.handleAlertDismiss()}>
                         <h4>Ne možete obrisati sami sebe</h4>
                         <p>Samo vas drugi administrator može obrisati</p>
                       </Alert>
                     </When>
                   </Choose>
-                </When>
-              </Choose>
-            </FormGroup>
-          </Modal.Body>
-          <Choose>
-            <When
-              condition={this.state.dropdownValue !== null && this.state.dropdownValue !== 'select' && this.state.dropdownValue !== 'Odaberi'}
-            >
+                </FormGroup>
+              </Modal.Body>
               <Modal.Footer>
                 <Row>
                   <Col mdOffset={1} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => this.handleDelete()}
+                      onClick={() => this.props.handleDelete()}
                     >
                       <span className='glyphicon glyphicon-trash'/> Obriši
                     </Button>
@@ -188,10 +72,7 @@ class DeleteAdministrator extends React.Component {
                   <Col mdOffset={2} md={4}>
                     <Button
                       className={styles.button}
-                      onClick={() => {
-                        this.props.setDeleteAdministratorClicked(false);
-                        this.resetState();
-                      }}
+                      onClick={() => this.props.resetState()}
                     >
                       <span className='glyphicon glyphicon-share-alt'/> Odustani
                     </Button>
@@ -199,6 +80,11 @@ class DeleteAdministrator extends React.Component {
                 </Row>
               </Modal.Footer>
             </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati administratora.</p>
+              </Alert>
+            </Otherwise>
           </Choose>
         </Modal>
       </section>
@@ -206,17 +92,4 @@ class DeleteAdministrator extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userData: state.userData,
-    administrators: state.administrators,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteAdministrator: id => dispatch(deleteAdministrator(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteAdministrator);
+export default DeleteAdministrator;

@@ -2,6 +2,7 @@ import React from 'react';
 import {Col, ListGroup, ListGroupItem, Modal, Row} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import * as constants from '../../../../constants/values';
+import * as styles from './userInfo.css'
 
 class UserInfo extends React.Component {
   render() {
@@ -10,7 +11,9 @@ class UserInfo extends React.Component {
         <Modal show={this.props.showUserInfoClicked}
                onHide={() => this.props.setShowUserInfoClicked(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>O meni</Modal.Title>
+            <Modal.Title className={styles.modalTitle}>
+              O meni
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <ListGroup>

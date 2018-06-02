@@ -16,4 +16,6 @@ public interface ReferralService {
   ReferralResponse edit(ReferralRequest referralRequest);
 
   void deleteById(Long id);
+
+  List<String> getReferralTypes();
 }

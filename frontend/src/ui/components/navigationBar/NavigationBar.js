@@ -33,28 +33,36 @@ class NavigationBar extends Component {
             <MenuItem onClick={() => {
               history.push('/administrators');
             }}>
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Administratori
+              <span className={styles.spanMenuItem}>
+                <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Administratori
+              </span>
             </MenuItem>
             <MenuItem divider/>
             <MenuItem onClick={() => {
               history.push('/general-practitioners');
             }}
             >
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Specijalisti obiteljske medicine
+              <span className={styles.spanMenuItem}>
+                <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Specijalisti obiteljske medicine
+              </span>
             </MenuItem>
             <MenuItem divider/>
             <MenuItem onClick={() => {
               history.push('/medical-specialists');
             }}
             >
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Liječnici specijalisti
+              <span className={styles.spanMenuItem}>
+                <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Liječnici specijalisti
+              </span>
             </MenuItem>
             <MenuItem divider/>
             <MenuItem onClick={() => {
               history.push('/patients');
             }}
             >
-              <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Pacijenti
+              <span className={styles.spanMenuItem}>
+                <span className='glyphicon glyphicon-user'/> &nbsp;&nbsp; Pacijenti
+              </span>
             </MenuItem>
           </NavDropdown>
           <NavItem
