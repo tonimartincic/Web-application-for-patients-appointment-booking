@@ -247,7 +247,7 @@ class Referrals extends React.Component {
     };
 
     return (
-      <section>
+      <section className={styles.section}>
         <NavigationBar/>
         <Grid>
           <ViewReferral
