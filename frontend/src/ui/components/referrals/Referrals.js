@@ -231,6 +231,11 @@ class Referrals extends React.Component {
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     },{
+      dataField: 'departmentType',
+      text: 'Odjel',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
       dataField: 'createdOn',
       text: 'Datum kreiranja',
       sort: true,

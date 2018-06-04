@@ -160,6 +160,16 @@ class Examinations extends React.Component {
       text: 'Prezime pacijenta',
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'hospital.name',
+      text: 'Bolnica',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    }, {
+      dataField: 'referral.departmentType',
+      text: 'Odjel',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
     },{
       dataField: 'term',
       text: 'Termin',
