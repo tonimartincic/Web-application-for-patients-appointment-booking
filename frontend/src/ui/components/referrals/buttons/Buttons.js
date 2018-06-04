@@ -12,7 +12,8 @@ const Buttons = props => (
       <span className='glyphicon glyphicon-eye-open'/> Pregled
         </Button>
         <Choose>
-          <When condition={props.userData.type === constants.MEDICAL_SPECIALIST}>
+          <When condition={props.userData.type === constants.GENERAL_PRACTITIONER
+          }>
         <Button
           className={styles.button}
           onClick={() => props.setAddClicked(true)}
