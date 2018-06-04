@@ -29,7 +29,7 @@ public class ExaminationController {
   }
 
   @PostMapping("/api/examinations")
-  public ExaminationResponse addNewExamination(@RequestBody final ExaminationRequest examinationRequest) {
+  public ExaminationResponse addExamination(@RequestBody final ExaminationRequest examinationRequest) {
     return this.examinationService.add(examinationRequest);
   }
 

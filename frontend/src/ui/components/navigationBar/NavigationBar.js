@@ -100,7 +100,7 @@ class NavigationBar extends Component {
                 href='/examinationOrdering'
               >
                   <span className={styles.span}>
-                    <span className='glyphicon glyphicon-user'/> &nbsp;Naručivanje
+                    <span className='glyphicon glyphicon-plus'/> &nbsp;Naručivanje
                   </span>
               </NavItem>
             </When>
@@ -113,7 +113,7 @@ class NavigationBar extends Component {
                 href='/examinations'
               >
                   <span className={styles.span}>
-                    <span className='glyphicon glyphicon-user'/> &nbsp;Pregledi
+                    <span className='glyphicon glyphicon-th-list'/> &nbsp;Pregledi
                   </span>
               </NavItem>
             </When>

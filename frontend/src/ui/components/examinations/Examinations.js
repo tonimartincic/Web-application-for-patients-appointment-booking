@@ -93,7 +93,6 @@ class Examinations extends React.Component {
     });
 
   handleSubmit() {
-    debugger;
     const examination =
       {
         id: this.state.examination.id,

@@ -17,9 +17,9 @@ export default async function fetchExaminations() {
   }
 }
 
-export async function addExamination(department) {
+export async function addExamination(examination) {
   try {
-    const response = await axios.post('/api/examinations', department);
+    const response = await axios.post('/api/examinations', examination);
 
     return {
       type: types.ADD_EXAMINATION_SUCCESS,
@@ -33,9 +33,9 @@ export async function addExamination(department) {
   }
 }
 
-export async function editExamination(department) {
+export async function editExamination(examination) {
   try {
-    const response = await axios.put('/api/examinations', department);
+    const response = await axios.put('/api/examinations', examination);
 
     return {
       type: types.EDIT_EXAMINATION_SUCCESS,

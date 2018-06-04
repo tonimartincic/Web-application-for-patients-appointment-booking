@@ -8,7 +8,7 @@ import Patients from './users/patients/Patients';
 import Hospitals from './hospitals/Hospitals';
 import Referrals from './referrals/Referrals';
 import Examinations from './examinations/Examinations';
-import ExaminationOrdering from './examinations/examinationOrdering/ExaminationOrdering';
+import ExaminationOrdering from './examinationOrdering/ExaminationOrdering';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
 import {history} from './history/history';

@@ -35,7 +35,7 @@ public class ReferralController {
   }
 
   @PostMapping("/api/referrals")
-  public ReferralResponse addNewReferral(@RequestBody final ReferralRequest referralRequest) {
+  public ReferralResponse addReferral(@RequestBody final ReferralRequest referralRequest) {
     return this.referralService.add(referralRequest);
   }
 
