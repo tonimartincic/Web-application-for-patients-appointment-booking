@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AddEditExamination from './addEdit/AddEditExamination';
+import EditExamination from './edit/EditExamination';
 import DeleteExamination from './delete/DeleteExamination';
-import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
-import {addExamination, editExamination, deleteExamination} from '../../../actionCreators/examinations/examinationsActionCreators';
+import EditDeleteButtons from '../buttons/editDeleteButtons/EditDeleteButtons';
+import {editExamination, deleteExamination} from '../../../actionCreators/examinations/examinationsActionCreators';
 import * as styles from './examinations.css'
 import * as colors from '../../../constants/colors';
 import * as tables from '../../../constants/tables';
@@ -21,17 +21,12 @@ class Examinations extends React.Component {
       examination: {},
       examinationSelected: false,
 
-      addExaminationClicked: false,
       editExaminationClicked: false,
       deleteExaminationClicked: false,
-
-      termValidation: null,
-      remarkValidation: null,
     };
 
     this.setExamination = this.setExamination.bind(this);
 
-    this.setAddExaminationClicked = this.setAddExaminationClicked.bind(this);
     this.setEditExaminationClicked = this.setEditExaminationClicked.bind(this);
     this.setDeleteExaminationClicked = this.setDeleteExaminationClicked.bind(this);
 
@@ -46,12 +41,8 @@ class Examinations extends React.Component {
       examination: {},
       examinationSelected: false,
 
-      addExaminationClicked: false,
       editExaminationClicked: false,
       deleteExaminationClicked: false,
-
-      termValidation: null,
-      remarkValidation: null,
     });
 
   setExamination = row => {
@@ -73,13 +64,6 @@ class Examinations extends React.Component {
     });
   };
 
-  setAddExaminationClicked = value =>
-    this.setState({
-      addExaminationClicked: value,
-      examination: {},
-      examinationSelected: false,
-    });
-
   setEditExaminationClicked = value =>
     this.setState({
       editExaminationClicked: value,
@@ -91,45 +75,20 @@ class Examinations extends React.Component {
     });
 
   handleSubmit() {
-    let errorExists = false;
+    const examination =
+      {
+        id: this.state.examination.id,
+        status: this.state.examination.status,
+        patient: this.state.examination.patient,
+        medicalSpecialist: this.state.examination.medicalSpecialist,
+        hospital: this.state.examination.hospital,
+        referral: this.state.examination.referral,
+        term: dateUtil.constructDateFromDatePickerForBackend(this.state.examination.term),
+        remark: this.state.examination.remark,
+      };
 
-    if (this.state.examination.term == null || this.state.examination.term.trim() === '') {
-      this.setState({
-        termValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (this.state.examination.remark == null || this.state.examination.remark.trim() === '') {
-      this.setState({
-        remarkValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (!errorExists) {
-      const examination =
-        {
-          id: this.state.examination.id,
-          status: this.state.examination.status,
-          patient: this.state.examination.patient,
-          medicalSpecialist: this.state.examination.medicalSpecialist,
-          hospital: this.state.examination.hospital,
-          referral: this.state.examination.referral,
-          term: dateUtil.constructDateFromDatePickerForBackend(this.state.examination.term),
-          remark: this.state.examination.remark,
-        };
-
-      if(this.state.addExaminationClicked) {
-        this.props.addExamination(examination);
-      } else {
-        this.props.editExamination(examination);
-      }
-
-      this.resetState();
-    }
+    this.props.editExamination(examination);
+    this.resetState();
   }
 
   handleDelete = () => {
@@ -152,8 +111,6 @@ class Examinations extends React.Component {
         ...this.state.examination,
         term: value,
       },
-
-      termValidation: null,
     });
 
   handleChangeRemark = event =>
@@ -162,8 +119,6 @@ class Examinations extends React.Component {
         ...this.state.examination,
         remark: event.target.value,
       },
-
-      remarkValidation: null,
     });
 
   render() {
@@ -207,11 +162,10 @@ class Examinations extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
-          <AddEditExamination
+          <EditExamination
             examination={this.state.examination}
             hospitalSelected={this.state.hospitalSelected}
 
-            addExaminationClicked={this.state.addExaminationClicked}
             editExaminationClicked={this.state.editExaminationClicked}
 
             resetState={() => this.resetState()}
@@ -221,8 +175,7 @@ class Examinations extends React.Component {
             handleChangePhoneNumber={value => this.handleChangeTerm(value)}
             handleChangeMail={event => this.handleChangeRemark(event)}
 
-            termValidation={this.state.termValidation}
-            remarkValidation={this.state.remarkValidation}
+            examinationStatuses={this.props.examinationStatuses}
           />
           <DeleteExamination
             examination={this.state.examination}
@@ -252,8 +205,7 @@ class Examinations extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <AddEditDeleteButtons
-                setAddClicked={value => this.setAddExaminationClicked(value)}
+              <EditDeleteButtons
                 setEditClicked={value => this.setEditExaminationClicked(value)}
                 setDeleteClicked={value => this.setDeleteExaminationClicked(value)}
               />
@@ -268,12 +220,12 @@ class Examinations extends React.Component {
 function mapStateToProps(state) {
   return {
     examinations: state.examinations,
+    examinationStatuses: state.examinationStatuses,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addExamination: examination => dispatch(addExamination(examination)),
     editExamination: examination => dispatch(editExamination(examination)),
     deleteExamination: id => dispatch(deleteExamination(id)),
   };
