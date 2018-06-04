@@ -96,11 +96,24 @@ class NavigationBar extends Component {
             <When condition={this.props.userData.type === constants.PATIENT}>
               <NavItem
                 componentClass={Link}
-                to='/patients'
-                href='/patients'
+                to='/examinationOrdering'
+                href='/examinationOrdering'
               >
                   <span className={styles.span}>
                     <span className='glyphicon glyphicon-user'/> &nbsp;Naručivanje
+                  </span>
+              </NavItem>
+            </When>
+          </Choose>
+          <Choose>
+            <When condition={this.props.userData.type === constants.PATIENT || this.props.userData.type === constants.MEDICAL_SPECIALIST}>
+              <NavItem
+                componentClass={Link}
+                to='/examinations'
+                href='/examinations'
+              >
+                  <span className={styles.span}>
+                    <span className='glyphicon glyphicon-user'/> &nbsp;Pregledi
                   </span>
               </NavItem>
             </When>
