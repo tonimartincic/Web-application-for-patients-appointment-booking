@@ -61,4 +61,11 @@ public class Department {
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
   }
+
+  @Override
+  public String toString() {
+    return "Department{" +
+      "id=" + id +
+      '}';
+  }
 }

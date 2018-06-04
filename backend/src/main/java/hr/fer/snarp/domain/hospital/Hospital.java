@@ -66,4 +66,11 @@ public class Hospital {
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
   }
+
+  @Override
+  public String toString() {
+    return "Hospital{" +
+      "id=" + id +
+      '}';
+  }
 }

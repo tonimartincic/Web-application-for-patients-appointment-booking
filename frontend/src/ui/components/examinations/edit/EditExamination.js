@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-bootstrap-date-picker';
-import {Button, Col, Collapse, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
+import {Button, Col, ControlLabel, FormControl, FormGroup, Modal, Row, Alert} from 'react-bootstrap';
 import * as constants from '../../../../constants/values';
 import * as styles from './editExamination.css'
 

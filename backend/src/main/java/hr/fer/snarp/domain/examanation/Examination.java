@@ -67,4 +67,11 @@ public class Examination {
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), id);
   }
+
+  @Override
+  public String toString() {
+    return "Examination{" +
+      "id=" + id +
+      '}';
+  }
 }

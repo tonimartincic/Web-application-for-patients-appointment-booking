@@ -72,6 +72,8 @@ public class ExaminationServiceImpl implements ExaminationService {
 
   @Override
   public ExaminationResponse add(ExaminationRequest examinationRequest) {
+    examinationRequest.setStatus(ExaminationStatus.TERM_NOT_DEFINED.getName());
+
     Examination examination = new Examination(examinationRequest);
     setParameters(examinationRequest, examination);
 
@@ -87,10 +89,18 @@ public class ExaminationServiceImpl implements ExaminationService {
   }
 
   private void setParameters(ExaminationRequest examinationRequest, Examination examination) {
-    examination.setPatient(this.patientRepository.findOne(examinationRequest.getPatientId()));
-    examination.setMedicalSpecialist(this.medicalSpecialistRepository.findOne(examinationRequest.getMedicalSpecialistId()));
-    examination.setHospital(this.hospitalRepository.findOne(examinationRequest.getHospitalId()));
-    examination.setReferral(this.referralRepository.findOne(examinationRequest.getReferralId()));
+    if(examinationRequest.getPatientId() != null) {
+      examination.setPatient(this.patientRepository.findOne(examinationRequest.getPatientId()));
+    }
+    if(examinationRequest.getHospitalId() != null) {
+      examination.setHospital(this.hospitalRepository.findOne(examinationRequest.getHospitalId()));
+    }
+    if(examinationRequest.getReferralId() != null) {
+      examination.setReferral(this.referralRepository.findOne(examinationRequest.getReferralId()));
+    }
+    if(examinationRequest.getMedicalSpecialistId() != null) {
+      examination.setMedicalSpecialist(this.medicalSpecialistRepository.findOne(examinationRequest.getMedicalSpecialistId()));
+    }
   }
 
   @Override
