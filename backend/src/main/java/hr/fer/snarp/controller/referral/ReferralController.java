@@ -24,9 +24,9 @@ public class ReferralController {
     this.referralService = referralService;
   }
 
-  @GetMapping("/api/referrals")
-  public List<ReferralResponse> getAllReferrals() {
-    return this.referralService.getAll();
+  @GetMapping("/api/referrals/{userId}/{userType}")
+  public List<ReferralResponse> getAllReferrals(@PathVariable Long userId, @PathVariable String userType) {
+    return this.referralService.getAll(userId, userType);
   }
 
   @GetMapping("/api/referrals/{id}")

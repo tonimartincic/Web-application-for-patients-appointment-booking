@@ -3,7 +3,12 @@ import * as types from '../../actions/actionTypes';
 
 export default async function fetchReferrals() {
   try {
-    const response = await axios.get('/api/referrals');
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const userId = user.id;
+    const userType = user.type;
+
+    const response = await axios.get(`/api/referrals/${userId}/${userType}`);
 
     return {
       type: types.FETCH_REFERRALS_SUCCESS,

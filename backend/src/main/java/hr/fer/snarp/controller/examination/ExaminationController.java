@@ -18,9 +18,9 @@ public class ExaminationController {
     this.examinationService = examinationService;
   }
 
-  @GetMapping("/api/examinations")
-  public List<ExaminationResponse> getAllExaminations() {
-    return this.examinationService.getAll();
+  @GetMapping("/api/examinations/{userId}/{userType}")
+  public List<ExaminationResponse> getAllExaminations(@PathVariable Long userId, @PathVariable String userType) {
+    return this.examinationService.getAll(userId, userType);
   }
 
   @GetMapping("/api/examinations/{id}")

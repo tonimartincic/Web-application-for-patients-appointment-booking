@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ExaminationService {
 
-  List<ExaminationResponse> getAll();
+  List<ExaminationResponse> getAll(Long userId, String userType);
 
   ExaminationResponse getById(Long id);
 

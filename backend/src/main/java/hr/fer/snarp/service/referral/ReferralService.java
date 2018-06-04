@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ReferralService {
 
-  List<ReferralResponse> getAll();
+  List<ReferralResponse> getAll(Long userId, String userType);
 
   ReferralResponse getById(Long id);
 

@@ -4,7 +4,10 @@ import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.examanation.Examination;
 import hr.fer.snarp.domain.examanation.ExaminationRequest;
 import hr.fer.snarp.domain.examanation.ExaminationResponse;
+import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
+import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.enumeration.ExaminationStatus;
+import hr.fer.snarp.enumeration.UserType;
 import hr.fer.snarp.repository.examination.ExaminationRepository;
 import hr.fer.snarp.repository.hospital.HospitalRepository;
 import hr.fer.snarp.repository.referral.ReferralRepository;
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,8 +65,24 @@ public class ExaminationServiceImpl implements ExaminationService {
   }
 
   @Override
-  public List<ExaminationResponse> getAll() {
-    return getExaminationResponses(Lists.newArrayList(this.examinationRepository.findAll()));
+  public List<ExaminationResponse> getAll(Long userId, String userType) {
+    if(UserType.PATIENT.equals(UserType.getByName(userType))) {
+      return getExaminationResponsesForPatient(userId);
+    } else if(UserType.MEDICAL_SPECIALIST.equals(UserType.getByName(userType))) {
+      return getExaminationResponsesForMedicalSpecialist(userId);
+    }
+
+    return Collections.emptyList();
+  }
+
+  private List<ExaminationResponse> getExaminationResponsesForPatient(Long userId) {
+    Patient patient = this.patientRepository.findOne(userId);
+    return getExaminationResponses(Lists.newArrayList(this.examinationRepository.findAllByPatient(patient)));
+  }
+
+  private List<ExaminationResponse> getExaminationResponsesForMedicalSpecialist(Long userId) {
+    MedicalSpecialist medicalSpecialist = this.medicalSpecialistRepository.findOne(userId);
+    return getExaminationResponses(Lists.newArrayList(this.examinationRepository.findAllByMedicalSpecialist(medicalSpecialist)));
   }
 
   @Override
