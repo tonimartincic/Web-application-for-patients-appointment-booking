@@ -19,4 +19,6 @@ public interface GeneralPractitionerService {
   void deleteById(Long id);
 
   GeneralPractitioner getByMailAndPassword(String mail, String password);
+
+  GeneralPractitionerResponse getGeneralPractitionerResponse(final GeneralPractitioner generalPractitioner);
 }

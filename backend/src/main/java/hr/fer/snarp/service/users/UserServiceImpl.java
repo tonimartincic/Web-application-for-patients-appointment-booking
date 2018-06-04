@@ -121,22 +121,22 @@ public class UserServiceImpl implements UserService {
       case ADMINISTRATOR:
         final Administrator administratorFromDatabase = this.administratorRepository.findOne(userRequest.getId());
         administratorFromDatabase.setPassword(userRequest.getPassword());
-        return AdministratorServiceImpl.getAdministratorResponse(this.administratorRepository.save(administratorFromDatabase));
+        return this.administratorService.getAdministratorResponse(this.administratorRepository.save(administratorFromDatabase));
 
       case PATIENT:
         final Patient patientFromDatabase = this.patientRepository.findOne(userRequest.getId());
         patientFromDatabase.setPassword(userRequest.getPassword());
-        return PatientServiceImpl.getPatientResponse(this.patientRepository.save(patientFromDatabase));
+        return this.patientService.getPatientResponse(this.patientRepository.save(patientFromDatabase));
 
       case MEDICAL_SPECIALIST:
         final MedicalSpecialist medicalSpecialistFromDatabase = this.medicalSpecialistRepository.findOne(userRequest.getId());
         medicalSpecialistFromDatabase.setPassword(userRequest.getPassword());
-        return MedicalSpecialistServiceImpl.getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
+        return this.medicalSpecialistService.getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
 
       case GENERAL_PRACTITIONER:
         final GeneralPractitioner generalPractitionerFromDatabase = this.generalPractitionerRepository.findOne(userRequest.getId());
         generalPractitionerFromDatabase.setPassword(userRequest.getPassword());
-        return GeneralPractitionerServiceImpl.getGeneralPractitionerResponse(this.generalPractitionerRepository.save(generalPractitionerFromDatabase));
+        return this.generalPractitionerService.getGeneralPractitionerResponse(this.generalPractitionerRepository.save(generalPractitionerFromDatabase));
 
       default:
         return null;

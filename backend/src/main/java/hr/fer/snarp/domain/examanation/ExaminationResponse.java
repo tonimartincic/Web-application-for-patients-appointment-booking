@@ -2,9 +2,9 @@ package hr.fer.snarp.domain.examanation;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hr.fer.snarp.domain.hospital.Hospital;
-import hr.fer.snarp.domain.referral.Referral;
+import hr.fer.snarp.domain.referral.ReferralResponse;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
-import hr.fer.snarp.domain.users.patient.Patient;
+import hr.fer.snarp.domain.users.patient.PatientResponse;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -16,13 +16,13 @@ public class ExaminationResponse {
 
   private String status;
 
-  private Patient patient;
+  private PatientResponse patient;
 
   private MedicalSpecialist medicalSpecialist;
 
   private Hospital hospital;
 
-  private Referral referral;
+  private ReferralResponse referral;
 
   @JsonFormat(pattern = "dd-MM-yyyy")
   private LocalDate term;
@@ -32,10 +32,8 @@ public class ExaminationResponse {
   public ExaminationResponse(Examination examination) {
     this.id = examination.getId();
     this.status = examination.getStatus().getName();
-    this.patient = examination.getPatient();
     this.medicalSpecialist = examination.getMedicalSpecialist();
     this.hospital = examination.getHospital();
-    this.referral = examination.getReferral();
     this.term = examination.getTerm();
     this.remark = examination.getRemark();
   }

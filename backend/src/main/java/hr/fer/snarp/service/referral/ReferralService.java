@@ -1,5 +1,6 @@
 package hr.fer.snarp.service.referral;
 
+import hr.fer.snarp.domain.referral.Referral;
 import hr.fer.snarp.domain.referral.ReferralRequest;
 import hr.fer.snarp.domain.referral.ReferralResponse;
 
@@ -18,4 +19,6 @@ public interface ReferralService {
   void deleteById(Long id);
 
   List<String> getReferralTypes();
+
+  ReferralResponse getReferralResponse(Referral referral);
 }

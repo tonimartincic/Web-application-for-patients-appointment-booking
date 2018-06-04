@@ -91,7 +91,7 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     return this.generalPractitionerRepository.findByMailAndPassword(mail, password);
   }
 
-  public static List<GeneralPractitionerResponse> getGeneralPractitionerResponses(final List<GeneralPractitioner> generalPractitioners) {
+  public List<GeneralPractitionerResponse> getGeneralPractitionerResponses(final List<GeneralPractitioner> generalPractitioners) {
     final List<GeneralPractitionerResponse> generalPractitionerResponses = new ArrayList<>();
 
     for (final GeneralPractitioner generalPractitioner : generalPractitioners) {
@@ -101,7 +101,8 @@ public class GeneralPractitionerServiceImpl implements GeneralPractitionerServic
     return generalPractitionerResponses;
   }
 
-  public static GeneralPractitionerResponse getGeneralPractitionerResponse(final GeneralPractitioner generalPractitioner) {
+  @Override
+  public GeneralPractitionerResponse getGeneralPractitionerResponse(final GeneralPractitioner generalPractitioner) {
     return new GeneralPractitionerResponse(generalPractitioner);
   }
 }

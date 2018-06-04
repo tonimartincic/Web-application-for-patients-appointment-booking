@@ -119,7 +119,7 @@ class NavigationBar extends Component {
             </When>
           </Choose>
           <Choose>
-            <When condition={this.props.userData.type !== constants.ADMINISTRATOR}>
+            <When condition={this.props.userData.type === constants.PATIENT || this.props.userData.type === constants.GENERAL_PRACTITIONER}>
               <NavItem
                 componentClass={Link}
                 to='/referrals'

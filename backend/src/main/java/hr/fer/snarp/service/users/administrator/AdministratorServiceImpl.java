@@ -60,7 +60,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     return this.administratorRepository.findByMailAndPassword(mail, password);
   }
 
-  public static List<AdministratorResponse> getAdministratorResponses(final List<Administrator> administrators) {
+  public List<AdministratorResponse> getAdministratorResponses(final List<Administrator> administrators) {
     final List<AdministratorResponse> administratorResponses = new ArrayList<>();
 
     for (final Administrator administrator : administrators) {
@@ -70,7 +70,8 @@ public class AdministratorServiceImpl implements AdministratorService {
     return administratorResponses;
   }
 
-  public static AdministratorResponse getAdministratorResponse(final Administrator administrator) {
+  @Override
+  public AdministratorResponse getAdministratorResponse(final Administrator administrator) {
     return new AdministratorResponse(administrator);
   }
 }

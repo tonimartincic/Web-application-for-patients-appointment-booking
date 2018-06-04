@@ -19,4 +19,6 @@ public interface PatientService {
   void deleteById(Long id);
 
   Patient getByMailAndPassword(String mail, String password);
+
+  PatientResponse getPatientResponse(final Patient patient);
 }

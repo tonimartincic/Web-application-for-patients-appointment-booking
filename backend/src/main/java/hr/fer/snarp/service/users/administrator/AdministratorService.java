@@ -19,4 +19,6 @@ public interface AdministratorService {
   void deleteById(Long id);
 
   Administrator getByMailAndPassword(String mail, String password);
+
+  AdministratorResponse getAdministratorResponse(final Administrator administrator);
 }

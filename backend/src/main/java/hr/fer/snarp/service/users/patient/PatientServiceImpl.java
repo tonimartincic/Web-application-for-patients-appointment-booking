@@ -94,7 +94,7 @@ public class PatientServiceImpl implements PatientService {
     return this.patientRepository.findByMailAndPassword(mail, password);
   }
 
-  public static List<PatientResponse> getPatientResponses(final List<Patient> patients) {
+  public List<PatientResponse> getPatientResponses(final List<Patient> patients) {
     final List<PatientResponse> patientResponses = new ArrayList<>();
 
     for (final Patient patient : patients) {
@@ -104,7 +104,8 @@ public class PatientServiceImpl implements PatientService {
     return patientResponses;
   }
 
-  public static PatientResponse getPatientResponse(final Patient patient) {
+  @Override
+  public PatientResponse getPatientResponse(final Patient patient) {
     return new PatientResponse(patient);
   }
 }

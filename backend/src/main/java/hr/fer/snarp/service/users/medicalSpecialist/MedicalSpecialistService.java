@@ -19,4 +19,6 @@ public interface MedicalSpecialistService {
   void deleteById(Long id);
 
   MedicalSpecialist getByMailAndPassword(String mail, String password);
+
+  MedicalSpecialistResponse getMedicalSpecialistResponse(final MedicalSpecialist medicalSpecialist);
 }

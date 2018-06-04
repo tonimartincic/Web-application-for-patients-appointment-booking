@@ -31,24 +31,33 @@ public class ExaminationServiceImpl implements ExaminationService {
 
   private final PatientRepository patientRepository;
 
+  private final PatientService patientService;
+
   private final MedicalSpecialistRepository medicalSpecialistRepository;
 
   private final HospitalRepository hospitalRepository;
 
   private final ReferralRepository referralRepository;
 
+  private final ReferralService referralService;
+
   @Autowired
   public ExaminationServiceImpl(
     ExaminationRepository examinationRepository,
     PatientRepository patientRepository,
+    PatientService patientService,
     MedicalSpecialistRepository medicalSpecialistRepository,
     HospitalRepository hospitalRepository,
-    ReferralRepository referralRepository) {
+    ReferralRepository referralRepository,
+    ReferralService referralService) {
+
     this.examinationRepository = examinationRepository;
     this.patientRepository = patientRepository;
+    this.patientService = patientService;
     this.medicalSpecialistRepository = medicalSpecialistRepository;
     this.hospitalRepository = hospitalRepository;
     this.referralRepository = referralRepository;
+    this.referralService = referralService;
   }
 
   @Override
@@ -105,6 +114,11 @@ public class ExaminationServiceImpl implements ExaminationService {
   }
 
   private ExaminationResponse getExaminationResponse(final Examination examination) {
-    return new ExaminationResponse(examination);
+    ExaminationResponse examinationResponse = new ExaminationResponse(examination);
+
+    examinationResponse.setPatient(this.patientService.getPatientResponse(examination.getPatient()));
+    examinationResponse.setReferral(this.referralService.getReferralResponse(examination.getReferral()));
+
+    return examinationResponse;
   }
 }

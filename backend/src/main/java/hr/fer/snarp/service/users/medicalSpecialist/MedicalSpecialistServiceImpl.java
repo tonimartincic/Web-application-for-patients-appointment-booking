@@ -60,7 +60,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     return this.medicalSpecialistRepository.findByMailAndPassword(mail, password);
   }
 
-  public static List<MedicalSpecialistResponse> getMedicalSpecialistResponses(final List<MedicalSpecialist> medicalSpecialists) {
+  public List<MedicalSpecialistResponse> getMedicalSpecialistResponses(final List<MedicalSpecialist> medicalSpecialists) {
     final List<MedicalSpecialistResponse> medicalSpecialistResponses = new ArrayList<>();
 
     for (final MedicalSpecialist medicalSpecialist : medicalSpecialists) {
@@ -70,7 +70,8 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     return medicalSpecialistResponses;
   }
 
-  public static MedicalSpecialistResponse getMedicalSpecialistResponse(final MedicalSpecialist medicalSpecialist) {
+  @Override
+  public MedicalSpecialistResponse getMedicalSpecialistResponse(final MedicalSpecialist medicalSpecialist) {
     return new MedicalSpecialistResponse(medicalSpecialist);
   }
 }

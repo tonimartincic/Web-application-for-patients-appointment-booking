@@ -81,7 +81,7 @@ public class ReferralServiceImpl implements ReferralService {
     return Arrays.stream(ReferralType.values()).map(ReferralType::getName).collect(Collectors.toList());
   }
 
-  private List<ReferralResponse> getReferralResponses(final List<Referral> referrals) {
+  public List<ReferralResponse> getReferralResponses(final List<Referral> referrals) {
     final List<ReferralResponse> referralResponses = new ArrayList<>();
 
     for (final Referral referral : referrals) {
@@ -91,7 +91,8 @@ public class ReferralServiceImpl implements ReferralService {
     return referralResponses;
   }
 
-  private ReferralResponse getReferralResponse(final Referral referral) {
+  @Override
+  public ReferralResponse getReferralResponse(final Referral referral) {
     return new ReferralResponse(referral);
   }
 }
