@@ -4,156 +4,128 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
-import AddEditHospital from './addEdit/AddEditExamination';
-import DeleteHospital from './delete/DeleteExamination';
+import AddEditExamination from './addEdit/AddEditExamination';
+import DeleteExamination from './delete/DeleteExamination';
 import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
-import {addNewExamination, editExamination, deleteExamination} from '../../../actionCreators/examinations/examinationsActionCreators';
+import {addExamination, editExamination, deleteExamination} from '../../../actionCreators/examinations/examinationsActionCreators';
 import * as styles from './examinations.css'
 import * as colors from '../../../constants/colors';
 import * as tables from '../../../constants/tables';
+import * as dateUtil from '../../../utils/DateUtil';
 
 class Examinations extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hospital: {},
-      hospitalSelected: false,
+      examination: {},
+      examinationSelected: false,
 
-      addHospitalClicked: false,
-      editHospitalClicked: false,
-      deleteHospitalClicked: false,
+      addExaminationClicked: false,
+      editExaminationClicked: false,
+      deleteExaminationClicked: false,
 
-      nameValidation: null,
-      phoneNumberValidation: null,
-      mailValidationEmptyString: null,
-      mailValidationAlreadyExists: null,
-      mailValidationNotCorrectFormat: null,
-      cityValidation: null,
-      postalCodeValidation: null,
-      streetValidation: null,
-      streetNumberValidation: null,
+      termValidation: null,
+      remarkValidation: null,
     };
 
-    this.setHospital = this.setHospital.bind(this);
+    this.setExamination = this.setExamination.bind(this);
 
-    this.setAddHospitalClicked = this.setAddHospitalClicked.bind(this);
-    this.setEditHospitalClicked = this.setEditHospitalClicked.bind(this);
-    this.setDeleteHospitalClicked = this.setDeleteHospitalClicked.bind(this);
+    this.setAddExaminationClicked = this.setAddExaminationClicked.bind(this);
+    this.setEditExaminationClicked = this.setEditExaminationClicked.bind(this);
+    this.setDeleteExaminationClicked = this.setDeleteExaminationClicked.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeMail = this.handleChangeMail.bind(this);
-    this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this);
-    this.handleChangeCity = this.handleChangeCity.bind(this);
-    this.handleChangePostalCode = this.handleChangePostalCode.bind(this);
-    this.handleChangeStreet = this.handleChangeStreet.bind(this);
-    this.handleChangeStreetNumber = this.handleChangeStreetNumber.bind(this);
+    this.handleChangeStatus = this.handleChangeStatus.bind(this);
+    this.handleChangeTerm = this.handleChangeTerm.bind(this);
+    this.handleChangeRemark = this.handleChangeRemark.bind(this);
   }
 
   resetState = () =>
     this.setState({
-      hospital: {},
-      hospitalSelected: false,
+      examination: {},
+      examinationSelected: false,
 
-      addHospitalClicked: false,
-      editHospitalClicked: false,
-      deleteHospitalClicked: false,
+      addExaminationClicked: false,
+      editExaminationClicked: false,
+      deleteExaminationClicked: false,
 
-      nameValidation: null,
-      phoneNumberValidation: null,
-      mailValidationEmptyString: null,
-      mailValidationAlreadyExists: null,
-      mailValidationNotCorrectFormat: null,
-      cityValidation: null,
-      postalCodeValidation: null,
-      streetValidation: null,
-      streetNumberValidation: null,
+      termValidation: null,
+      remarkValidation: null,
     });
 
-  setHospital = row =>
+  setExamination = row => {
+    const examination =
+      {
+        id: row.id,
+        status: row.status,
+        patient: row.patient,
+        medicalSpecialist: row.medicalSpecialist,
+        hospital: row.hospital,
+        referral: row.referral,
+        term: dateUtil.createDateForDatePickerFromDateFromBackend(row.term),
+        remark: row.remark,
+      };
+
     this.setState({
-      hospital: row,
-      hospitalSelected: true,
+      examination,
+      examinationSelected: true,
+    });
+  };
+
+  setAddExaminationClicked = value =>
+    this.setState({
+      addExaminationClicked: value,
+      examination: {},
+      examinationSelected: false,
     });
 
-  setAddHospitalClicked = value =>
+  setEditExaminationClicked = value =>
     this.setState({
-      addHospitalClicked: value,
-      hospital: {},
-      hospitalSelected: false,
+      editExaminationClicked: value,
     });
 
-  setEditHospitalClicked = value =>
+  setDeleteExaminationClicked = value =>
     this.setState({
-      editHospitalClicked: value,
-    });
-
-  setDeleteHospitalClicked = value =>
-    this.setState({
-      deleteHospitalClicked: value,
+      deleteExaminationClicked: value,
     });
 
   handleSubmit() {
     let errorExists = false;
 
-    if (this.state.hospital.name == null || this.state.hospital.name.trim() === '') {
+    if (this.state.examination.term == null || this.state.examination.term.trim() === '') {
       this.setState({
-        nameValidation: 'error',
+        termValidation: 'error',
       });
 
       errorExists = true;
     }
 
-    if (this.state.hospital.phoneNumber == null || this.state.hospital.phoneNumber.trim() === '') {
+    if (this.state.examination.remark == null || this.state.examination.remark.trim() === '') {
       this.setState({
-        phoneNumberValidation: 'error',
+        remarkValidation: 'error',
       });
 
-      errorExists = true;
-    }
-
-    if (this.state.hospital.city == null || this.state.hospital.city.trim() === '') {
-      this.setState({
-        cityValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (this.state.hospital.postalCode == null || this.state.hospital.postalCode.toString().trim() === '') {
-      this.setState({
-        postalCodeValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (this.state.hospital.street == null || this.state.hospital.street.trim() === '') {
-      this.setState({
-        streetValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (this.state.hospital.streetNumber == null || this.state.hospital.streetNumber.toString().trim() === '') {
-      this.setState({
-        streetNumberValidation: 'error',
-      });
-
-      errorExists = true;
-    }
-
-    if (!this.checkEmail()) {
       errorExists = true;
     }
 
     if (!errorExists) {
-      if(this.state.addHospitalClicked) {
-        this.props.addHospital(this.state.hospital);
+      const examination =
+        {
+          id: this.state.examination.id,
+          status: this.state.examination.status,
+          patient: this.state.examination.patient,
+          medicalSpecialist: this.state.examination.medicalSpecialist,
+          hospital: this.state.examination.hospital,
+          referral: this.state.examination.referral,
+          term: dateUtil.constructDateFromDatePickerForBackend(this.state.examination.term),
+          remark: this.state.examination.remark,
+        };
+
+      if(this.state.addExaminationClicked) {
+        this.props.addExamination(examination);
       } else {
-        this.props.editHospital(this.state.hospital);
+        this.props.editExamination(examination);
       }
 
       this.resetState();
@@ -161,128 +133,37 @@ class Examinations extends React.Component {
   }
 
   handleDelete = () => {
-    this.props.deleteHospital(this.state.hospital.id);
-    this.setDeleteHospitalClicked(false);
+    this.props.deleteExamination(this.state.hospital.id);
+    this.setDeleteExaminationClicked(false);
     this.resetState();
   };
 
-  checkEmail() {
-    if (this.state.hospital.mail == null || this.state.hospital.mail.trim() === '') {
-      this.setState({
-        mailValidationEmptyString: 'error',
-      });
-
-      return false;
-    }
-
-    const allEntitiesWithMail =
-      [
-        ...this.props.administrators,
-        ...this.props.generalPractitioners,
-        ...this.props.medicalSpecialists,
-        ...this.props.patients,
-        ...this.props.hospitals,
-      ];
-
-    for (let i = 0; i < allEntitiesWithMail.length; i = i + 1) {
-      if (allEntitiesWithMail[i] !== null) {
-        if ((allEntitiesWithMail[i].type === null || allEntitiesWithMail[i].type === undefined) &&
-          allEntitiesWithMail[i].id === this.state.hospital.id) {
-          continue;
-        }
-
-        if (allEntitiesWithMail[i].mail === this.state.hospital.mail.trim()) {
-          this.setState({
-            mailValidationAlreadyExists: 'error',
-          });
-
-          return false;
-        }
-      }
-    }
-
-    let re = /\S+@\S+\.\S+/;
-    if (!re.test(this.state.hospital.mail.trim())) {
-      this.setState({
-        mailValidationNotCorrectFormat: 'error',
-      });
-
-      return false;
-    }
-
-    return true;
-  }
-
-  handleChangeName = event =>
+  handleChangeStatus = event =>
     this.setState({
-      hospital: {
-        ...this.state.hospital,
-        name: event.target.value,
+      examination: {
+        ...this.state.examination,
+        status: event.target.value,
       },
-
-      nameValidation: null,
     });
 
-  handleChangePhoneNumber = event =>
+  handleChangeTerm = value =>
     this.setState({
-      hospital: {
-        ...this.state.hospital,
-        phoneNumber: event.target.value,
+      examination: {
+        ...this.state.examination,
+        term: value,
       },
 
-      phoneNumberValidation: null,
+      termValidation: null,
     });
 
-  handleChangeMail = event =>
+  handleChangeRemark = event =>
     this.setState({
-      hospital: {
-        ...this.state.hospital,
-        mail: event.target.value,
+      examination: {
+        ...this.state.examination,
+        remark: event.target.value,
       },
 
-      mailValidationEmptyString: null,
-      mailValidationAlreadyExists: null,
-      mailValidationNotCorrectFormat: null,
-    });
-
-  handleChangeCity = event =>
-    this.setState({
-      hospital: {
-        ...this.state.hospital,
-        city: event.target.value,
-      },
-
-      cityValidation: null,
-    });
-
-  handleChangePostalCode = event =>
-    this.setState({
-      hospital: {
-        ...this.state.hospital,
-        postalCode: event.target.value,
-      },
-
-      postalCodeValidation: null,
-    });
-
-  handleChangeStreet = event =>
-    this.setState({
-      hospital: {
-        ...this.state.hospital,
-        street: event.target.value,
-      },
-
-      streetValidation: null,
-    });
-
-  handleChangeStreetNumber = event =>
-    this.setState({
-      hospital: {
-        ...this.state.hospital,
-        streetNumber: event.target.value,
-      },
-
-      streetNumberValidation: null,
+      remarkValidation: null,
     });
 
   render() {
@@ -292,38 +173,23 @@ class Examinations extends React.Component {
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     }, {
-      dataField: 'name',
-      text: 'Naziv',
+      dataField: 'status',
+      text: 'Status',
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     }, {
-      dataField: 'city',
-      text: 'Grad',
+      dataField: 'patient.firstName',
+      text: 'Ime pacijenta',
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     }, {
-      dataField: 'postalCode',
-      text: 'Poštanski broj',
+      dataField: 'patient.lastName',
+      text: 'Prezime pacijenta',
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     },{
-      dataField: 'street',
-      text: 'Ulica',
-      sort: true,
-      headerStyle: {whiteSpace: 'nowrap'}
-    },{
-      dataField: 'streetNumber',
-      text: 'Kućni Broj',
-      sort: true,
-      headerStyle: {whiteSpace: 'nowrap'}
-    },{
-      dataField: 'phoneNumber',
-      text: 'Telefonski broj',
-      sort: true,
-      headerStyle: {whiteSpace: 'nowrap'}
-    },{
-      dataField: 'mail',
-      text: 'Mail',
+      dataField: 'term',
+      text: 'Termin',
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     }];
@@ -333,61 +199,50 @@ class Examinations extends React.Component {
       clickToSelect: true,
       bgColor: colors.SELECTED_ROW,
 
-      onSelect: this.setHospital,
-      selected: this.state.hospital === null ? null : [this.state.hospital.id],
+      onSelect: this.setExamination,
+      selected: this.state.examination === null ? null : [this.state.examination.id],
     };
 
     return (
       <section>
         <NavigationBar/>
         <Grid>
-          <AddEditHospital
-            hospital={this.state.hospital}
+          <AddEditExamination
+            examination={this.state.examination}
             hospitalSelected={this.state.hospitalSelected}
 
-            addHospitalClicked={this.state.addHospitalClicked}
-            editHospitalClicked={this.state.editHospitalClicked}
+            addExaminationClicked={this.state.addExaminationClicked}
+            editExaminationClicked={this.state.editExaminationClicked}
 
             resetState={() => this.resetState()}
 
             handleSubmit={() => this.handleSubmit()}
-            handleChangeName={event => this.handleChangeName(event)}
-            handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
-            handleChangeMail={event => this.handleChangeMail(event)}
-            handleChangeCity={event => this.handleChangeCity(event)}
-            handleChangePostalCode={event => this.handleChangePostalCode(event)}
-            handleChangeStreet={event => this.handleChangeStreet(event)}
-            handleChangeStreetNumber={event => this.handleChangeStreetNumber(event)}
+            handleChangeName={event => this.handleChangeStatus(event)}
+            handleChangePhoneNumber={value => this.handleChangeTerm(value)}
+            handleChangeMail={event => this.handleChangeRemark(event)}
 
-            nameValidation={this.state.nameValidation}
-            phoneNumberValidation={this.state.phoneNumberValidation}
-            mailValidationEmptyString={this.state.mailValidationEmptyString}
-            mailValidationAlreadyExists={this.state.mailValidationAlreadyExists}
-            mailValidationNotCorrectFormat={this.state.mailValidationNotCorrectFormat}
-            cityValidation={this.state.cityValidation}
-            postalCodeValidation={this.state.postalCodeValidation}
-            streetValidation={this.state.streetValidation}
-            streetNumberValidation={this.state.streetNumberValidation}
+            termValidation={this.state.termValidation}
+            remarkValidation={this.state.remarkValidation}
           />
-          <DeleteHospital
-            hospital={this.state.hospital}
-            hospitalSelected={this.state.hospitalSelected}
+          <DeleteExamination
+            examination={this.state.examination}
+            examinationSelected={this.state.examinationSelected}
 
-            deleteHospitalClicked={this.state.deleteHospitalClicked}
+            deleteExaminationClicked={this.state.deleteExaminationClicked}
 
             resetState={() => this.resetState()}
             handleDelete={() => this.handleDelete()}
           />
           <Row>
             <Col md={12}>
-              <h2 className={styles.h2}>Bolnice</h2>
+              <h2 className={styles.h2}>Pregledi</h2>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <BootstrapTable
                 keyField='id'
-                data={this.props.hospitals}
+                data={this.props.examinations}
                 columns={columns}
                 striped hover condensed bordered
                 pagination={paginationFactory(tables.PAGINATION_OPTIONS)}
@@ -398,9 +253,9 @@ class Examinations extends React.Component {
           <Row>
             <Col md={12}>
               <AddEditDeleteButtons
-                setAddClicked={value => this.setAddHospitalClicked(value)}
-                setEditClicked={value => this.setEditHospitalClicked(value)}
-                setDeleteClicked={value => this.setDeleteHospitalClicked(value)}
+                setAddClicked={value => this.setAddExaminationClicked(value)}
+                setEditClicked={value => this.setEditExaminationClicked(value)}
+                setDeleteClicked={value => this.setDeleteExaminationClicked(value)}
               />
             </Col>
           </Row>
@@ -413,14 +268,12 @@ class Examinations extends React.Component {
 function mapStateToProps(state) {
   return {
     examinations: state.examinations,
-    referrals: state.referrals,
-    hospitals: state.hospitals,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewExamination: examination => dispatch(addNewExamination(examination)),
+    addExamination: examination => dispatch(addExamination(examination)),
     editExamination: examination => dispatch(editExamination(examination)),
     deleteExamination: id => dispatch(deleteExamination(id)),
   };

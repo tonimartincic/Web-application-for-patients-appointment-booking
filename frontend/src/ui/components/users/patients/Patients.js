@@ -233,7 +233,7 @@ class Patients extends React.Component {
       if(this.state.addPatientClicked) {
         this.props.addPatient(patient);
       } else {
-        this.props.addPatient(patient);
+        this.props.editPatient(patient);
       }
 
       this.resetState();
@@ -496,7 +496,7 @@ class Patients extends React.Component {
             handleChangeLastName={event => this.handleChangeLastName(event)}
             handleChangeSex={event => this.handleChangeSex(event)}
             handleChangeOIB={event => this.handleChangeOIB(event)}
-            handleChangeDateOfBirth={event => this.handleChangeDateOfBirth(event)}
+            handleChangeDateOfBirth={value => this.handleChangeDateOfBirth(value)}
             handleChangeMail={event => this.handleChangeMail(event)}
             handleChangePhoneNumber={event => this.handleChangePhoneNumber(event)}
             handleChangeCity={event => this.handleChangeCity(event)}

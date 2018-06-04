@@ -17,7 +17,7 @@ export default async function fetchDepartments() {
   }
 }
 
-export async function addNewDepartment(department) {
+export async function addDepartment(department) {
   try {
     const response = await axios.post('/api/departments', department);
 
