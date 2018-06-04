@@ -75,14 +75,15 @@ class Examinations extends React.Component {
     });
 
   handleSubmit() {
+    debugger;
     const examination =
       {
         id: this.state.examination.id,
         status: this.state.examination.status,
-        patient: this.state.examination.patient,
-        medicalSpecialist: this.state.examination.medicalSpecialist,
-        hospital: this.state.examination.hospital,
-        referral: this.state.examination.referral,
+        patientId: this.state.examination.patient.id,
+        medicalSpecialistId: this.state.examination.medicalSpecialist.id,
+        hospitalId: this.state.examination.hospital.id,
+        referralId: this.state.examination.referral.id,
         term: dateUtil.constructDateFromDatePickerForBackend(this.state.examination.term),
         remark: this.state.examination.remark,
       };
@@ -164,16 +165,16 @@ class Examinations extends React.Component {
         <Grid>
           <EditExamination
             examination={this.state.examination}
-            hospitalSelected={this.state.hospitalSelected}
+            examinationSelected={this.state.examinationSelected}
 
             editExaminationClicked={this.state.editExaminationClicked}
 
             resetState={() => this.resetState()}
 
             handleSubmit={() => this.handleSubmit()}
-            handleChangeName={event => this.handleChangeStatus(event)}
-            handleChangePhoneNumber={value => this.handleChangeTerm(value)}
-            handleChangeMail={event => this.handleChangeRemark(event)}
+            handleChangeStatus={event => this.handleChangeStatus(event)}
+            handleChangeTerm={value => this.handleChangeTerm(value)}
+            handleChangeRemark={event => this.handleChangeRemark(event)}
 
             examinationStatuses={this.props.examinationStatuses}
           />
