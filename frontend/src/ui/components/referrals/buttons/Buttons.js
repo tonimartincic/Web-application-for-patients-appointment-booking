@@ -1,9 +1,21 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import styles from './editDeleteButtons.css';
+import styles from './buttons.css';
 
-const EditDeleteButtons = props => (
+const Buttons = props => (
   <section className={styles.section}>
+    <Button
+      className={styles.button}
+      onClick={() => props.setViewReferralClicked(true)}
+    >
+      <span className='glyphicon glyphicon-eye-open'/> Pregled
+    </Button>
+    <Button
+      className={styles.button}
+      onClick={() => props.setAddClicked(true)}
+    >
+      <span className='glyphicon glyphicon-plus'/> Dodaj
+    </Button>
     <Button
       className={styles.button}
       onClick={() => props.setEditClicked(true)}
@@ -19,4 +31,4 @@ const EditDeleteButtons = props => (
   </section>
 );
 
-export default EditDeleteButtons;
+export default Buttons;

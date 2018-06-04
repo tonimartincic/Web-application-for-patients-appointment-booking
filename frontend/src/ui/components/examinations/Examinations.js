@@ -4,9 +4,11 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {Col, Grid, Row} from 'react-bootstrap';
 import NavigationBar from '../navigationBar/NavigationBar';
+import ViewExamination from './view/ViewExamination';
+import ViewReferral from '../referrals/view/ViewReferral';
 import EditExamination from './edit/EditExamination';
 import DeleteExamination from './delete/DeleteExamination';
-import EditDeleteButtons from '../buttons/editDeleteButtons/EditDeleteButtons';
+import Buttons from './buttons/Buttons';
 import {editExamination, deleteExamination} from '../../../actionCreators/examinations/examinationsActionCreators';
 import * as styles from './examinations.css'
 import * as colors from '../../../constants/colors';
@@ -21,12 +23,16 @@ class Examinations extends React.Component {
       examination: {},
       examinationSelected: false,
 
+      viewExaminationClicked: false,
+      viewReferralClicked: false,
       editExaminationClicked: false,
       deleteExaminationClicked: false,
     };
 
     this.setExamination = this.setExamination.bind(this);
 
+    this.setViewExaminationClicked = this.setViewExaminationClicked.bind(this);
+    this.setViewReferralClicked = this.setViewReferralClicked.bind(this);
     this.setEditExaminationClicked = this.setEditExaminationClicked.bind(this);
     this.setDeleteExaminationClicked = this.setDeleteExaminationClicked.bind(this);
 
@@ -41,6 +47,8 @@ class Examinations extends React.Component {
       examination: {},
       examinationSelected: false,
 
+      viewExaminationClicked: false,
+      viewReferralClicked: false,
       editExaminationClicked: false,
       deleteExaminationClicked: false,
     });
@@ -63,6 +71,16 @@ class Examinations extends React.Component {
       examinationSelected: true,
     });
   };
+
+  setViewExaminationClicked = value =>
+    this.setState({
+      viewExaminationClicked: value,
+    });
+
+  setViewReferralClicked = value =>
+    this.setState({
+      viewReferralClicked: value,
+    });
 
   setEditExaminationClicked = value =>
     this.setState({
@@ -163,6 +181,20 @@ class Examinations extends React.Component {
       <section>
         <NavigationBar/>
         <Grid>
+          <ViewExamination
+            referral={this.state.examination}
+            referralSelected={this.state.examinationSelected}
+
+            viewReferralClicked={this.state.viewExaminationClicked}
+            resetState={() => this.resetState()}
+          />
+          <ViewReferral
+            referral={this.state.examination.referral}
+            referralSelected={this.state.examinationSelected}
+
+            viewReferralClicked={this.state.viewReferralClicked}
+            resetState={() => this.resetState()}
+          />
           <EditExamination
             examination={this.state.examination}
             examinationSelected={this.state.examinationSelected}
@@ -206,7 +238,9 @@ class Examinations extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <EditDeleteButtons
+              <Buttons
+                setViewExaminationClicked={value => this.setViewExaminationClicked(value)}
+                setViewReferralClicked={value => this.setViewReferralClicked(value)}
                 setEditClicked={value => this.setEditExaminationClicked(value)}
                 setDeleteClicked={value => this.setDeleteExaminationClicked(value)}
               />
