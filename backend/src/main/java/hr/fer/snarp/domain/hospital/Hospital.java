@@ -41,6 +41,7 @@ public class Hospital {
   }
 
   public Hospital(final HospitalRequest hospitalRequest) {
+    this.id = hospitalRequest.getId();
     this.name = hospitalRequest.getName();
     this.phoneNumber = hospitalRequest.getPhoneNumber();
     this.mail = hospitalRequest.getMail();

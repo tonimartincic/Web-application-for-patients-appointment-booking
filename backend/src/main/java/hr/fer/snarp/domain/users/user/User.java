@@ -33,6 +33,7 @@ public class User {
   }
 
   public User(final UserRequest userRequest, final UserType userType) {
+    this.id = userRequest.getId();
     this.firstName = userRequest.getFirstName();
     this.lastName = userRequest.getLastName();
     this.mail = userRequest.getMail();

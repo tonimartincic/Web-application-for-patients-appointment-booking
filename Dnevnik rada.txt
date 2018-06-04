@@ -53,3 +53,6 @@ Rad na uputnicama, tablicama i dizajnu.
 
 2.6.2018.
 Rad na uputnicama, tablicama, dizajnu i naručivanju na preglede.
+
+4.6.2018.
+Rad na naručivanju na preglede i upravljanje pregledima.

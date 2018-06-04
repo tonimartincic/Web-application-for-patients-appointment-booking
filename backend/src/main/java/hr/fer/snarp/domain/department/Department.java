@@ -38,6 +38,7 @@ public class Department {
   }
 
   public Department(final DepartmentRequest departmentRequest) {
+    this.id = departmentRequest.getId();
     this.type = DepartmentType.getByDescription(departmentRequest.getType());
   }
 
