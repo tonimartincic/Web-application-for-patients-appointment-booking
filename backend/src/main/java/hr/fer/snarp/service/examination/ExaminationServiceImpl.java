@@ -146,7 +146,6 @@ public class ExaminationServiceImpl implements ExaminationService {
   private ExaminationResponse getExaminationResponse(final Examination examination) {
     ExaminationResponse examinationResponse = new ExaminationResponse(examination);
 
-    examinationResponse.setPatient(this.patientService.getPatientResponse(examination.getPatient()));
     examinationResponse.setReferral(this.referralService.getReferralResponse(examination.getReferral()));
 
     return examinationResponse;

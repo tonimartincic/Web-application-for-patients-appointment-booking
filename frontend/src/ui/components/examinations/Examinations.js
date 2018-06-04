@@ -191,10 +191,10 @@ class Examinations extends React.Component {
         <NavigationBar/>
         <Grid>
           <ViewExamination
-            referral={this.state.examination}
-            referralSelected={this.state.examinationSelected}
+            examination={this.state.examination}
+            examinationSelected={this.state.examinationSelected}
 
-            viewReferralClicked={this.state.viewExaminationClicked}
+            viewExaminationClicked={this.state.viewExaminationClicked}
             resetState={() => this.resetState()}
           />
           <ViewReferral

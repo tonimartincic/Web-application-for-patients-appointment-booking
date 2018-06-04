@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import hr.fer.snarp.domain.hospital.Hospital;
 import hr.fer.snarp.domain.referral.ReferralResponse;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
+import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class ExaminationResponse {
 
   private String status;
 
-  private PatientResponse patient;
+  private Patient patient;
 
   private MedicalSpecialist medicalSpecialist;
 
@@ -32,6 +33,7 @@ public class ExaminationResponse {
   public ExaminationResponse(Examination examination) {
     this.id = examination.getId();
     this.status = examination.getStatus().getName();
+    this.patient = examination.getPatient();
     this.medicalSpecialist = examination.getMedicalSpecialist();
     this.hospital = examination.getHospital();
     this.term = examination.getTerm();

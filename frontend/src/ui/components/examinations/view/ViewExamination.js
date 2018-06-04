@@ -7,130 +7,113 @@ class ViewReferral extends React.Component {
     return (
       <section>
         <Modal
-          show={this.props.viewReferralClicked}
+          show={this.props.viewExaminationClicked}
           onHide={() => this.props.resetState()}
         >
-          {/*<Choose>*/}
-            {/*<When condition={this.props.referralSelected}>*/}
-              {/*<Modal.Body>*/}
-                {/*<FormGroup controlId="formControlsSelect">*/}
-                  {/*<ListGroup>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={12}>*/}
-                        {/*<section className={styles.section}>*/}
-                          {/*<span className={styles.span}>PACIJENT</span>*/}
-                        {/*</section>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={6}>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Ime i prezime:</b> {this.props.referral.patient.firstName} {this.props.referral.patient.lastName}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>OIB:</b> {this.props.referral.patient.oib}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Spol:</b> {this.props.referral.patient.sex}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Datum rođenja:</b> {this.props.referral.patient.dateOfBirth}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Mail:</b> {this.props.referral.patient.mail}</p>*/}
-                        {/*</ListGroupItem>*/}
-                      {/*</Col>*/}
-                      {/*<Col md={6}>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Grad:</b> {this.props.referral.patient.addressData.city}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Poštanski broj:</b> {this.props.referral.patient.addressData.postalCode}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Ulica:</b> {this.props.referral.patient.addressData.street}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Kućni broj:</b> {this.props.referral.patient.addressData.streetNumber}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Telefonski broj:</b> {this.props.referral.patient.phoneNumber}</p>*/}
-                        {/*</ListGroupItem>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={12}>*/}
-                        {/*<section className={styles.section}>*/}
-                          {/*<span className={styles.span}>UPUTNICA ZA</span>*/}
-                        {/*</section>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={12}>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Vrsta uputnice:</b> {this.props.referral.referralGroup}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Podvrsta uputnice:</b> {this.props.referral.referralName}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Odjel:</b> {this.props.referral.departmentType}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Dijagnoza:</b> {this.props.referral.diagnosis}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Napomena:</b> {this.props.referral.remark}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Datum kreiranja:</b> {this.props.referral.createdOn}</p>*/}
-                        {/*</ListGroupItem>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={12}>*/}
-                        {/*<section className={styles.section}>*/}
-                          {/*<span className={styles.span}>SPECIJALIST OBITELJSKE MEDICINE</span>*/}
-                        {/*</section>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row>*/}
-                      {/*<Col md={6}>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Ime i prezime:</b> {this.props.referral.generalPractitioner.firstName} {this.props.referral.generalPractitioner.lastName}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Mail:</b> {this.props.referral.generalPractitioner.mail}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Telefonski broj:</b> {this.props.referral.generalPractitioner.phoneNumber}</p>*/}
-                        {/*</ListGroupItem>*/}
-                      {/*</Col>*/}
-                      {/*<Col md={6}>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Grad:</b> {this.props.referral.generalPractitioner.addressData.city}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Poštanski broj:</b> {this.props.referral.generalPractitioner.addressData.postalCode}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Ulica:</b> {this.props.referral.generalPractitioner.addressData.street}</p>*/}
-                        {/*</ListGroupItem>*/}
-                        {/*<ListGroupItem className={styles.listGroupItem}>*/}
-                          {/*<p><b>Kućni broj:</b> {this.props.referral.generalPractitioner.addressData.streetNumber}</p>*/}
-                        {/*</ListGroupItem>*/}
-                      {/*</Col>*/}
-                    {/*</Row>*/}
-                  {/*</ListGroup>*/}
-                {/*</FormGroup>*/}
-              {/*</Modal.Body>*/}
-            {/*</When>*/}
-            {/*<Otherwise>*/}
-              {/*<Alert className={styles.alert} bsStyle="danger">*/}
-                {/*<p>Morate odabrati uputnicu.</p>*/}
-              {/*</Alert>*/}
-            {/*</Otherwise>*/}
-          {/*</Choose>*/}
+          <Choose>
+            <When condition={this.props.examinationSelected}>
+              <Modal.Body>
+                <FormGroup controlId="formControlsSelect">
+                  <ListGroup>
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.section}>
+                          <span className={styles.span}>PACIJENT</span>
+                        </section>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Ime i prezime:</b> {this.props.examination.patient.firstName} {this.props.examination.patient.lastName}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>OIB:</b> {this.props.examination.patient.oib}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Spol:</b> {this.props.examination.patient.sex}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Datum rođenja:</b> {this.props.examination.patient.dateOfBirth}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Mail:</b> {this.props.examination.patient.mail}</p>
+                        </ListGroupItem>
+                      </Col>
+                      <Col md={6}>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Grad:</b> {this.props.examination.patient.addressData.city}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Poštanski broj:</b> {this.props.examination.patient.addressData.postalCode}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Ulica:</b> {this.props.examination.patient.addressData.street}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Kućni broj:</b> {this.props.examination.patient.addressData.streetNumber}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Telefonski broj:</b> {this.props.examination.patient.phoneNumber}</p>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.section}>
+                          <span className={styles.span}>INFORMACIJE O PREGLEDU</span>
+                        </section>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Status:</b> {this.props.examination.status}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Termin:</b> {this.props.examination.term}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Bolnica:</b> {this.props.examination.hospital.name}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Odjel:</b> {this.props.examination.referral.departmentType}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Bilješke:</b> {this.props.examination.remark}</p>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <section className={styles.section}>
+                          <span className={styles.span}>LIJEČNIK SPECIJALIST</span>
+                        </section>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Ime i prezime:</b> {this.props.examination.medicalSpecialist.firstName} {this.props.examination.medicalSpecialist.lastName}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Mail:</b> {this.props.examination.medicalSpecialist.mail}</p>
+                        </ListGroupItem>
+                        <ListGroupItem className={styles.listGroupItem}>
+                          <p><b>Telefonski broj:</b> {this.props.examination.medicalSpecialist.phoneNumber}</p>
+                        </ListGroupItem>
+                      </Col>
+                    </Row>
+                  </ListGroup>
+                </FormGroup>
+              </Modal.Body>
+            </When>
+            <Otherwise>
+              <Alert className={styles.alert} bsStyle="danger">
+                <p>Morate odabrati pregled.</p>
+              </Alert>
+            </Otherwise>
+          </Choose>
         </Modal>
       </section>
     );
