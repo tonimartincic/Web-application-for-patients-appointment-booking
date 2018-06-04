@@ -94,3 +94,12 @@ Insert into referral (referral_type, department_type, patient_id, general_practi
 Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on, remark, diagnosis) values ('SPECIALIST_HEALTH_CARE_C3', 'NEUROLOGY', 7, 4, CURRENT_DATE(), 'Molim hitno', 'Naevus naevocellularis pigmentosus');
 Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on, remark, diagnosis) values ('OUTPATIENT_TREATMENT_D1', 'EYE_DISEASES', 8, 4, CURRENT_DATE(), 'Molim hitno', 'Naevus naevocellularis pigmentosus');
 Insert into referral (referral_type, department_type, patient_id, general_practitioner_id, created_on, remark, diagnosis) values ('OUTPATIENT_TREATMENT_D2', 'ONCOLOGY', 9, 4, CURRENT_DATE(), 'Molim hitno', 'Naevus naevocellularis pigmentosus');
+
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('TERM_DEFINED', 1, 1, 1, 1, parsedatetime('01.08.18', 'dd.MM.yy'), null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('TERM_DEFINED', 2, 2, 2, 2, parsedatetime('11.09.18', 'dd.MM.yy'), null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('TERM_NOT_DEFINED', 3, 3, 3, 3, null, null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('TERM_NOT_DEFINED', 4, 4, 4, 4, null, null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('EXAMINATION_DONE', 5, 5, 5, 5, parsedatetime('23.02.18', 'dd.MM.yy'), null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('EXAMINATION_DONE', 6, 6, 6, 6, parsedatetime('15.03.18', 'dd.MM.yy'), null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('EXAMINATION_CANCELED', 7, 7, 7, 7, parsedatetime('02.04.18', 'dd.MM.yy'), null);
+Insert into examination (status, patient_id, medical_specialist_id, hospital_id, referral_id, term, remark) values ('EXAMINATION_CANCELED', 8, 8, 8, 8, parsedatetime('28.11.18', 'dd.MM.yy'), null);
