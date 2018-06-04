@@ -92,7 +92,7 @@ class Examinations extends React.Component {
   }
 
   handleDelete = () => {
-    this.props.deleteExamination(this.state.hospital.id);
+    this.props.deleteExamination(this.state.examination.id);
     this.setDeleteExaminationClicked(false);
     this.resetState();
   };

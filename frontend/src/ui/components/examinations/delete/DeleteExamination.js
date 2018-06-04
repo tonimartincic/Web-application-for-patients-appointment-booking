@@ -44,7 +44,7 @@ class DeleteExamination extends React.Component {
                     <ListGroupItem>
                       <Row>
                         <Col md={12}>
-                          <p><b>Remark:</b> {this.props.examination.remark}</p>
+                          <p><b>Bilješke:</b> {this.props.examination.remark}</p>
                         </Col>
                       </Row>
                     </ListGroupItem>
