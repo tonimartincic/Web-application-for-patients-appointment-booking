@@ -311,6 +311,7 @@ class Referrals extends React.Component {
           <Row>
             <Col md={12}>
               <Buttons
+                userData={this.props.userData}
                 setViewReferralClicked={value => this.setViewReferralClicked(value)}
                 setAddClicked={value => this.setAddReferralClicked(value)}
                 setEditClicked={value => this.setEditReferralClicked(value)}

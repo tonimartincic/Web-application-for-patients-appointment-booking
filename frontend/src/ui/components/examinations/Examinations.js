@@ -238,6 +238,7 @@ class Examinations extends React.Component {
           <Row>
             <Col md={12}>
               <Buttons
+                userData={this.props.userData}
                 setViewExaminationClicked={value => this.setViewExaminationClicked(value)}
                 setViewReferralClicked={value => this.setViewReferralClicked(value)}
                 setEditClicked={value => this.setEditExaminationClicked(value)}
@@ -255,6 +256,7 @@ function mapStateToProps(state) {
   return {
     examinations: state.examinations,
     examinationStatuses: state.examinationStatuses,
+    userData: state.userData,
   };
 }
 
