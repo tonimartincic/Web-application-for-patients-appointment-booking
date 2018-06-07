@@ -11,7 +11,7 @@ class AddEditReferral extends React.Component {
           onHide={() => this.props.resetState()}
         >
           <Choose>
-            <When condition={this.props.addReferralClicked || this.props.referralSelected}>
+            <When condition={this.props.addReferralClicked || (this.props.editReferralClicked && this.props.referralSelected)}>
               <Modal.Header closeButton>
                 <Modal.Title className={styles.modalTitle}>
                   {this.props.addReferralClicked ? 'Dodaj uputnicu' : 'Uredi uputnicu'}

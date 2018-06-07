@@ -1,8 +1,6 @@
 const initialState = {
   administrators: [],
 
-  departments: [],
-
   generalPractitioners: [],
 
   hospitals: [],

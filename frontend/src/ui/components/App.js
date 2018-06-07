@@ -17,12 +17,11 @@ import fetchAdministrators from '../../actionCreators/users/administratorsAction
 import fetchGeneralPractitioners from '../../actionCreators/users/generalPractitionersActionCreators';
 import fetchMedicalSpecialists from '../../actionCreators/users/medicalSpecialistsActionCreators';
 import fetchPatients from '../../actionCreators/users/patientsActionCreators';
-import fetchDepartments from '../../actionCreators/departments/departmentsActionCreators';
 import fetchExaminations from '../../actionCreators/examinations/examinationsActionCreators';
 import fetchHospitals from '../../actionCreators/hospitals/hospitalsActionCreators';
 import fetchReferrals from '../../actionCreators/referrals/referralsActionCreators';
 import fetchReferralTypes from '../../actionCreators/referrals/referralTypesActionCreators';
-import fetchDepartmentTypes from '../../actionCreators/departments/departmentTypesActionCreators';
+import fetchDepartmentTypes from '../../actionCreators/departmentTypes/departmentTypesActionCreators';
 import fetchExaminationStatuses from '../../actionCreators/examinations/examinationStatusesActionCreators';
 import styles from './app.css';
 
@@ -33,7 +32,6 @@ class App extends React.Component {
       .then(() => this.props.fetchGeneralPractitioners())
       .then(() => this.props.fetchMedicalSpecialists())
       .then(() => this.props.fetchPatients())
-      .then(() => this.props.fetchDepartments())
       .then(() => this.props.fetchExaminations())
       .then(() => this.props.fetchHospitals())
       .then(() => this.props.fetchReferrals())
@@ -73,7 +71,6 @@ function mapDispatchToProps(dispatch) {
     fetchGeneralPractitioners: () => dispatch(fetchGeneralPractitioners()),
     fetchMedicalSpecialists: () => dispatch(fetchMedicalSpecialists()),
     fetchPatients: () => dispatch(fetchPatients()),
-    fetchDepartments: () => dispatch(fetchDepartments()),
     fetchExaminations: () => dispatch(fetchExaminations()),
     fetchHospitals: () => dispatch(fetchHospitals()),
     fetchReferrals: () => dispatch(fetchReferrals()),

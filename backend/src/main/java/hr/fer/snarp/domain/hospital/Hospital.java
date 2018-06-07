@@ -3,7 +3,6 @@ package hr.fer.snarp.domain.hospital;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import hr.fer.snarp.domain.addressData.AddressData;
-import hr.fer.snarp.domain.department.Department;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -28,10 +27,6 @@ public class Hospital {
   @OneToOne
   @JoinColumn(name = "address_data_id")
   private AddressData addressData;
-
-  @JsonIgnore
-  @OneToMany(mappedBy = "hospital")
-  private Set<Department> departments;
 
   private String phoneNumber;
 

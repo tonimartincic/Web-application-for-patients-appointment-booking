@@ -5,6 +5,7 @@ import hr.fer.snarp.constants.UserConstants;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistRequest;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialistResponse;
+import hr.fer.snarp.repository.hospital.HospitalRepository;
 import hr.fer.snarp.repository.users.MedicalSpecialistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,12 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
 
   private final MedicalSpecialistRepository medicalSpecialistRepository;
 
+  private final HospitalRepository hospitalRepository;
+
   @Autowired
-  public MedicalSpecialistServiceImpl(final MedicalSpecialistRepository medicalSpecialistRepository) {
+  public MedicalSpecialistServiceImpl(final MedicalSpecialistRepository medicalSpecialistRepository, final HospitalRepository hospitalRepository) {
     this.medicalSpecialistRepository = medicalSpecialistRepository;
+    this.hospitalRepository = hospitalRepository;
   }
 
   @Override
@@ -34,7 +38,11 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
 
   @Override
   public MedicalSpecialistResponse add(final MedicalSpecialistRequest medicalSpecialistRequest) {
-    medicalSpecialistRequest.setPassword(UserConstants.DEFAULT_PASSWORD);
+    MedicalSpecialist medicalSpecialist = new MedicalSpecialist(medicalSpecialistRequest);
+
+    medicalSpecialist.setPassword(UserConstants.DEFAULT_PASSWORD);
+    medicalSpecialist.setHospital(this.hospitalRepository.findOne(medicalSpecialistRequest.getHospitalId()));
+
     return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(new MedicalSpecialist(medicalSpecialistRequest)));
   }
 
@@ -46,6 +54,7 @@ public class MedicalSpecialistServiceImpl implements MedicalSpecialistService {
     medicalSpecialistFromDatabase.setLastName(medicalSpecialistRequest.getLastName());
     medicalSpecialistFromDatabase.setMail(medicalSpecialistRequest.getMail());
     medicalSpecialistFromDatabase.setPhoneNumber(medicalSpecialistRequest.getPhoneNumber());
+    medicalSpecialistFromDatabase.setHospital(this.hospitalRepository.findOne(medicalSpecialistRequest.getHospitalId()));
 
     return getMedicalSpecialistResponse(this.medicalSpecialistRepository.save(medicalSpecialistFromDatabase));
   }

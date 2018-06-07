@@ -23,3 +23,9 @@ public class LoginController {
     return this.userService.validateUser(user.getMail(), user.getPassword());
   }
 }
+
+
+
+
+
+

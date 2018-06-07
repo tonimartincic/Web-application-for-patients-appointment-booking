@@ -5,4 +5,8 @@ import lombok.Data;
 
 @Data
 public class MedicalSpecialistRequest extends UserRequest {
+
+  private String departmentType;
+
+  private Long hospitalId;
 }
