@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {MenuItem, NavDropdown} from 'react-bootstrap';
 import UserInfo from './userInfo/UserInfo';
-import EditUserData from './editUserData/EditUserData';
 import ChangePassword from './changePassword/ChangePassword';
 import {withRouter} from 'react-router-dom';
 import styles from './settings.css';
@@ -13,23 +12,16 @@ class Settings extends Component {
 
     this.state = {
       showUserInfoClicked: false,
-      editUserDataClicked: false,
       changePasswordClicked: false,
     };
 
     this.setShowUserInfoClicked = this.setShowUserInfoClicked.bind(this);
-    this.setEditUserDataClicked = this.setEditUserDataClicked.bind(this);
     this.setChangePasswordClicked = this.setChangePasswordClicked.bind(this);
   }
 
   setShowUserInfoClicked = value =>
     this.setState({
       showUserInfoClicked: value,
-    });
-
-  setEditUserDataClicked = value =>
-    this.setState({
-      editUserDataClicked: value,
     });
 
   setChangePasswordClicked = value =>
@@ -62,14 +54,6 @@ class Settings extends Component {
           </MenuItem>
           <MenuItem divider/>
           <MenuItem onClick={() => {
-            this.setEditUserDataClicked(true);
-          }}>
-            <span className={styles.spanMenuItem}>
-              <span className='glyphicon glyphicon-edit'/> &nbsp;&nbsp; Promijeni osobne podatke
-            </span>
-          </MenuItem>
-          <MenuItem divider/>
-          <MenuItem onClick={() => {
             this.setChangePasswordClicked(true);
           }}>
             <span className={styles.spanMenuItem}>
@@ -86,10 +70,6 @@ class Settings extends Component {
         <UserInfo
           showUserInfoClicked={this.state.showUserInfoClicked}
           setShowUserInfoClicked={value => this.setShowUserInfoClicked(value)}
-        />
-        <EditUserData
-          editUserDataClicked={this.state.editUserDataClicked}
-          setEditUserDataClicked={value => this.setEditUserDataClicked(value)}
         />
         <ChangePassword
           changePasswordClicked={this.state.changePasswordClicked}

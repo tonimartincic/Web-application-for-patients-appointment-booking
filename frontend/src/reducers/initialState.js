@@ -1,8 +1,6 @@
 const initialState = {
   administrators: [],
 
-  departments: [],
-
   generalPractitioners: [],
 
   hospitals: [],
@@ -19,11 +17,15 @@ const initialState = {
 
   users: [],
 
+  examinations: [],
+
   showingUserData: false,
 
   referralTypes: [],
 
   departmentTypes: [],
+
+  examinationStatuses: [],
 };
 
 export default initialState;

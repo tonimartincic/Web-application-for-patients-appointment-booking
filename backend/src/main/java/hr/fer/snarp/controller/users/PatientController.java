@@ -2,7 +2,7 @@ package hr.fer.snarp.controller.users;
 
 import hr.fer.snarp.domain.users.patient.PatientRequest;
 import hr.fer.snarp.domain.users.patient.PatientResponse;
-import hr.fer.snarp.service.users.PatientService;
+import hr.fer.snarp.service.users.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

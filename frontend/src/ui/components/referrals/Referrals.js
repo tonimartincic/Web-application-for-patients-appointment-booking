@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {Button, Col, Grid, Row} from 'react-bootstrap';
-import AddEditDeleteButtons from '../buttons/addEditDeleteButtons/AddEditDeleteButtons';
+import {Col, Grid, Row} from 'react-bootstrap';
+import Buttons from './buttons/Buttons';
 import NavigationBar from '../navigationBar/NavigationBar';
 import ViewReferral from './view/ViewReferral';
 import AddEditReferral from './addEdit/AddEditReferral';
@@ -231,6 +231,11 @@ class Referrals extends React.Component {
       sort: true,
       headerStyle: {whiteSpace: 'nowrap'}
     },{
+      dataField: 'departmentType',
+      text: 'Odjel',
+      sort: true,
+      headerStyle: {whiteSpace: 'nowrap'}
+    },{
       dataField: 'createdOn',
       text: 'Datum kreiranja',
       sort: true,
@@ -310,13 +315,9 @@ class Referrals extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <Button
-                className={styles.button}
-                onClick={() => this.setViewReferralClicked(true)}
-              >
-                <span className='glyphicon glyphicon-eye-open'/> Pregled
-              </Button>
-              <AddEditDeleteButtons
+              <Buttons
+                userData={this.props.userData}
+                setViewReferralClicked={value => this.setViewReferralClicked(value)}
                 setAddClicked={value => this.setAddReferralClicked(value)}
                 setEditClicked={value => this.setEditReferralClicked(value)}
                 setDeleteClicked={value => this.setDeleteReferralClicked(value)}

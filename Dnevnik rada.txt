@@ -47,3 +47,12 @@ Rad na dizajnu aplikacije. Refaktoriranje koda.
 
 17.5.2018.
 Rad na dodavanju uputnica.
+
+1.6.2018.
+Rad na uputnicama, tablicama i dizajnu.
+
+2.6.2018.
+Rad na uputnicama, tablicama, dizajnu i naručivanju na preglede.
+
+4.6.2018.
+Rad na naručivanju na preglede i upravljanje pregledima.

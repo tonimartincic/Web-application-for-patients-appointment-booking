@@ -53,4 +53,11 @@ public class AddressData {
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
   }
+
+  @Override
+  public String toString() {
+    return "AddressData{" +
+      "id=" + id +
+      '}';
+  }
 }

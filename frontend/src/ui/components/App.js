@@ -7,6 +7,8 @@ import MedicalSpecialists from './users/medicalSpecialists/MedicalSpecialists';
 import Patients from './users/patients/Patients';
 import Hospitals from './hospitals/Hospitals';
 import Referrals from './referrals/Referrals';
+import Examinations from './examinations/Examinations';
+import ExaminationOrdering from './examinationOrdering/ExaminationOrdering';
 import PrivateRoute from './route/PrivateRoute';
 import Login from './login/Login';
 import {history} from './history/history';
@@ -15,11 +17,12 @@ import fetchAdministrators from '../../actionCreators/users/administratorsAction
 import fetchGeneralPractitioners from '../../actionCreators/users/generalPractitionersActionCreators';
 import fetchMedicalSpecialists from '../../actionCreators/users/medicalSpecialistsActionCreators';
 import fetchPatients from '../../actionCreators/users/patientsActionCreators';
-import fetchDepartments from '../../actionCreators/departments/departmentsActionCreators';
+import fetchExaminations from '../../actionCreators/examinations/examinationsActionCreators';
 import fetchHospitals from '../../actionCreators/hospitals/hospitalsActionCreators';
 import fetchReferrals from '../../actionCreators/referrals/referralsActionCreators';
 import fetchReferralTypes from '../../actionCreators/referrals/referralTypesActionCreators';
-import fetchDepartmentTypes from '../../actionCreators/departments/departmentTypesActionCreators';
+import fetchDepartmentTypes from '../../actionCreators/departmentTypes/departmentTypesActionCreators';
+import fetchExaminationStatuses from '../../actionCreators/examinations/examinationStatusesActionCreators';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -29,24 +32,27 @@ class App extends React.Component {
       .then(() => this.props.fetchGeneralPractitioners())
       .then(() => this.props.fetchMedicalSpecialists())
       .then(() => this.props.fetchPatients())
-      .then(() => this.props.fetchDepartments())
+      .then(() => this.props.fetchExaminations())
       .then(() => this.props.fetchHospitals())
       .then(() => this.props.fetchReferrals())
       .then(() => this.props.fetchReferralTypes())
-      .then(() => this.props.fetchDepartmentTypes());
+      .then(() => this.props.fetchDepartmentTypes())
+      .then(() => this.props.fetchExaminationStatuses());
   }
 
   render() {
     return (
       <Router history={history}>
         <section className={styles.section}>
-          <PrivateRoute exact path='/'><Administrators/></PrivateRoute>
+          <PrivateRoute exact path='/'><Login/></PrivateRoute>
           <PrivateRoute exact path='/administrators'><Administrators/></PrivateRoute>
           <PrivateRoute exact path='/general-practitioners'><GeneralPractitioners/></PrivateRoute>
           <PrivateRoute exact path='/medical-specialists'><MedicalSpecialists/></PrivateRoute>
           <PrivateRoute exact path='/patients'><Patients/></PrivateRoute>
           <PrivateRoute exact path='/hospitals'><Hospitals/></PrivateRoute>
           <PrivateRoute exact path='/referrals'><Referrals/></PrivateRoute>
+          <PrivateRoute exact path='/examinations'><Examinations/></PrivateRoute>
+          <PrivateRoute exact path='/examinationOrdering'><ExaminationOrdering/></PrivateRoute>
           <Route exact path='/login' component={Login}/>
         </section>
       </Router>
@@ -65,11 +71,12 @@ function mapDispatchToProps(dispatch) {
     fetchGeneralPractitioners: () => dispatch(fetchGeneralPractitioners()),
     fetchMedicalSpecialists: () => dispatch(fetchMedicalSpecialists()),
     fetchPatients: () => dispatch(fetchPatients()),
-    fetchDepartments: () => dispatch(fetchDepartments()),
+    fetchExaminations: () => dispatch(fetchExaminations()),
     fetchHospitals: () => dispatch(fetchHospitals()),
     fetchReferrals: () => dispatch(fetchReferrals()),
     fetchReferralTypes: () => dispatch(fetchReferralTypes()),
     fetchDepartmentTypes: () => dispatch(fetchDepartmentTypes()),
+    fetchExaminationStatuses: () => dispatch(fetchExaminationStatuses()),
   };
 }
 

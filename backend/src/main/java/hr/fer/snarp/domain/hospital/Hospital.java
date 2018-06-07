@@ -3,7 +3,6 @@ package hr.fer.snarp.domain.hospital;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Objects;
 import hr.fer.snarp.domain.addressData.AddressData;
-import hr.fer.snarp.domain.department.Department;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -29,10 +28,6 @@ public class Hospital {
   @JoinColumn(name = "address_data_id")
   private AddressData addressData;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "hospital")
-  private Set<Department> departments;
-
   private String phoneNumber;
 
   private String mail;
@@ -41,6 +36,7 @@ public class Hospital {
   }
 
   public Hospital(final HospitalRequest hospitalRequest) {
+    this.id = hospitalRequest.getId();
     this.name = hospitalRequest.getName();
     this.phoneNumber = hospitalRequest.getPhoneNumber();
     this.mail = hospitalRequest.getMail();
@@ -64,5 +60,12 @@ public class Hospital {
   @Override
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
+  }
+
+  @Override
+  public String toString() {
+    return "Hospital{" +
+      "id=" + id +
+      '}';
   }
 }

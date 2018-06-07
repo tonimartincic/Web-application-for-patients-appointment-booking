@@ -51,6 +51,7 @@ public class Referral {
   }
 
   public Referral(final ReferralRequest referralRequest) {
+    this.id = referralRequest.getId();
     this.referralType = ReferralType.getByName(referralRequest.getReferralType());
     this.departmentType = DepartmentType.getByDescription(referralRequest.getDepartmentType());
     this.diagnosis = referralRequest.getDiagnosis();
@@ -76,5 +77,12 @@ public class Referral {
   @Override
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
+  }
+
+  @Override
+  public String toString() {
+    return "Referral{" +
+      "id=" + id +
+      '}';
   }
 }

@@ -33,6 +33,7 @@ public class User {
   }
 
   public User(final UserRequest userRequest, final UserType userType) {
+    this.id = userRequest.getId();
     this.firstName = userRequest.getFirstName();
     this.lastName = userRequest.getLastName();
     this.mail = userRequest.getMail();
@@ -59,5 +60,12 @@ public class User {
   @Override
   public int hashCode() {
     return Objects.hashCode(super.hashCode(), this.id);
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+      "id=" + id +
+      '}';
   }
 }
