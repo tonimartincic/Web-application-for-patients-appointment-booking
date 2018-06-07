@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import hr.fer.snarp.domain.examanation.Examination;
 import hr.fer.snarp.domain.examanation.ExaminationRequest;
 import hr.fer.snarp.domain.examanation.ExaminationResponse;
+import hr.fer.snarp.domain.hospital.Hospital;
+import hr.fer.snarp.domain.referral.Referral;
 import hr.fer.snarp.domain.users.medicalSpecialist.MedicalSpecialist;
 import hr.fer.snarp.domain.users.patient.Patient;
 import hr.fer.snarp.enumeration.ExaminationStatus;
@@ -109,18 +111,17 @@ public class ExaminationServiceImpl implements ExaminationService {
   }
 
   private void setParameters(ExaminationRequest examinationRequest, Examination examination) {
-    if(examinationRequest.getPatientId() != null) {
-      examination.setPatient(this.patientRepository.findOne(examinationRequest.getPatientId()));
-    }
-    if(examinationRequest.getHospitalId() != null) {
-      examination.setHospital(this.hospitalRepository.findOne(examinationRequest.getHospitalId()));
-    }
-    if(examinationRequest.getReferralId() != null) {
-      examination.setReferral(this.referralRepository.findOne(examinationRequest.getReferralId()));
-    }
-    if(examinationRequest.getMedicalSpecialistId() != null) {
-      examination.setMedicalSpecialist(this.medicalSpecialistRepository.findOne(examinationRequest.getMedicalSpecialistId()));
-    }
+    Patient patient = this.patientRepository.findOne(examinationRequest.getPatientId());
+    examination.setPatient(patient);
+
+    Hospital hospital = this.hospitalRepository.findOne(examinationRequest.getHospitalId());
+    examination.setHospital(hospital);
+
+    Referral referral = this.referralRepository.findOne(examinationRequest.getReferralId());
+    examination.setReferral(referral);
+
+    MedicalSpecialist medicalSpecialist = this.medicalSpecialistRepository.findByHospitalAndDepartmentType(hospital, referral.getDepartmentType());
+    examination.setMedicalSpecialist(medicalSpecialist);
   }
 
   @Override
